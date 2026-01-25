@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل الاستخدام الشامل - مشروع المياه الجوفية</title>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Network Animation CSS -->
+    <link rel="stylesheet" href="css/network-animation.css">
+    <!-- Theme Switcher CSS -->
+    <link rel="stylesheet" href="css/theme-switcher.css">
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        :root {
+            --step-accent: #3b82f6;
+        }
+
+        .guide-body {
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        .guide-hero {
+            padding: 140px 20px 60px;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(var(--accent-blue-rgb), 0.08) 0%, transparent 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .guide-title {
+            font-size: clamp(2.2rem, 6vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .guide-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .steps-container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 20px;
+            display: grid;
+            gap: 4rem;
+        }
+
+        .step-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border-radius: 35px;
+            padding: 3.5rem;
+            border: 1px solid rgba(15, 76, 129, 0.12);
+            box-shadow: 0 20px 50px rgba(15, 76, 129, 0.06);
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        [data-theme="dark"] .step-card {
+            background: var(--bg-card);
+            border-color: var(--border-color);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .step-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .step-card:nth-child(even) {
+            direction: ltr;
+        }
+
+        .step-card:nth-child(even) .step-content {
+            direction: rtl;
+        }
+
+        .step-badge {
+            background: rgba(15, 76, 129, 0.1);
+            color: #0f4c81;
+            /* Deep Blue text */
+            padding: 8px 22px;
+            border-radius: 50px;
+            font-weight: 800;
+            display: inline-block;
+            margin-bottom: 1.8rem;
+            font-size: 0.9rem;
+            border: 1px solid rgba(15, 76, 129, 0.2);
+            letter-spacing: 0.5px;
+        }
+
+        [data-theme="dark"] .step-badge {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            box-shadow: 0 8px 20px rgba(var(--accent-blue-rgb), 0.3);
+        }
+
+        .step-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: #020617;
+            /* Brushing towards black for maximum clarity in light mode */
+            line-height: 1.3;
+        }
+
+        [data-theme="dark"] .step-content h2 {
+            color: var(--primary-color);
+        }
+
+        .step-content p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+
+        .step-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .step-features i {
+            color: var(--success-color);
+            font-size: 1.2rem;
+        }
+
+        .step-visual {
+            background: rgba(15, 76, 129, 0.03);
+            border-radius: 25px;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(15, 76, 129, 0.08);
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.015);
+        }
+
+        [data-theme="dark"] .step-visual {
+            background: rgba(255, 255, 255, 0.02);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Mockup Illustrations */
+        .mockup-ui {
+            width: 85%;
+            height: 75%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+            position: relative;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .mockup-ui {
+            background: #111827;
+        }
+
+        /* Animations */
+        .cursor-anim {
+            width: 28px;
+            height: 28px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            position: absolute;
+            z-index: 10;
+            opacity: 0.7;
+            pointer-events: none;
+            box-shadow: 0 0 0 12px rgba(var(--accent-blue-rgb), 0.2);
+        }
+
+        .step1-anim .cursor-anim {
+            animation: moveCursor1 5s infinite ease-in-out;
+        }
+
+        @keyframes moveCursor1 {
+
+            0%,
+            100% {
+                top: 80%;
+                left: 80%;
+            }
+
+            20% {
+                top: 20%;
+                left: 15%;
+            }
+
+            40% {
+                top: 20%;
+                left: 40%;
+            }
+
+            60% {
+                top: 20%;
+                left: 65%;
+            }
+
+            80% {
+                top: 20%;
+                left: 85%;
+            }
+        }
+
+        .step2-anim .pulse-point {
+            width: 40px;
+            height: 40px;
+            background: rgba(var(--accent-blue-rgb), 0.4);
+            border: 3px solid var(--accent-blue);
+            border-radius: 50%;
+            animation: radar 2s infinite;
+        }
+
+        @keyframes radar {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+
+        .gallery-mockup {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .gallery-item-mock {
+            height: 60px;
+            background: #eee;
+            border-radius: 8px;
+            animation: shimmer 2s infinite linear;
+        }
+
+        [data-theme="dark"] .gallery-item-mock {
+            background: #374151;
+        }
+
+        @keyframes shimmer {
+            0% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.5;
+            }
+        }
+
+        .btn-start {
+            background: linear-gradient(135deg, #0f4c81 0%, #0ea5e9 100%);
+            color: white !important;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-top: 3rem;
+            box-shadow: 0 10px 30px rgba(15, 76, 129, 0.3);
+            font-size: 1.1rem;
+        }
+
+        .btn-start:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(15, 76, 129, 0.4);
+            color: white !important;
+        }
+
+        [data-theme="dark"] .btn-start {
+            background: var(--gradient-primary);
+            box-shadow: 0 10px 30px rgba(var(--accent-blue-rgb), 0.3);
+        }
+
+        @media (max-width: 992px) {
+            .step-card {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                padding: 2.5rem;
+                text-align: center;
+            }
+
+            .step-card:nth-child(even) {
+                direction: rtl;
+            }
+
+            .step-visual {
+                height: 300px;
+                order: -1;
+            }
+
+            .step-content h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Documentation & About Visuals */
+        .doc-line {
+            height: 8px;
+            background: #eee;
+            margin-bottom: 12px;
+            border-radius: 4px;
+        }
+
+        [data-theme="dark"] .doc-line {
+            background: #374151;
+        }
+    </style>
+</head>
+
+<body class="guide-body">
+    <!-- Network Animation Background -->
+    <div class="network-background">
+        <div class="network-container" id="networkContainer"></div>
+    </div>
+
+    <!-- Unified Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <i class="fas fa-water"></i>
+                <span>المياه الجوفية بسوهاج</span>
+            </a>
+            <div class="nav-links">
+                <a class="nav-link" href="index.html">الرئيسية</a>
+                <a class="nav-link" href="groundwater.html">الخريطة التفاعلية</a>
+                <a class="nav-link" href="gallery.html">المعرض</a>
+                <a class="nav-link" href="palestine.html">أولى القبلتين</a>
+                <a class="nav-link active" href="instructions.html">طريقة الاستخدام</a>
+                <a class="nav-link" href="about.html">عن المشروع</a>
+                <button class="theme-switcher-btn" id="theme-switcher" aria-label="تبديل الوضع">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+            <div class="hamburger" aria-label="فتح/إغلاق القائمة">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+    <div class="sidebar-overlay"></div>
+
+    <main>
+        <header class="guide-hero">
+            <h1 class="guide-title">دليل الاستخدام التفاعلي</h1>
+            <p class="guide-subtitle"><span id="typewriter-text"></span><span class="cursor">|</span></p>
+        </header>
+
+        <section class="steps-container">
+            <!-- Step 1: Navigation -->
+            <div class="step-card">
+                <div class="step-content">
+                    <span class="step-badge">الخطوة 1: الاستكشاف</span>
+                    <h2>التنقل الذكي في الموقع</h2>
+                    <p>صُممت واجهة الموقع لتكون بديهية. يمكنك الوصول لكافة الأقسام من خلال شريط التنقل العلوي الثابت. في
+                        الأجهزة المحمولة، اضغط على أيقونة (القائمة الجانبية) لعرض الروابط.</p>
+                    <ul class="step-features">
+                        <li><i class="fas fa-check-circle"></i> تنقل سلس بين الخرائط والتقارير.</li>
+                        <li><i class="fas fa-check-circle"></i> زر خاص لتبديل الوضع الليلي لراحة العين.</li>
+                        <li><i class="fas fa-check-circle"></i> سرعة عالية في التحميل للأقسام المختلفة.</li>
+                    </ul>
+                </div>
+                <div class="step-visual step1-anim">
+                    <div class="mockup-ui">
+                        <div
+                            style="height: 12px; width: 100%; background: var(--accent-blue); opacity: 0.2; margin-bottom: 25px; border-radius: 6px;">
+                        </div>
+                        <div style="display: flex; gap: 15px; justify-content: center;">
+                            <div style="height: 15px; width: 50px; background: #eee; border-radius: 4px;"></div>
+                            <div style="height: 15px; width: 50px; background: #eee; border-radius: 4px;"></div>
+                            <div style="height: 15px; width: 50px; background: #eee; border-radius: 4px;"></div>
+                        </div>
+                        <div class="cursor-anim"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Interactive Map -->
+            <div class="step-card">
+                <div class="step-content">
+                    <span class="step-badge">الخطوة 2: التحليل</span>
+                    <h2>استخدام الخريطة التفاعلية</h2>
+                    <p>هذا هو قلب الموقع. يمكنك النقر على أي "خلية" في الخريطة لعرض تفاصيلها الجغرافية. استخدم أدوات
+                        القياس والبحث المتاحة للحصول على أدق النتائج.</p>
+                    <ul class="step-features">
+                        <li><i class="fas fa-check-circle"></i> اضغط على "تحديد موقعي" لمعرفة احتمالية المياه حولك.</li>
+                        <li><i class="fas fa-check-circle"></i> استعرض مفتاح الخريطة لفهم دلالات الألوان.</li>
+                        <li><i class="fas fa-check-circle"></i> قراءة التقارير الآلية الفورية لكل منطقة.</li>
+                    </ul>
+                </div>
+                <div class="step-visual step2-anim">
+                    <div class="mockup-ui"
+                        style="background: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22><circle cx=%2220%22 cy=%2220%22 r=%221%22 fill=%22%23ccc%22/></svg>');">
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                            <div class="pulse-point"></div>
+                        </div>
+                        <div
+                            style="position: absolute; bottom: 15px; left: 15px; width: 80px; height: 100px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 8px;">
+                            <div class="doc-line" style="width: 100%;"></div>
+                            <div class="doc-line" style="width: 70%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Gallery -->
+            <div class="step-card">
+                <div class="step-content">
+                    <span class="step-badge">الخطوة 3: المعرض الرقمي</span>
+                    <h2>تصفح معرض الخرائط</h2>
+                    <p>يوفر المعرض كافة الطبقات الجغرافية المستخدمة في بناء النموذج (مثل الجيولوجيا والارتفاعات). يمكنك
+                        تكبير الصور بدقة عالية وتحميلها واستعراض تفاصيلها العلمية.</p>
+                    <ul class="step-features">
+                        <li><i class="fas fa-check-circle"></i> ميزة التكبير الرقمي (Zoom) للخرائط الضخمة.</li>
+                        <li><i class="fas fa-check-circle"></i> تحميل مباشر للخرائط بصيغة PNG عالية الجودة.</li>
+                    </ul>
+                </div>
+                <div class="step-visual">
+                    <div class="mockup-ui">
+                        <div class="gallery-mockup">
+                            <div class="gallery-item-mock"></div>
+                            <div class="gallery-item-mock" style="animation-delay: 0.5s;"></div>
+                            <div class="gallery-item-mock" style="animation-delay: 1s;"></div>
+                            <div class="gallery-item-mock" style="animation-delay: 1.5s;"></div>
+                        </div>
+                        <div style="margin-top: 15px; text-align: center;">
+                            <i class="fas fa-magnifying-glass-plus"
+                                style="font-size: 1.5rem; color: var(--accent-blue); opacity: 0.6;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Documentation -->
+            <div class="step-card">
+                <div class="step-content">
+                    <span class="step-badge">الخطوة 4: القيمة العلمية</span>
+                    <h2>التوثيق والتعريف بالمشروع</h2>
+                    <p>لم نكتفِ بالخرائط، بل قدمنا توثيقاً كاملاً (Documentation) يشرح المنهجية العلمية المتبعة. كما
+                        يمكنك التعرف على فريق العمل الأكاديمي المشرف على المشروع.</p>
+                    <ul class="step-features">
+                        <li><i class="fas fa-check-circle"></i> مراجعة المخرجات الأكاديمية والبحثية.</li>
+                        <li><i class="fas fa-check-circle"></i> التواصل المباشر مع فريق العمل.</li>
+                    </ul>
+                </div>
+                <div class="step-visual">
+                    <div class="mockup-ui" style="display: flex; flex-direction: column; gap: 15px;">
+                        <div
+                            style="width: 50px; height: 50px; background: var(--accent-blue); border-radius: 50%; opacity: 0.2; align-self: center;">
+                        </div>
+                        <div class="doc-line" style="width: 100%;"></div>
+                        <div class="doc-line" style="width: 100%;"></div>
+                        <div class="doc-line" style="width: 60%;"></div>
+                        <div style="display: flex; gap: 10px; justify-content: center; margin-top: 5px;">
+                            <div style="width: 30px; height: 30px; border: 1px solid #ccc; border-radius: 50%;"></div>
+                            <div style="width: 30px; height: 30px; border: 1px solid #ccc; border-radius: 50%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: Palestine Map -->
+            <div class="step-card">
+                <div class="step-content">
+                    <span class="step-badge">الخطوة 5: أولى القبلتين</span>
+                    <h2>تفاعل مع خريطة فلسطين</h2>
+                    <p>قسم مخصص لعرض حدود محافظات فلسطين الشقيقة ومعالم المسجد الأقصى المبارك. يمكنك الضغط على المعالم
+                        لاستماع التواشيح الدينية والتعرف على التاريخ.</p>
+                    <ul class="step-features">
+                        <li><i class="fas fa-check-circle"></i> عرض المحافظات الفلسطينية بحدودها التاريخية.</li>
+                        <li><i class="fas fa-check-circle"></i> نقاط تفاعلية لأهم معالم الأقصى وتفاصيله.</li>
+                        <li><i class="fas fa-check-circle"></i> تجربة صوتية إيمانية مصاحبة للاستكشاف.</li>
+                    </ul>
+                </div>
+                <div class="step-visual">
+                    <div class="mockup-ui"
+                        style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                        <i class="fas fa-mosque" style="font-size: 4rem; color: #10b981; margin-bottom: 1rem;"></i>
+                        <div style="display: flex; gap: 8px;">
+                            <div class="pulse-point" style="background: #10b981; border-color: #059669;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div style="text-align: center; margin-bottom: 8rem; padding: 0 20px;">
+            <h3 style="font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem;">جاهز لبدء تجربتك؟</h3>
+            <p style="font-size: 1.2rem; opacity: 0.8;">اكتشف كنوز المحافظة الجوفية وتفاعل مع الخرائط الآن.</p>
+            <a href="index.html" class="btn-start">
+                انطلق إلى الصفحة الرئيسية <i class="fas fa-arrow-left"></i>
+            </a>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/network-animation.js"></script>
+    <script src="js/theme-switcher.js"></script>
+    <script>
+        // Reveal animations on scroll
+        const cards = document.querySelectorAll('.step-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.25 });
+
+        cards.forEach(card => observer.observe(card));
+
+        // Mobile menu logic unified
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const overlay = document.querySelector('.sidebar-overlay');
+
+        function toggleMenu() {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        }
+
+        hamburger.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+        // Close on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) toggleMenu();
+            });
+        });
+
+        // Initialize Network Animation
+        if (typeof createNetworkAnimation === 'function') {
+            createNetworkAnimation('networkContainer');
+        }
+
+        // Typewriter Effect
+        const textToType = "مرحباً بك في المنصة الإلكترونية لمشروع رصد المياه الجوفية. هذا الدليل سيساعدك على فهم كيفية استغلال كافة أدوات الموقع بكفاءة عالية.";
+        const typewriterElement = document.getElementById('typewriter-text');
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeEffect() {
+            const currentText = textToType.substring(0, charIndex);
+            typewriterElement.textContent = currentText;
+
+            let typeSpeed = isDeleting ? 30 : 60;
+
+            if (!isDeleting && charIndex === textToType.length) {
+                isDeleting = true;
+                typeSpeed = 4000; // Pause at end
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                typeSpeed = 1000; // Pause at start
+            }
+
+            charIndex += isDeleting ? -1 : 1;
+            setTimeout(typeEffect, typeSpeed);
+        }
+
+        setTimeout(typeEffect, 1200);
+    </script>
+</body>
+
+</html>

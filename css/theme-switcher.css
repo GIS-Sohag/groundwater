@@ -1,0 +1,195 @@
+/* Theme Switcher CSS */
+:root {
+    /* Light Theme Colors */
+    --bg-primary: #f0f4f8;
+    /* FIX: A slightly off-white background to make cards pop */
+    --bg-secondary: #ffffff;
+    --bg-card: rgba(255, 255, 255, 0.98);
+    /* FIX: Reduced transparency */
+    --text-primary: #2c3e50;
+    --text-secondary: #5a6c7d;
+    --text-light: #6c757d;
+    --border-color: #e9ecef;
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --shadow-medium: rgba(0, 0, 0, 0.15);
+    --shadow-heavy: rgba(0, 0, 0, 0.2);
+
+    /* Accent Colors */
+    --accent-blue: #3498db;
+    --accent-blue-rgb: 52, 152, 219;
+    /* NEW: RGB for rgba() */
+    --accent-red: #e74c3c;
+    --accent-green: #27ae60;
+    --accent-orange: #f39c12;
+    --accent-purple: #9b59b6;
+    --accent-gold: #f1c40f;
+}
+
+/* Dark Theme */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-primary: #111827;
+        /* FIX: Darker background */
+        --bg-secondary: #1f2937;
+        --bg-card: rgba(31, 41, 55, 0.95);
+        /* FIX: Darker card, less transparent */
+        --text-primary: #f7fafc;
+        --text-secondary: #e2e8f0;
+        --text-light: #a0aec0;
+        --border-color: #4a5568;
+        --shadow-light: rgba(0, 0, 0, 0.3);
+        --shadow-medium: rgba(0, 0, 0, 0.4);
+        --shadow-heavy: rgba(0, 0, 0, 0.5);
+
+        /* Brighter accent colors for dark theme */
+        --accent-blue: #63b3ed;
+        --accent-blue-rgb: 99, 179, 237;
+        /* NEW: RGB for rgba() */
+        --accent-red: #fc8181;
+        --accent-green: #68d391;
+        --accent-orange: #fbb040;
+        --accent-purple: #b794f6;
+        --accent-gold: #f6e05e;
+    }
+}
+
+/* Manual Dark Theme Class */
+[data-theme="dark"] {
+    --bg-primary: #111827;
+    /* FIX: Darker background */
+    --bg-secondary: #1f2937;
+    --bg-card: rgba(31, 41, 55, 0.95);
+    /* FIX: Darker card, less transparent */
+    --text-primary: #f7fafc;
+    --text-secondary: #e2e8f0;
+    --text-light: #a0aec0;
+    --border-color: #4a5568;
+    --shadow-light: rgba(0, 0, 0, 0.3);
+    --shadow-medium: rgba(0, 0, 0, 0.4);
+    --shadow-heavy: rgba(0, 0, 0, 0.5);
+
+    --accent-blue: #63b3ed;
+    --accent-blue-rgb: 99, 179, 237;
+    /* NEW: RGB for rgba() */
+    --accent-red: #fc8181;
+    --accent-green: #68d391;
+    --accent-orange: #fbb040;
+    --accent-purple: #b794f6;
+    --accent-gold: #f6e05e;
+}
+
+/* Manual Light Theme Class */
+[data-theme="light"] {
+    --bg-primary: #f0f4f8;
+    /* FIX: A slightly off-white background */
+    --bg-secondary: #ffffff;
+    --bg-card: rgba(255, 255, 255, 0.98);
+    /* FIX: Reduced transparency */
+    --text-primary: #2c3e50;
+    --text-secondary: #5a6c7d;
+    --text-light: #6c757d;
+    --border-color: #e9ecef;
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --shadow-medium: rgba(0, 0, 0, 0.15);
+    --shadow-heavy: rgba(0, 0, 0, 0.2);
+
+    --accent-blue: #3498db;
+    --accent-blue-rgb: 52, 152, 219;
+    /* NEW: RGB for rgba() */
+    --accent-red: #e74c3c;
+    --accent-green: #27ae60;
+    --accent-orange: #f39c12;
+    --accent-purple: #9b59b6;
+    --accent-gold: #f1c40f;
+}
+
+/* Theme Switcher Button */
+/* Modern Theme Switcher Button */
+.theme-switcher-btn {
+    background: rgba(var(--accent-blue-rgb), 0.1);
+    border: 1px solid rgba(var(--accent-blue-rgb), 0.2);
+    color: var(--accent-blue);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+}
+
+.theme-switcher-btn:hover {
+    background: var(--accent-blue);
+    color: #fff;
+    transform: rotate(30deg) scale(1.1);
+    box-shadow: 0 8px 20px rgba(var(--accent-blue-rgb), 0.3);
+    border-color: transparent;
+}
+
+/* Hide legacy .theme-switcher if any */
+.theme-switcher {
+    display: none;
+}
+
+/* Theme transition */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Apply theme variables to common elements */
+body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.header {
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.nav-btn {
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.nav-btn:hover {
+    background: var(--accent-blue);
+    color: var(--bg-primary);
+}
+
+.section-title {
+    color: var(--text-primary);
+}
+
+.card,
+.gallery-item,
+.student-card .card-front {
+    background: var(--bg-card);
+    border-color: var(--border-color);
+    box-shadow: 0 10px 30px var(--shadow-light);
+}
+
+.footer {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-top: 1px solid var(--border-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .theme-switcher {
+        top: 10px;
+        left: 10px;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .theme-switcher span {
+        display: none;
+    }
+}

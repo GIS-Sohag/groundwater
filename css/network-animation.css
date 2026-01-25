@@ -1,0 +1,20 @@
+.network-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* خلف المحتوى ولكن أمام لون خلفية الصفحة */
+    overflow: hidden;
+    pointer-events: none; /* للسماح بالنقر على العناصر خلف الشبكة */
+    background: radial-gradient(ellipse at center, rgba(102, 126, 234, 0.05) 0%, transparent 70%);
+}
+
+.network-container {
+    width: 100%;
+    height: 100%;
+}
+
+canvas {
+    display: block;
+}

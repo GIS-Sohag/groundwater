@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خريطة المياه الجوفية - محافظة سوهاج</title>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <!-- Leaflet GeoSearch Plugin CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch@3.8.0/dist/geosearch.css" />
+
+    <!-- Leaflet Polyline Measure Plugin CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.polylinemeasure/Leaflet.Polyline.Measure.css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/network-animation.css">
+    <link rel="stylesheet" href="css/theme-switcher.css">
+
+    <style>
+        :root {
+            color-scheme: light dark;
+            --bg-primary: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-card-rgb: 255, 255, 255;
+            --text-primary: #1f2a44;
+            --text-secondary: #64748b;
+            --border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-card: #1e293b;
+            --bg-card-rgb: 30, 41, 59;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scrollbar-gutter: stable;
+            isolation: isolate;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-y: auto;
+            /* FIX: Allow vertical scrolling */
+            overflow-x: hidden;
+            /* Prevent horizontal scroll */
+            position: relative;
+        }
+
+        /* --- Theme Transition Fixes --- */
+        html.disable-transitions,
+        html.disable-transitions *,
+        html.disable-transitions *::before,
+        html.disable-transitions *::after {
+            transition: none !important;
+        }
+
+        ::view-transition-group(root) {
+            animation-duration: 0s;
+        }
+
+        ::view-transition-old(root),
+        ::view-transition-new(root) {
+            animation: none;
+            mix-blend-mode: normal;
+        }
+
+        [data-theme="dark"]::view-transition-new(root) {
+            z-index: 9999;
+        }
+
+        [data-theme="dark"]::view-transition-old(root) {
+            z-index: 1;
+        }
+
+        [data-theme="light"]::view-transition-old(root) {
+            z-index: 9999;
+        }
+
+        [data-theme="light"]::view-transition-new(root) {
+            z-index: 1;
+        }
+
+        .network-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(var(--bg-card-rgb, 255, 255, 255), 0.8);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 0.8rem 0;
+            z-index: 9000;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            font-size: clamp(0.9rem, 4vw, 1.2rem);
+            /* Responsive font size */
+            color: var(--text-primary);
+        }
+
+        .nav-brand i {
+            font-size: 1.5rem;
+            color: var(--accent-blue);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-blue);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-primary);
+            margin: 3px 0;
+            transition: 0.4s;
+            z-index: 1002;
+        }
+
+        /* Professional Hamburger Animation */
+        .hamburger .bar {
+            transform-origin: center;
+        }
+
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        @media (max-width: 992px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                right: -100%;
+                top: 0;
+                flex-direction: column;
+                background: var(--bg-card);
+                backdrop-filter: blur(20px);
+                width: 320px;
+                height: 100vh;
+                text-align: right;
+                transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+                padding: 100px 2rem 2rem;
+                justify-content: flex-start;
+                z-index: 9002;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+        }
+
+
+
+        .main-content {
+            padding: 1rem 2rem 2rem;
+            /* Adjusted padding */
+            padding-top: 90px;
+            /* Space for navbar */
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* NEW: Page Title card, inspired by palestine.html */
+        .page-title-card {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            /* FIX: Make title card transparent as requested */
+            background: transparent;
+            backdrop-filter: none;
+            border: none;
+            box-shadow: none;
+        }
+
+        .page-title-card h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.2rem;
+            /* Adjusted cursor height to match font */
+            background-color: var(--accent-blue);
+            animation: blink 1s infinite;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .page-title-card p {
+            font-size: 1rem;
+            color: var(--text-primary);
+            opacity: 0.9;
+            font-weight: 600;
+            min-height: 60px;
+            white-space: pre-line;
+            line-height: 1.6;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            min-height: 500px;
+            /* Ensure map has minimum height */
+            z-index: 1;
+            /* Ensure map is above background */
+        }
+
+        .quran-verse {
+            background: var(--bg-card);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .verse-text {
+            font-size: 1.3rem;
+            line-height: 2;
+            margin-bottom: 1rem;
+        }
+
+        .verse-reference {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .map-section {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 2rem;
+            height: 70vh;
+            /* Increased height for better visibility */
+            min-height: 600px;
+            /* Minimum height to ensure map is visible */
+        }
+
+        .map-container {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px var(--shadow-light);
+            position: relative;
+            overflow: hidden;
+            /* Prevent content overflow */
+        }
+
+        .map-controls {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 900;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .map-info-panel {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px var(--shadow-light);
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .info-card h4 {
+            color: var(--accent-blue);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(var(--accent-blue-rgb), 0.3);
+            /* FIX: Thinner and more transparent border */
+            padding-bottom: 0.5rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .legend-item i {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            margin-left: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        #details-container {
+            margin-top: 1.5rem;
+        }
+
+        .details-placeholder {
+            text-align: center;
+            color: #95a5a6;
+            padding: 1rem 0;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .details-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+        }
+
+        .details-grid p {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            padding: 0.5rem;
+            background-color: var(--bg-color);
+            border-radius: 6px;
+        }
+
+        .details-grid p strong {
+            color: var(--text-primary);
+        }
+
+        /* Leaflet Control Overrides */
+        /* FIX: Professional Map Controls Styling */
+        .leaflet-control-container .leaflet-bar,
+        .leaflet-control-measure,
+        .leaflet-control-geosearch,
+        .leaflet-control-custom,
+        .leaflet-control-layers {
+            border-radius: 12px !important;
+            box-shadow: 0 4px 12px var(--shadow-medium) !important;
+            border: 1px solid var(--border-color) !important;
+            background-color: var(--bg-card) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        .leaflet-bar a,
+        .leaflet-control-measure .leaflet-control-measure-button a,
+        .leaflet-control-custom,
+        .leaflet-control-layers-toggle {
+            width: 40px !important;
+            height: 40px !important;
+            line-height: 40px !important;
+            background-color: transparent !important;
+            color: var(--text-primary) !important;
+            font-size: 1.2em !important;
+            border-bottom: 1px solid var(--border-color) !important;
+        }
+
+        .leaflet-bar a:last-child {
+            border-bottom: none !important;
+        }
+
+        .leaflet-bar a:hover,
+        .leaflet-control-layers-toggle:hover {
+            background-color: var(--accent-blue) !important;
+            color: white !important;
+        }
+
+        .leaflet-control-layers-toggle {
+            background-image: none !important;
+        }
+
+        /* FIX: Add icon to basemap layer control */
+        .leaflet-control-layers-toggle::after {
+            font-family: "Font Awesome 6 Free";
+            /* Use Font Awesome */
+            content: "\f0ac";
+            /* fa-globe icon */
+            font-weight: 900;
+            /* Required for solid icons */
+            display: block;
+            text-align: center;
+        }
+
+
+        .leaflet-control-geosearch form {
+            border-radius: 8px !important;
+            border: 2px solid var(--accent-blue) !important;
+        }
+
+        /* Fix Layer Control Text Color in Dark Mode */
+        .leaflet-control-layers {
+            color: var(--text-primary) !important;
+            background: var(--bg-card) !important;
+        }
+
+        .leaflet-control-layers label span {
+            color: var(--text-primary) !important;
+        }
+
+        /* NEW: Report & Coords Card styles */
+        .report-card,
+        .coords-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px var(--shadow-light);
+        }
+
+        .coords-card {
+            padding: 1.5rem;
+            display: none;
+            /* Hidden by default */
+        }
+
+        .report-card .report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--accent-blue);
+            padding-bottom: 0.5rem;
+        }
+
+        .report-header h4 {
+            color: var(--accent-blue);
+            font-size: 1.3rem;
+            margin: 0;
+        }
+
+        .control-btn {
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .report-content {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .report-content .cursor {
+            height: 1em;
+            width: 2px;
+        }
+
+        @media (max-width: 992px) {
+            .map-section {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .map-container {
+                height: 500px;
+                min-height: 500px;
+            }
+
+            .map-info-panel {
+                height: auto;
+                margin-top: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .map-section {
+                min-height: 450px;
+            }
+
+            .map-container {
+                height: 450px;
+                min-height: 450px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="network-background">
+        <div class="network-container" id="networkContainer"></div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-water"></i>
+                <span>المياه الجوفية بسوهاج</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">الرئيسية</a>
+                <a href="groundwater.html" class="nav-link active">الخريطة التفاعلية</a>
+                <a href="gallery.html" class="nav-link">المعرض</a>
+                <a href="palestine.html" class="nav-link">أولى القبلتين</a>
+                <a href="about.html" class="nav-link">عن المشروع</a>
+                <button class="theme-switcher-btn" id="theme-switcher" title="تبديل الوضع">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+            <div class="hamburger" aria-label="فتح/إغلاق القائمة">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+    <div class="sidebar-overlay"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-title-card" id="page-title-card">
+            <h1><i class="fas fa-tint"></i> المياه الجوفية</h1>
+            <p><span id="typewriter-text"></span><span class="cursor">|</span></p>
+        </div>
+
+        <div class="quran-verse">
+            <p class="verse-text">"وَأَنزَلْنَا مِنَ السَّمَاءِ مَاءً بِقَدَرٍ فَأَسْكَنَّاهُ فِي الْأَرْضِ ۖ
+                وَإِنَّا
+                عَلَىٰ ذَهَابٍ بِهِ لَقَادِرُونَ"</p>
+            <p class="verse-reference">(سورة المؤمنون - الآية 18)</p>
+        </div>
+
+        <div class="map-section">
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
+            <div class="map-info-panel">
+                <div class="info-card" id="legend-container">
+                    <!-- Legend will be generated here -->
+                </div>
+                <div class="info-card" id="details-container">
+                    <!-- Feature details will be generated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- NEW: Coordinates Card -->
+        <div class="coords-card" id="coords-card">
+            <!-- Coordinates will be injected here -->
+        </div>
+
+        <div class="report-card">
+            <div class="report-header">
+                <h4><i class="fas fa-file-alt"></i> تقرير تحليلي</h4>
+            </div>
+            <div id="report-container" class="report-content"></div>
+        </div>
+    </main>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-geosearch@3.8.0/dist/geosearch.umd.js"></script>
+
+    <!-- Leaflet Polyline Measure Plugin JS -->
+    <script src="https://unpkg.com/leaflet.polylinemeasure/Leaflet.Polyline.Measure.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/network-animation.js"></script>
+    <script src="js/theme-switcher.js"></script>
+
+    <script>
+        // --- Helper Functions (Refactored for better organization) ---
+
+        /**
+         * Returns a color based on the gridcode property.
+         * @param {object} props - Feature properties.
+         * @returns {string} Hex color code.
+         */
+        function getColor(props) {
+            const code = props.gridcode;
+            const colors = {
+                '5': 'rgb(12, 16, 120)',    // Very High
+                '4': 'rgb(33, 110, 158)',   // High
+                '3': 'rgb(61, 184, 104)',   // Medium
+                '2': 'rgb(115, 235, 47)',   // Low
+                '1': 'rgb(255, 255, 128)'    // Very Low
+            };
+            return colors[String(code)] || '#9e9e9e'; // Grey for unknown
+        }
+
+        /**
+         * Defines the style for each GeoJSON feature.
+         * @param {object} feature - GeoJSON feature.
+         * @returns {object} Leaflet path style options.
+         */
+        function style(feature) {
+            return {
+                fillColor: getColor(feature.properties),
+                weight: 0,
+                opacity: 1,
+                fillOpacity: 0.9
+            };
+        }
+
+        /**
+         * Checks if a point is inside a polygon.
+         * @param {object} point - Leaflet latlng object.
+         * @param {Array} vs - Array of polygon vertices.
+         * @returns {boolean} True if the point is inside.
+         */
+        function isPointInPolygon(point, vs) {
+            const x = point.lng, y = point.lat;
+            let inside = false;
+            for (let i = 0, j = vs.length - 1; i < vs.length; j = i++) {
+                const xi = vs[i][0], yi = vs[i][1];
+                const xj = vs[j][0], yj = vs[j][1];
+                const intersect = ((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+                if (intersect) inside = !inside;
+            }
+            return inside;
+        }
+
+        /**
+         * Performs reverse geocoding to get address from coordinates.
+         * @param {object} latlng - Leaflet latlng object.
+         * @returns {object|null} Address object or null on failure.
+         */
+        async function getReverseGeocode(latlng) {
+            try {
+                const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latlng.lat}&lon=${latlng.lng}&accept-language=ar`;
+                const response = await fetch(url);
+                if (!response.ok) return null;
+                const data = await response.json();
+                return data.address;
+            } catch (error) {
+                console.error("Reverse geocoding failed:", error);
+                return null;
+            }
+        }
+
+        // --- Main Application Logic ---
+
+        // Typewriter Effect for Title
+        const titleText = "النمذجة المكانية لإحتمالية وجود المياه الجوفية في محافظة سوهاج بإستخدام\nالجيوماتكس والبيئة البرمجية والذكاء الإصطناعي";
+        const titleElement = document.getElementById('typewriter-text');
+        let titleIsDeleting = false;
+        let titleCharIndex = 0;
+
+        function titleTypeEffect() {
+            const currentText = titleText.substring(0, titleCharIndex);
+            titleElement.textContent = currentText;
+
+            if (!titleIsDeleting && titleCharIndex < titleText.length) {
+                titleCharIndex++;
+                setTimeout(titleTypeEffect, 50);
+            } else if (titleIsDeleting && titleCharIndex > 0) {
+                titleCharIndex--;
+                setTimeout(titleTypeEffect, 30);
+            } else {
+                titleIsDeleting = !titleIsDeleting;
+                setTimeout(titleTypeEffect, titleIsDeleting ? 2000 : 500);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            titleTypeEffect();
+
+            // Global variables
+            let userMarker = null;
+            let geojsonLayer;
+
+            let geojsonData = null; // Will be loaded via fetch
+
+            // Initialize map with error handling
+            let map;
+            try { // FIX: Wrap map initialization in a try-catch block
+                map = L.map('map', {
+                    center: [26.5569, 31.6948], // Centered on Sohag
+                    zoom: 10,
+                    zoomControl: true, // We will use the default zoom control
+                    preferCanvas: true, // Better performance for large GeoJSON,
+                    attributionControl: false // Hide default Leaflet attribution
+                });
+
+                // FIX: Add a small delay and then invalidateSize to fix rendering issues
+                setTimeout(() => {
+                    if (map) {
+                        map.invalidateSize();
+                    }
+                }, 100);
+
+                // Handle window resize
+                window.addEventListener('resize', () => {
+                    if (map) {
+                        map.invalidateSize();
+                    }
+                });
+            } catch (error) {
+                console.error('Map initialization failed:', error);
+                document.getElementById('map').innerHTML = `
+                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: var(--text-primary); text-align: center; padding: 2rem;">
+                        <div>
+                            <i class="fas fa-exclamation-circle" style="font-size: 3rem; color: #ef4444; margin-bottom: 1rem;"></i>
+                            <h3>خطأ في تهيئة الخريطة</h3>
+                            <p>حدث خطأ أثناء تحميل مكتبة الخرائط. يرجى تحديث الصفحة أو التأكد من اتصالك بالإنترنت.</p>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            // --- Basemaps ---
+            const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '' }).addTo(map); // Default
+            const esriImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution: '' });
+            const openTopo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', { attribution: '' });
+            const esriDarkGray = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', { attribution: '' });
+            const esriLightGray = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', { attribution: '' });
+            const esriStreets = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', { attribution: '' });
+            const esriNatGeo = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', { attribution: '' });
+
+            // Layer Control
+            const baseMaps = {
+                "شوارع (OSM)": osm,
+                "صور أقمار صناعية (Esri)": esriImagery,
+                "شوارع (Esri)": esriStreets,
+                "تضاريس (OpenTopo)": openTopo,
+                "لوحة داكنة (Esri)": esriDarkGray,
+                "لوحة فاتحة (Esri)": esriLightGray,
+                "ناشيونال جيوغرافيك": esriNatGeo,
+            };
+
+            layerControl = L.control.layers(baseMaps, null, { position: 'topleft', collapsed: true }).addTo(map); // Make layer control expanded by default
+
+            // Function to handle interactions for each feature
+            function onEachFeature(feature, layer) {
+                if (feature.properties && feature.properties.الفئا) { // FIX: Use "الفئا"
+                    layer.bindTooltip(feature.properties.الفئا, {
+                        permanent: false,
+                        direction: 'center',
+                        className: 'hover-tooltip' // You can style this class
+                    });
+                }
+
+                layer.on('click', function (e) {
+                    L.DomEvent.stopPropagation(e);
+                    updateDetailsCard(e.target.feature.properties);
+                    generateReport(e.target.feature.properties);
+                    updateCoordinatesCard(e.latlng, e.target.feature.properties);
+                });
+
+                layer.on({
+                    mouseover: (e) => {
+                        e.target.setStyle({ weight: 3, color: '#ffd700', fillOpacity: 0.9 });
+                        e.target.bringToFront();
+                    },
+                    mouseout: (e) => {
+                        if (geojsonLayer) geojsonLayer.resetStyle(e.target);
+                    }
+                });
+            }
+
+            // Fetch and add GeoJSON data
+            function initializeDataLayers() {
+                // Show loading indicator
+                const mapElement = document.getElementById('map');
+                const loadingDiv = document.createElement('div');
+                loadingDiv.id = 'loading-indicator';
+                loadingDiv.style.cssText = 'position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 2000; background: var(--bg-card); padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px var(--shadow-medium);';
+                loadingDiv.innerHTML = `
+                    <i class="fas fa-spinner fa-spin" style="font-size: 3rem; color: var(--accent-blue); margin-bottom: 1rem;"></i>
+                    <p style="color: var(--text-primary); font-weight: 600;">جاري تحميل بيانات الخريطة...</p>
+                `;
+                mapElement.parentElement.appendChild(loadingDiv);
+
+                // FIX: Use fetch to load the data, which is the standard and correct way when using a local server.
+                // Add cache-busting parameter to prevent browser from using an old version of the file.
+                fetch('data/Groundwater.json?t=' + new Date().getTime())
+                    .then(response => {
+                        if (!response.ok) {
+                            // This error is the most common one, when opening file directly.
+                            throw new Error(`فشل تحميل ملف البيانات (Status: ${response.status}). تأكد من تشغيل المشروع عبر ملف .bat.`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Remove loading indicator on success
+                        if (loadingDiv && loadingDiv.parentElement) {
+                            loadingDiv.parentElement.removeChild(loadingDiv);
+                        }
+
+                        geojsonData = data; // Store data globally
+                        geojsonLayer = L.geoJSON(data, {
+                            style: style,
+                            onEachFeature: onEachFeature
+                        }).addTo(map);
+
+                        if (geojsonLayer.getBounds().isValid()) {
+                            map.fitBounds(geojsonLayer.getBounds(), { padding: [50, 50] });
+                        }
+
+                        layerControl.addOverlay(geojsonLayer, "طبقة احتمالية المياه");
+                        createLegend(data);
+                    })
+                    .catch(error => {
+                        console.error('Fatal Error loading GeoJSON:', error);
+                        // Hide loading indicator on failure
+                        if (loadingDiv) loadingDiv.style.display = 'none';
+
+                        // Display a user-friendly and helpful error message
+                        const mapContainer = document.getElementById('map');
+                        mapContainer.innerHTML = `
+                            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-card); backdrop-filter: blur(5px); display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--text-primary); padding: 20px; text-align: center; z-index: 1000; border-radius: 15px;">
+                                <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #ef4444; margin-bottom: 1rem;"></i>
+                                <h3 style="margin-bottom: 0.5rem; color: var(--text-primary);">خطأ: فشل تحميل الخريطة</h3>
+                                <p style="font-size: 0.9rem; max-width: 450px; line-height: 1.6; color: var(--text-secondary);">
+                                    لا يمكن تحميل بيانات الخريطة. هذا يحدث غالبًا عند فتح الملف مباشرةً في المتصفح.
+                                    <br><br>
+                                    <strong style="color: var(--accent-blue);">الحل:</strong> قم بتشغيل المشروع عن طريق النقر المزدوج على ملف <code style="background: var(--bg-secondary); padding: 0.2rem 0.5rem; border-radius: 4px; color: var(--accent-blue);">تشغيل_المشروع_2025.bat</code>
+                                </p>
+                            </div>
+                        `;
+                    });
+            } // FIX: Added missing closing brace for initializeDataLayers function
+
+            function createLegend(data) {
+                const legendContainer = document.getElementById('legend-container');
+                const categories = new Map();
+
+                data.features.forEach(feature => {
+                    const props = feature.properties;
+                    if (props.الفئا && props.gridcode && !categories.has(props.الفئا)) { // FIX: Use "الفئا"
+                        categories.set(props.الفئا, props.gridcode);
+                    }
+                });
+
+                if (categories.size === 0) {
+                    console.error("No categories found in data with 'الفئات' and 'gridcode' properties. Cannot create legend.");
+                    legendContainer.innerHTML = '<div class="details-placeholder"><p style="color: orange;">لم يتم العثور على فئات لإنشاء المفتاح.</p></div>';
+                    return;
+                }
+
+                const sortedCategories = Array.from(categories.entries()).sort((a, b) => Number(b[1]) - Number(a[1]));
+
+                let legendHTML = '<h4>مفتاح الخريطة</h4>';
+                for (const [label, gridcode] of sortedCategories) {
+                    legendHTML += `<div class="legend-item"><i style="background:${getColor({ gridcode: gridcode })}"></i> <span>${label}</span></div>`;
+                }
+
+                legendContainer.innerHTML = legendHTML;
+            }
+
+            // Helper for Report Typewriter
+            async function typeWriterHTML(container, htmlContent) {
+                container.innerHTML = '';
+                const cursor = document.createElement('span');
+                cursor.className = 'cursor';
+                cursor.textContent = '|';
+                container.appendChild(cursor);
+
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = htmlContent;
+
+                async function typeNode(node, targetParent) {
+                    targetParent.appendChild(cursor);
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        const text = node.textContent;
+                        const textNode = document.createTextNode('');
+                        targetParent.insertBefore(textNode, cursor);
+                        for (let i = 0; i < text.length; i++) {
+                            textNode.textContent += text[i];
+                            await new Promise(r => setTimeout(r, 5));
+                        }
+                    } else if (node.nodeType === Node.ELEMENT_NODE) {
+                        const element = document.createElement(node.tagName);
+                        Array.from(node.attributes).forEach(attr => element.setAttribute(attr.name, attr.value));
+                        targetParent.insertBefore(element, cursor);
+                        for (const child of Array.from(node.childNodes)) {
+                            await typeNode(child, element);
+                        }
+                    }
+                }
+
+                for (const child of Array.from(tempDiv.childNodes)) {
+                    await typeNode(child, container);
+                }
+            }
+
+            async function updateCoordinatesCard(latlng, props, isLocating = false) {
+                const coordsCard = document.getElementById('coords-card');
+                if (latlng) {
+                    let content = `
+                        <h4 style="color: var(--accent-blue); font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(var(--accent-blue-rgb), 0.3); padding-bottom: 0.5rem;">
+                            <i class="fas fa-map-marker-alt"></i> معلومات الموقع
+                        </h4>
+                        <div class="details-grid" style="border:none; padding-top:0; gap: 0.7rem;">
+                            <p><strong>خط العرض:</strong> <span>${latlng.lat.toFixed(6)}</span></p>
+                            <p><strong>خط الطول:</strong> <span>${latlng.lng.toFixed(6)}</span></p>
+                    `;
+                    if (props && props.gridcode) {
+                        content += `<p><strong>كود الفئة:</strong> <span>${props.gridcode}</span></p>`;
+                    }
+
+                    // Add reverse geocoding info
+                    const address = isLocating ? await getReverseGeocode(latlng) : (coordsCard.dataset.address ? JSON.parse(coordsCard.dataset.address) : await getReverseGeocode(latlng));
+                    if (address) {
+                        content += `<p><strong>الموقع:</strong> <span>${address.village || address.town || address.city || address.suburb || address.natural || 'غير محدد'}</span></p>`;
+                        if (address.county) content += `<p><strong>المركز:</strong> <span>${address.county}</span></p>`;
+                        content += `<p><strong>المحافظة:</strong> <span>${address.state || 'غير محدد'}</span></p>`;
+                        if (address.postcode) content += `<p><strong>الرمز البريدي:</strong> <span>${address.postcode}</span></p>`;
+                    }
+
+                    content += `</div>`;
+                    coordsCard.innerHTML = content;
+                    if (address) coordsCard.dataset.address = JSON.stringify(address);
+                    coordsCard.style.display = 'block';
+                } else { coordsCard.style.display = 'none'; }
+            }
+
+            function updateDetailsCard(props) {
+                const detailsContainer = document.getElementById('details-container');
+                if (props) {
+                    detailsContainer.innerHTML = `
+                        <h4>${props.الفئا || 'بيانات المنطقة'}</h4> <!-- FIX: Use "الفئا" -->
+                        <div class="details-grid">
+                            <p><strong>المساحة:</strong> <span>${props.المسا ? props.المسا.toFixed(2) + ' كم²' : 'غير متوفر'}</span></p> <!-- FIX: Use "المسا" -->
+                            <p><strong>النسبة:</strong> <span>${props.النسب ? props.النسب.toFixed(2) + '%' : 'غير متوفر'}</span></p> <!-- FIX: Use "النسب" -->
+                            <p><strong>كود الفئة:</strong> <span>${props.gridcode || 'N/A'}</span></p>
+                        </div>`;
+                } else {
+                    detailsContainer.innerHTML = `<div class="details-placeholder"><p>انقر على منطقة لعرض تفاصيلها</p></div>`;
+                }
+            }
+
+
+            function generateReport(props, isOutside = false) {
+                const reportContainer = document.getElementById('report-container');
+
+                let reportText = '';
+                if (isOutside) {
+                    reportText = '<p>الموقع المحدد يقع خارج نطاق منطقة الدراسة الحالية. يرجى النقر داخل حدود الطبقة الملونة.</p>';
+                } else if (props) {
+                    const level = props.الفئا || 'غير محدد'; // FIX: Use "الفئا"
+                    let analysis = '', recommendations = '';
+                    switch (level) {
+                        case 'احتمال مرتفع جداً':
+                            analysis = 'تشير جميع المؤشرات المكانية إلى وجود ظروف مثالية لتكوّن وتخزين المياه الجوفية. المنطقة تقع في تراكيب جيولوجية وجيومورفولوجية عالية النفاذية مع تغذية مائية جيدة.';
+                            recommendations = 'يوصى بشدة بإجراء مسح جيوفيزيائي تفصيلي باستخدام تقنية **التصوير المقطعي للمقاومة الكهربائية (ERT)** لتحديد الامتداد الرأسي والأفقي للخزان الجوفي بدقة. يمكن استكمال ذلك **بجسات كهربائية رأسية (VES)** في المواقع الواعدة لتحديد الأعماق بدقة قبل البدء في حفر آبار إنتاجية.';
+                            break;
+                        case 'احتمال مرتفع':
+                            analysis = 'الظروف الجيولوجية والهيدرولوجية في هذه المنطقة مواتية بشكل كبير لوجود تجمعات مائية جوفية. قد تكون هناك بعض العوامل المحددة ولكن الاحتمالية العامة قوية.';
+                            recommendations = 'يُنصح بالبدء **بجسات كهربائية رأسية (VES)** لتحديد الأعماق المبدئية للطبقات الحاملة للمياه. في حال كانت النتائج إيجابية، يمكن استخدام **الرادار الأرضي (GPR)** في المناطق ذات الطبيعة الرسوبية لتحديد امتداد الطبقات الرملية والحصوية المشبعة بالمياه.';
+                            break;
+                        case 'احتمال متوسط':
+                            analysis = 'تظهر المنطقة خصائص مختلطة، حيث تدعم بعض المعايير وجود المياه بينما تحد عوامل أخرى من ذلك. قد تكون المياه موجودة في جيوب متفرقة أو على أعماق أكبر.';
+                            recommendations = 'يُقترح إجراء مسح استطلاعي باستخدام تقنيات **المسح الكهرومغناطيسي (EM)** لتغطية مساحة واسعة وتحديد المناطق ذات المقاومة المنخفضة التي قد تشير لوجود مياه. المواقع الواعدة يمكن التحقق منها لاحقًا باستخدام **جسات كهربائية (VES)**.';
+                            break;
+                        case 'احتمال منخفض':
+                            analysis = 'الخصائص السائدة في هذه المنطقة لا تدعم بشكل كبير وجود تجمعات مائية جوفية اقتصادية. قد تكون المياه موجودة ولكن بكميات قليلة أو بجودة منخفضة.';
+                            recommendations = 'قبل أي عمل ميداني مكلف، يوصى بإعادة تحليل التراكيب الخطية والصدوع من خلال صور الأقمار الصناعية عالية الدقة، حيث قد تكون المياه محصورة في نطاقات هذه الصدوع. أي عمل جيوفيزيائي يجب أن يكون محدودًا وموجهًا بدقة.';
+                            break;
+                        case 'احتمال منخفض جداً':
+                            analysis = 'الظروف الجيولوجية والجيومورفولوجية غير مواتية لتجمع المياه الجوفية. المنطقة قد تكون ذات نفاذية ضعيفة أو تقع في مناطق صرف مائي مرتفعة.';
+                            recommendations = 'لا يوصى بالاستثمار في أعمال حفر أو مسوحات جيوفيزيائية مكثفة في هذه المنطقة. يجب التركيز على استكشاف مصادر مياه بديلة مثل تقنيات حصاد مياه الأمطار إذا كانت الظروف المناخية تسمح بذلك.';
+                            break;
+                        default:
+                            analysis = 'لا توجد بيانات كافية لتقديم تحليل دقيق لهذه المنطقة.';
+                            recommendations = 'يتطلب الأمر المزيد من البيانات الميدانية لتقييم احتمالية وجود المياه الجوفية.';
+                    }
+                    reportText = `<p><strong>التحليل الأولي للموقع (احتمالية ${level}):</strong></p><p>${analysis}</p><p><strong>التوصيات الجيوفيزيائية للتحقق الميداني:</strong></p><p>${recommendations}</p><p><strong>تنويه هام:</strong> هذا التقرير مبني على نموذج مكاني ويعتبر أداة استرشادية أولية. القرار النهائي يتطلب دائمًا إجراء دراسات ميدانية متكاملة للتحقق من النتائج على أرض الواقع.</p>`;
+                } else {
+                    reportText = '<p>انقر على إحدى مناطق الخريطة لبدء تحليل احتمالية المياه الجوفية وكتابة تقرير مفصل.</p>';
+                }
+
+                typeWriterHTML(reportContainer, reportText);
+            }
+
+            // Initial state for cards
+            function initializeCards() {
+                const detailsContainer = document.getElementById('details-container');
+                const legendContainer = document.getElementById('legend-container');
+                legendContainer.innerHTML = '<div class="details-placeholder"><p>جاري تحميل المفتاح...</p></div>';
+                updateDetailsCard(null);
+                updateCoordinatesCard(null, null);
+                generateReport(null);
+            }
+
+            function checkLocation(latlng) {
+                if (!geojsonData) return;
+                let containingFeature = null;
+
+                for (const feature of geojsonData.features) {
+                    if (feature.geometry.type === 'Polygon') {
+                        if (isPointInPolygon(latlng, feature.geometry.coordinates[0])) {
+                            containingFeature = feature;
+                            break;
+                        }
+                    } else if (feature.geometry.type === 'MultiPolygon') {
+                        for (const polygon of feature.geometry.coordinates) {
+                            if (isPointInPolygon(latlng, polygon[0])) {
+                                containingFeature = feature;
+                                break;
+                            }
+                        }
+                        if (containingFeature) break;
+                    }
+                }
+
+                updateCoordinatesCard(latlng, containingFeature ? containingFeature.properties : null);
+                updateDetailsCard(containingFeature ? containingFeature.properties : null);
+                generateReport(containingFeature ? containingFeature.properties : null, !containingFeature);
+            }
+
+            // --- Controls Initialization ---
+            const LocateControl = L.Control.extend({
+                onAdd: function (map) {
+                    const btn = L.DomUtil.create('button', 'leaflet-bar leaflet-control leaflet-control-custom');
+                    btn.innerHTML = '<i class="fas fa-map-marker-alt"></i>';
+                    btn.title = 'تحديد موقعي';
+                    btn.onclick = (e) => { L.DomEvent.stop(e); map.locate({ setView: true, maxZoom: 14 }); };
+                    return btn;
+                }
+            });
+            new LocateControl({ position: 'topleft' }).addTo(map);
+
+            map.on('locationfound', (e) => {
+                if (userMarker) map.removeLayer(userMarker);
+                userMarker = L.marker(e.latlng).addTo(map).bindPopup("موقعك الحالي").openPopup();
+                checkLocation(e.latlng);
+            });
+            map.on('locationerror', () => alert("لا يمكن الوصول إلى موقعك. يرجى تفعيل خدمات الموقع."));
+
+            // Add GeoSearch with error handling and improved settings
+            try {
+                if (typeof GeoSearch !== 'undefined') {
+                    const searchControl = new GeoSearch.GeoSearchControl({
+                        provider: new GeoSearch.OpenStreetMapProvider(),
+                        searchLabel: 'ابحث عن مكان...',
+                        notFoundMessage: 'لم يتم العثور على الموقع',
+                        style: 'bar', // Professional search bar style
+                        autoClose: true,
+                        keepResult: true
+                    });
+                    map.addControl(searchControl);
+                }
+            } catch (error) {
+                console.warn('GeoSearch plugin not available:', error);
+            }
+
+            // Add Measurement Control with error handling and improved titles
+            try {
+                if (typeof L.control.polylineMeasure !== 'undefined') {
+                    const measureControl = L.control.polylineMeasure({
+                        position: 'topleft',
+                        unit: 'metres',
+                        showBearings: false,
+                        clearMeasurementsOnStop: true,
+                        showClearControl: true,
+                        showUnitControl: true, // Allow unit switching
+                        unitControlTitle: { text: 'تغيير الوحدات', metres: 'متر / كيلومتر مربع', landmiles: 'ميل / أكر' },
+                        clearControlTitle: 'مسح القياسات',
+                        measureControlTitle: 'قياس المسافات والمساحات'
+                    });
+                    measureControl.addTo(map);
+                }
+            } catch (error) {
+                console.warn('Polyline Measure plugin not available:', error);
+            }
+
+            // Add scale control
+            L.control.scale({
+                imperial: false,
+                position: 'bottomright'
+            }).addTo(map);
+
+            // Initialize card states
+            initializeCards();
+
+            // FIX: Re-add map click listener
+            map.on('click', function (e) {
+                checkLocation(e.latlng);
+            });
+
+            // Initialize the data layers
+            initializeDataLayers();
+
+            // Mobile menu
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-links');
+            if (hamburger) hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+        });
+
+        // Add global error handler for debugging
+        window.addEventListener('error', (e) => {
+            console.error('Global error:', e.error);
+        });
+    </script>
+    <script src="global-fixes.js"></script>
+</body>
+
+</html>
