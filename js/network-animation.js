@@ -51,6 +51,7 @@ class ParticleNetwork {
 
         this.initializeEventHandlers();
         this.resize();
+        this.applyResponsiveConfig();
         this.applyThemePalette();
         this.createParticles();
         this.bindEvents();
@@ -61,6 +62,7 @@ class ParticleNetwork {
     initializeEventHandlers() {
         this.handleResize = this.debounce(() => {
             this.resize();
+            this.applyResponsiveConfig();
             this.createParticles();
         }, 120);
 
@@ -139,6 +141,42 @@ class ParticleNetwork {
         const palette = this.getPalette();
         this.config.colors.particles = [...palette.particles];
         this.config.colors.connections = palette.connections;
+    }
+
+    applyResponsiveConfig() {
+        const width = this.bounds.width;
+        if (!this.config.responsive) return;
+        
+        // Dynamically adjust drawing properties based on viewport width
+        if (width < 500) {
+            // Mobile portrait
+            this.config.maxDistance = 115; // Increased significantly to avoid fading lines
+            this.config.mouseRadius = 110;
+            this.config.minParticles = 60; // Doubled to prevent empty screens
+            this.config.baseParticleCount = 80;
+            this.config.particleSize = { min: 0.8, max: 2.2 }; // Slightly larger so they are visible
+        } else if (width < 768) {
+            // Mobile landscape / Small tablets
+            this.config.maxDistance = 135;
+            this.config.mouseRadius = 130;
+            this.config.minParticles = 75;
+            this.config.baseParticleCount = 100;
+            this.config.particleSize = { min: 1, max: 2.5 };
+        } else if (width < 1024) {
+            // Tablets
+            this.config.maxDistance = 160;
+            this.config.mouseRadius = 160;
+            this.config.minParticles = 90;
+            this.config.baseParticleCount = 140;
+            this.config.particleSize = { min: 1, max: 2.8 };
+        } else {
+            // Desktop
+            this.config.maxDistance = 185;
+            this.config.mouseRadius = 190;
+            this.config.minParticles = 100;
+            this.config.baseParticleCount = 180;
+            this.config.particleSize = { min: 1, max: 3 };
+        }
     }
 
     createParticles() {
