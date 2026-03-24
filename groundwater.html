@@ -4,7 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>خريطة المياه الجوفية - محافظة سوهاج</title>
+    <title>الخريطة التفاعلية - المياه الجوفية بسوهاج</title>
+    <meta name="description" content="خريطة تفاعلية لتحليل احتمالية وجود المياه الجوفية في محافظة سوهاج - انقر على أي منطقة للحصول على تقرير تحليلي شامل">
+    <meta name="keywords" content="المياه الجوفية, سوهاج, GIS, خريطة, نمذجة مكانية, تحليل, مياه جوفية, استشعار جيوفيزيائي">
+    <meta name="author" content="قسم الجغرافيا - كلية الآداب - جامعة سوهاج">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://gis-sohag.github.io/groundwater/groundwater.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="الخريطة التفاعلية - المياه الجوفية بسوهاج">
+    <meta property="og:description" content="خريطة تفاعلية لتحليل احتمالية وجود المياه الجوفية في سوهاج">
+    <meta property="og:image" content="https://gis-sohag.github.io/groundwater/images/univ_logo.png">
+    <meta property="og:url" content="https://gis-sohag.github.io/groundwater/groundwater.html">
+    <meta property="og:locale" content="ar_EG">
+    <meta property="og:site_name" content="المياه الجوفية بسوهاج">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="الخريطة التفاعلية - المياه الجوفية">
+    <meta name="twitter:description" content="خريطة تفاعلية لتحليل احتمالية وجود المياه الجوفية في سوهاج">
+    <meta name="twitter:image" content="https://gis-sohag.github.io/groundwater/images/univ_logo.png">
+    <meta name="theme-color" content="#2196F3">
+    <link rel="icon" type="image/png" href="images/univ_logo.png">
+    <link rel="apple-touch-icon" href="images/univ_logo.png">
+
 
     <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -13,6 +33,12 @@
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <!-- Google Maps API and Grid/Mutant -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrz3rKpKaE3zFl0mFVtxCaR0hYnif2wRo"></script>
+    <script src="https://unpkg.com/leaflet.gridlayer.googlemutant@latest/dist/Leaflet.GoogleMutant.js"></script>
+    <!-- html2canvas: captures any DOM element as image -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <!-- Leaflet GeoSearch Plugin CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch@3.8.0/dist/geosearch.css" />
@@ -603,6 +629,260 @@
                 min-height: 450px;
             }
         }
+
+        /* --- PRINT STYLES --- */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+
+            #print-report-container,
+            #print-report-container * {
+                visibility: visible;
+            }
+
+            #print-report-container {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                font-family: "Simplified Arabic", "Times New Roman", serif;
+                direction: rtl;
+                /* Reset theme colors for print to always be black/white */
+                color: black !important;
+                background: white !important;
+            }
+
+            .print-official-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                border-bottom: 3px double #1e40af;
+                padding-bottom: 15px;
+                margin-bottom: 20px;
+            }
+
+            .header-side {
+                width: 30%;
+                font-size: 13pt;
+                font-weight: bold;
+                line-height: 1.4;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .header-side p {
+                margin: 2px 0;
+            }
+
+            .header-logo {
+                width: 75px;
+                height: 75px;
+                object-fit: contain;
+                margin-bottom: 8px;
+            }
+
+            .header-center {
+                width: 35%;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding-top: 20px;
+            }
+
+            .header-center h3 {
+                font-size: 15pt;
+                color: #1e40af;
+                margin: 0 0 5px 0;
+            }
+
+            .header-center p {
+                font-size: 13pt;
+                margin: 0;
+                font-weight: bold;
+            }
+
+            table.print-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 15px;
+                margin-bottom: 20px;
+                font-size: 14pt;
+            }
+
+            table.print-table th,
+            table.print-table td {
+                border: 1px solid black;
+                padding: 10px;
+                text-align: center;
+                color: black !important;
+            }
+
+            table.print-table th {
+                background-color: #f2f2f2 !important;
+            }
+
+            .print-title {
+                text-align: center;
+                font-size: 20pt;
+                font-weight: bold;
+                text-decoration: underline;
+                margin-bottom: 20px;
+            }
+
+            .print-map-wrapper {
+                position: relative;
+                display: inline-block;
+                margin-bottom: 20px;
+                text-align: center;
+                border: 4px solid #d4af37;
+                border-radius: 4px;
+                background: #f9f9f9;
+            }
+
+            .print-map-thumbnail {
+                display: block;
+                max-width: 100%;
+                height: 400px;
+                object-fit: cover;
+                border-radius: 2px;
+            }
+
+            /* Map Annotations (Print) */
+            .map-north-arrow {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                background: rgba(255, 255, 255, 0.95);
+                border: 2px solid #333;
+                border-radius: 50%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+                z-index: 10;
+                font-family: 'Times New Roman', serif;
+            }
+
+            .map-north-arrow .n-letter {
+                font-size: 14pt;
+                font-weight: bold;
+                color: #222;
+                line-height: 1.1;
+            }
+
+            .map-north-arrow i {
+                font-size: 14pt;
+                color: #b91c1c;
+                margin-top: -3px;
+            }
+
+            .map-scale-bar {
+                position: absolute;
+                bottom: 20px;
+                left: 20px;
+                background: rgba(255, 255, 255, 0.9);
+                padding: 6px 12px;
+                border-radius: 4px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                z-index: 10;
+                font-family: Arial, sans-serif;
+            }
+
+            .scale-text {
+                font-size: 9pt;
+                font-weight: bold;
+                color: #222;
+                margin-bottom: 4px;
+                letter-spacing: 1px;
+            }
+
+            .scale-line {
+                width: 100px;
+                height: 6px;
+                background: repeating-linear-gradient(to right, #222 0, #222 25px, #fff 25px, #fff 50px);
+                border: 1px solid #222;
+            }
+
+            .map-center-pin {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -100%);
+                color: #ef4444;
+                font-size: 26pt;
+                text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff;
+                z-index: 15;
+            }
+
+            .print-text {
+                font-size: 15pt;
+                line-height: 1.8;
+                text-align: justify;
+            }
+
+            .print-text p {
+                margin-bottom: 12px;
+            }
+
+            .print-section-title {
+                font-size: 18pt;
+                font-weight: bold;
+                margin-top: 15px;
+                margin-bottom: 5px;
+            }
+
+            .signature-area {
+                margin-top: 50px;
+                display: flex;
+                justify-content: space-between;
+                font-size: 16pt;
+                font-weight: bold;
+                position: relative;
+            }
+
+            .sig-text {
+                position: relative;
+                z-index: 10;
+            }
+
+            .page-container,
+            .navbar,
+            .sidebar-overlay,
+            .network-background,
+            .main-content,
+            #google-capture-div {
+                display: none !important;
+            }
+
+            @page {
+                size: A4;
+                margin: 0; /* Hides default browser header/footer URL/Date */
+            }
+
+            #print-report-container {
+                visibility: visible !important;
+                position: relative !important;
+                left: 0 !important;
+                top: 0 !important;
+                opacity: 1 !important;
+                z-index: auto !important;
+                pointer-events: auto !important;
+                width: 100% !important;
+                display: block !important;
+                padding: 1.5cm; /* Adds back padding to prevent edge text clipping */
+                box-sizing: border-box;
+            }
+        }
     </style>
 </head>
 
@@ -619,7 +899,7 @@
                 <span>المياه الجوفية بسوهاج</span>
             </div>
             <div class="nav-links">
-                <a href="index.html" class="nav-link">الرئيسية</a>
+                <a href="home.html" class="nav-link">الرئيسية</a>
                 <a href="groundwater.html" class="nav-link active">الخريطة التفاعلية</a>
                 <a href="gallery.html" class="nav-link">المعرض</a>
                 <a href="palestine.html" class="nav-link">أولى القبلتين</a>
@@ -673,10 +953,103 @@
         <div class="report-card">
             <div class="report-header">
                 <h4><i class="fas fa-file-alt"></i> تقرير تحليلي</h4>
+                <button id="print-btn" class="control-btn" style="display: none;" onclick="printReport()"><i
+                        class="fas fa-print"></i> طباعة التقرير</button>
             </div>
             <div id="report-container" class="report-content"></div>
         </div>
     </main>
+
+    <!-- Google Maps capture div: opacity:0 keeps it invisible but Chrome still renders tiles -->
+    <!-- 
+        google-capture-div: clip-path:inset(100%) makes it VISUALLY INVISIBLE 
+        while getBoundingClientRect() still returns it within viewport bounds,
+        forcing Google Maps to load satellite tiles immediately!
+    -->
+    <div id="google-capture-div" style="position: fixed; top: 0; left: 0; width: 800px; height: 500px; pointer-events: none; clip-path: inset(100%); z-index: -1; overflow: hidden;"></div>
+
+    <!-- Hidden Print Layout -->
+    <div id="print-report-container" style="display: none;">
+        <div class="print-official-header">
+            <div class="header-side">
+                <img src="images/univ_logo.png" alt="University Logo" class="header-logo" onerror="this.style.display='none'">
+                <p>جامعة سوهاج</p>
+            </div>
+            <div class="header-center">
+                <h3 style="color: #000 !important; text-decoration: underline;">تقرير احتمالية وجود المياه الجوفية</h3>
+            </div>
+            <div class="header-side" style="direction: rtl;">
+                <img src="images/college_logo.png" alt="Faculty Logo" class="header-logo" onerror="this.style.display='none'">
+                <p>كلية الآداب</p>
+                <p>قسم الجغرافيا ونظم المعلومات الجغرافية</p>
+            </div>
+        </div>
+
+        <!-- Map Thumbnail Area -->
+        <h3 class="print-section-title">صورة القمر الصناعي للموقع:</h3>
+        <div style="text-align: center;"> 
+            <div class="print-map-wrapper" id="print-map-wrapper" style="padding: 0; background: #000;">
+                <img id="print-map-img" class="print-map-thumbnail" alt="خريطة الموقع" style="width: 100%; height: 400px; object-fit: cover; display: block;">
+                
+                <!-- Map Overlays -->
+                <div class="map-north-arrow" style="direction: ltr;">
+                    <span class="n-letter">N</span>
+                    <i class="fas fa-long-arrow-alt-up"></i>
+                </div>
+                <div class="map-scale-bar" style="direction: ltr;">
+                    <span class="scale-text">1 km</span>
+                    <div class="scale-line"></div>
+                </div>
+                
+                <!-- Center Click Coordinate Pin -->
+                <div class="map-center-pin">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Table -->
+        <h3 class="print-section-title">إحداثيات وبيانات الموقع:</h3>
+        <table class="print-table">
+            <thead>
+                <tr>
+                    <th>المحافظة</th>
+                    <th>المنطقة / المركز</th>
+                    <th>خط العرض (Lat)</th>
+                    <th>خط الطول (Lng)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="print-gov"></td>
+                    <td id="print-location-name-table"></td>
+                    <td id="print-lat"></td>
+                    <td id="print-lng"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Report Content -->
+        <h3 class="print-section-title" style="page-break-before: always; margin-top: 1cm;">التحليل الفني والتوصيات:</h3>
+        <div id="print-report-text" class="print-text"></div>
+
+        <div class="signature-area" style="position: relative; align-items: flex-end; margin-top: 80px; width: 100%;">
+            <div class="sig-block" style="position: relative; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 5px; min-height: 80px;">
+                <!-- Seal rotated behind dots line -->
+                <img src="images/Seal and signature.png" alt="Seal" style="position: absolute; bottom: -5px; width: 140px; z-index: 1; opacity: 0.85; transform: rotate(-10deg);" onerror="this.style.display='none'">
+                <p class="sig-text" style="position: relative; z-index: 2;">توقيع معد التقرير</p>
+                <p class="sig-text" style="margin-top: 10px; position: relative; z-index: 2; letter-spacing: 3px;">....................</p>
+            </div>
+            <div class="sig-block" style="text-align: center; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 10px;">
+                <p>اعتماد المشرف الأكاديمى</p>
+                <p>أ.م.د حمدي نبيه عيد</p>
+            </div>
+        </div>
+        
+        <div class="print-footer" style="text-align: center; margin-top: 100px; padding-bottom: 20px; font-weight: bold; font-size: 10pt;">
+            <p>تم استخراج هذا التقرير آليا عبر نظام النمذجة المكانية للمياه الجوفية - سوهاج © 2025</p>
+        </div>
+    </div>
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -684,6 +1057,11 @@
 
     <!-- Leaflet Polyline Measure Plugin JS -->
     <script src="https://unpkg.com/leaflet.polylinemeasure/Leaflet.Polyline.Measure.js"></script>
+
+    <!-- GeoTIFF Handling Libraries -->
+    <script src="https://unpkg.com/proj4"></script>
+    <script src="https://unpkg.com/georaster"></script>
+    <script src="https://unpkg.com/geoblaze"></script>
 
     <!-- Custom Scripts -->
     <script src="js/network-animation.js"></script>
@@ -725,12 +1103,12 @@
 
         /**
          * Checks if a point is inside a polygon.
-         * @param {object} point - Leaflet latlng object.
+         * @param {object} point - Object with lng and lat (e.g. Leaflet latlng or UTM coord object).
          * @param {Array} vs - Array of polygon vertices.
          * @returns {boolean} True if the point is inside.
          */
         function isPointInPolygon(point, vs) {
-            const x = point.lng, y = point.lat;
+            const x = point.lng || point[0], y = point.lat || point[1];
             let inside = false;
             for (let i = 0, j = vs.length - 1; i < vs.length; j = i++) {
                 const xi = vs[i][0], yi = vs[i][1];
@@ -741,23 +1119,78 @@
             return inside;
         }
 
+        // --- Local Geocoding Logic ---
+        // UTM Zone 36N (Sohag) definition
+        proj4.defs("EPSG:32636", "+proj=utm +zone=36 +datum=WGS84 +units=m +no_defs");
+        const SOHAG_BBOX = { minLat: 25.9, maxLat: 27.1, minLng: 31.1, maxLng: 32.4 };
+        let localSohagData = null;
+        let isLocalDataLoading = false;
+
         /**
-         * Performs reverse geocoding to get address from coordinates.
+         * Attempts to get location info from local JSON file.
          * @param {object} latlng - Leaflet latlng object.
-         * @returns {object|null} Address object or null on failure.
+         * @returns {Promise<object|null>} Location object or null.
          */
-        async function getReverseGeocode(latlng) {
-            try {
-                const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latlng.lat}&lon=${latlng.lng}&accept-language=ar`;
-                const response = await fetch(url);
-                if (!response.ok) return null;
-                const data = await response.json();
-                return data.address;
-            } catch (error) {
-                console.error("Reverse geocoding failed:", error);
+        async function getLocalLocationInfo(latlng) {
+            // Quick check: If outside Sohag general area, don't bother
+            if (latlng.lat < SOHAG_BBOX.minLat || latlng.lat > SOHAG_BBOX.maxLat || 
+                latlng.lng < SOHAG_BBOX.minLng || latlng.lng > SOHAG_BBOX.maxLng) {
                 return null;
             }
+
+            // Load data if not already loaded (Optimization: Lazy load)
+            if (!localSohagData && !isLocalDataLoading) {
+                isLocalDataLoading = true;
+                try {
+                    console.log("Loading local Sohag geographical data...");
+                    const response = await fetch('data/Location_information_in_Sohag.json');
+                    if (response.ok) {
+                        localSohagData = await response.json();
+                        console.log("Local Sohag data loaded.");
+                    }
+                } catch (e) {
+                    console.warn("Failed to load local Sohag JSON:", e);
+                } finally {
+                    isLocalDataLoading = false;
+                }
+            }
+
+            if (!localSohagData) return null;
+
+            // Convert WGS84 to UTM Zone 36N
+            const utmCoords = proj4("WGS84", "EPSG:32636", [latlng.lng, latlng.lat]);
+            const point = { lng: utmCoords[0], lat: utmCoords[1] };
+
+            // Spatial query: Finding the containing polygon
+            for (const feature of localSohagData.features) {
+                if (!feature.geometry || !feature.geometry.coordinates) continue;
+
+                if (feature.geometry.type === 'Polygon') {
+                    if (isPointInPolygon(point, feature.geometry.coordinates[0])) {
+                        return {
+                            state: feature.properties.Gov_A_Name || 'سوهاج',
+                            county: feature.properties.city || 'غير محدد',
+                            village: feature.properties.village || 'غير محدد',
+                            source: 'local'
+                        };
+                    }
+                } else if (feature.geometry.type === 'MultiPolygon') {
+                    for (const polygon of feature.geometry.coordinates) {
+                        if (isPointInPolygon(point, polygon[0])) {
+                            return {
+                                state: feature.properties.Gov_A_Name || 'سوهاج',
+                                county: feature.properties.city || 'غير محدد',
+                                village: feature.properties.village || 'غير محدد',
+                                source: 'local'
+                            };
+                        }
+                    }
+                }
+            }
+            return null;
         }
+
+
 
         // --- Main Application Logic ---
 
@@ -786,11 +1219,30 @@
         document.addEventListener('DOMContentLoaded', () => {
             titleTypeEffect();
 
-            // Global variables
+            // Global selection for legend depth
+            let legendDepthSpan = null;
             let userMarker = null;
             let geojsonLayer;
 
             let geojsonData = null; // Will be loaded via fetch
+            let depthRaster = null; // Will hold the GeoTIFF reference
+
+            // Initialize GeoTIFF depth raster
+            async function initDepthRaster() {
+                const url = "data/groundwater_depth.tif";
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) throw new Error("فشل تحميل الملف");
+                    const buffer = await response.arrayBuffer();
+                    depthRaster = await parseGeoraster(buffer);
+                    console.log("تم تهيئة ملف أعماق المياه الجوفية بنجاح");
+                    // Refresh legend
+                    createLegend();
+                } catch (e) {
+                    console.warn("ملف أعماق المياه الجوفية غير موجود أو لا يمكن تحميله:", e);
+                }
+            }
+            initDepthRaster();
 
             // Initialize map with error handling
             let map;
@@ -802,6 +1254,7 @@
                     preferCanvas: true, // Better performance for large GeoJSON,
                     attributionControl: false // Hide default Leaflet attribution
                 });
+                window.map = map; // Make globally accessible for print
 
                 // FIX: Add a small delay and then invalidateSize to fix rendering issues
                 setTimeout(() => {
@@ -833,24 +1286,36 @@
             // --- Basemaps ---
             const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '' }).addTo(map); // Default
             const esriImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution: '' });
+            const esriStreets = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', { attribution: '' });
             const openTopo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', { attribution: '' });
+            
+            // Google Maps Basemaps (Using Standard MT URLs for better compatibility)
+            const googleSatellite = L.tileLayer('https://mt{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', { subdomains: ['0', '1', '2', '3'], attribution: '' });
+            const googleTerrain = L.tileLayer('https://mt{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', { subdomains: ['0', '1', '2', '3'], attribution: '' });
+            const googleStreets = L.tileLayer('https://mt{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', { subdomains: ['0', '1', '2', '3'], attribution: '' });
+            const googleHybrid = L.tileLayer('https://mt{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { subdomains: ['0', '1', '2', '3'], attribution: '' });
+
             const esriDarkGray = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', { attribution: '' });
             const esriLightGray = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', { attribution: '' });
-            const esriStreets = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', { attribution: '' });
             const esriNatGeo = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', { attribution: '' });
 
-            // Layer Control
+            // Layer Control Object
             const baseMaps = {
-                "شوارع (OSM)": osm,
-                "صور أقمار صناعية (Esri)": esriImagery,
-                "شوارع (Esri)": esriStreets,
-                "تضاريس (OpenTopo)": openTopo,
-                "لوحة داكنة (Esri)": esriDarkGray,
-                "لوحة فاتحة (Esri)": esriLightGray,
-                "ناشيونال جيوغرافيك": esriNatGeo,
+                "🗺️ شوارع (OSM)": osm,
+                "🛰️ صور جوجل (Satellite)": googleSatellite,
+                "🌍 جوجل هجين (Hybrid)": googleHybrid,
+                "🏔️ جوجل تضاريس (Terrain)": googleTerrain,
+                "🛣️ خرائط جوجل (Streets)": googleStreets,
+                "🌑 لوحة داكنة (Esri)": esriDarkGray,
+                "⬜ لوحة فاتحة (Esri)": esriLightGray,
+                "📡 أقمار صناعية (Esri)": esriImagery,
+                "🛤️ شوارع (Esri)": esriStreets,
+                "⛰️ تضاريس (OpenTopo)": openTopo,
+                "🌿 ناشيونال جيوغرافيك": esriNatGeo,
             };
 
-            layerControl = L.control.layers(baseMaps, null, { position: 'topleft', collapsed: true }).addTo(map); // Make layer control expanded by default
+            // Layer Control
+            layerControl = L.control.layers(baseMaps, null, { position: 'topleft', collapsed: true }).addTo(map); 
 
             // Function to handle interactions for each feature
             function onEachFeature(feature, layer) {
@@ -864,9 +1329,8 @@
 
                 layer.on('click', function (e) {
                     L.DomEvent.stopPropagation(e);
-                    updateDetailsCard(e.target.feature.properties);
-                    generateReport(e.target.feature.properties);
-                    updateCoordinatesCard(e.latlng, e.target.feature.properties);
+                    // Call checkLocation directly to ensure depth analysis is performed
+                    checkLocation(e.latlng);
                 });
 
                 layer.on({
@@ -944,35 +1408,50 @@
             } // FIX: Added missing closing brace for initializeDataLayers function
 
             function createLegend(data) {
+                if (!data && !geojsonData) return;
+                const activeData = data || geojsonData;
                 const legendContainer = document.getElementById('legend-container');
                 const categories = new Map();
 
-                data.features.forEach(feature => {
+                activeData.features.forEach(feature => {
                     const props = feature.properties;
-                    if (props.الفئا && props.gridcode && !categories.has(props.الفئا)) { // FIX: Use "الفئا"
+                    if (props.الفئا && props.gridcode && !categories.has(props.الفئا)) {
                         categories.set(props.الفئا, props.gridcode);
                     }
                 });
 
-                if (categories.size === 0) {
-                    console.error("No categories found in data with 'الفئات' and 'gridcode' properties. Cannot create legend.");
-                    legendContainer.innerHTML = '<div class="details-placeholder"><p style="color: orange;">لم يتم العثور على فئات لإنشاء المفتاح.</p></div>';
-                    return;
+                let legendHTML = '<h4>مفتاح الخريطة</h4>';
+
+                // Add GeoJSON Categories
+                if (categories.size > 0) {
+                    legendHTML += '<div style="margin-bottom: 0.8rem; font-weight: 700; font-size: 0.9rem; color: var(--text-secondary);">احتمالية المياه</div>';
+                    const sortedCategories = Array.from(categories.entries()).sort((a, b) => Number(b[1]) - Number(a[1]));
+                    for (const [label, gridcode] of sortedCategories) {
+                        legendHTML += `<div class="legend-item"><i style="background:${getColor({ gridcode: gridcode })}"></i> <span>${label}</span></div>`;
+                    }
                 }
 
-                const sortedCategories = Array.from(categories.entries()).sort((a, b) => Number(b[1]) - Number(a[1]));
-
-                let legendHTML = '<h4>مفتاح الخريطة</h4>';
-                for (const [label, gridcode] of sortedCategories) {
-                    legendHTML += `<div class="legend-item"><i style="background:${getColor({ gridcode: gridcode })}"></i> <span>${label}</span></div>`;
+                // Add Depth Layer Legend (TIF)
+                if (depthRaster) {
+                    legendHTML += `
+                        <div style="margin-top: 1.2rem; margin-bottom: 0.8rem; font-weight: 700; font-size: 0.9rem; border-top: 1px solid var(--border-color); padding-top: 0.8rem; color: var(--text-secondary);">العمق التقريبي للموقع المحدد</div>
+                        <div class="legend-item">
+                            <i style="background: linear-gradient(to bottom, #dbeafe, #1e40af); border-radius: 2px;"></i> 
+                            <span id="legend-depth-value">العمق التقريبي (متر)</span>
+                        </div>
+                    `;
                 }
 
                 legendContainer.innerHTML = legendHTML;
+                legendDepthSpan = document.getElementById('legend-depth-value');
             }
 
-            // Helper for Report Typewriter
+            // Helper for Report Typewriter (with cancellation to prevent duplication)
+            let currentTypingId = 0;
             async function typeWriterHTML(container, htmlContent) {
+                const typingId = ++currentTypingId;
                 container.innerHTML = '';
+
                 const cursor = document.createElement('span');
                 cursor.className = 'cursor';
                 cursor.textContent = '|';
@@ -982,12 +1461,15 @@
                 tempDiv.innerHTML = htmlContent;
 
                 async function typeNode(node, targetParent) {
+                    if (typingId !== currentTypingId) return; // Cancel if a new request started
+
                     targetParent.appendChild(cursor);
                     if (node.nodeType === Node.TEXT_NODE) {
                         const text = node.textContent;
                         const textNode = document.createTextNode('');
                         targetParent.insertBefore(textNode, cursor);
                         for (let i = 0; i < text.length; i++) {
+                            if (typingId !== currentTypingId) return;
                             textNode.textContent += text[i];
                             await new Promise(r => setTimeout(r, 5));
                         }
@@ -996,17 +1478,119 @@
                         Array.from(node.attributes).forEach(attr => element.setAttribute(attr.name, attr.value));
                         targetParent.insertBefore(element, cursor);
                         for (const child of Array.from(node.childNodes)) {
+                            if (typingId !== currentTypingId) return;
                             await typeNode(child, element);
                         }
                     }
                 }
 
                 for (const child of Array.from(tempDiv.childNodes)) {
+                    if (typingId !== currentTypingId) return;
                     await typeNode(child, container);
                 }
+
+                if (typingId === currentTypingId) {
+                    cursor.remove();
+                }
+            }
+            
+            async function getUnifiedReverseGeocode(latlng) {
+                // Priority 1: Check Local Sohag Data
+                try {
+                    const localResult = await getLocalLocationInfo(latlng);
+                    if (localResult) return localResult;
+                } catch (e) { console.warn("Local lookup failed, falling back to APIs"); }
+
+                // Priority 2: Try Google Geocoding API
+                const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latlng.lat},${latlng.lng}&key=AIzaSyBrz3rKpKaE3zFl0mFVtxCaR0hYnif2wRo&language=ar`;
+                try {
+                    const response = await fetch(url);
+                    const data = await response.json();
+                    if (data.status === 'OK' && data.results.length > 0) {
+                        const components = data.results[0].address_components;
+                        let city = '', state = '', village = '', county = '', neighborhood = '', sublocality = '', wadi = '';
+                        
+                        // Parse ALL available results from Google to get layered boundaries
+                        data.results.forEach(result => {
+                            result.address_components.forEach(c => {
+                                if (c.types.includes('administrative_area_level_1') && !state) state = c.long_name;
+                                if (c.types.includes('administrative_area_level_2') && !county) county = c.long_name;
+                                // In Egypt, sometimes level_3 is the Markaz (County) or major town
+                                if (c.types.includes('administrative_area_level_3') && !city) city = c.long_name; 
+                                if (c.types.includes('locality') && !city) city = c.long_name;
+                                if (c.types.includes('neighborhood') && !neighborhood) neighborhood = c.long_name;
+                                if (c.types.includes('sublocality') && !sublocality) sublocality = c.long_name;
+                                
+                                // Extract natural features for desert areas (Wadis, Mountains, etc.)
+                                if (c.types.includes('natural_feature') && !wadi) wadi = c.long_name;
+                                if ((c.types.includes('point_of_interest') || c.types.includes('route')) && c.long_name.includes('وادي') && !wadi) wadi = c.long_name;
+                            });
+                        });
+                        
+                        // Fix for Google Maps mistakenly putting southern Sohag villages (like Al-Khiyam) in Qena
+                        if (state && state.includes('قنا')) {
+                            state = 'سوهاج';
+                            if (county.includes('قنا') || county === '') {
+                                county = 'مركز دار السلام'; // Most misclassified Sohag villages are here
+                            }
+                        }
+
+                        // If we found a natural feature, prioritize it for the local area
+                        const bestPlace = wadi || village || neighborhood || sublocality || city || county || 'موقع محدد';
+                        
+                        return {
+                            state: state || 'سوهاج', 
+                            county: county || city || 'غير محدد',
+                            village: bestPlace,
+                            full: data.results[0].formatted_address,
+                            source: 'google'
+                        };
+                    }
+                } catch (e) { console.error("Google Geocoding error:", e); }
+
+                // Fallback 1: OpenStreetMap Nominatim
+                try {
+                    const osmUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latlng.lat}&lon=${latlng.lng}&zoom=18&addressdetails=1&accept-language=ar`;
+                    const osmResponse = await fetch(osmUrl);
+                    const osmData = await osmResponse.json();
+                    if (osmData && osmData.address) {
+                        const address = osmData.address;
+                        const state = address.state || address.region || 'سوهاج';
+                        const county = address.county || address.state_district || 'غير محدد';
+                        const village = address.village || address.town || address.city || address.suburb || address.neighbourhood || 'موقع محدد';
+                        return {
+                            state: state,
+                            county: county,
+                            village: village,
+                            full: osmData.display_name || 'إحداثيات جغرافية',
+                            source: 'osm'
+                        };
+                    }
+                } catch (e) { console.error("OSM Geocoding error:", e); }
+
+                // Fallback 2: Heuristic for Sohag Governorate
+                if (latlng.lat > 25.5 && latlng.lat < 27.5 && latlng.lng > 31.0 && latlng.lng < 32.5) {
+                    return {
+                        state: 'سوهاج',
+                        county: 'محافظة سوهاج',
+                        village: 'موقع محدد',
+                        full: 'محافظة سوهاج، مصر',
+                        source: 'heuristic'
+                    };
+                }
+
+                // Ultimate Fallback
+                return {
+                    state: 'غير محدد',
+                    county: 'غير محدد',
+                    village: 'موقع محدد',
+                    full: 'إحداثيات غير معروفة',
+                    source: 'none'
+                };
             }
 
-            async function updateCoordinatesCard(latlng, props, isLocating = false) {
+
+            async function updateCoordinatesCard(latlng, props, isLocating = false, depthValue = null) {
                 const coordsCard = document.getElementById('coords-card');
                 if (latlng) {
                     let content = `
@@ -1021,30 +1605,76 @@
                         content += `<p><strong>كود الفئة:</strong> <span>${props.gridcode}</span></p>`;
                     }
 
-                    // Add reverse geocoding info
-                    const address = isLocating ? await getReverseGeocode(latlng) : (coordsCard.dataset.address ? JSON.parse(coordsCard.dataset.address) : await getReverseGeocode(latlng));
+                    // Use unified geocoding (Local -> Google -> OSM)
+                    const address = isLocating ? await getUnifiedReverseGeocode(latlng) : (coordsCard.dataset.address ? JSON.parse(coordsCard.dataset.address) : await getUnifiedReverseGeocode(latlng));
                     if (address) {
-                        content += `<p><strong>الموقع:</strong> <span>${address.village || address.town || address.city || address.suburb || address.natural || 'غير محدد'}</span></p>`;
-                        if (address.county) content += `<p><strong>المركز:</strong> <span>${address.county}</span></p>`;
-                        content += `<p><strong>المحافظة:</strong> <span>${address.state || 'غير محدد'}</span></p>`;
-                        if (address.postcode) content += `<p><strong>الرمز البريدي:</strong> <span>${address.postcode}</span></p>`;
+                        if (address.village && address.village !== 'موقع محدد' && address.village !== 'غير محدد') {
+                            content += `<p><strong>المنطقة / القرية:</strong> <span>${address.village}</span></p>`;
+                        }
+                        if (address.county && address.county !== 'غير محدد' && address.county !== address.village) {
+                            content += `<p><strong>المركز / القسم:</strong> <span>${address.county}</span></p>`;
+                        }
+                        if (address.state && address.state !== 'غير محدد') {
+                            content += `<p><strong>المحافظة:</strong> <span>${address.state}</span></p>`;
+                        }
+                        
+                        // Debug/Info: Source of location data
+                        if (address.source === 'local') {
+                            console.log("Using local geographical database for", address.village);
+                        }
                     }
+
+                    // Store coordinates in dataset for report generation
+                    coordsCard.dataset.lat = latlng.lat.toFixed(6);
+                    coordsCard.dataset.lng = latlng.lng.toFixed(6);
 
                     content += `</div>`;
                     coordsCard.innerHTML = content;
-                    if (address) coordsCard.dataset.address = JSON.stringify(address);
+                    const printLatEl = document.getElementById('print-lat');
+                    const printLngEl = document.getElementById('print-lng');
+                    if (printLatEl) printLatEl.innerText = latlng.lat.toFixed(6);
+                    if (printLngEl) printLngEl.innerText = latlng.lng.toFixed(6);
+
+                    if (address) {
+                        coordsCard.dataset.address = JSON.stringify(address);
+                        const govEl = document.getElementById('print-gov');
+                        const locEl = document.getElementById('print-location-name-table');
+                        if (govEl) govEl.innerText = address.state && address.state !== 'غير محدد' ? address.state : 'سوهاج';
+                        
+                        let printLoc = 'نطاق صحراوي / غير محصور';
+                        if (address.village && address.village !== 'موقع محدد' && address.village !== 'غير محدد') {
+                            printLoc = address.county && address.county !== 'غير محدد' && address.county !== address.village ? `${address.county} - ${address.village}` : address.village;
+                        } else if (address.county && address.county !== 'غير محدد') {
+                            printLoc = address.county;
+                        }
+                        if (locEl) locEl.innerText = printLoc;
+                    } else {
+                        const govEl = document.getElementById('print-gov');
+                        const locEl = document.getElementById('print-location-name-table');
+                        if (govEl) govEl.innerText = 'محددة بالإحداثيات';
+                        if (locEl) locEl.innerText = 'نطاق صحراوي / منطقة غير معنونة';
+                    }
                     coordsCard.style.display = 'block';
-                } else { coordsCard.style.display = 'none'; }
+                    return address; // CRITICAL: Return the address object for downstream usage
+                } else { 
+                    coordsCard.style.display = 'none'; 
+                    return null;
+                }
             }
 
             function updateDetailsCard(props) {
                 const detailsContainer = document.getElementById('details-container');
                 if (props) {
+                    // Try to detect common property names in Arabic-GeoJSON (sometimes malformed or shortened)
+                    const label = props.الفئا || props.الفئة || props.Category || 'بيانات المنطقة';
+                    const area = props.المسا || props.المساحة || props.Area || null;
+                    const percent = props.النسب || props.النسبة || props.Percent || null;
+                    
                     detailsContainer.innerHTML = `
-                        <h4>${props.الفئا || 'بيانات المنطقة'}</h4> <!-- FIX: Use "الفئا" -->
+                        <h4><i class="fas fa-info-circle"></i> ${label}</h4>
                         <div class="details-grid">
-                            <p><strong>المساحة:</strong> <span>${props.المسا ? props.المسا.toFixed(2) + ' كم²' : 'غير متوفر'}</span></p> <!-- FIX: Use "المسا" -->
-                            <p><strong>النسبة:</strong> <span>${props.النسب ? props.النسب.toFixed(2) + '%' : 'غير متوفر'}</span></p> <!-- FIX: Use "النسب" -->
+                            <p><strong>المساحة:</strong> <span>${area ? area.toFixed(2) + ' كم²' : 'غير متوفر'}</span></p>
+                            <p><strong>النسبة:</strong> <span>${percent ? percent.toFixed(2) + '%' : 'غير متوفر'}</span></p>
                             <p><strong>كود الفئة:</strong> <span>${props.gridcode || 'N/A'}</span></p>
                         </div>`;
                 } else {
@@ -1053,47 +1683,174 @@
             }
 
 
-            function generateReport(props, isOutside = false) {
+            function generateReport(props, isOutside = false, depthValue = null, addressData = null) {
                 const reportContainer = document.getElementById('report-container');
+                const printReportText = document.getElementById('print-report-text');
+                const printBtn = document.getElementById('print-btn');
 
                 let reportText = '';
-                if (isOutside) {
-                    reportText = '<p>الموقع المحدد يقع خارج نطاق منطقة الدراسة الحالية. يرجى النقر داخل حدود الطبقة الملونة.</p>';
-                } else if (props) {
-                    const level = props.الفئا || 'غير محدد'; // FIX: Use "الفئا"
+                if (depthValue !== null || props) {
+                    const level = props ? (props.الفئا || props.الفئة || props.Category || 'محددة مكانياً') : 'خارج التصنيف المتجهي';
+
+                    const getValidStr = (str) => (str && str !== 'موقع محدد' && str !== 'غير محدد') ? str : null;
+                    const vName = addressData ? getValidStr(addressData.village) : null;
+                    const cName = addressData ? getValidStr(addressData.county) : null;
+                    const sName = addressData ? getValidStr(addressData.state) : null;
+
+                    let areaStrParts = [];
+                    if (vName) areaStrParts.push(`في منطقة ${vName}`);
+                    else if (cName) areaStrParts.push(`في نطاق ${cName}`);
+                    
+                    if (sName) areaStrParts.push(`بـ ${sName}`);
+                    else areaStrParts.push(`بمحافظة سوهاج`);
+
+                    let depthInfo = depthValue !== null ? `بناءً على تحليل بيانات الجيوماتكس (GeoTIFF)، يبلغ العمق التقديري لمستوى المياه الجوفية في هذه النقطة حوالي **${Math.round(depthValue)} متر** تحت سطح الأرض.` : '';
+
+                    let siteInfo = `<p><strong>تحليل الموقع المختار (${areaStrParts.join(' ')}):</strong> توضح المعطيات الجيولوجية والجيوفيزيائية لهذا الموقع ما يلي:</p>`;
+
                     let analysis = '', recommendations = '';
-                    switch (level) {
-                        case 'احتمال مرتفع جداً':
+                    if (props) {
+                        const currentLevel = props.الفئا || props.الفئة || props.Category || '';
+                        if (currentLevel.includes('مرتفع جداً') || props.gridcode == 5) {
                             analysis = 'تشير جميع المؤشرات المكانية إلى وجود ظروف مثالية لتكوّن وتخزين المياه الجوفية. المنطقة تقع في تراكيب جيولوجية وجيومورفولوجية عالية النفاذية مع تغذية مائية جيدة.';
-                            recommendations = 'يوصى بشدة بإجراء مسح جيوفيزيائي تفصيلي باستخدام تقنية **التصوير المقطعي للمقاومة الكهربائية (ERT)** لتحديد الامتداد الرأسي والأفقي للخزان الجوفي بدقة. يمكن استكمال ذلك **بجسات كهربائية رأسية (VES)** في المواقع الواعدة لتحديد الأعماق بدقة قبل البدء في حفر آبار إنتاجية.';
-                            break;
-                        case 'احتمال مرتفع':
+                            recommendations = 'يوصى بشدة بإجراء مسح جيوفيزيائي تفصيلي باستخدام تقنية **التصوير المقطعي للمقاومة الكهربائية (ERT)** لتحديد الامتداد الرأسي والأفقي للخزان الجوفي بدقة. يمكن استكمال ذلك **بجسات كهربائية رأسية (VES)** في المواقع الواعدة لتحديد الأعماق بدقة قبل البدء في حفر آبار إنتاجية. علماً بأنه يوجد جهاز جسة في كلية العلوم قسم الجيولوجيا جامعة سوهاج لخدمة هذا الغرض.';
+                        } else if (currentLevel.includes('مرتفع') || props.gridcode == 4) {
                             analysis = 'الظروف الجيولوجية والهيدرولوجية في هذه المنطقة مواتية بشكل كبير لوجود تجمعات مائية جوفية. قد تكون هناك بعض العوامل المحددة ولكن الاحتمالية العامة قوية.';
-                            recommendations = 'يُنصح بالبدء **بجسات كهربائية رأسية (VES)** لتحديد الأعماق المبدئية للطبقات الحاملة للمياه. في حال كانت النتائج إيجابية، يمكن استخدام **الرادار الأرضي (GPR)** في المناطق ذات الطبيعة الرسوبية لتحديد امتداد الطبقات الرملية والحصوية المشبعة بالمياه.';
-                            break;
-                        case 'احتمال متوسط':
+                            recommendations = 'يُنصح بالبدء **بجسات كهربائية رأسية (VES)** لتحديد الأعماق المبدئية للطبقات الحاملة للمياه. في حال كانت النتائج إيجابية، يمكن استخدام **الرادار الأرضي (GPR)** في المناطق ذات الطبيعة الرسوبية لتحديد امتداد الطبقات الرملية والحصوية المشبعة بالمياه. علماً بأنه يتوفر جهاز جسة في كلية العلوم قسم الجيولوجيا جامعة سوهاج.';
+                        } else if (currentLevel.includes('متوسط') || props.gridcode == 3) {
                             analysis = 'تظهر المنطقة خصائص مختلطة، حيث تدعم بعض المعايير وجود المياه بينما تحد عوامل أخرى من ذلك. قد تكون المياه موجودة في جيوب متفرقة أو على أعماق أكبر.';
-                            recommendations = 'يُقترح إجراء مسح استطلاعي باستخدام تقنيات **المسح الكهرومغناطيسي (EM)** لتغطية مساحة واسعة وتحديد المناطق ذات المقاومة المنخفضة التي قد تشير لوجود مياه. المواقع الواعدة يمكن التحقق منها لاحقًا باستخدام **جسات كهربائية (VES)**.';
-                            break;
-                        case 'احتمال منخفض':
+                            recommendations = 'يُقترح إجراء مسح استطلاعي باستخدام تقنيات **المسح الكهرومغناطيسي (EM)** لتغطية مساحة واسعة وتحديد المناطق ذات المقاومة المنخفضة التي قد تشير لوجود مياه. المواقع الواعدة يمكن التحقق منها لاحقًا باستخدام **جسات كهربائية (VES)** والمتاحة في كلية العلوم قسم الجيولوجيا جامعة سوهاج.';
+                        } else if (currentLevel.includes('منخفض') || props.gridcode <= 2) {
                             analysis = 'الخصائص السائدة في هذه المنطقة لا تدعم بشكل كبير وجود تجمعات مائية جوفية اقتصادية. قد تكون المياه موجودة ولكن بكميات قليلة أو بجودة منخفضة.';
-                            recommendations = 'قبل أي عمل ميداني مكلف، يوصى بإعادة تحليل التراكيب الخطية والصدوع من خلال صور الأقمار الصناعية عالية الدقة، حيث قد تكون المياه محصورة في نطاقات هذه الصدوع. أي عمل جيوفيزيائي يجب أن يكون محدودًا وموجهًا بدقة.';
-                            break;
-                        case 'احتمال منخفض جداً':
-                            analysis = 'الظروف الجيولوجية والجيومورفولوجية غير مواتية لتجمع المياه الجوفية. المنطقة قد تكون ذات نفاذية ضعيفة أو تقع في مناطق صرف مائي مرتفعة.';
-                            recommendations = 'لا يوصى بالاستثمار في أعمال حفر أو مسوحات جيوفيزيائية مكثفة في هذه المنطقة. يجب التركيز على استكشاف مصادر مياه بديلة مثل تقنيات حصاد مياه الأمطار إذا كانت الظروف المناخية تسمح بذلك.';
-                            break;
-                        default:
-                            analysis = 'لا توجد بيانات كافية لتقديم تحليل دقيق لهذه المنطقة.';
-                            recommendations = 'يتطلب الأمر المزيد من البيانات الميدانية لتقييم احتمالية وجود المياه الجوفية.';
+                            recommendations = 'قبل أي عمل ميداني مكلف، يوصى بإعادة تحليل التراكيب الخطية والصدوع من خلال صور الأقمار الصناعية عالية الدقة، حيث قد تكون المياه محصورة في نطاقات هذه الصدوع. أي عمل جيوفيزيائي مثل الجسات (المتوفرة بكلية العلوم جامعة سوهاج) يجب أن يكون محدودًا وموجهًا بدقة.';
+                        } else {
+                            analysis = 'لا توجد بيانات متجهية كافية لتقديم تحليل دقيق لهذه المنطقة.';
+                            recommendations = 'يتطلب الأمر المزيد من البيانات الميدانية لتقييم احتمالية وجود المياه الجوفية عبر إجراء الجسات الكهربائية (متوفر جهاز للإيجار بكلية العلوم قسم الجيولوجيا).';
+                        }
+                    } else {
+                        analysis = 'هذا الموقع يقع خارج نطاق التقسيمات المتجهية (GeoJSON) للدراسة، ولكن تم استخراج بيانات العمق من نموذج الراستر.';
+                        recommendations = 'يوصى بالتحقق من مدى اتساق هذا الموقع مع المعطيات الجيولوجية المجاورة واستخدام الجسات الكهربائية (المتاحة في كلية العلوم قسم الجيولوجيا، جامعة سوهاج) كمرحلة أولية للتحقق.';
                     }
-                    reportText = `<p><strong>التحليل الأولي للموقع (احتمالية ${level}):</strong></p><p>${analysis}</p><p><strong>التوصيات الجيوفيزيائية للتحقق الميداني:</strong></p><p>${recommendations}</p><p><strong>تنويه هام:</strong> هذا التقرير مبني على نموذج مكاني ويعتبر أداة استرشادية أولية. القرار النهائي يتطلب دائمًا إجراء دراسات ميدانية متكاملة للتحقق من النتائج على أرض الواقع.</p>`;
+                    reportText = siteInfo + `<p><strong>التحليل الأولي للموقع (${level}):</strong></p><p>${analysis}</p><p>${depthInfo}</p><p><strong>التوصيات الجيوفيزيائية للتحقق الميداني:</strong></p><p>${recommendations}</p><p><strong>تنويه هام:</strong> هذا التقرير مبني على نموذج مكاني ويعتبر أداة استرشادية أولية. القرار النهائي يتطلب دائمًا إجراء دراسات ميدانية متكاملة للتحقق من النتائج على أرض الواقع.</p>`;
+                } else if (isOutside) {
+                    reportText = '<p>الموقع المحدد يقع خارج نطاق منطقة الدراسة الحالية (GeoJSON & Raster). يرجى النقر داخل حدود الطبقات الملونة.</p>';
                 } else {
                     reportText = '<p>انقر على إحدى مناطق الخريطة لبدء تحليل احتمالية المياه الجوفية وكتابة تقرير مفصل.</p>';
                 }
 
                 typeWriterHTML(reportContainer, reportText);
+
+                const printReportTableLoc = document.getElementById('print-location-name-table');
+
+                if (props || depthValue !== null || isOutside) {
+                    if (printBtn) printBtn.style.display = 'inline-flex';
+                    
+                    let finalLocName = 'نطاق صحراوي / غير محصور';
+                    if (addressData) {
+                        const getValid = (s) => (s && s !== 'موقع محدد' && s !== 'غير محدد') ? s : null;
+                        const v = getValid(addressData.village);
+                        const c = getValid(addressData.county);
+                        if (v && c && v !== c) finalLocName = `${c} - ${v}`;
+                        else if (v) finalLocName = v;
+                        else if (c) finalLocName = c;
+                    }
+                    if (printReportTableLoc) printReportTableLoc.innerText = finalLocName;
+                    
+                    if (printReportText) {
+                        // Apply formatting for the printed version
+                        let printableContent = reportText.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+                        printReportText.innerHTML = printableContent;
+                    }
+                } else {
+                    if (printBtn) printBtn.style.display = 'none';
+                    if (printReportText) printReportText.innerHTML = '';
+                }
             }
+
+            // Map image retrieval for printing (static map using satellite tiles)
+            window.printReport = function () {
+                const lat = parseFloat(document.getElementById('print-lat').innerText);
+                const lng = parseFloat(document.getElementById('print-lng').innerText);
+                const printContainer = document.getElementById('print-report-container');
+                const printBtn = document.getElementById('print-btn');
+                const mapImg = document.getElementById('print-map-img');
+
+                const originalBtnContent = printBtn.innerHTML;
+                printBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التجهيز...';
+                printBtn.disabled = true;
+
+                const finishPrint = () => {
+                    printBtn.innerHTML = originalBtnContent;
+                    printBtn.disabled = false;
+                    
+                    // @media print CSS shows #print-report-container during printing
+                    // No need to set display:block on screen - that causes logos to flash!
+                    setTimeout(() => {
+                        window.print();
+                        // printContainer is still display:none on screen, no cleanup needed
+                    }, 300);
+                };
+
+                if (!isNaN(lat) && !isNaN(lng)) {
+                    const captureDiv = document.getElementById('google-capture-div');
+                    
+                    // Re-use pre-initialized map if available, otherwise create new one
+                    const gmap = window.printGmap || new google.maps.Map(captureDiv, {
+                        center: { lat: lat, lng: lng },
+                        zoom: 15,
+                        mapTypeId: google.maps.MapTypeId.SATELLITE,
+                        disableDefaultUI: true,
+                        gestureHandling: 'none'
+                    });
+                    window.printGmap = gmap;
+
+                    // Capture function
+                    let captured = false;
+                    const doCapture = () => {
+                        if (captured) return;
+                        captured = true;
+
+                        // Hide Google Maps attribution/copyright text before capturing
+                        captureDiv.querySelectorAll('.gm-style-cc, .gm-bundled-control, .gmnoprint, a').forEach(el => {
+                            el.style.setProperty('display', 'none', 'important');
+                        });
+
+                        html2canvas(captureDiv, {
+                            useCORS: true,
+                            allowTaint: true,
+                            logging: false,
+                            width: 800,
+                            height: 500
+                        }).then(function(canvas) {
+                            mapImg.src = canvas.toDataURL('image/png');
+                            window.scrollTo(0, 0); // Prevent page scroll side-effects
+                            finishPrint(); // No display:block - @media print handles it
+                        }).catch(function(err) {
+                            console.warn('html2canvas failed:', err);
+                            mapImg.src = `https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=${lng-0.005},${lat-0.005},${lng+0.005},${lat+0.005}&bboxSR=4326&size=800,500&imageSR=4326&format=jpg&f=image`;
+                            window.scrollTo(0, 0);
+                            finishPrint();
+                        });
+                    };
+
+                    // IMPORTANT: Register idle listener BEFORE setCenter/setZoom so we never miss it
+                    const idleFailsafe = setTimeout(() => doCapture(), 5000);
+                    
+                    const registerIdleAndMove = () => {
+                        google.maps.event.addListenerOnce(gmap, 'idle', function() {
+                            clearTimeout(idleFailsafe);
+                            setTimeout(doCapture, 1500);
+                        });
+                        gmap.setCenter({ lat: lat, lng: lng });
+                        gmap.setZoom(15);
+                    };
+
+                    setTimeout(registerIdleAndMove, 100);
+                } else {
+                    finishPrint(); // No coords, just print without map
+                }
+            }
+
 
             // Initial state for cards
             function initializeCards() {
@@ -1103,32 +1860,100 @@
                 updateDetailsCard(null);
                 updateCoordinatesCard(null, null);
                 generateReport(null);
+
+                // Pre-initialize Google Maps SATELLITE in invisible div so it's ready for first print click!
+                try {
+                    const captureDiv = document.getElementById('google-capture-div');
+                    window.printGmap = new google.maps.Map(captureDiv, {
+                        center: { lat: 26.5569, lng: 31.6948 },
+                        zoom: 15,
+                        mapTypeId: google.maps.MapTypeId.SATELLITE,
+                        disableDefaultUI: true,
+                        gestureHandling: 'none'
+                    });
+                } catch(e) {
+                    console.warn('printGmap init failed:', e);
+                }
             }
 
-            function checkLocation(latlng) {
-                if (!geojsonData) return;
+            async function checkLocation(latlng) {
+                if (!latlng) return;
+
                 let containingFeature = null;
 
-                for (const feature of geojsonData.features) {
-                    if (feature.geometry.type === 'Polygon') {
-                        if (isPointInPolygon(latlng, feature.geometry.coordinates[0])) {
-                            containingFeature = feature;
-                            break;
+                // Priority 1: Check if there's a feature under the click using Leaflet Layers
+                if (geojsonLayer) {
+                    geojsonLayer.eachLayer(layer => {
+                        if (layer.getBounds().contains(latlng)) {
+                            // Check polygon precisely
+                            if (typeof layer.getLatLngs === 'function') {
+                                // Simple contains check for polygon
+                                const found = isPointInPolygon(latlng, layer.feature.geometry.type === 'Polygon' ?
+                                    layer.feature.geometry.coordinates[0] : layer.feature.geometry.coordinates[0][0]);
+                                if (found) containingFeature = layer.feature;
+                            }
                         }
-                    } else if (feature.geometry.type === 'MultiPolygon') {
-                        for (const polygon of feature.geometry.coordinates) {
-                            if (isPointInPolygon(latlng, polygon[0])) {
+                    });
+                }
+
+                // If not found yet, fallback to original loop
+                if (!containingFeature && geojsonData) {
+                    for (const feature of geojsonData.features) {
+                        if (feature.geometry.type === 'Polygon') {
+                            if (isPointInPolygon(latlng, feature.geometry.coordinates[0])) {
                                 containingFeature = feature;
                                 break;
                             }
+                        } else if (feature.geometry.type === 'MultiPolygon') {
+                            for (const polygon of feature.geometry.coordinates) {
+                                if (isPointInPolygon(latlng, polygon[0])) {
+                                    containingFeature = feature;
+                                    break;
+                                }
+                            }
+                            if (containingFeature) break;
                         }
-                        if (containingFeature) break;
                     }
                 }
 
-                updateCoordinatesCard(latlng, containingFeature ? containingFeature.properties : null);
-                updateDetailsCard(containingFeature ? containingFeature.properties : null);
-                generateReport(containingFeature ? containingFeature.properties : null, !containingFeature);
+                // Query Depth value once
+                let depthValue = null;
+                if (depthRaster) {
+                    try {
+                        const result = await geoblaze.identify(depthRaster, [latlng.lng, latlng.lat]);
+                        if (result && result[0] !== null && result[0] !== undefined && !isNaN(result[0])) {
+                            depthValue = result[0];
+                        }
+                    } catch (err) { console.error("Raster identify error:", err); }
+                }
+
+                try {
+                    // Visual feedback: Show loading in report area while geocoding
+                    const reportContainer = document.getElementById('report-container');
+                    if (reportContainer) reportContainer.innerHTML = '<div class="details-placeholder"><p><i class="fas fa-spinner fa-spin"></i> جاري تحليل بيانات الموقع وجلب خرائط Google...</p></div>';
+
+                    // Update coords card AND wait for address data
+                    const address = await updateCoordinatesCard(latlng, containingFeature ? containingFeature.properties : null, true, depthValue);
+                    
+                    updateDetailsCard(containingFeature ? containingFeature.properties : null);
+                    // Pass address DIRECTLY to generateReport to avoid race conditions or DOM delays
+                    generateReport(containingFeature ? containingFeature.properties : null, !containingFeature, depthValue, address);
+                } catch (e) {
+                    console.error("Sequence Error:", e);
+                }
+
+                if (legendDepthSpan) {
+                    if (depthValue !== null) {
+                        legendDepthSpan.innerHTML = `العمق: <strong style="color: var(--accent-blue);">${Math.round(depthValue)} متر</strong>`;
+                    } else {
+                        legendDepthSpan.textContent = 'العمق التقريبي (متر)';
+                    }
+                }
+
+                // If clicked outside and no raster value, hide coords card to keep UI clean
+                if (!containingFeature && depthValue === null) {
+                    document.getElementById('coords-card').style.display = 'none';
+                }
             }
 
             // --- Controls Initialization ---

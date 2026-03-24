@@ -1,6 +1,5 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <!-- Theme Switcher CSS -->
@@ -88,13 +88,13 @@
             border-radius: 4px;
         }
 
-        .chapter-section p,
-        .chapter-section ul {
-            font-size: 1.1rem;
+        .chapter-section p, .chapter-section ul {
+            font-size: 1.15rem;
             color: var(--text-primary);
-            opacity: 0.9;
+            opacity: 0.95;
             margin-bottom: 1.5rem;
             text-align: justify;
+            line-height: 2.1;
         }
 
         .chapter-section ul {
@@ -116,36 +116,26 @@
             color: var(--accent-color);
         }
 
+        .tech-box {
+            background: rgba(var(--accent-color-rgb), 0.05);
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.9;
+        }
+
         .code {
             font-family: 'JetBrains Mono', monospace;
             background-color: rgba(52, 152, 219, 0.1);
             padding: 0.2rem 0.5rem;
             border-radius: 6px;
-            font-size: 0.95em;
             color: var(--accent-color);
-            border: 1px solid rgba(52, 152, 219, 0.2);
-        }
-
-        .figure-container {
-            background-color: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 1.5rem;
-            margin: 2.5rem 0;
-            text-align: center;
-        }
-
-        .figure-container img {
-            max-width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .figure-container figcaption {
-            margin-top: 1.2rem;
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            font-weight: 600;
+            direction: ltr;
+            display: inline-block;
         }
 
         .references-section {
@@ -154,6 +144,31 @@
             padding: 2.5rem;
             border-radius: 24px;
             margin-bottom: 3rem;
+        }
+
+        .references-section h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--accent-color);
+            display: inline-block;
+        }
+
+        .references-section ul {
+            direction: ltr;
+            text-align: left;
+            list-style: disc;
+            padding-left: 2rem;
+            font-family: 'Times New Roman', serif;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .references-section li {
+            margin-bottom: 0.5rem;
         }
 
         .back-to-home {
@@ -167,8 +182,8 @@
             border-radius: 12px;
             font-weight: 700;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(11, 101, 194, 0.2);
             margin-top: 1rem;
+            box-shadow: 0 10px 20px rgba(11, 101, 194, 0.2);
         }
 
         .back-to-home:hover {
@@ -177,48 +192,32 @@
         }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 100px 15px 40px;
-            }
-
-            .main-header {
-                padding: 2rem 1rem;
-            }
-
-            .main-header h1 {
-                font-size: 1.8rem;
-            }
-
-            .chapter-section {
-                padding: 1.5rem;
-            }
+            .container { padding: 100px 15px 40px; }
+            .main-header { padding: 2rem 1rem; }
+            .chapter-section { padding: 1.5rem; }
         }
     </style>
 </head>
-
 <body data-theme="light">
     <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="nav-brand">
+            <a href="home.html" class="nav-brand">
                 <i class="fas fa-water"></i>
                 <span>المياه الجوفية بسوهاج</span>
             </a>
-            <div class="nav-links">
-                <a class="nav-link" href="index.html">الرئيسية</a>
-                <a class="nav-link" href="groundwater.html">الخريطة التفاعلية</a>
-                <a class="nav-link" href="gallery.html">المعرض</a>
-                <a class="nav-link" href="palestine.html">أولى القبلتين</a>
-                <a class="nav-link" href="about.html">عن المشروع</a>
-                <button class="theme-switcher-btn" id="theme-switcher" title="تبديل الوضع">
-                    <i class="fas fa-sun"></i>
-                </button>
-            </div>
-            <div class="hamburger" aria-label="فتح/إغلاق القائمة">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+            <ul class="nav-menu">
+                <li><a class="nav-link" href="home.html">الرئيسية</a></li>
+                <li><a class="nav-link" href="groundwater.html">الخريطة التفاعلية</a></li>
+                <li><a class="nav-link" href="gallery.html">المعرض</a></li>
+                <li><a class="nav-link" href="palestine.html">أولى القبلتين</a></li>
+                <li><a class="nav-link" href="about.html">عن المشروع</a></li>
+                <li>
+                    <button class="theme-switcher-btn" id="theme-switcher" aria-label="تبديل الوضع">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                </li>
+            </ul>
         </div>
     </nav>
     <div class="sidebar-overlay"></div>
@@ -230,245 +229,145 @@
                 <p>تصميم وتطوير منصة الويب الجيومكانية (WebGIS) لعرض نتائج النمذجة المكانية للمياه الجوفية</p>
             </header>
 
-            <section class="chapter-section">
-                <h2>3.1 مقدمة</h2>
-                <p>
-                    تُعد المياه الجوفية أحد أهم الموارد الاستراتيجية في مصر، لا سيما في محافظات الصعيد مثل سوهاج، حيث
-                    تلعب دوراً محورياً في التنمية الزراعية والعمرانية. ومع التطور الهائل في تقنيات نظم المعلومات
-                    الجغرافية (GIS) والاستشعار عن بعد (RS)، أصبح من الممكن بناء نماذج مكانية دقيقة للتنبؤ بأماكن تواجد
-                    هذه المياه. ومع ذلك، تظل نتائج هذه النماذج حبيسة البرمجيات المتخصصة والتقارير الأكاديمية، مما يحد من
-                    استفادة صناع القرار والجمهور العام منها.
-                </p>
-                <p>
-                    من هنا، برزت الحاجة إلى تطوير نظام إلكتروني تفاعلي (Web-based System) يعمل كمنصة نشر جغرافي، تهدف
-                    إلى تحويل المخرجات المعقدة للنمذجة المكانية إلى خرائط تفاعلية سهلة الاستخدام والوصول. يوثق هذا الفصل
-                    المنهجية التقنية المتبعة في بناء هذا النظام، بدءاً من مرحلة تحليل المتطلبات، مروراً بتصميم البنية
-                    التحتية للبرمجيات، وصولاً إلى التنفيذ الفعلي واختبار الأداء.
-                </p>
-                <p>
-                    يركز هذا الفصل على الجوانب الفنية لتطوير واجهة المستخدم (Front-end Development)، ومعالجة البيانات
-                    المكانية لعرضها على الويب (Web Mapping)، وتوظيف مكتبات الجافاسكريبت الحديثة لإنشاء تجربة مستخدم غنية
-                    وتفاعلية، مع الالتزام بالمعايير القياسية في تصميم الويب وتصور البيانات (Data Visualization).
-                </p>
-            </section>
+        <section class="chapter-section">
+            <h2>3.1 مقدمة الفصل</h2>
+            <p>
+                تُعد المياه الجوفية أحد أهم الموارد الاستراتيجية في مصر، لا سيما في محافظات الصعيد مثل سوهاج. ومع التطور الهائل في تقنيات نظم المعلومات الجغرافية (GIS)، تمت صياغة نماذج مكانية دقيقة للتنبؤ بأماكن تواجد هذه المياه. يوثق هذا الفصل المنهجية التقنية المتبعة في بناء النظام الإلكتروني التفاعلي (Web-based System) للمشروع، والذي يعمل كمنصة نشر جغرافي لتحويل هذه المخرجات المُعقدة إلى أدوات سهلة الاستخدام والوصول لغير المتخصصين، مع دمج التقنيات الجغرافية لخدمة قضايا وطنية وثقافية محورية (Fu & Sun, 2010).
+            </p>
+        </section>
 
-            <section class="chapter-section">
-                <h2>3.2 منهجية التطوير وبنية النظام (Methodology & Architecture)</h2>
-                <p>
-                    تم اتباع منهجية التطوير الرشيق (Agile Development) في بناء النظام، حيث تم تقسيم العمل إلى مراحل
-                    متكررة تشمل التخطيط، التصميم، التطوير، والاختبار. يعتمد النظام في بنيته التقنية على هيكلية "من جانب
-                    العميل" (Client-Side Architecture)، مما يعني أن جميع عمليات المعالجة والعرض تتم داخل متصفح المستخدم
-                    دون الاعتماد على خوادم معالجة خلفية معقدة (Server-side processing)، مما يضمن سرعة الاستجابة وسهولة
-                    النشر والاستضافة.
-                </p>
+        <section class="chapter-section">
+            <h2>3.2 منهجية التطوير وبنية النظام (Methodology & Architecture)</h2>
+            <p>
+                يعتمد النظام في بنيته التقنية على هيكلية "العميل المستقل" (Client-Side Architecture). تتيح هذه الهيكلية استضافة وإجراء جميع التحليلات الجيومكانية المعقدة مباشرة داخل متصفح المستخدم دون الحاجة للرجوع في كل خطوة لخوادم بيانات جغرافية مكلفة، مما يضمن سرعة الاستجابة وسهولة النشر الفوري للمعلومة (Flanagan, 2020).
+            </p>
+            <h3>3.2.1 لغات البرمجة وتطوير الواجهات (Frontend Stack)</h3>
+            <ul>
+                <li><strong>HTML5:</strong> لغة ترميز المواقع الأساسية، تم استخدامها لبناء الهيكل الدلالي للموقع، مع مراعاة معايير الوصول العالمية (Accessibility) وتضمين عناصر الوسائط المتعددة بشكل تفاعلي (MDN Web Docs, 2023).</li>
+                <li><strong>CSS3:</strong> تم بناء المعمارية البصرية بواسطته، محتوياً على ملفات أنماط مخصصة (Variables) ومتبنياً تصاميم متجاوبة (Responsive Design) مع كافة أحجام الشاشات والأجهزة اللوحية والمحمولة.</li>
+                <li><strong>JavaScript (ES6+):</strong> عصب النظام التفاعلي؛ تُستخدم للتحكم المستقل واللامتزامن في قراءة قواعد البيانات الجغرافية، وعرض وإخفاء الطبقات، وبرمجة محركات الأنميشن المعقدة عبر الواجهة البرمجية (Flanagan, 2020).</li>
+            </ul>
+            <h3>3.2.2 المكتبات المكانية المتخصصة (Spatial Libraries)</h3>
+            <ul>
+                <li><strong>Leaflet.js:</strong> هي المكتبة مفتوحة المصدر الرائدة في مجال الويب التفاعلي للخرائط، وتعد المحرك الأساسي لرسم الخرائط في النظام والتحكم في إطار العرض (Agafonkin, 2023).</li>
+                <li><strong>GeoBlaze.js & Parse-Georaster:</strong> مكتبات جافاسكريبت متقدمة للتحليل الخلوي (Raster Analysis) تمت إضافتها لتمكين المتصفح من قراءة وفك تشفير البيانات المترولوجية والهيدرولوجية المحملة بصيغة <span class="code">GeoTIFF</span> وقراءة قيم الخلايا الرياضية دون خادم (Geoblaze Authors, 2024).</li>
+                <li><strong>PolylineMeasure & GeoSearch:</strong> مكتبات إضافية تم إرفاقها لقياس المسافات الميدانية بدقة على الخريطة، والبحث الفوري عن المراكز والقرى بداخل النطاق الجغرافي المدروس (Agafonkin, 2023).</li>
+            </ul>
+        </section>
 
-                <h3>3.2.1 مكدس التقنيات (Technology Stack)</h3>
-                <p>تم اختيار مجموعة من التقنيات الحديثة والمفتوحة المصدر لبناء النظام، وذلك لضمان التوافقية والأداء
-                    العالي:</p>
-                <ul>
-                    <li><strong>HTML5 (HyperText Markup Language):</strong> استُخدمت لبناء الهيكل الدلالي (Semantic
-                        Structure) لصفحات الويب، مما يعزز من قابلية الوصول (Accessibility) وفهرسة محركات البحث (SEO). تم
-                        استخدام عناصر دلالية مثل <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>,
-                        <code>&lt;section&gt;</code>, و <code>&lt;footer&gt;</code> لتنظيم المحتوى بشكل منطقي (MDN Web
-                        Docs, 2023).
-                    </li>
-                    <li><strong>CSS3 (Cascading Style Sheets):</strong> تم توظيف أحدث ميزات CSS3 لتصميم الواجهة البصرية،
-                        بما في ذلك:
-                        <ul>
-                            <li><strong>CSS Variables:</strong> لتعريف ألوان وسمات النظام (مثل الوضع الليلي والنهاري) في
-                                مكان واحد لسهولة التعديل.</li>
-                            <li><strong>Flexbox & Grid Layouts:</strong> لإنشاء تخطيطات مرنة ومتجاوبة تتكيف مع مختلف
-                                أحجام الشاشات.</li>
-                            <li><strong>Animations & Transitions:</strong> لإضافة تأثيرات حركية سلسة تعزز من تجربة
-                                المستخدم دون التأثير على الأداء.</li>
-                        </ul>
-                    </li>
-                    <li><strong>JavaScript (ES6+):</strong> لغة البرمجة الأساسية المستخدمة لإضافة التفاعلية والمنطق
-                        للنظام. تم استخدام ميزات ES6 الحديثة مثل <code>Arrow Functions</code>,
-                        <code>Template Literals</code>, و <code>Async/Await</code> للتعامل مع البيانات غير المتزامنة
-                        (Asynchronous Data Fetching) (Flanagan, 2020).
-                    </li>
-                </ul>
+        <section class="chapter-section">
+            <h2>3.3 المكونات الوظيفية والتحليل التقني للنظام</h2>
+            <p>
+                الموقع يتكون من أربع صفحات أساسية بجانب الصفحة الرئيسية، نوضح المكون والإطار التقني لكل منها تالياً:
+            </p>
 
-                <h3>3.2.2 مكتبة الخرائط (Leaflet.js)</h3>
-                <p>
-                    لتمثيل البيانات المكانية، تم الاعتماد على مكتبة <span class="code">Leaflet.js</span>، وهي المكتبة
-                    الرائدة مفتوحة المصدر للخرائط التفاعلية المحمولة. تم اختيارها لعدة أسباب:
-                </p>
-                <ul>
-                    <li><strong>خفة الوزن (Lightweight):</strong> حجم المكتبة صغير (حوالي 40KB JS)، مما يضمن سرعة تحميل
-                        الصفحة.</li>
-                    <li><strong>المرونة (Flexibility):</strong> تدعم التعامل مع طبقات GeoJSON المعقدة بسهولة.</li>
-                    <li><strong>التوافقية (Compatibility):</strong> تعمل بكفاءة على جميع المتصفحات الحديثة والأجهزة
-                        المحمولة.</li>
-                    <li><strong>الإضافات (Plugins):</strong> تم دمج إضافات مثل <code>Leaflet-Geosearch</code> للبحث
-                        المكاني و <code>Leaflet-Measure</code> لأدوات القياس (Agafonkin, 2023).</li>
-                </ul>
+            <h3>3.3.1 الصفحة الرئيسية</h3>
+            <p>
+                تعمل الصفحة الرئيسية كبوابة واجهة استهلالية تأخذ المستخدم للهدف المرجو. تم دعم الصفحة بتصميم ترحيبي يتضمن عناصر تفاعلية توضح مدى حداثة المشروع، بالإضافة لتخصيص شبكة روابط سريعة لتوجيه المستخدم نحو أدوات التحليل (الخريطة التفاعلية) أو المعرض أو صفحة التوثيق الوطنية "فلسطين". كما احتوت على محركات حركية (Particle Network) لتجسيد فكرة تواصل البيانات المكانية ببعضها البعض بحيوية (Flanagan, 2020).
+            </p>
 
-                <h3>3.2.3 معالجة وتنسيق البيانات (Data Processing)</h3>
-                <p>
-                    تمت معالجة مخرجات النمذجة المكانية (التي كانت بصيغة Raster أو Shapefile في بيئة ArcGIS) وتحويلها إلى
-                    تنسيق <span class="code">GeoJSON</span>. يُعد GeoJSON معياراً مفتوحاً لتمثيل المعالم الجغرافية
-                    البسيطة وسماتها غير المكانية باستخدام تدوين كائن JavaScript (JSON).
-                </p>
-                <p>
-                    تضمنت عملية المعالجة تبسيط الهندسة (Geometry Simplification) لتقليل حجم الملفات وضمان سرعة العرض على
-                    الويب، مع الحفاظ على الدقة المكانية اللازمة للتحليل (Butler et al., 2016).
-                </p>
-            </section>
+            <h3>3.3.2 الصفحة الأولى: صفحة المياه الجوفية</h3>
+            <p>
+                ومن خلالها نستطيع تحديد مواقع احتمالية وجود المياه الجوفية إلكترونياً دون الحاجة إلى برامج نظم المعلومات الجغرافية حيث الموقع يتعامل مع بيئة مخصصة ومعلومات معدة مسبقاً من خلال النمذجة المكانية، حيث انه من خلال نظام تحديد المواقع العالمي GPS يمكننا تحديد الموقع الدقيق في طبقة احتمالية وجود المياه الجوفية، مع معرفة كامل المعلومات الخاصة بالموقع من إحداثيات وعنوان الموقع والمدينة، بالإضافة لكتابة تقرير بكافة المعلومات والتفاصيل والمتطلبات الجيوفيزيائية للحصول على نتائج اعلى دقة.
+            </p>
+            <div class="tech-box">
+                <i class="fas fa-microchip"></i> <strong>الإضافة التقنية (Technical Implementation):</strong>
+                يعتمد مُوَلِّد التقارير على وظيفة تأثر الكتابة <span class="code">Typewriter Effect</span> عبر الجافاسكريبت لإضفاء تفاعل حيوي كأن النظام يحاور المستخدم. ولجلب العناوين آلياً، تم دمج برمجية بحث مكاني (Reverse Geocoding) تعمل على تحويل إحداثيات ה־GPS المٌلتقطة إلى اسم القرية والمركز التابعة لها بشكل فوري (Flanagan, 2020).
+            </div>
 
-            <section class="chapter-section">
-                <h2>3.3 المكونات الوظيفية للنظام (System Functional Components)</h2>
-                <p>
-                    تم تصميم النظام ليتكون من عدة وحدات وظيفية مترابطة، توفر كل منها مجموعة من الأدوات والخدمات
-                    للمستخدم. فيما يلي استعراض تفصيلي لهذه المكونات:
-                </p>
+            <h3>3.3.3 الصفحة الثانية: صفحة أولى القبلتين</h3>
+            <p>
+                وهي قد تكون بعيده عن محتوى المشروع بشكل عام ولكن هذا أضعف الإيمان في هذا الوقت حيث انه من حق فلسطين علينا كل متخصصين نظم المعلومات الجغرافية بعدما قامت كبرى الشركات التكنولوجية مثل Google بإزالة اسم دولة فلسطين من على خرائطها وإعادة رسم حدود الدولة إلى مستوطنات الكيان الصهيوني المحتل وهذا تواطؤ صريح من شركات التكنولوجيا الشهيرة مع الكيان الصهيونى المحتل، الذي ينبغي ألا يعترف به، كما هو الأن فهو اعتراف من لا يملك لمن لا يستحق، لذلك قمنا بإعادة رسم خريطة فلسطين لسنة 1946 وتم إعداد قاعدة بيانات FileGeodatabase لجميع الطبقات ومن الطبقات الموجودة في قاعدة البيانات التي تم إعدادها، هي طبقة الحدود الإدارية لمحافظات دولة فلسطين بالإضافة الى انها تحتوي على المطاقعات ومساحة كل محافظة والنسبة المئوية التي تشغلها كل محافظة من الدولة، ومن ثم تم تصدير الطبقة من قاعدة البيانات وتحويلها إلى json من أجل إعداد البيانات للتعامل مع صفحة الويب، لغرض عرض خريطة فلسطين الحبيبة على موقع الويب وإتاحة من خلاله المعلومات عن كل محافظة وتنتمي تلك المحافظة إلى أي مطاقعة، عند اختيار مكان ما على الخريطة، إضافة إلى ذلك تم إضافة زر على الموقع لعرض المسجد الأقصى حيث يمكننا من خلاله عرض المسجد الأقصى على خريطة القمر الصناعي مع ظهور بطاقة جديدة اسفل الخريطة مع تشغيل أذان بصوت قارئ ومؤذن المسجد الأقصى فراس ناجي القزاز، وايضاً تحتوي هذا البطاقة على معلومات عن المسجد الأقصى حيث انه يعد أحد أكبر مساجد العالم ومن أكثرها قدسية عند المسلمين، وهو اولى القبلتين في الإسلام، يقع داخل البلدة القديمة بالقدس في فلسطين، وهو كامل المنطقة المحاطة بالصور واسم لكل ما هو داخل سور المسجد الأقصى الواقع في أقصى الزاوية الجنوبية الشرقية من البلدة القديمة المسورة، كما انا البطاقة تحتوي على أوقات الصلاة في القدس، وتحتوي ايضاً على دعاء للمسجد الأقصى، كما تضمنت ايضاً البطاقة حديث شريف عن فضل الصلاة في المسجد الأقصى، كما أن الصفحة تحتوي على بطاقة بعنوان رسائل من القرآن الكريم لأهل فلسطين وتتضمن 28 رسالة من آيات القرآن الكريم يمكن تشغيل آيات كل رسالة حسب صوت القارئ( ياسر الدوسري - محمد أيوب - محمود خليل الحصري - محمد صديق المنشاوي - عبد الباسط عبد الصمد (مجود) - ناصر القطامي - مشاري العفاسي - ماهر المعيقلي - سعد الغامدي - أحمد العجمي ) ويمكن ايضاً تحميل الآيات حسب الصوت القارئ الذي يتم اختياره ايضاً مع إتاحة نسخ نص الأيات والمشاركة ، وفي نهاية الصفحة البطاقة الأخيرة وهي بطاقة تحتوي على فيديو عن فلسطين.
+            </p>
+            <div class="tech-box">
+                <i class="fas fa-microchip"></i> <strong>الإضافة التقنية (Technical Implementation):</strong>
+                تم استخدام الواجهة البرمجية المتطورة <span class="code">Audio Context API</span> لبناء مشغل قرآني يضمن انسيابية التبديل بين أسطوانات القراء الـ10 بسلاسة. وجُهزت برمجية لحساب مواقيت الصلاة في القدس لحظياً، في حين تم تحويل صيغة Geodatabase إلى GeoJSON لضمان خفة حجم الطبقات وسرعة نقلها وتفاعلها على الويب (Butler et al., 2016).
+            </div>
 
-                <h3>3.3.1 وحدة الخريطة التفاعلية (Interactive Map Module)</h3>
-                <p>
-                    تُمثل القلب النابض للنظام، وتتواجد في صفحة <code>groundwater.html</code>. تم تطوير هذه الوحدة لتعرض
-                    طبقات احتمالية المياه الجوفية المصنفة إلى 5 فئات (من منخفضة جداً إلى مرتفعة جداً). تشمل الميزات
-                    التقنية لهذه الوحدة:
-                </p>
-                <ul>
-                    <li><strong>الترميز اللوني الديناميكي (Dynamic Choropleth Styling):</strong> يتم تلوين المناطق
-                        تلقائياً بناءً على قيمة السمة <code>gridcode</code> المخزنة في ملف GeoJSON، باستخدام دالة
-                        جافاسكريبت مخصصة لتدرج الألوان.</li>
-                    <li><strong>نوافذ المعلومات المنبثقة (Popups & Tooltips):</strong> عند النقر على أي منطقة، يتم
-                        استدعاء دالة تقوم بقراءة خصائص المنطقة (المساحة، النسبة، الفئة) وعرضها في لوحة جانبية تفاعلية،
-                        بالإضافة إلى توليد تقرير نصي آلي يقدم توصيات بناءً على درجة الاحتمالية.</li>
-                    <li><strong>أدوات التحكم المكانية:</strong> تتضمن أدوات للتكبير والتصغير، زر لتحديد موقع المستخدم
-                        الحالي باستخدام واجهة برمجة تطبيقات الموقع الجغرافي (Geolocation API)، وأداة للبحث عن القرى
-                        والمدن داخل المحافظة.</li>
-                </ul>
-                <div class="figure-container">
-                    <img src="images/docs/screenshot-groundwater.png" alt="واجهة الخريطة التفاعلية">
-                    <figcaption>شكل (3-1): واجهة الخريطة التفاعلية توضح توزيع فئات احتمالية المياه الجوفية في محافظة
-                        سوهاج.</figcaption>
-                </div>
+            <h3>3.3.4 الصفحة الثالثة: معرض الخرائط</h3>
+            <p>
+                وهو قسم لعرض خرائط الاساس المستخدمة في المشروع بأعلى دقة للعرض والتحميل، حيث تعد هذة الخرائط العوامل الرئيسية للحصول على النتائج النهائية للنمذجة المكانية، فهي متطلب علمي للباحثين والمتخصصين لفهم الهيكل العام للبحث، وايضاً فائدة لغير المتخصصين حيث أن هناك كثير من التخصصات تحتاج إلى الإيضاح بالخريطة لتوضيح المعلومات في أبحاثهم، ومن الخرائط الموجودة في الصفحة اولاً خرائط العوامل المستخدمة ( العامل الجيولوجي - العامل الجيومورفولوجي - عامل كثافة التراكيب الخطية - عامل كثافة شبكة المجاري المائية - عامل الإرتفاعات - عامل الانحدارات - عامل تقوس المنحدرات - عامل مؤشر الرطوبة الرطوبة الطبوغرافي TWI - عامل مؤشر الغطاء النباتي NDVI - عامل المطر - عامل التبخر - عامل القرب من المسطحات المائية - عامل نسيج التربة )، ثانياً خريطة النمذجة المكانية لاحتمالية وجود المياه الجوفية في محافظة سوهاج، ثالثاً بعض خرائط الملحقات، رابعاً خريطة دولة فلسطين.
+            </p>
 
-                <h3>3.3.2 المعرض الرقمي للخرائط (Digital Maps Gallery)</h3>
-                <p>
-                    تم تخصيص صفحة <code>gallery.html</code> لعرض المدخلات والطبقات الوسيطة التي استُخدمت في بناء النموذج
-                    المكاني. يهدف هذا القسم إلى تعزيز الشفافية العلمية للمشروع.
-                </p>
-                <ul>
-                    <li><strong>تقنية التحميل الكسول (Lazy Loading):</strong> لتحسين أداء الصفحة، تم تطبيق تقنية التحميل
-                        الكسول للصور، حيث لا يتم تحميل صور الخرائط عالية الدقة إلا عندما تصل إلى مجال رؤية المستخدم
-                        (Viewport)، مما يقلل من استهلاك البيانات ويسرع زمن التحميل الأولي.</li>
-                    <li><strong>العرض المكبر (Lightbox Modal):</strong> تم تنفيذ نافذة منبثقة مخصصة (Custom Modal) تتيح
-                        للمستخدم استعراض الخرائط بدقة عالية مع إمكانية التكبير وقراءة الوصف التفصيلي لكل خريطة.</li>
-                </ul>
-                <div class="figure-container">
-                    <img src="images/docs/screenshot-gallery.png" alt="معرض الخرائط الرقمي">
-                    <figcaption>شكل (3-2): واجهة معرض الخرائط الرقمي تعرض الطبقات الجيولوجية والجيومورفولوجية.
-                    </figcaption>
-                </div>
+            <h3>3.3.5 الصفحة الرابعة: معلومات عن الموقع</h3>
+            <p>
+                وهي صفحة مخصصة لعرض معلومات عن المشرف على المشروع ورئيس الجامعة وعميد الكلية ولجنة المناقشة والمساهمون في المشروع والطلاب المشاركون في عمل المشروع بالإضافة إلى لغات البرمجة والمكتبات المستخدمة في الموقع.
+            </p>
+        </section>
 
-                <h3>3.3.3 وحدة المعلومات والتوثيق (About & Documentation)</h3>
-                <p>
-                    تشمل صفحة <code>about.html</code> وصفحة التوثيق الحالية. تم تصميم هذه الصفحات لتقديم السياق
-                    الأكاديمي والإداري للمشروع. تم استخدام تقنيات CSS Grid لعرض بطاقات فريق العمل ولجنة الإشراف بشكل
-                    متجاوب وأنيق، مع إضافة تأثيرات بصرية (Micro-interactions) عند تمرير المؤشر لتعزيز الجاذبية البصرية.
-                </p>
-                <div class="figure-container">
-                    <img src="images/docs/screenshot-about.png" alt="صفحة معلومات المشروع">
-                    <figcaption>شكل (3-3): صفحة التعريف بالمشروع توضح الهيكل التنظيمي وفريق العمل.</figcaption>
-                </div>
-            </section>
+        <section class="chapter-section">
+            <h2>3.4 الابتكار في معالجة البيانات الرادارية والشبكية</h2>
+            <p>
+                اعتمد العمل العملي على حل مشكلة تقنية كبرى تتمثل في عرض وقراءة ملفات الـ TIF الضخمة (مثل ملفات أعماق المياه) عبر تقنيات الويب دون خوادم وسيطة مكلفة. بدلاً من تحميل الصورة بالكامل، تم توظيف تقنية متقدمة عبر مكتبة GeoBlaze لفك الشفرة لحظياً وربطها مع استعلام النقر المستمر؛ مما يسمح للموقع بعمل "استعلام نقطي" واستخراج القيمة (العمق التقديري) عند إحداثيات نقرة الفأرة. كما صُممت الخوارزمية لتطبيق خاصية التقريب والتدوير (Rounding Function) حتى تظهر قيم الأعماق والبيانات في المفتاح الديناميكي كأرقام صحيحة مبسطة بلا أصفار عشرية، مما يوفر قراءة حاسمة وواضحة لغير المتخصصين وصانعى القرار (Geoblaze Authors, 2024).
+            </p>
+        </section>
 
-            <section class="chapter-section">
-                <h2>3.4 تجربة المستخدم وتصميم الواجهة (UI/UX Design)</h2>
-                <p>
-                    تم إيلاء اهتمام كبير لتجربة المستخدم (User Experience) لضمان أن يكون النظام بديهياً وسهل الاستخدام
-                    لغير المتخصصين في نظم المعلومات الجغرافية.
-                </p>
-                <h3>3.4.1 التصميم المتجاوب (Responsive Design)</h3>
-                <p>
-                    نظراً لتنوع الأجهزة التي قد يستخدمها المستفيدون (حواسيب مكتبية، أجهزة لوحية، هواتف ذكية)، تم تبني
-                    استراتيجية "التصميم المتجاوب". تم استخدام استعلامات الوسائط (Media Queries) في CSS لضبط تخطيط
-                    الصفحة، أحجام الخطوط، وعناصر التحكم في الخريطة تلقائياً بناءً على عرض الشاشة.
-                </p>
-                <h3>3.4.2 نظام الألوان والسمات (Theming)</h3>
-                <p>
-                    يدعم النظام وضعين للعرض: الوضع النهاري (Light Mode) والوضع الليلي (Dark Mode). يتم التبديل بينهما
-                    باستخدام متغيرات CSS (CSS Variables) التي تتحكم في ألوان الخلفية والنصوص وعناصر الواجهة، مما يوفر
-                    راحة بصرية للمستخدم في مختلف ظروف الإضاءة.
-                </p>
-            </section>
+        <section class="chapter-section">
+            <h2>3.5 تصميم واجهات المستخدم والمؤثرات البصرية (UI/UX & Animations)</h2>
+            <p>
+                لفصل هذا العمل الأكاديمي عن المشاريع التقليدية وإضفاء هوية تكنولوجية مستقبلية، تم دمج حزمة واسعة من التقنيات الحركية والبصرية الحديثة في كافة الصفحات، والتي تم بناؤها اعتماداً على خصائص <span class="code">CSS3 Keyframes</span> ومكتبات الجافاسكريبت المستقلة. 
+                وينقسم الهيكل الحركي المتبع في واجهات الموقع وتحديداً في صفحة "المعلومات عن الموقع" إلى نوعين أساسيين من الانيميشن لتصنيف البطاقات (MDN Web Docs, 2023):
+            </p>
 
-            <section class="chapter-section">
-                <h2>3.5 تصور البيانات المكانية (Spatial Data Visualization)</h2>
-                <p>
-                    تتمثل الوظيفة الأساسية للنظام في ترجمة المخرجات الكمية لنموذج النمذجة (ممثلة في أكواد رقمية
-                    <code>gridcode</code> من 1 إلى 5) إلى تمثيل مرئي نوعي يسهل فهمه وتفسيره.
-                </p>
-                <ul>
-                    <li><strong>خرائط الكوروبليث (Choropleth Maps):</strong> تم استخدام خرائط التدرج اللوني لتمثيل فئات
-                        الاحتمالية. تم اختيار تدرج لوني أحادي اللون (Sequential Color Scheme) من الأزرق الفاتح إلى
-                        الأزرق الداكن، حيث يعبر اللون الداكن عن احتمالية أعلى لوجود المياه، وهو اختيار بديهي يتوافق مع
-                        الإدراك البصري للمستخدمين فيما يتعلق بالمياه.</li>
-                    <li><strong>مفتاح الخريطة الديناميكي (Dynamic Legend):</strong> تم برمجة مفتاح خريطة يتم توليده
-                        تلقائياً بناءً على البيانات الموجودة في الطبقة المعروضة، مما يضمن دقة المعلومات وتطابق الألوان
-                        مع الخريطة.</li>
-                </ul>
-            </section>
+            <h3>1. تأثيرات الرتب القيادية (Leadership Wave Animation)</h3>
+            <p>
+                تم تخصيص هذا النوع المتقدم من الانيميشن لمناصب (رئيس الجامعة، المشرف، عميد الكلية، والمساهم). حيث تم التلاعب بهندسة عناصر <span class="code">::before</span> و <span class="code">::after</span> لمحاكاة تموجات المياه لكن بألوان تعكس الأهمية والوقار (Custom Color Overlays).
+            </p>
+            <ul>
+                <li><strong>بطاقة رئيس الجامعة (President Card):</strong> تم استخدام ألوان وتدرجات ذهبية ملكية <span class="code">rgba(255, 215, 0, 0.08)</span> لطبقات الأمواج الدوارة وخلفية البطاقة وتظليل الحدود الذهبية بخلاف التنسيق المعتاد للبطاقات الأخرى. كما طُبق فيها تخطيط أفقي فسيح <span class="code">Horizontal Flex Layout</span> مع زيادة حجم الصورة.</li>
+                <li><strong>بطاقات المشرف والعميد والمساهم (Blue Leader Cards):</strong> اعتمدت على إطارات زرقاء حيوية <span class="code">rgba(33, 150, 243, 0.08)</span> ومؤثرات توهج أفقية بارزة تعطي انطباعاً رسمياً وقيادياً مختلفاً عن القوالب العمودية النمطية.</li>
+            </ul>
 
-            <section class="chapter-section">
-                <h2>3.6 الأداء والتحسين (Performance Optimization)</h2>
-                <p>
-                    لضمان تجربة مستخدم سلسة، تم تطبيق عدة تقنيات لتحسين الأداء:
-                </p>
-                <ul>
-                    <li><strong>ضغط البيانات:</strong> تم تقليل دقة الإحداثيات في ملفات GeoJSON لتقليل حجم الملف دون
-                        التأثير الملحوظ على الشكل العام للمعالم عند مستويات التكبير المعتادة.</li>
-                    <li><strong>التخزين المؤقت (Caching):</strong> الاستفادة من تخزين المتصفح للملفات الثابتة والمكتبات
-                        الخارجية.</li>
-                    <li><strong>تحسين الكود (Code Minification):</strong> كتابة كود جافاسكريبت نظيف وفعال لتقليل زمن
-                        المعالجة في المتصفح.</li>
-                </ul>
-            </section>
+            <h3>2. تأثيرات بطاقات لجنة المناقشة (Committee Member Animation)</h3>
+            <p>
+                في بطاقات لجنة المناقشة، تم الاعتماد على النسق العمودي (Vertical Layout) النموذجي. وتتميز هذه البطاقات باستعمال تأثير مائي <span class="code">waveRotate</span> بألوان أكثر هدوءاً وتدرجاً بين الأزرق الفاتح والبنفسجي <span class="code">rgba(155, 89, 182, 0.08)</span> عبر واجهتين هلاميتين تدوران بشكل عكسي بسرعات مختلفة (12 و 18 ثانية)، مما ينتج تمويجاً لطيفاً أسفل قاعدة البطاقة لا يشتت الانتباه ولكن يدعم التجربة البصرية التفاعلية للوحة.
+            </p>
 
-            <section class="chapter-section">
-                <h2>3.7 الخاتمة</h2>
-                <p>
-                    يمثل هذا النظام الإلكتروني نموذجاً تطبيقياً ناجحاً لكيفية استغلال تقنيات الويب الحديثة في خدمة البحث
-                    العلمي الجغرافي. من خلال تحويل البيانات الجامدة إلى واجهات تفاعلية، يساهم النظام في ديمقراطية الوصول
-                    إلى المعلومات (Democratization of Information)، مما يمكن الباحثين والمخططين في محافظة سوهاج من اتخاذ
-                    قرارات أكثر استنارة بشأن إدارة موارد المياه الجوفية. يفتح هذا المشروع الباب لتطويرات مستقبلية قد
-                    تشمل دمج بيانات الوقت الفعلي من آبار المراقبة أو استخدام تقنيات الذكاء الاصطناعي للتحليل الفوري على
-                    الويب.
-                </p>
-            </section>
+            <h3>3. محركات الجسيمات الشبكية وتأثيرات الشفافية</h3>
+            <ul>
+                <li><strong>(Particle Network):</strong> استُخدمت تقنية الجافاسكريبت لبرمجة إطار <span class="code">Canvas 2D</span> لرسم جسيمات نقطية تظهر في خلفية الصفحة الرئيسية. وتبرمج هذه الجسيمات لترتبط ببعضها بخطوط عصبية عند اقتراب المسافة بينها أو عند اقتراب مؤشر الفأرة (Hover)، لترمز لعمليات "التحليل الشبكي" (Flanagan, 2020).</li>
+                <li><strong>الشفافية الزجاجية (Glassmorphism):</strong> تم تطبيق الشفافية الزجاجية على القوائم وخلفية قسم (معرض الخرائط) وقسم الطلاب باستخدام خاصية <span class="code">backdrop-filter: blur()</span> في تصميم CSS، مع جدولة استجابة بصرية متمثلة في طواف البطاقة وإضاءة حوافها عند مرور الفأرة.</li>
+            </ul>
+        </section>
 
-            <section class="chapter-section">
-                <h2>المراجع</h2>
-                <ul>
-                    <li>Agafonkin, V. (2023). <em>Leaflet: An open-source JavaScript library for mobile-friendly
-                            interactive maps</em>. Retrieved from https://leafletjs.com</li>
-                    <li>Butler, H., Daly, M., Doyle, A., Gillies, S., Schaub, T., & Schmidt, C. (2016). <em>The GeoJSON
-                            format</em> (RFC 7946). Internet Engineering Task Force (IETF).
-                        https://doi.org/10.17487/RFC7946</li>
-                    <li>Flanagan, D. (2020). <em>JavaScript: The definitive guide</em> (7th ed.). O'Reilly Media.</li>
-                    <li>MDN Web Docs. (2023). <em>HTML: HyperText Markup Language</em>. Mozilla Developer Network.
-                        Retrieved from https://developer.mozilla.org/en-US/docs/Web/HTML</li>
-                    <li>Peterson, G. N. (2020). <em>GIS cartography: A guide to effective map design</em> (3rd ed.). CRC
-                        Press.</li>
-                    <li>Fu, P., & Sun, J. (2010). <em>Web GIS: Principles and applications</em>. Esri Press.</li>
-                </ul>
-            </section>
+        <section class="chapter-section">
+            <h2>3.6 التوصيات (Recommendations)</h2>
+            <p>بناءً على المعطيات الهندسية والتحليلية المستخرجة من بناء النظام، يوصى بالآتي:</p>
+            <ul>
+                <li><strong>التكامل مع البيانات الحية (Real-Time Data):</strong> يمكن في المستقبل ربط النظام بخوادم تعكس بيانات أمطار أو آبار مراقبة بشكل حي لزيادة الفعالية الزمنية (Fu & Sun, 2010).</li>
+                <li><strong>دعم القرارات الميدانية:</strong> الاعتماد الفعلي على تقارير المتطلبات الجيوفيزيائية الـ (Automated Reports) المستخرجة من أدوات النظام كمؤشر استدلالي يسبق عمليات الحفر الفعلي.</li>
+                <li><strong>توسيع قاعدة بيانات فلسطين التوثيقية:</strong> التوسع مستقبلاً في إدراج طبقات الارتفاعات واستخدامات الأراضي التاريخية في فلسطين لتعزيز الرسالة المعرفية والتوثيقية للمنصة والمشروع.</li>
+            </ul>
+        </section>
+
+        <section class="chapter-section">
+            <h2>3.7 الخاتمة</h2>
+            <p>
+                يمثل النظام الإلكتروني التفاعلي الوجه التطبيقي الناجح والمُبتكر للنمذجة المكانية؛ حيث أثبت قدرته على تحويل حزم كبيرة من الخرائط الجيومكانية والراستر المعقدة إلى أدوات تكتيكية تحليلية سهلة الفهم للجميع، مدعمة بواجهات وتأثيرات عالمية، وموفرة لتكلفة وجهد التحليل الجغرافي الميداني الذي يعتمد به صانعو القرار (Fu & Sun, 2010).
+            </p>
+        </section>
+
+        <section class="references-section">
+            <h2>المراجع</h2>
+            <ul>
+                <li>Agafonkin, V. (2023). <em>Leaflet: An open-source JavaScript library for mobile-friendly interactive maps</em>. Retrieved from https://leafletjs.com</li>
+                <li>Butler, H., Daly, M., Doyle, A., Gillies, S., Schaub, T., & Schmidt, C. (2016). <em>The GeoJSON format</em> (RFC 7946). Internet Engineering Task Force (IETF). https://doi.org/10.17487/RFC7946</li>
+                <li>Flanagan, D. (2020). <em>JavaScript: The definitive guide</em> (7th ed.). O'Reilly Media.</li>
+                <li>Fu, P., & Sun, J. (2010). <em>Web GIS: Principles and applications</em>. Esri Press.</li>
+                <li>Geoblaze Authors. (2024). <em>Raster processing in the browser</em>. Open Source Geospatial.</li>
+                <li>MDN Web Docs. (2023). <em>HTML: HyperText Markup Language and CSS Animations</em>. Mozilla Developer Network. Retrieved from https://developer.mozilla.org</li>
+            </ul>
+        </section>
 
             <div style="text-align: center;">
-                <a href="index.html" class="back-to-home"><i class="fas fa-arrow-right"></i> العودة إلى الصفحة
-                    الرئيسية</a>
+                <a href="home.html" class="back-to-home"><i class="fas fa-arrow-right"></i> العودة إلى الصفحة الرئيسية</a>
             </div>
         </div>
     </div>
-
+    
     <!-- Scripts -->
     <script src="js/theme-switcher.js"></script>
     <script src="js/script.js"></script>
     <script src="global-fixes.js"></script>
 </body>
-
 </html>

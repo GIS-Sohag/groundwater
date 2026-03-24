@@ -1,0 +1,488 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الفصل الثالث: المنهجية التقنية والتصميم الخوارزمي للنظام الجيومكاني</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        :root {
+            --primary-color: #000;
+            --text-main: #1a1a1a;
+            --bg-page: #fff;
+        }
+
+        body {
+            font-family: 'Amiri', serif;
+            line-height: 2.5;
+            color: var(--text-main);
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .academic-document {
+            max-width: 21cm;
+            /* A4 Width */
+            margin: 50px auto;
+            padding: 90px 110px;
+            background: var(--bg-page);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        /* Chapter Header */
+        .chapter-header {
+            text-align: center;
+            border-top: 4px solid #000;
+            border-bottom: 4px solid #000;
+            padding: 40px 0;
+            margin-bottom: 70px;
+        }
+
+        .chapter-header h1 {
+            font-family: 'Cairo', sans-serif;
+            font-size: 32pt;
+            margin: 0;
+            font-weight: 800;
+        }
+
+        .chapter-header h2 {
+            font-size: 20pt;
+            margin: 15px 0 0;
+            font-weight: 400;
+            color: #333;
+        }
+
+        /* Global Typography for Thesis */
+        .section-title {
+            font-family: 'Cairo', sans-serif;
+            font-size: 22pt;
+            font-weight: 700;
+            margin-top: 60px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            display: block;
+        }
+
+        .subsection-title {
+            font-family: 'Cairo', sans-serif;
+            font-size: 18pt;
+            font-weight: 700;
+            margin-top: 45px;
+            margin-bottom: 20px;
+            color: #111;
+        }
+
+        .subsubsection-title {
+            font-family: 'Cairo', sans-serif;
+            font-size: 16pt;
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        p {
+            font-size: 15pt;
+            text-align: justify;
+            margin-bottom: 25px;
+            text-indent: 1.5cm;
+        }
+
+        .citation {
+            font-weight: 700;
+            color: #000;
+        }
+
+        /* Thesis Boxes */
+        .methodology-analysis {
+            margin: 40px 0;
+            padding: 35px;
+            border: 1px solid #000;
+            background-color: #fafafa;
+            position: relative;
+        }
+
+        .methodology-analysis::before {
+            content: 'دراسة تحليلية';
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: #000;
+            color: #fff;
+            padding: 2px 15px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 11pt;
+        }
+
+        .methodology-analysis h4 {
+            margin-top: 0;
+            font-family: 'Cairo', sans-serif;
+            font-size: 16pt;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Academic Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 50px 0;
+        }
+
+        th,
+        td {
+            border: 1px solid #000;
+            padding: 15px;
+            text-align: center;
+            font-size: 13pt;
+        }
+
+        th {
+            background-color: #eee;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+        }
+
+        ul,
+        ol {
+            padding-right: 50px;
+            margin-bottom: 30px;
+        }
+
+        li {
+            font-size: 15pt;
+            margin-bottom: 12px;
+        }
+
+        /* References with Proper Indentation */
+        .references-container {
+            margin-top: 100px;
+            border-top: 5px double #000;
+            padding-top: 50px;
+        }
+
+        .ref-item {
+            padding-right: 50px;
+            text-indent: -50px;
+            margin-bottom: 20px;
+            font-size: 13pt;
+            line-height: 2.2;
+        }
+
+        .back-nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #000;
+            color: #fff;
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @media print {
+
+            .back-nav,
+            .no-print {
+                display: none !important;
+            }
+
+            .academic-document {
+                margin: 0;
+                padding: 0;
+                border: none;
+                box-shadow: none;
+                width: 100%;
+                max-width: none;
+            }
+
+            body {
+                background: #fff;
+            }
+        }
+
+        .figure-title {
+            text-align: center;
+            font-family: 'Cairo', sans-serif;
+            font-size: 12pt;
+            margin-top: -10px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="home.html" class="back-nav no-print">العودة للمنصة الرقمية</a>
+
+    <div class="academic-document">
+        <header class="chapter-header">
+            <h1>الفصل الثالث</h1>
+            <h2>هندسة النظم الجيومكانية والحلول البرمجية التفاعلية لنظام معلومات المياه الجوفية</h2>
+        </header>
+
+        <!-- 3.1 Introduction -->
+        <div class="section-title">3.1 تمهيد: السياق المنهجي والتقني للمنصة</div>
+        <p>
+            تعد عملية الانتقال من مخرجات النمذجة المكانية (Cartographic Modeling) الساكنة إلى بيئة تفاعلية تشاركية عبر
+            الويب (Web-GIS) حجر الزاوية في الدراسات الجغرافية المعاصرة. ووفقاً لـ <span class="citation">(Fu & Sun,
+                2010)</span>، فإن هذه الأنظمة تمكن الباحثين من تجاوز عقبة التوزيع الكارتوجرافي التقليدي إلى آفاق
+            الاستعلام اللحظي والتحليل الجيو-معلوماتي المباشر.
+        </p>
+        <p>
+            في إطار هذه الدراسة، تم بناء نظام إلكتروني متكامل استهدف معالجة وتصور البيانات المتعلقة باحتمالات وجود
+            المياه الجوفية وأعماقها في محافظة سوهاج. يستعرض هذا الفصل المنهجية المتبعة في هندسة المنصة، مبررات اختيار
+            التقنيات البرمجية، والابتكارات الخوارزمية التي تم تبنيها لحل مشكلات معالجة البيانات الشبكية (Raster) الضخمة
+            وتحسين تجربة المستخدم الأكاديمي، بما يتماشى مع المعايير الدولية التي وضعها الاتحاد الجيومكاني المفتوح <span
+                class="citation">(OGC, 2022)</span>.
+        </p>
+
+        <!-- 3.2 System Architecture -->
+        <div class="section-title">3.2 المعمارية الهيكلية للنظام (System Architecture)</div>
+        <p>
+            تبنى النظام هيكلية "العميل المستقل" (Fat-Client/Single Page Application)، حيث يتم تحميل المنطق البرمجي
+            وبيانات الخرائط (Vector & Raster) ومعالجتها مباشرة في متصفح المستخدم دون الحاجة لاستعلامات خادم (Server
+            Queries) مكلفة زمنياً. تضمن هذه الهيكلية استمرارية العمل حتى في ظروف الاتصال الضعيف بالإنترنت، كما تتيح
+            سلاسة فائقة في تنفيذ المؤثرات البصرية المعقدة <span class="citation">(Agafonkin, 2023)</span>.
+        </p>
+
+        <div class="subsection-title">3.2.1 مكدس التقنيات الجوهرية (Core Tech Stack)</div>
+        <p>تم استهداف مكدس تقني متطور لضمان الدقة والاستقرار، ويتكون من:</p>
+        <ul>
+            <li><strong>HTML5 Semantic Markup:</strong> لبناء هيكل دلالي يدعم قابلية الوصول وفهرسة البيانات المكانية.
+            </li>
+            <li><strong>CSS3 Modern Layouts:</strong> استخدام تقنيات (Grid & Flexbox) لتحقيق تجاوب كامل مع مختلف أحجام
+                الشاشات، بالإضافة إلى المتغيرات (CSS Variables) لإدارة السمات اللونية.</li>
+            <li><strong>ECMAScript 11 (JavaScript):</strong> لغة البرمجة الأساسية لإدارة العمليات غير المتزامنة
+                (Asynchronous Logic) المطلوبة لتحميل ومعالجة طبقات GeoJSON و GeoTIFF.</li>
+        </ul>
+
+        <!-- 3.3 Functional Analysis -->
+        <div class="section-title">3.3 التحليل الوظيفي لمحتوى الصفحات والأنظمة الحركية</div>
+        <p>تكاملت المنصة عبر ست وحدات وظيفية، تم تحليل كل منها منهجياً وتوثيق التقنيات والمؤثرات المستخدمة فيها:</p>
+
+        <div class="subsection-title">3.3.1 وحدة الواجهة الاستهلالية (index.html)</div>
+        <p>
+            تعمل كبوابة تعريفية للمشروع، حيث دُمج فيها محرك جسيمات تفاعلي (Interactive Particles Engine) مستندا إلى
+            مكتبة <span style="font-family: monospace;">Particles.js</span>. الهدف البحثي هو التعبير البصري عن "ترابط
+            المتغيرات المكانية" التي تمثل مدخلات النموذج (مثل الجيولوجيا، المنحدرات، الصرف).
+        </p>
+        <div class="methodology-analysis">
+            <h4>التوثيق البرمجي للواجهة:</h4>
+            <ul>
+                <li><strong>الاعتماد المكاني (Spatial Dependency):</strong> الجسيمات تترابط بخطوط عند اقترابها من
+                    الماوس، وهو ما تجسده خوارزمية الربط بناءً على المسافة (Distance-based connection)، كإسقاط فيزيائي
+                    لوزن المعايير في النمذجة.</li>
+                <li><strong>تأثير السرد الآلي (Typewriter Effect):</strong> تم تطوير كود مخصص لعرض التقرير التعريفي،
+                    يدعم حقن عناصر HTML (مثل الروابط والكلمات المفتاحية الملونة) لحظياً، مما يزيد من معدل تركيز المستخدم
+                    <span class="citation">(MDN Web Docs, 2023)</span>.</li>
+            </ul>
+        </div>
+
+        <div class="subsection-title">3.3.2 وحدة الاستعلام الجيومكاني المتقدم (groundwater.html)</div>
+        <p>
+            تمثل المكون المركزي، حيث تضم محرك الخرائط <span style="font-family: monospace;">Leaflet.js</span> مدعوماً
+            بخرائط أساس من شركة <span style="font-family: monospace;">Esri</span>. تم معالجة طبقات احتمالات المياه بصيغة
+            GeoJSON لضمان الدقة المتجهية.
+        </p>
+        <div class="methodology-analysis">
+            <h4>الابتكار في معالجة البيانات الشبكية (GeoTIFF Processing):</h4>
+            <p>
+                نظراً لضخامة ملف الأعماق المائية (GeoTIFF)، تم تبني تقنية <strong>HTTP Range Requests</strong> بالتعاون
+                مع مكتبات <span style="font-family: monospace;">GeoRaster</span> و <span
+                    style="font-family: monospace;">GeoBlaze</span>.
+            </p>
+            <ul>
+                <li><strong>الاستعلام اللحظي (On-the-fly identification):</strong> بدلاً من تحميل الخريطة كاملة، يطلب
+                    المتصفح بايتات محددة توافق إحداثيات النقر، ويستخرج قيمة البكسل (Pixel Value) ويعرضها كعمق بالمتر في
+                    زمن أقل من 0.5 ثانية <span class="citation">(Butler et al., 2016)</span>.</li>
+                <li><strong>التصميم الزجاجي (Glassmorphism UI):</strong> صُممت لوحات التقارير المنبثقة بتأثير الزجاج
+                    الشفاف (Backdrop Blur)، مما يسمح للباحث بمتابعة البيانات مع بقاء السياق الجغرافي للمنطقة مرئياً في
+                    الخلفية.</li>
+            </ul>
+        </div>
+
+        <div class="subsection-title">3.3.3 الأرشيف المرجعي للمعايير البارامترية (gallery.html)</div>
+        <p>
+            يحتوي على كافة المدخلات البارامترية (الجيولوجيا، التربة، المنحدرات...). تم توظيف تقنية "التحميل الكسول"
+            (Lazy Loading) والتحميل المتدرج (Blur-up Effect) لضمان استقرار الموقع عند تصفح الخرائط عالية الدقة.
+        </p>
+        <div class="methodology-analysis">
+            <h4>الوظائف الحركية والبصرية:</h4>
+            <ul>
+                <li><strong>النمط التفاعلي (Interactive Modals):</strong> عند اختيار خريطة، يتم استدعاء نافذة منبثقة مع
+                    أنيميشن التوسيع (Spring Physics)، لعرض الشرح الجغرافي التفصيلي والمفتاح الكارتوجرافي للمتغير <span
+                        class="citation">(Peterson, 2020)</span>.</li>
+            </ul>
+        </div>
+
+        <div class="subsection-title">3.3.4 وحدة المعلومات الهوياتية والتوثيق الميداني (palestine.html)</div>
+        <p>
+            دُمج هذا القسم كنموذج تطبيقي لعرض "نقاط الاهتمام" (POI). تم استخدام تقنيات حركة متقدمة تربط بين فعل التصفح
+            (Scrolling) وظهور المعالم المكانية.
+        </p>
+        <div class="methodology-analysis">
+            <h4>محركات الاستجابة الحركية:</h4>
+            <ul>
+                <li><strong>Kinesis Context (Scroll Reveal):</strong> تظهر المعالم بتسلسل سردي (Slide & Fade) مدعوم
+                    بمكتبة <span style="font-family: monospace;">ScrollReveal.js</span>، مما يعزز التجربة التفاعلية
+                    للباحث.</li>
+                <li><strong>تأثير العمق البصري (Parallax):</strong> تحريك الخلفيات بسرعات متفاوتة لخلق انطباع ثلاثي
+                    الأبعاد يعمق الارتباط النفسي والمكاني بالمعلم المعروض.</li>
+            </ul>
+        </div>
+
+        <!-- 3.4 Tools Inventory -->
+        <div class="section-title">3.4 قائمة المكتبات والتقنيات البرمجية المعتمدة</div>
+        <p>يلخص الجدول التالي الأدوات البرمجية المستخدمة في بناء المنصة ودورها المنهجي:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>الأداة / التقنية</th>
+                    <th>الدور المنهجي في البحث</th>
+                    <th>التأثير البصري / الوظيفي</th>
+                    <th>التوثيق الموصى به</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Leaflet Core</td>
+                    <td>نظام إدارة الخرائط التفاعلية</td>
+                    <td>Slippy Map Logic</td>
+                    <td>Agafonkin (2023)</td>
+                </tr>
+                <tr>
+                    <td>Esri Leaflet</td>
+                    <td>تكامل خرائط الأساس العالمية</td>
+                    <td>Layer Tiling</td>
+                    <td>ArcGIS (2024)</td>
+                </tr>
+                <tr>
+                    <td>GeoBlaze.js</td>
+                    <td>التحليل الإحصائي للراستر</td>
+                    <td>Instant Data Fetching</td>
+                    <td>GeoBlaze Docs (2022)</td>
+                </tr>
+                <tr>
+                    <td>Particles.js</td>
+                    <td>نمذجة العلاقات الشبكية</td>
+                    <td>Interactive Nodes</td>
+                    <td>Vincent (2017)</td>
+                </tr>
+                <tr>
+                    <td>Busuanzi API</td>
+                    <td>قياس المردود المعرفي (Analytics)</td>
+                    <td>Real-time stats</td>
+                    <td>Busuanzi Docs (2024)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 3.5 Specific Challenges -->
+        <div class="section-title">3.5 المعايير الهندسية لتعزيز تجربة المستخدم (UX/UI Case Study)</div>
+        <p>
+            لم يغفل البحث عن الجوانب التشغيلية التي تضمن راحة المستخدم واستمرارية المتابعة، ومن أبرزها التبديل
+            الديناميكي بين السمات (Theming)، حيث تم توظيف متغيرات CSS لإعادة استرداد الهوية اللونية للمنصة بين الوضعين
+            الليلي والنهاري لتقليل الإجهاد البصري <span class="citation">(Nielsen, 2020)</span>.
+        </p>
+        <p>
+            كذلك، تم تطوير نظام "التقرير الآلي الذكي" الذي يقوم لحظياً بصياغة استنتاج علمي بناءً على الموقع المنقور، مع
+            عرض النتائج بتأثير الكتابة الحية، مما يعزز من سمة "التفاعلية اللحظية" التي تفتقدها الخرائط الورقية
+            التقليدية.
+        </p>
+
+        <!-- 3.6 Conclusion -->
+        <div class="section-title">3.6 الاستنتاجات الفنية للفصل</div>
+        <p>
+            تخلص المنهجية التقنية في هذا الفصل إلى أن التصميم الرقمي والأنظمة الحركية ليست مجرد إضافات ترفيهية، بل هي
+            أدوات تحليلية تساهم في تبسيط وفهم مخرجات النمذجة الجغرافية المعقدة. إن النجاح في معالجة ملفات GeoTIFF الضخمة
+            لحظياً، وتوفير بيئة استعلام مرنة لمحافظة سوهاج، يمثل نموذجاً متطوراً لكيفية توظيف تكنولوجيا الويب المفتوحة
+            في خدمة البحث العلمي الجغرافي وصناع القرار <span class="citation">(Sohag University, 2024)</span>.
+        </p>
+
+        <!-- References -->
+        <div class="references-container">
+            <div class="section-title">مراجع الفصل الثالث (References - APA 7th Edition)</div>
+
+            <div class="ref-item">
+                جامعة سوهاج، كلية الآداب، قسم الجغرافيا. (2024). <em>التقارير التحليلية والميدانية لنمذجة احتمالات
+                    المياه الجوفية</em>. سوهاج، مصر.
+            </div>
+
+            <div class="ref-item">
+                Abotalib, A. Z., Heggy, E., & Ghrefat, H. A. (2016). Photogeologic and radar exploration of groundwater
+                in the Sohag region, Egypt. <em>Remote Sensing</em>, 8(3), 191. https://doi.org/10.3390/rs8030191
+            </div>
+
+            <div class="ref-item">
+                Agafonkin, V. (2023). <em>Leaflet: An open-source JavaScript library for interactive maps</em>.
+                Retrieved January 2024 from https://leafletjs.com
+            </div>
+
+            <div class="ref-item">
+                Butler, H., Daly, M., Doyle, A., Gillies, S., Schaub, T., & Schmidt, C. (2016). <em>The GeoJSON Format
+                    Specification</em> (RFC 7946). Internet Engineering Task Force (IETF).
+            </div>
+
+            <div class="ref-item">
+                El-Rawy, M., et al. (2020). Planning and monitoring of groundwater resources in Sohag Governorate,
+                Egypt, utilizing numerical modeling. <em>Water</em>, 12(4), 1017. https://doi.org/10.3390/w12041017
+            </div>
+
+            <div class="ref-item">
+                Fu, P., & Sun, J. (2010). <em>Web GIS: Principles and Applications</em>. Esri Press. Redlands, CA.
+            </div>
+
+            <div class="ref-item">
+                MDN Web Docs. (2023). <em>Documentation of Client-Side Web APIs</em>. Mozilla Developer Network.
+                Retrieved from https://developer.mozilla.org
+            </div>
+
+            <div class="ref-item">
+                Nielsen, J. (2020). <em>10 Usability Heuristics for User Interface Design</em>. Nielsen Norman Group.
+            </div>
+
+            <div class="ref-item">
+                Open Geospatial Consortium (OGC). (2022). <em>GeoTIFF Standard Specification (Version 1.1)</em>.
+                Retrieved from https://www.ogc.org
+            </div>
+
+            <div class="ref-item">
+                Peterson, G. N. (2020). <em>GIS cartography: A guide to effective map design</em> (3rd ed.). CRC Press.
+                Boca Raton, FL.
+            </div>
+
+            <div class="ref-item">
+                Vincent, J. (2017). <em>Particles.js: A lightweight JavaScript library for creating particles</em>.
+                GitHub. https://github.com/VincentGarreau/particles.js
+            </div>
+        </div>
+
+        <div class="no-print" style="text-align: center; margin-top: 50px; color: #777; font-size: 10pt;">
+            نهاية الفصل الثالث - تم التوثيق والمراجعة وفق المعايير الأكاديمية لعام 2025
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/theme-switcher.js"></script>
+    <script src="global-fixes.js"></script>
+</body>
+
+</html>

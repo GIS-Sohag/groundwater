@@ -5,6 +5,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>معرض الخرائط - نظام رصد المياه الجوفية</title>
+  <meta name="description" content="معرض خرائط مشروع النمذجة المكانية لاحتمالية وجود المياه الجوفية في سوهاج - الخرائط الجيولوجية والجيومورفولوجية وخرائط GIS">
+  <meta name="keywords" content="خرائط, GIS, سوهاج, مياه جوفية, جيولوجية, جيومورفولوجيا, نمذجة مكانية, خريطة محافظة سوهاج">
+  <meta name="author" content="قسم الجغرافيا - كلية الآداب - جامعة سوهاج">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gis-sohag.github.io/groundwater/gallery.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="معرض الخرائط - نظام رصد المياه الجوفية">
+  <meta property="og:description" content="معرض الخرائط المستخدمة في مشروع النمذجة المكانية لاحتمالية وجود المياه الجوفية في سوهاج">
+  <meta property="og:image" content="https://gis-sohag.github.io/groundwater/images/univ_logo.png">
+  <meta property="og:url" content="https://gis-sohag.github.io/groundwater/gallery.html">
+  <meta property="og:locale" content="ar_EG">
+  <meta property="og:site_name" content="المياه الجوفية بسوهاج">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="معرض الخرائط - GIS سوهاج">
+  <meta name="twitter:description" content="خرائط GIS لمحافظة سوهاج">
+  <meta name="twitter:image" content="https://gis-sohag.github.io/groundwater/images/univ_logo.png">
+  <meta name="theme-color" content="#7c3aed">
+  <link rel="icon" type="image/png" href="images/univ_logo.png">
+  <link rel="apple-touch-icon" href="images/univ_logo.png">
 
   <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -527,24 +546,75 @@
 
     .modal-content {
       position: relative;
-      margin: 5% auto;
-      max-width: 90%;
-      max-height: 80%;
       background: var(--bg-card);
-      border-radius: 20px;
+      margin: auto;
+      padding: 0;
+      width: 95%;
+      height: 95%;
+      max-width: 1400px;
+      border-radius: 25px;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(15px);
+    }
+
+    /* Navigation Arrows */
+    .modal-nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: var(--bg-card);
+        color: var(--accent-blue);
+        border: 1px solid var(--border-color);
+        width: 65px;
+        height: 65px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 1.6rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 2000;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .modal-nav-btn:hover {
+        background: var(--accent-blue);
+        color: white;
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 0 25px rgba(52, 152, 219, 0.5);
+        border-color: var(--accent-blue);
+    }
+
+    .nav-prev { left: 20px; }
+    .nav-next { right: 20px; }
+
+    @media (max-width: 768px) {
+        .modal-nav-btn {
+            width: 45px;
+            height: 45px;
+            font-size: 1.1rem;
+        }
+        .nav-prev { left: 10px; }
+        .nav-next { right: 10px; }
     }
 
     /* Zoom & Pan Styles */
     .image-wrapper {
       width: 100%;
-      height: 65vh;
+      height: 100%;
+      flex: 1;
       /* Fixed height for viewing area */
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      background: rgba(0, 0, 0, 0.05);
+      background: rgba(0, 0, 0, 0.1);
       position: relative;
       cursor: grab;
     }
@@ -626,6 +696,185 @@
       background: var(--accent-red);
       color: white;
       transform: scale(1.1);
+    }
+
+    /* Modal Structure Enhancements */
+    #imageModal .modal-content, 
+    #sourceModal .source-modal-content {
+        position: relative;
+    }
+
+    /* Source Info Modal */
+    .source-modal {
+      display: none;
+      position: fixed;
+      z-index: 3000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .source-modal-content {
+      background: var(--bg-card);
+      margin: 3% auto;
+      padding: 0;
+      border-radius: 24px;
+      width: 90%;
+      max-width: 900px;
+      max-height: 90vh;
+      overflow-y: auto;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+      position: relative;
+    }
+
+    .source-header {
+      padding: 1.5rem 2.5rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      background: var(--bg-card);
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .source-header h2 {
+      font-size: 1.4rem;
+      color: var(--accent-blue);
+      margin: 0;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .source-header .close-btn {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1.2rem;
+        border: 1px solid var(--border-color);
+    }
+
+    .source-header .close-btn:hover {
+        background: #e74c3c;
+        color: white;
+        transform: rotate(90deg);
+    }
+
+    .source-body {
+      padding: 2.5rem;
+    }
+
+    .source-text {
+      font-size: 1.15rem;
+      line-height: 2;
+      margin-bottom: 2rem;
+      color: var(--text-primary);
+      text-align: justify;
+    }
+
+    .source-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        background: linear-gradient(135deg, var(--accent-blue), #8b5cf6);
+        color: white;
+        text-decoration: none;
+        padding: 0.9rem 2rem;
+        border-radius: 12px;
+        font-weight: 700;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        margin-top: 1rem;
+        box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+        border: none;
+    }
+
+    .source-link:hover {
+        background: #3498db;
+        color: white;
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+    }
+
+    .code-container {
+      margin-top: 2rem;
+      background: #1e1e1e;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      direction: ltr; 
+      text-align: left;
+      border: 1px solid #333;
+    }
+
+    .code-header {
+      background: #252526;
+      padding: 0.8rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #9cdcfe;
+      font-family: 'Consolas', monospace;
+      font-size: 0.85rem;
+      border-bottom: 1px solid #333;
+    }
+
+    .copy-btn {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #d4d4d4;
+      padding: 6px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.75rem;
+      transition: all 0.2s;
+      font-weight: 600;
+    }
+
+    .copy-btn:hover {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+    }
+
+    pre {
+      padding: 1.5rem;
+      margin: 0;
+      font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+      color: #d4d4d4;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      overflow-x: auto;
+      tab-size: 4;
+    }
+
+    /* Syntax Highlighting Tokens */
+    .sh-keyword { color: #569cd6; font-weight: bold; }
+    .sh-function { color: #dcdcaa; }
+    .sh-comment { color: #6a9955; font-style: italic; }
+    .sh-string { color: #ce9178; }
+    .sh-number { color: #b5cea8; }
+    .sh-variable { color: #9cdcfe; }
+    .sh-operator { color: #d4d4d4; }
+    .sh-property { color: #9cdcfe; }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
     }
 
     /* Empty State */
@@ -711,7 +960,7 @@
         <span>المياه الجوفية بسوهاج</span>
       </div>
       <div class="nav-links">
-        <a href="index.html" class="nav-link">الرئيسية</a>
+        <a href="home.html" class="nav-link">الرئيسية</a>
         <a href="groundwater.html" class="nav-link">الخريطة التفاعلية</a>
         <a href="palestine.html" class="nav-link">أولى القبلتين</a>
         <a href="about.html" class="nav-link">عن المشروع</a>
@@ -753,12 +1002,20 @@
   <div id="imageModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
+      
+      <!-- Navigation Arrows -->
+      <div class="modal-nav-btn nav-prev" onclick="navigateGallery(-1)" title="السابق">
+          <i class="fas fa-chevron-left"></i>
+      </div>
+      <div class="modal-nav-btn nav-next" onclick="navigateGallery(1)" title="التالي">
+          <i class="fas fa-chevron-right"></i>
+      </div>
 
-      <!-- Zoom Controls -->
       <div class="zoom-controls">
         <button class="zoom-btn" onclick="zoomImage(0.2)" title="تكبير"><i class="fas fa-search-plus"></i></button>
         <button class="zoom-btn" onclick="resetZoom()" title="إعادة تعيين"><i class="fas fa-compress"></i></button>
         <button class="zoom-btn" onclick="zoomImage(-0.2)" title="تصغير"><i class="fas fa-search-minus"></i></button>
+        <button class="zoom-btn" id="sourceBtn" title="مصدر الخريطة"><i class="fas fa-info-circle"></i></button>
         <a id="downloadBtn" class="zoom-btn" href="#" download title="تحميل الصورة الأصلية"><i
             class="fas fa-download"></i></a>
       </div>
@@ -766,8 +1023,20 @@
       <div class="image-wrapper" id="imageWrapper">
         <img class="modal-image" id="modalImage">
       </div>
-      <div class="modal-info" id="modalInfo"></div>
     </div>
+  </div>
+
+  <!-- Source Info Modal -->
+  <div id="sourceModal" class="source-modal">
+      <div class="source-modal-content">
+          <div class="source-header">
+              <h2><i class="fas fa-database"></i> مصدر الخريطة والبيانات</h2>
+              <div class="close-btn" onclick="closeSourceModal()"><i class="fas fa-times"></i></div>
+          </div>
+          <div class="source-body" id="sourceBody">
+              <!-- Source content will be injected here -->
+          </div>
+      </div>
   </div>
 
   <script>
@@ -785,7 +1054,11 @@
         src: "images/النمذجة المكانية لاحتمالية وجود المياة الجوفية.png",
         thumbnail: "images/thumbnails/النمذجة المكانية لاحتمالية وجود المياة الجوفية.png",
         date: "2025-09-03",
-        size: "8.8 MB"
+        size: "8.8 MB",
+        source: {
+          text: "تم عمل خريطة احتمالية وجود المياه الجوفية في محافظة سوهاج باستخدام النمذجة المكانية بالاعتماد على 13 عامل وجرى استخراج النتائج من خلال اداة Groundwater Potential Existence المطورة من قبل الباحث العراقي سامي محمود",
+          link: "https://drive.google.com/file/d/14Hd8Y2lEBxCsgEqJ9AwPnwY8IhK_kd7h/view"
+        }
       },
       {
         id: 1,
@@ -794,7 +1067,11 @@
         src: "images/جيولوجية محافظة سوهاج_1.png",
         thumbnail: "images/thumbnails/جيولوجية محافظة سوهاج_1.png",
         date: "2025-10-14",
-        size: "7.9 MB"
+        size: "7.9 MB",
+        source: {
+          text: "تم إعادة الرسم من : خريطة مصر الجيولوجية للهيئة المصرية العامة بترول 1 : 500000 Conoco Coral كونوكو كورال لوحة رقم NG 36 NW ASYUT",
+          link: "https://drive.google.com/drive/folders/1GFxKEhjsceaHRk5Dk1O1eeKaZ7udfc1R?usp=drive_link"
+        }
       },
       {
         id: 3,
@@ -803,7 +1080,11 @@
         src: "images/جيومورفولوجية محافظة سوهاج.png",
         thumbnail: "images/thumbnails/جيومورفولوجية محافظة سوهاج.png",
         date: "2025-09-10",
-        size: "8.2 MB"
+        size: "8.2 MB",
+        source: {
+          text: "تم عمل الخريطة الجيومورفولوجية بالاعتماد على طبقة LULC لسنة 2024 من Esri + DEM 10 + الطرق من خلال Open street map وذلك باستعمال QGIS Desktop 3.36.0.",
+          link: "https://drive.google.com/drive/folders/1jGKV3R7Y4iTs5Da1HsYz-OF22pnWp9Vf?usp=drive_link"
+        }
       },
       {
         id: 4,
@@ -812,7 +1093,11 @@
         src: "images/التراكيب الخطية.png",
         thumbnail: "images/thumbnails/التراكيب الخطية.png",
         date: "2025-09-10",
-        size: "10.3 MB"
+        size: "10.3 MB",
+        source: {
+          text: "تم الإعتماد على مرئيات sentinel 2 دقة مكانية 10 متر بتحميل بيانات Copernicus Data Space Ecosystem من خلال Google Earth Engine وتم الاستخراج باستعمال برنامج PCI Geomatica 2018",
+          link: "https://drive.google.com/drive/folders/1p9E29UDkDeu1zfWpi4v-mONkvBNzcNqr?usp=drive_link"
+        }
       },
       {
         id: 5,
@@ -821,7 +1106,11 @@
         src: "images/رتب المجاري المائية.png",
         thumbnail: "images/thumbnails/رتب المجاري المائية.png",
         date: "2025-09-03",
-        size: "5.2 MB"
+        size: "5.2 MB",
+        source: {
+          text: "تم الاعتماد على نموذج الارتفاع الرقمي DEM ذو الدقة المكانية 10 متر من خلال موقع Copernicus Data Space Ecosystem",
+          link: "https://drive.google.com/drive/folders/1ygc9zempy28ZW7s30qHbf4ImCo4n4LT2?usp=drive_link"
+        }
       },
       {
         id: 6,
@@ -830,7 +1119,11 @@
         src: "images/فئات الإرتفاعات لمحافظة سوهاج.png",
         thumbnail: "images/thumbnails/فئات الإرتفاعات لمحافظة سوهاج.png",
         date: "2025-09-03",
-        size: "10.4 MB"
+        size: "10.4 MB",
+        source: {
+          text: "تم الاعتماد على نموذج الارتفاع الرقمي DEM ذو الدقة المكانية 10 متر من خلال موقع Copernicus Data Space Ecosystem",
+          link: "https://drive.google.com/drive/folders/1ygc9zempy28ZW7s30qHbf4ImCo4n4LT2?usp=drive_link"
+        }
       },
       {
         id: 7,
@@ -839,7 +1132,11 @@
         src: "images/فئات الإنحدارات في محافظة سوهاج.png",
         thumbnail: "images/thumbnails/فئات الإنحدارات في محافظة سوهاج.png",
         date: "2025-09-10",
-        size: "10.0 MB"
+        size: "10.0 MB",
+        source: {
+          text: "تم الاعتماد على نموذج الارتفاع الرقمي DEM ذو الدقة المكانية 10 متر من خلال موقع Copernicus Data Space Ecosystem",
+          link: "https://drive.google.com/drive/folders/1ygc9zempy28ZW7s30qHbf4ImCo4n4LT2?usp=drive_link"
+        }
       },
       {
         id: 8,
@@ -848,16 +1145,24 @@
         src: "images/تقوس المنحدارات لمحافظة سوهاج1.png",
         thumbnail: "images/thumbnails/تقوس المنحدارات لمحافظة سوهاج1.png",
         date: "2025-09-03",
-        size: "15.0 MB"
+        size: "15.0 MB",
+        source: {
+          text: "تم الاعتماد على نموذج الارتفاع الرقمي DEM ذو الدقة المكانية 10 متر من خلال موقع Copernicus Data Space Ecosystem",
+          link: "https://drive.google.com/drive/folders/1ygc9zempy28ZW7s30qHbf4ImCo4n4LT2?usp=drive_link"
+        }
       },
       {
-        id: 8,
+        id: 2,
         title: "خريطة مؤشر الرطوبة الطبوغرافي لمحافظة سوهاج",
         description: "خريطة مؤشر الرطوبة الطبوغرافي (TWI) وتوزيع الرطوبة في محافظة سوهاج",
         src: "images/مؤشر الرطوبة الطبوغرافي TWI.png",
         thumbnail: "images/thumbnails/مؤشر الرطوبة الطبوغرافي TWI.png",
         date: "2025-09-03",
-        size: "11.9 MB"
+        size: "11.9 MB",
+        source: {
+          text: "تم الاعتماد على نموذج الارتفاع الرقمي DEM ذو الدقة المكانية 10 متر من خلال موقع Copernicus Data Space Ecosystem",
+          link: "https://drive.google.com/drive/folders/1ygc9zempy28ZW7s30qHbf4ImCo4n4LT2?usp=drive_link"
+        }
       },
       {
         id: 9,
@@ -866,7 +1171,62 @@
         src: "images/معدلات مجموع المطر السنوي لمحافظة سوهاج.png",
         thumbnail: "images/thumbnails/معدلات مجموع المطر السنوي لمحافظة سوهاج.png",
         date: "2025-09-03",
-        size: "3.5 MB"
+        size: "3.5 MB",
+        source: {
+          text: `تم استخدام موقع Google Earth Engine دقة مكانية 5 كم2 وبالاعتماد على كود جافا سكريبت التالي: `,
+          code: `/**
+ * CHIRPS Precipitation Analysis for a Custom Study Area
+ * This script processes CHIRPS Pentad precipitation data for a user-defined ROI
+ * and exports the results as a GeoTIFF file.
+ */
+
+// 1. Define and display the Study Area (ROI)
+//Map.centerObject(table);  // Center map on the input feature collection
+//Map.addLayer(table, {color: 'red'}, 'Study Area Boundary');  // Display original boundaries
+
+// Simplify the ROI geometry to reduce complexity in processing
+// (1000 meter simplification tolerance maintains key features while smoothing)
+//var roi = table.geometry().simplify(1000);
+//Map.addLayer(roi, {color: 'blue'}, 'Simplified ROI');  // Display simplified boundary
+//print('ROI Geometry:', roi);  // Print geometry details to console
+
+// 2. Filter CHIRPS Pentad dataset by date and spatial extent
+var dataset = ee.ImageCollection('UCSB-CHG/CHIRPS/PENTAD')
+                  .filter(ee.Filter.date('1981-01-01', '2023-12-31'))  // Date range
+                  .filterBounds(roi);  // Spatial filter for study area
+
+// 3. Calculate mean precipitation across all time periods
+// The mean reduces temporal dimension while preserving spatial patterns
+var precipitation = dataset.select('precipitation').mean().clip(roi);
+
+// 4. Visualization parameters for precipitation data
+// Color palette progresses from dark blue (low) to red (high precipitation)
+var precipitationVis = {
+  min: 0,     // Minimum precipitation value (mm)
+  max: 112,   // Maximum value for color scaling
+  palette: ['001137', '0aab1e', 'e7eb05', 'ff4a2d', 'e90000'],
+};
+
+// 5. Display the data on the map
+Map.centerObject(roi, 6);  // Set zoom level (6 = medium zoom)
+Map.addLayer(precipitation, precipitationVis, 'Precipitation');
+
+// 6. Export the processed data to Google Drive
+Export.image.toDrive({
+  image: precipitation,          // Image to export
+  description: 'CHIRPS_Precipitation_1981-2023-12-31',  // Task name
+  fileNamePrefix: 'CHIRPS_Precipitation_1981-2023-12-31',         // File name prefix
+  region: roi,                   // Export only the study area
+  scale: 5566,                   // Native resolution of CHIRPS (~5.5km)
+  crs: 'EPSG:4326',              // WGS84 geographic coordinate system
+  fileFormat: 'GeoTIFF',         // Output format
+  maxPixels: 1e13                // Allow large exports
+});
+
+// 7. Print diagnostic information
+print('Number of images in collection:', dataset.size());  // How many Pentad periods were used
+print('Mean precipitation image:', precipitation);  // Image metadata`
+        }
       },
       {
         id: 10,
@@ -875,7 +1235,41 @@
         src: "images/معدلات مجموع التبخر السنوي لمحافظة سوهاج.png",
         thumbnail: "images/thumbnails/معدلات مجموع التبخر السنوي لمحافظة سوهاج.png",
         date: "2025-09-03",
-        size: "3.5 MB"
+        size: "3.5 MB",
+        source: {
+          text: `تم استخدام موقع Google Earth Engine دقة مكانية 4 كم2 وبالاعتماد على كود جافا سكريبت التالي: `,
+          code: `// 1. تحديد منطقة الدراسة (يمكن استيرادها كـ GeoJSON أو رسمها يدويًا)
+ // مثال: إحداثيات منطقة في الشرق الأوسط
+
+// 2. تحديد فترة زمنية
+var startDate = '1981-01-01';
+var endDate = '2023-12-31';
+
+// 3. تحميل مجموعة بيانات TerraClimate وفلترتها حسب التاريخ والمتغير المطلوب (PET)
+var dataset = ee.ImageCollection('IDAHO_EPSCOR/TERRACLIMATE')
+                .filterDate(startDate, endDate)
+                .select('pet'); // 'pet' = التبخر-النتح المرجعي
+
+// 4. حساب المتوسط السنوي (أو الشهري حسب الحاجة)
+var annualPET = dataset.mean(); // متوسط القيم السنوية
+
+// 5. قص البيانات لمنطقة الدراسة
+var clippedPET = annualPET.clip(region);
+
+// 6. تصدير البيانات إلى Google Drive بصيغة GeoTIFF
+Export.image.toDrive({
+  image: clippedPET,
+  description: 'TerraClimate_PET_Annual_Mean_1981_2023',
+  scale: 4000, // دقة 4 كم (تتناسب مع دقة TerraClimate)
+  region: region,
+  fileFormat: 'GeoTIFF',
+  maxPixels: 1e13 // زيادة الحد المسموح به للبيكسلات
+});
+
+// 7. (اختياري) عرض البيانات على خريطة GEE للتحقق
+Map.addLayer(clippedPET, {min: 0, max: 200, palette: ['blue', 'white', 'red']}, 'Annual PET');
+Map.centerObject(region, 6); // تكبير الخريطة على منطقة الدراسة`
+        }
       },
       {
         id: 11,
@@ -884,7 +1278,193 @@
         src: "images/معدل مؤشر الغطاء النباتي المطبع لمحافظة سوهاج.png",
         thumbnail: "images/thumbnails/معدل مؤشر الغطاء النباتي المطبع لمحافظة سوهاج.png",
         date: "2025-09-03",
-        size: "9.1 MB"
+        size: "9.1 MB",
+        source: {
+          text: `تم الاعتماد على موقع Google Earth Engine وتطبيق المؤشر على عدة اقمار صناعية وهي Landsat5 و Landsat7 و sentinel 2 وذلك للسنوات التالية ( 1990 – 1996 – 2002 – 2013 – 2017 – 2022 – 2025 ) حيث تم استخدام اكثر من كود جافا سكريبت حسب السنوات المختارة نظراً لبداية قمر صناعي معين في تلك السنوات انظر الاكواد التاليه:`,
+          codes: [
+            { label: "الكود الأول خاص بالقمر الصناعي Landsat 5", content: `// 1. Define Region of Interest (ROI)
+Map.centerObject(table)
+Map.addLayer(table,{color: 'red'})
+
+print(table.geometry())
+
+var studyArea = table.map(function(feature){
+  return feature.simplify(1000)
+  })
+  
+Map.addLayer(studyArea)
+
+print(studyArea.geometry())
+
+// Define the function to calculate NDVI
+function calculateNDVI(image) {
+  var ndvi = image.normalizedDifference(['SR_B4', 'SR_B3']).rename('NDVI');
+  return image.addBands(ndvi);
+}
+
+// Define the function to mask clouds
+function maskClouds(image) {
+  var qa = image.select('QA_PIXEL');
+  var cloudBitMask = 1 << 3; // Bit 3 is the cloud mask
+  var mask = qa.bitwiseAnd(cloudBitMask).eq(0);
+  return image.updateMask(mask);
+}
+
+
+// Load Landsat 5 Collection 2 data for 1990
+var landsat5 = ee.ImageCollection('LANDSAT/LT05/C02/T1_L2')
+  .filterDate('1996-01-01', '1996-12-31') // Filter data for 1996
+  .filterBounds(studyArea) // Filter by study area
+  .filter(ee.Filter.lt('CLOUD_COVER', 20)) // Filter images with cloud cover < 20%
+  .map(maskClouds) // Apply cloud mask
+  .map(calculateNDVI); // Calculate NDVI for each image
+
+// Calculate mean NDVI for 1996
+var meanNDVI = landsat5.select('NDVI').mean();
+
+// Clip the result to the study area
+var clippedNDVI = meanNDVI.clip(studyArea);
+
+// Display the results on the map
+var visParams = {min: -1, max: 1, palette: ['blue', 'white', 'green']};
+Map.centerObject(studyArea, 8); // Center the map on the study area
+Map.addLayer(clippedNDVI, visParams, 'NDVI 1996');
+
+// Export the results to Google Drive
+Export.image.toDrive({
+  image: clippedNDVI,
+  description: 'NDVI_1996',
+  folder: 'NDVI',
+  scale: 30,
+  region: studyArea
+});` },
+            { label: "الكود الثاني خاص بالقمر الصناعي Landsat 7", content: `// 1. Define Region of Interest (ROI)
+Map.centerObject(table)
+Map.addLayer(table,{color: 'red'})
+
+print(table.geometry())
+
+var studyArea = table.map(function(feature){
+  return feature.simplify(1000)
+  })
+  
+Map.addLayer(studyArea)
+
+print(studyArea.geometry())
+
+// Define the function to calculate NDVI
+function calculateNDVI(image) {
+  var ndvi = image.normalizedDifference(['SR_B4', 'SR_B3']).rename('NDVI');
+  return image.addBands(ndvi);
+}
+
+// Define the function to mask clouds
+function maskClouds(image) {
+  var qa = image.select('QA_PIXEL');
+  var cloudBitMask = 1 << 3; // Bit 3 is the cloud mask
+  var mask = qa.bitwiseAnd(cloudBitMask).eq(0);
+  return image.updateMask(mask);
+}
+
+
+// Load Landsat 7 Collection 2 data for 2013
+var landsat7 = ee.ImageCollection('LANDSAT/LE07/C02/T1_L2')
+  .filterDate('2013-01-01', '2013-12-31') // Filter data for 2013
+  .filterBounds(studyArea) // Filter by study area
+  .filter(ee.Filter.lt('CLOUD_COVER', 20)) // Filter images with cloud cover < 20%
+  .map(maskClouds) // Apply cloud mask
+  .map(calculateNDVI); // Calculate NDVI for each image
+
+// Calculate mean NDVI for 2013
+var meanNDVI = landsat7.select('NDVI').mean();
+
+// Clip the result to the study area
+var clippedNDVI = meanNDVI.clip(studyArea);
+
+// Display the results on the map
+var visParams = {min: -1, max: 1, palette: ['blue', 'white', 'green']};
+Map.centerObject(studyArea, 8); // Center the map on the study area
+Map.addLayer(clippedNDVI, visParams, 'NDVI 2013');
+
+// Export the results to Google Drive
+Export.image.toDrive({
+  image: clippedNDVI,
+  description: 'NDVI_2013',
+  folder: 'NDVI',
+  scale: 30,
+  region: studyArea
+});` },
+            { label: "الكود الثالث خاص بالقمر الصناعي Sentinel-2", content: `// 1. Define Region of Interest (ROI)
+Map.centerObject(table)
+Map.addLayer(table,{color: 'red'})
+
+print(table.geometry())
+
+var ROI = table.map(function(feature){
+  return feature.simplify(1000)
+  })
+  
+Map.addLayer(ROI)
+
+print(ROI.geometry())
+// 2. Import and filter Sentinel-2 Imagery
+var S2 = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
+  .filterDate('2022-01-01', '2022-12-30') // Filter by date range (1 Jan 2025 to 11 Mar 2025)
+  .filterBounds(ROI) // Filter within the ROI
+  .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 20)); // Select images with less than 20% cloud coverage
+
+// Function to mask clouds and shadows using Cloud Probability Band
+function maskCloudsAndShadows(image) {
+  var cloudProb = image.select('MSK_CLDPRB'); // Cloud Probability Band
+  var cloudMask = cloudProb.lt(20); // Mask pixels with cloud probability < 20%
+  return image.updateMask(cloudMask);
+}
+
+// Apply cloud masking function
+var S2_cloudFree = S2.map(maskCloudsAndShadows);
+
+// Create a median composite of the cloud-free images
+var S2_median = S2_cloudFree.median().clip(ROI);
+
+// 3. Compute NDVI (Normalized Difference Vegetation Index)
+var NIR = S2_median.select('B8'); // Near-infrared band
+var RED = S2_median.select('B4'); // Red band
+var NDVI = NIR.subtract(RED).divide(NIR.add(RED)).rename('NDVI');
+
+// 4. Visualization Parameters
+var ndviParams = {
+  min: -1,
+  max: 1,
+  palette: ['blue', 'yellow', 'green'] // Blue for low NDVI, green for high NDVI
+};
+
+// 5. Add NDVI layer to the map
+Map.centerObject(ROI, 10); // Center the map on the ROI
+Map.addLayer(NDVI, ndviParams, 'NDVI');
+
+// 6. Export the NDVI image to Google Drive as GeoTIFF
+Export.image.toDrive({
+  image: NDVI,
+  description: 'NDVI_Image_2022', // Description for the export task
+  folder: 'NDVI', // Folder name in Google Drive
+  fileNamePrefix: 'NDVI_Image_2022', // File name prefix
+  region: ROI, // Region to export
+  scale: 10, // Resolution (10 meters per pixel)
+  maxPixels: 1e13, // Increase the maximum number of pixels for export
+  crs: 'EPSG:4326', // Coordinate reference system (WGS84)
+  fileFormat: 'GeoTIFF' // Export as GeoTIFF
+});
+
+// 7. Calculate mean NDVI for the ROI
+var meanNDVI = NDVI.reduceRegion({
+  reducer: ee.Reducer.mean(),
+  geometry: ROI,
+  scale: 10,
+  maxPixels: 1e13
+});
+print('Mean NDVI:', meanNDVI.get('NDVI'));` }
+          ]
+        }
       },
       {
         id: 12,
@@ -893,7 +1473,11 @@
         src: "images/نوع التربة في محافظة سوهاج.png",
         thumbnail: "images/thumbnails/نوع التربة في محافظة سوهاج.png",
         date: "2025-09-03",
-        size: "8.8 MB"
+        size: "8.8 MB",
+        source: {
+          text: "تم الاعتماد على موقع ISRIC - World Soil Information دقة 250 متر وتم استخدام عمق 100 سم",
+          link: "https://drive.google.com/drive/folders/1cfmZOzUQeqxfbzSCOC8_c5bqR4vjfiPl?usp=drive_link"
+        }
       },
       {
         id: 13,
@@ -902,7 +1486,69 @@
         src: "images/القرب والبعد عن المسطحات المائية في سوهاج.png",
         thumbnail: "images/thumbnails/القرب والبعد عن المسطحات المائية في سوهاج.png",
         date: "2025-09-03",
-        size: "3.4 MB"
+        size: "3.4 MB",
+        source: {
+          text: `تم استخدام مرئيات sentinel 2 واستخراج مؤشر المياه NDWI من خلال موقع Google Earth Engine وذلك بالاعتماد على كود جافا سكريبت التالي:`,
+          code: `/**
+ * NDWI Calculation from Sentinel-2 Harmonized Data
+ * Includes proper ROI handling and export functionality
+ */
+
+// 1. Define Region of Interest (ROI) from your table
+var ROI = table.geometry();
+Map.centerObject(ROI, 10);
+Map.addLayer(ROI, {color: 'red'}, 'Study Area');
+
+// 2. Load and filter Sentinel-2 Harmonized data
+var s2 = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED')
+          .filterBounds(ROI)
+          .filterDate('2025-01-01', '2025-04-14')
+          .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 3));
+
+// 3. Cloud masking function for Harmonized data
+function maskClouds(image) {
+  var cloudProb = image.select('MSK_CLDPRB');
+  return image.updateMask(cloudProb.lt(5)); // Mask pixels with >5% cloud probability
+}
+
+var s2Filtered = s2.map(maskClouds);
+
+// 4. Create median composite and clip to ROI
+var medianImage = s2Filtered.median().clip(ROI);
+
+// 5. Add RGB preview
+Map.addLayer(medianImage, {bands: ['B4', 'B3', 'B2'], min: 0, max: 3000}, 'Sentinel-2 RGB');
+
+// 6. Calculate NDWI: (Green - NIR)/(Green + NIR)
+var ndwi = medianImage.normalizedDifference(['B3', 'B8']).rename('NDWI');
+
+// 7. Enhanced visualization parameters
+var ndwiVis = {
+  min: 0.0,  // Focus on water detection (typically >0.2)
+  max: 0.5,
+  palette: ['white', 'lightblue', 'blue', 'darkblue']
+};
+
+// 8. Display NDWI results
+Map.addLayer(ndwi, ndwiVis, 'NDWI Water Detection');
+
+// 9. Export NDWI to Google Drive
+Export.image.toDrive({
+  image: ndwi,
+  description: 'NDWI_Export_2025',
+  folder: 'NDWI',
+  fileNamePrefix: 'NDWI_Result',
+  region: ROI,
+  scale: 10,  // Sentinel-2 native resolution
+  maxPixels: 1e13,
+  crs: 'EPSG:4326',  // WGS84 coordinate system
+  fileFormat: 'GeoTIFF'
+});
+
+// 10. Print ROI area for reference
+print('ROI Area (sq km):', ROI.area().divide(1000*1000));
+print('Number of images used:', s2Filtered.size());`
+        }
       },
       {
         id: 14,
@@ -911,7 +1557,10 @@
         src: "images/كثافة التراكيب الخطية.png",
         thumbnail: "images/thumbnails/كثافة التراكيب الخطية.png",
         date: "2025-07-15",
-        size: "3.4 MB"
+        size: "3.4 MB",
+        source: {
+          text: "تم استخراج خريطة الكثافة بالاعتماد على خريطة التراكيب الخطية بواسطة اداة Line Density في حزمة ArcGlS Desktop10.8.2"
+        }
       },
       {
         id: 15,
@@ -920,7 +1569,10 @@
         src: "images/كثافة المجاري المائية.png",
         thumbnail: "images/thumbnails/كثافة المجاري المائية.png",
         date: "2025-09-03",
-        size: "3.5 MB"
+        size: "3.5 MB",
+        source: {
+          text: "تم اشتقاق كثافة المجاري بالاعتماد على خريطة شبكة المجاري المائية بواسطة اداة Line Density في حزمة 10.8 Desktop ArcGIS"
+        }
       },
       {
         id: 16,
@@ -929,7 +1581,11 @@
         src: "images/خريطة منطقة الدراسة.png",
         thumbnail: "images/thumbnails/خريطة منطقة الدراسة.png",
         date: "2025-09-03",
-        size: "7.2 MB"
+        size: "7.2 MB",
+        source: {
+          text: "تم الاعتماد على شيب فايل الحدود الإدارية لمصر لآخر تعداد عام 2017",
+          link: "https://www.mediafire.com/file/k3sktjoqwwjturj/%25D8%25A7%25D9%2584%25D8%25AC%25D9%2585%25D9%2587%25D9%2588%25D8%25B1%25D9%258A%25D8%25A9_%25D8%25B9%25D8%25A7%25D9%2585_2017%25D9%2585.rar/file"
+        }
       },
       {
         id: 17,
@@ -938,7 +1594,11 @@
         src: "images/خريطة التقسيم الإداري لمحافظة سوهاج.png",
         thumbnail: "images/thumbnails/خريطة التقسيم الإداري لمحافظة سوهاج.png",
         date: "2025-09-03",
-        size: "3.1 MB"
+        size: "3.1 MB",
+        source: {
+          text: "تم الاعتماد على شيب فايل الحدود الإدارية لمصر لآخر تعداد عام 2017",
+          link: "https://www.mediafire.com/file/k3sktjoqwwjturj/%25D8%25A7%25D9%2584%25D8%25AC%25D9%2585%25D9%2587%25D9%2588%25D8%25B1%25D9%258A%25D8%25A9_%25D8%25B9%25D8%25A7%25D9%2585_2017%25D9%2585.rar/file"
+        }
       },
       {
         id: 18,
@@ -947,7 +1607,11 @@
         src: "images/خريطة الكثافة السكانية لمحافظة سوهاج 2024.png",
         thumbnail: "images/thumbnails/خريطة الكثافة السكانية لمحافظة سوهاج 2024.png",
         date: "2025-09-03",
-        size: "3.0 MB"
+        size: "3.0 MB",
+        source: {
+          text: "تم الاعتماد على شيب فايل الحدود الإدارية لمصر لآخر تعداد عام 2017",
+          link: "https://www.mediafire.com/file/k3sktjoqwwjturj/%25D8%25A7%25D9%2584%25D8%25AC%25D9%2585%25D9%2587%25D9%2588%25D8%25B1%25D9%258A%25D8%25A9_%25D8%25B9%25D8%25A7%25D9%2585_2017%25D9%2585.rar/file"
+        }
       }
     ];
 
@@ -1101,35 +1765,155 @@
     // Modal functionality
     const modal = document.getElementById('imageModal');
     const modalImage = document.getElementById('modalImage');
-    const modalInfo = document.getElementById('modalInfo');
     const closeBtn = document.querySelector('.close');
     const imageWrapper = document.getElementById('imageWrapper');
     const downloadBtn = document.getElementById('downloadBtn');
+    let currentImageIndex = -1;
 
     function openModal(imageId) {
-      const image = galleryImages.find(img => img.id === imageId);
-      if (image) {
-        modalImage.src = image.src;
-
-        // Update download button
-        if (downloadBtn) {
-          downloadBtn.href = image.src;
-          downloadBtn.download = image.title.replace(/ /g, '_') + '.png'; // Suggest a filename
-        }
-
-        modalInfo.innerHTML = `
-                    <h3>${image.title}</h3>
-                    <p>${image.description}</p>
-                    <div style="margin-top: 1rem; opacity: 0.8;">
-                        <i class="fas fa-calendar"></i> ${image.date} | 
-                        <i class="fas fa-file"></i> ${image.size}
-                    </div>
-                `;
+      currentImageIndex = galleryImages.findIndex(img => img.id === imageId);
+      if (currentImageIndex !== -1) {
+        updateModalContent();
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
-        resetZoom(); // Reset zoom when opening new image
       }
     }
+
+    function updateModalContent() {
+      const image = galleryImages[currentImageIndex];
+      if (!image) return;
+
+      modalImage.src = image.src;
+
+      // Update download button
+      if (downloadBtn) {
+        downloadBtn.href = image.src;
+        downloadBtn.download = image.title.replace(/ /g, '_') + '.png';
+      }
+
+      // Update Source Button
+      const sourceBtn = document.getElementById('sourceBtn');
+      if (sourceBtn) {
+        if (image.source) {
+          sourceBtn.style.display = 'flex';
+          sourceBtn.onclick = (e) => {
+            e.stopPropagation();
+            openSourceModal(image);
+          };
+        } else {
+          sourceBtn.style.display = 'none';
+        }
+      }
+      resetZoom();
+    }
+
+    window.navigateGallery = function(direction) {
+      currentImageIndex += direction;
+      
+      // Infinite loop navigation
+      if (currentImageIndex >= galleryImages.length) currentImageIndex = 0;
+      if (currentImageIndex < 0) currentImageIndex = galleryImages.length - 1;
+      
+      updateModalContent();
+    };
+
+    // Source Modal Functions
+    const sourceModal = document.getElementById('sourceModal');
+    const sourceBody = document.getElementById('sourceBody');
+
+    function openSourceModal(image) {
+        if (!image.source) return;
+        
+        let content = `<div class="source-text">${image.source.text}</div>`;
+        
+        if (image.source.link) {
+            content += `<a href="${image.source.link}" target="_blank" class="source-link">
+                <i class="fas fa-external-link-alt"></i> رابط المصدر / التحميل
+            </a>`;
+        }
+
+        if (image.source.code) {
+           content += createCodeBlock(image.source.code);
+        }
+
+        if (image.source.codes) {
+            image.source.codes.forEach(c => {
+                content += `<h4 style="margin: 2rem 0 0.5rem; color: var(--text-primary); font-size: 1rem;">${c.label}:</h4>`;
+                content += createCodeBlock(c.content);
+            });
+        }
+
+        sourceBody.innerHTML = content;
+        sourceModal.style.display = 'block';
+    }
+
+    function createCodeBlock(code) {
+        const highlighted = highlightJS(code);
+        return `
+            <div class="code-container">
+                <div class="code-header">
+                    <span>JavaScript (GEE)</span>
+                    <button class="copy-btn" onclick="copyCode(this)">نسخ الكود</button>
+                </div>
+                <pre><code>${highlighted}</code></pre>
+            </div>
+        `;
+    }
+
+    function highlightJS(code) {
+        // Escape HTML special characters first
+        let esc = code.replace(/&/g, '&amp;')
+                      .replace(/</g, '&lt;')
+                      .replace(/>/g, '&gt;');
+        
+        const placeholders = [];
+        
+        // 1. Comments: Extract and hide to avoid matching keywords/strings inside them
+        esc = esc.replace(/\/\/.*$/gm, m => {
+            const placeholder = `___C${placeholders.length}___`;
+            placeholders.push(`<span class="sh-comment">${m}</span>`);
+            return placeholder;
+        });
+
+        // 2. Strings: Extract and hide to avoid matching keywords inside them (and avoid URLs being treated as comments)
+        esc = esc.replace(/('.*?'|".*?")/g, m => {
+            const placeholder = `___S${placeholders.length}___`;
+            placeholders.push(`<span class="sh-string">${m}</span>`);
+            return placeholder;
+        });
+
+        // 3. Keywords: Highlight remaining text
+        const keywords = /\b(var|let|const|function|return|if|else|for|while|export|import|ee|Map|Export|true|false)\b/g;
+        esc = esc.replace(keywords, m => `<span class="sh-keyword">${m}</span>`);
+
+        // 4. Numbers: Highlight remaining text
+        esc = esc.replace(/\b\d+(\.\d+)?\b/g, m => `<span class="sh-number">${m}</span>`);
+
+        // 5. Restore Comments and Strings in reverse order to ensure nested placeholders (though unlikely here) work
+        for (let i = placeholders.length - 1; i >= 0; i--) {
+            esc = esc.replace(`___C${i}___`, placeholders[i]);
+            esc = esc.replace(`___S${i}___`, placeholders[i]);
+        }
+
+        return esc;
+    }
+
+    window.copyCode = function(btn) {
+        const code = btn.closest('.code-container').querySelector('code').innerText;
+        navigator.clipboard.writeText(code).then(() => {
+            const originalText = btn.innerText;
+            btn.innerText = 'تم النسخ!';
+            btn.style.background = '#27ae60';
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.background = 'rgba(255,255,255,0.1)';
+            }, 2000);
+        });
+    };
+
+    window.closeSourceModal = function() {
+        sourceModal.style.display = 'none';
+    };
 
     function closeModal() {
       modal.style.display = 'none';
@@ -1145,8 +1929,10 @@
 
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.style.display === 'block') {
-        closeModal();
+      if (modal.style.display === 'block') {
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowRight') navigateGallery(1);
+        if (e.key === 'ArrowLeft') navigateGallery(-1);
       }
     });
 

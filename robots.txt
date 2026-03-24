@@ -1,0 +1,5 @@
+﻿User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://gis-sohag.github.io/groundwater/sitemap.xml

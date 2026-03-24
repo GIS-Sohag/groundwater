@@ -4,11 +4,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>النمذجة المكانية لإحتمالية وجود المياه الجوفية - محافظة سوهاج</title>
+    <title>الصفحة الرئيسية - نظام المياه الجوفية بسوهاج</title>
+    <meta name="description" content="مشروع النمذجة المكانية لاحتمالية وجود المياه الجوفية في محافظة سوهاج باستخدام تقنيات GIS الحديثة - مشروع تخرج قسم الجغرافيا جامعة سوهاج">
+    <meta name="keywords" content="المياه الجوفية, سوهاج, نمذجة مكانية, GIS, خريطة تفاعلية, جامعة سوهاج, جغرافيا, مياه جوفية">
+    <meta name="author" content="قسم الجغرافيا - كلية الآداب - جامعة سوهاج">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://gis-sohag.github.io/groundwater/home.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="الصفحة الرئيسية - نظام المياه الجوفية بسوهاج">
+    <meta property="og:description" content="مشروع النمذجة المكانية لاحتمالية وجود المياه الجوفية في سوهاج">
+    <meta property="og:image" content="https://gis-sohag.github.io/groundwater/images/univ_logo.png">
+    <meta property="og:url" content="https://gis-sohag.github.io/groundwater/home.html">
+    <meta property="og:locale" content="ar_EG">
+    <meta property="og:site_name" content="المياه الجوفية بسوهاج">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="الصفحة الرئيسية - نظام المياه الجوفية">
+    <meta name="twitter:description" content="مشروع النمذجة المكانية لاحتمالية وجود المياه الجوفية في سوهاج">
+    <meta name="twitter:image" content="https://gis-sohag.github.io/groundwater/images/univ_logo.png">
+    <meta name="theme-color" content="#0ea5e9">
+    <link rel="icon" type="image/png" href="images/univ_logo.png">
+    <link rel="apple-touch-icon" href="images/univ_logo.png">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "المياه الجوفية بسوهاج",
+      "alternateName": "نظام النمذجة المكانية للمياه الجوفية",
+      "url": "https://gis-sohag.github.io/groundwater/",
+      "description": "نظام تفاعلي للنمذجة المكانية لاحتمالية وجود المياه الجوفية في محافظة سوهاج - مشروع تخرج قسم الجغرافيا جامعة سوهاج",
+      "publisher": {
+        "@type": "CollegeOrUniversity",
+        "name": "جامعة سوهاج - كلية الآداب - قسم الجغرافيا"
+      }
+    }
+    </script>
 
     <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <!-- Network Animation CSS -->
     <link rel="stylesheet" href="css/network-animation.css">
@@ -16,932 +55,370 @@
     <!-- Theme Switcher CSS -->
     <link rel="stylesheet" href="css/theme-switcher.css">
 
-    <style>
-        :root {
-            color-scheme: light dark;
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --ocean-gradient: linear-gradient(135deg, #2196F3 0%, #21CBF3 100%);
-            --earth-gradient: linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%);
-            --sunset-gradient: linear-gradient(135deg, #FF9800 0%, #FF5722 100%);
-            --night-gradient: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="css/style.css">
 
-            --text-light: #ffffff;
-            --text-dark: #2c3e50;
-            --card-bg: rgba(255, 255, 255, 0.1);
-            --card-hover: rgba(255, 255, 255, 0.2);
-            --shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            --shadow-hover: 0 30px 60px rgba(0, 0, 0, 0.2);
+    <!-- Real Visitor Counter Script for GitHub Pages -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-            /* Theme Variables */
-            --bg-primary: #f8fafc;
-            --bg-card: #ffffff;
-            --text-primary: #1f2a44;
-            --text-secondary: #64748b;
-            --border-color: rgba(0, 0, 0, 0.1);
-        }
-
-        [data-theme="dark"] {
-            --bg-primary: #0f172a;
-            --bg-card: #1e293b;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Cairo', sans-serif;
-            background: var(--bg-primary);
-            min-height: 100vh;
-            color: var(--text-primary);
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Header with Wave Animation */
-        .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            padding: 1.5rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(44, 62, 80, 0.1);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        @keyframes wave-header {
-
-            0%,
-            100% {
-                clip-path: polygon(0 0, 100% 0, 100% 85%, 95% 90%, 90% 85%, 85% 90%, 80% 85%, 75% 90%, 70% 85%, 65% 90%, 60% 85%, 55% 90%, 50% 85%, 45% 90%, 40% 85%, 35% 90%, 30% 85%, 25% 90%, 20% 85%, 15% 90%, 10% 85%, 5% 90%, 0 85%);
-            }
-
-            25% {
-                clip-path: polygon(0 0, 100% 0, 100% 90%, 95% 85%, 90% 90%, 85% 85%, 80% 90%, 75% 85%, 70% 90%, 65% 85%, 60% 90%, 55% 85%, 50% 90%, 45% 85%, 40% 90%, 35% 85%, 30% 90%, 25% 85%, 20% 90%, 15% 85%, 10% 90%, 5% 85%, 0 90%);
-            }
-
-            50% {
-                clip-path: polygon(0 0, 100% 0, 100% 80%, 95% 85%, 90% 80%, 85% 85%, 80% 80%, 75% 85%, 70% 80%, 65% 85%, 60% 80%, 55% 85%, 50% 80%, 45% 85%, 40% 80%, 35% 85%, 30% 80%, 25% 85%, 20% 80%, 15% 85%, 10% 80%, 5% 85%, 0 80%);
-            }
-
-            75% {
-                clip-path: polygon(0 0, 100% 0, 100% 88%, 95% 92%, 90% 88%, 85% 92%, 80% 88%, 75% 92%, 70% 88%, 65% 92%, 60% 88%, 55% 92%, 50% 88%, 45% 92%, 40% 88%, 35% 92%, 30% 88%, 25% 92%, 20% 88%, 15% 92%, 10% 88%, 5% 92%, 0 88%);
+    <!-- Splash Screen Redirect on Refresh -->
+    <script>
+        if (performance.navigation && performance.navigation.type === performance.navigation.TYPE_RELOAD) {
+            window.location.href = "index.html";
+        } else if (window.performance && window.performance.getEntriesByType) {
+            const entries = window.performance.getEntriesByType("navigation");
+            if (entries.length > 0 && entries[0].type === "reload") {
+                window.location.href = "index.html";
             }
         }
-
-        .header.scrolled {
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: var(--shadow);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #2c3e50;
-        }
-
-        .logo i {
-            font-size: 2rem;
-            background: var(--ocean-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.1);
-            }
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-menu a {
-            color: #2c3e50;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .nav-menu a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--ocean-gradient);
-            transition: left 0.3s ease;
-            z-index: -1;
-        }
-
-        .nav-menu a:hover::before {
-            left: 0;
-        }
-
-        .nav-menu a:hover {
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            padding: 0 2rem;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-        }
-
-        .hero-content {
-            max-width: 900px;
-            animation: fadeInUp 1s ease-out;
-            z-index: 1;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 2rem;
-            animation: slideInDown 1s ease-out 0.2s both;
-        }
-
-        .hero h1 {
-            font-size: 4.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-            background: linear-gradient(135deg, #2c3e50, #3498db, #2980b9);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: slideInUp 1s ease-out 0.4s both;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .hero p {
-            font-size: 1.4rem;
-            margin-bottom: 3rem;
-            color: #5a6c7d;
-            line-height: 1.8;
-            animation: slideInUp 1s ease-out 0.6s both;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: slideInUp 1s ease-out 0.8s both;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 1.5rem 4rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
-            position: relative;
-            overflow: hidden;
-            border: none;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            transition: left 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .btn-primary::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: all 0.6s ease;
-        }
-
-        .btn-primary:hover::before {
-            left: 0;
-        }
-
-        .btn-primary:hover::after {
-            width: 300px;
-            height: 300px;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-8px) scale(1.08);
-            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.6);
-        }
-
-        .btn-primary span {
-            position: relative;
-            z-index: 1;
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            color: #2c3e50;
-            padding: 1.5rem 4rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 3px solid #667eea;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-            position: relative;
-            overflow: hidden;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .btn-secondary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            transition: left 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: -1;
-        }
-
-        .btn-secondary:hover::before {
-            left: 0;
-        }
-
-        .btn-secondary:hover {
-            color: white;
-            border-color: #764ba2;
-            transform: translateY(-8px) scale(1.08);
-            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.4);
-        }
-
-        /* Services Section */
-        .services {
-            padding: 8rem 0;
-            position: relative;
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 5rem;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .section-badge {
-            display: inline-block;
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        .section-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #2c3e50, #3498db);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .section-description {
-            font-size: 1.3rem;
-            color: #5a6c7d;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: #ffffff;
-            border-radius: 20px;
-            padding: 3rem;
-            text-align: center;
-            transition: all 0.4s ease;
-            border: 1px solid #e9ecef;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(52, 152, 219, 0.05), rgba(46, 204, 113, 0.05));
-            transition: left 0.5s ease;
-        }
-
-        .service-card:hover::before {
-            left: 0;
-        }
-
-        .service-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-            border-color: #3498db;
-        }
-
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 20px;
-            background: var(--ocean-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 2rem;
-            font-size: 2rem;
-            color: white;
-            transition: all 0.3s ease;
-        }
-
-        .service-card:nth-child(2) .service-icon {
-            background: var(--earth-gradient);
-        }
-
-        .service-card:nth-child(3) .service-icon {
-            background: var(--sunset-gradient);
-        }
-
-        .service-card:nth-child(4) .service-icon {
-            background: var(--secondary-gradient);
-        }
-
-        .service-card:hover .service-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .service-card h3 {
-            font-size: 1.6rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #2c3e50;
-        }
-
-        .service-card p {
-            color: #5a6c7d;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-        }
-
-        .service-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white;
-            padding: 1rem 2.5rem;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);
-        }
-
-        .service-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #2980b9, #1abc9c);
-            transition: left 0.4s ease;
-            z-index: -1;
-        }
-
-        .service-link:hover::before {
-            left: 0;
-        }
-
-        .service-card:nth-child(1) .service-link {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);
-        }
-
-        .service-card:nth-child(2) .service-link {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
-        }
-
-        .service-card:nth-child(2) .service-link::before {
-            background: linear-gradient(135deg, #c0392b, #e67e22);
-        }
-
-        .service-card:nth-child(3) .service-link {
-            background: linear-gradient(135deg, #27ae60, #2ecc71);
-            box-shadow: 0 8px 25px rgba(39, 174, 96, 0.3);
-        }
-
-        .service-card:nth-child(3) .service-link::before {
-            background: linear-gradient(135deg, #2ecc71, #f39c12);
-        }
-
-        .service-card:nth-child(4) .service-link {
-            background: linear-gradient(135deg, #9b59b6, #8e44ad);
-            box-shadow: 0 8px 25px rgba(155, 89, 182, 0.3);
-        }
-
-        .service-card:nth-child(4) .service-link::before {
-            background: linear-gradient(135deg, #8e44ad, #e74c3c);
-        }
-
-        .service-link:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .service-link i {
-            font-size: 1.2rem;
-            transition: transform 0.3s ease;
-        }
-
-        .service-link:hover i {
-            transform: rotate(360deg) scale(1.2);
-        }
-
-        /* Footer */
-        .footer {
-            background: #f8f9fa;
-            color: #2c3e50;
-            text-align: center;
-            padding: 3rem 0;
-            border-top: 1px solid #e9ecef;
-        }
-
-        .footer p {
-            color: #5a6c7d;
-            font-size: 1rem;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-
-            .hero p {
-                font-size: 1.2rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                font-size: 2.5rem;
-            }
-
-            .service-card {
-                padding: 2rem;
-            }
-
-            .earth-globe {
-                width: 400px;
-                height: 400px;
-            }
-        }
-
-        /* Scroll indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            color: rgba(255, 255, 255, 0.8);
-            animation: bounce 2s infinite;
-            font-size: 1.5rem;
-        }
-
-        @keyframes bounce {
-
-            0%,
-            20%,
-            50%,
-            80%,
-            100% {
-                transform: translateX(-50%) translateY(0);
-            }
-
-            40% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-
-            60% {
-                transform: translateX(-50%) translateY(-5px);
-            }
-        }
-
-        /* Typing Animation */
-        .typing-cursor::after {
-            content: '|';
-            animation: blink 1s infinite;
-            color: #21CBF3;
-        }
-
-        @keyframes blink {
-
-            0%,
-            50% {
-                opacity: 1;
-            }
-
-            51%,
-            100% {
-                opacity: 0;
-            }
-        }
-
-        #typing-title,
-        #typing-description {
-            opacity: 0;
-        }
-    </style>
+    </script>
 </head>
 
 <body>
-    <!-- Network Background -->
     <div class="network-background">
-        <div class="network-container" id="networkContainer">
-            <!-- Network nodes and lines will be generated by JavaScript -->
-        </div>
+        <div class="network-container" id="networkContainer"></div>
+    </div>
+    <div class="page-container">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="home.html" class="nav-brand">
+                    <i class="fas fa-water"></i>
+                    <span>المياه الجوفية بسوهاج</span>
+                </a>
+                <div class="nav-links">
+                    <a class="nav-link" href="groundwater.html">الخريطة التفاعلية</a>
+                    <a class="nav-link" href="gallery.html">المعرض</a>
+                    <a class="nav-link" href="palestine.html">أولى القبلتين</a>
+                    <a class="nav-link" href="about.html">عن المشروع</a>
+                    <button class="theme-switcher-btn" id="theme-switcher" aria-label="تبديل الوضع">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                </div>
+                <div class="hamburger" aria-label="فتح/إغلاق القائمة">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+        <div class="sidebar-overlay"></div>
+
+        <!-- Hero -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span id="typewriter-text"></span><span class="typewriter-cursor"></span>
+                    <span class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">نظام النمذجة المكانية للمياه الجوفية بمحافظة سوهاج</span>
+                </h1>
+            </div>
+
+            <!-- Decorative Floating Icons -->
+            <div class="floating-elements" aria-hidden="true">
+                <span class="floating-element" style="--duration:7s; --delay:.2s;"><i class="fas fa-droplet"></i></span>
+                <span class="floating-element" style="--duration:9s; --delay:1s;"><i class="fas fa-water"></i></span>
+                <span class="floating-element" style="--duration:11s; --delay:.6s;"><i class="fas fa-wind"></i></span>
+            </div>
+
+            <!-- Waves -->
+            <div class="wave-container" aria-hidden="true">
+                <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                    <defs>
+                        <path id="gentle-wave"
+                            d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                    </defs>
+                    <g class="parallax">
+                        <use xlink:href="#gentle-wave" x="48" y="0" style="fill: var(--wave-color); opacity: 0.7" />
+                        <use xlink:href="#gentle-wave" x="48" y="3" style="fill: var(--wave-color); opacity: 0.5" />
+                        <use xlink:href="#gentle-wave" x="48" y="5" style="fill: var(--wave-color); opacity: 0.3" />
+                        <use xlink:href="#gentle-wave" x="48" y="7" style="fill: var(--wave-color); opacity: 1" />
+                    </g>
+                </svg>
+            </div>
+        </section>
+
+        <!-- NEW: Site Sections (MOVED BEFORE FEATURES) -->
+        <section id="site-sections" class="section" style="padding-top: 2rem;">
+            <div class="container">
+                <h2 class="section-title">أقسام الموقع</h2>
+                <p class="section-description">انطلق مباشرة إلى أهم صفحات المشروع.</p>
+
+                <div class="site-sections-grid">
+                    <!-- Card 1: Groundwater Map -->
+                    <a href="groundwater.html" class="section-card" style="--accent-color: #3b82f6;">
+                        <div class="card-icon"><i class="fas fa-layer-group"></i></div>
+                        <h3 class="card-title">خريطة احتمالية المياه الجوفية</h3>
+                        <p class="card-description">استكشف طبقة الاحتمالية وتعرّف على تفاصيل كل منطقة بصورة تفاعلية.</p>
+                        <div class="card-footer">
+                            <span>ابدأ الآن</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </div>
+                    </a>
+
+                    <a href="palestine.html" class="section-card" style="--accent-color: #10b981;">
+                        <div class="card-icon"><i class="fas fa-mosque"></i></div>
+                        <h3 class="card-title">خريطة فلسطين</h3>
+                        <p class="card-description">تعرّف على حدود المحافظات مع عرض تفاعلي لأهم معالم المسجد الأقصى.</p>
+                        <div class="card-footer">
+                            <span>اكتشف التفاصيل</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </div>
+                    </a>
+
+                    <!-- Card 3: Gallery -->
+                    <a href="gallery.html" class="section-card" style="--accent-color: #a855f7;">
+                        <div class="card-icon"><i class="fas fa-images"></i></div>
+                        <h3 class="card-title">المعرض</h3>
+                        <p class="card-description">مجموعة خرائط وصور عالية الدقة توضح مخرجات التحليل الجغرافي للمشروع.
+                        </p>
+                        <div class="card-footer">
+                            <span>شاهد الأعمال</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </div>
+                    </a>
+
+                    <!-- Card 4: Site Info -->
+                    <a href="about.html" class="section-card" style="--accent-color: #f59e0b;">
+                        <div class="card-icon"><i class="fas fa-info-circle"></i></div>
+                        <h3 class="card-title">معلومات الموقع</h3>
+                        <p class="card-description">تعرّف على تفاصيل المشروع والفريق والإشراف والجامعة التي قدمت الدعم.
+                        </p>
+                        <div class="card-footer">
+                            <span>اقرأ المزيد</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section id="features" class="section">
+            <div class="container">
+                <h2 class="section-title">لماذا هذا المشروع مميز؟</h2>
+                <p class="section-description">نهج علمي حديث يجمع بيانات مكانية، نماذج تنبؤية، وواجهة تفاعلية سهلة
+                    الاستخدام.</p>
+
+                <div class="features-grid"
+                    style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;">
+                    <div class="feature-card"
+                        style="background:var(--bg-card);border-radius:16px;padding:24px;box-shadow:var(--shadow);border:1px solid var(--border-color);">
+                        <div style="font-size:28px;color:var(--accent-blue);margin-bottom:10px;"><i
+                                class="fas fa-cogs"></i></div>
+                        <h3 style="margin-bottom:8px;color:var(--text-primary);">تحليل مكاني متقدم</h3>
+                        <p style="color:var(--text-secondary);">معالجة طبقات GIS متعددة وربطها بمؤشرات احتمالية دقيقة.
+                        </p>
+                    </div>
+                    <div class="feature-card"
+                        style="background:var(--bg-card);border-radius:16px;padding:24px;box-shadow:var(--shadow);border:1px solid var(--border-color);">
+                        <div style="font-size:28px;color:var(--accent-blue);margin-bottom:10px;"><i
+                                class="fas fa-robot"></i></div>
+                        <h3 style="margin-bottom:8px;color:var(--text-primary);">نمذجة بالذكاء الاصطناعي</h3>
+                        <p style="color:var(--text-secondary);">خوارزميات محسّنة لتوقع المناطق الأكثر ملاءمة لاستخراج
+                            المياه.</p>
+                    </div>
+                    <div class="feature-card"
+                        style="background:var(--bg-card);border-radius:16px;padding:24px;box-shadow:var(--shadow);border:1px solid var(--border-color);">
+                        <div style="font-size:28px;color:var(--accent-blue);margin-bottom:10px;"><i
+                                class="fas fa-mouse-pointer"></i></div>
+                        <h3 style="margin-bottom:8px;color:var(--text-primary);">طبقات تفاعلية</h3>
+                        <p style="color:var(--text-secondary);">عرض تفاعلي للطبقات مع نوافذ منبثقة ومفتاح تفسيري واضح.
+                        </p>
+                    </div>
+                    <div class="feature-card"
+                        style="background:var(--bg-card);border-radius:16px;padding:24px;box-shadow:var(--shadow);border:1px solid var(--border-color);">
+                        <div style="font-size:28px;color:var(--accent-blue);margin-bottom:10px;"><i
+                                class="fas fa-palette"></i></div>
+                        <h3 style="margin-bottom:8px;color:var(--text-primary);">تصميم متجاوب</h3>
+                        <p style="color:var(--text-secondary);">تجربة مستخدم سلسة على الجوال والتابلت وسطح المكتب.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About CTA -->
+        <section id="about-cta" class="section">
+            <div class="container about-cta-container">
+                <div>
+                    <h2 class="section-title" style="text-align: right; margin-bottom: 1rem;">نبذة عن المشروع</h2>
+                    <p class="section-description" style="text-align: right; margin-bottom:1.5rem;">مشروع تخرج — جامعة
+                        سوهاج، كلية الآداب، قسم الجغرافيا ونظم المعلومات الجغرافية. يهدف لتحديد أفضل المناطق لاكتشاف
+                        المياه الجوفية بدقة.</p>
+                    <div class="cta-buttons">
+                        <a class="cta-button" href="about.html">
+                            تفاصيل المشروع <i class="fas fa-arrow-left"></i>
+                        </a>
+                        <a class="cta-button secondary" href="instructions.html">
+                            طريقة الاستخدام <i class="fas fa-book-open"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="supervisor-card">
+                    <div class="supervisor-icon"><i class="fas fa-award"></i></div>
+                    <h3>إشراف: أ.م.د حمدي نبيه عيد</h3>
+                    <p>بدعم فريق طلاب قسم الجغرافيا ونظم المعلومات الجغرافية</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="contact" class="main-footer">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="nav-logo">
+                        <i class="fas fa-water"></i>
+                        <span>المياه الجوفية بسوهاج</span>
+                    </div>
+                    <p>واجهة تفاعلية لعرض وتحليل احتمالية وجود المياه الجوفية باستخدام أدوات GIS الحديثة.</p>
+                    <div class="social-links">
+                        <a href="https://wa.me/201069439981" target="_blank" aria-label="WhatsApp"><i
+                                class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.facebook.com/mohammed.harp.50" target="_blank" aria-label="Facebook"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://t.me/Skechware_application_programmer" target="_blank" aria-label="Telegram"><i
+                                class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="groundwater.html">خريطة المياه الجوفية</a></li>
+                        <li><a href="gallery.html">المعرض</a></li>
+                        <li><a href="palestine.html">خريطة فلسطين</a></li>
+                        <li><a href="about.html">عن المشروع</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>تواصل معنا</h4>
+                    <p><i class="fab fa-whatsapp" style="color: #25D366;"></i> <a href="https://wa.me/201069439981"
+                            target="_blank" style="text-decoration: none; color: inherit;">01069439981</a></p>
+                    <p><i class="fas fa-envelope"></i> abdelradymohamed74@gmail.com</p>
+                </div>
+                <div class="footer-stats">
+                    <h4>إحصائيات الموقع</h4>
+                    <div class="stats-grid">
+                        <div class="stat-item" id="busuanzi_container_site_pv" style="display:none">
+                            <i class="fas fa-users"></i>
+                            <div class="stat-info">
+                                <span class="stat-value" id="busuanzi_value_site_pv"></span>
+                                <span class="stat-label">إجمالي الزيارات</span>
+                            </div>
+                        </div>
+                        <div class="stat-item" id="busuanzi_container_site_uv" style="display:none">
+                            <i class="fas fa-eye"></i>
+                            <div class="stat-info">
+                                <span class="stat-value" id="busuanzi_value_site_uv"></span>
+                                <span class="stat-label">زوار الموقع</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© <span id="year"></span> جميع الحقوق محفوظة لمشروع النمذجة المكانية للمياه الجوفية.</p>
+            </div>
+        </footer>
     </div>
 
-    <!-- Header -->
-    <header class="header" id="header">
-        <div class="nav-container">
-            <div class="logo">
-                <i class="fas fa-tint"></i>
-                <span>النمذجة المكانية للمياه الجوفية</span>
-            </div>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="groundwater.html">خريطة المياه الجوفية</a></li>
-                    <li><a href="gallery.html">معرض الخرائط</a></li>
-                    <li><a href="palestine.html">أولى القبلتين</a></li>
-                    <li><a href="about.html">عن المشروع</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <i class="fas fa-water"></i>
-                نظام متطور لرصد المياه الجوفية
-            </div>
-            <h1 id="typing-title">النمذجة المكانية للمياه الجوفية في سوهاج</h1>
-            <p id="typing-description">
-                مشروع متطور يستخدم الجيوماتكس والبيئة البرمجية والذكاء الاصطناعي لنمذجة احتمالية وجود المياه الجوفية في
-                محافظة سوهاج باستخدام أحدث تقنيات نظم المعلومات الجغرافية والاستشعار عن بعد
-            </p>
-            <div class="hero-buttons">
-                <a href="groundwater.html" class="btn-primary">
-                    <span><i class="fas fa-rocket"></i> ابدأ الاستكشاف</span>
-                </a>
-                <a href="about.html" class="btn-secondary">
-                    <i class="fas fa-info-circle"></i> تعرف على المشروع
-                </a>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services">
-        <div class="container">
-            <div class="section-header fade-in">
-                <div class="section-badge">
-                    <i class="fas fa-cogs"></i>
-                    خدماتنا المتطورة
-                </div>
-                <h2 class="section-title">استكشف الخريطة التفاعلية</h2>
-                <p class="section-description">
-                    نظام متطور لاستكشاف احتمالية وجود المياه الجوفية في محافظة سوهاج
-                    باستخدام أحدث تقنيات نظم المعلومات الجغرافية
-                </p>
-            </div>
-
-            <div class="services-grid">
-                <div class="service-card fade-in" onclick="window.location.href='groundwater.html'">
-                    <div class="service-icon">
-                        <i class="fas fa-map-marked-alt"></i>
-                    </div>
-                    <h3>خريطة المياه الجوفية</h3>
-                    <p>
-                        استكشف احتمالية وجود المياه الجوفية في مناطق مختلفة من محافظة سوهاج
-                        مع خرائط تفاعلية متقدمة وبيانات دقيقة
-                    </p>
-                    <a href="groundwater.html" class="service-link">
-                        <i class="fas fa-arrow-left"></i>
-                        استكشف الآن
-                    </a>
-                </div>
-
-                <div class="service-card fade-in" onclick="window.location.href='gallery.html'">
-                    <div class="service-icon">
-                        <i class="fas fa-images"></i>
-                    </div>
-                    <h3>معرض الخرائط</h3>
-                    <p>
-                        تصفح مجموعة شاملة من الخرائط الجيولوجية والجيومورفولوجية المستخدمة
-                        في مشروع النمذجة المكانية
-                    </p>
-                    <a href="gallery.html" class="service-link">
-                        <i class="fas fa-arrow-left"></i>
-                        تصفح المعرض
-                    </a>
-                </div>
-
-                <div class="service-card fade-in" onclick="window.location.href='palestine.html'">
-                    <div class="service-icon">
-                        <i class="fas fa-mosque"></i>
-                    </div>
-                    <h3>أولى القبلتين</h3>
-                    <p>
-                        خريطة تفاعلية لفلسطين المحتلة مع موقع المسجد الأقصى المبارك
-                        أولى القبلتين وثالث الحرمين الشريفين
-                    </p>
-                    <a href="palestine.html" class="service-link">
-                        <i class="fas fa-arrow-left"></i>
-                        زيارة فلسطين
-                    </a>
-                </div>
-
-                <div class="service-card fade-in" onclick="window.location.href='about.html'">
-                    <div class="service-icon">
-                        <i class="fas fa-info-circle"></i>
-                    </div>
-                    <h3>عن المشروع</h3>
-                    <p>
-                        تعرف على تفاصيل مشروع النمذجة المكانية والفريق المشارك
-                        والتقنيات المستخدمة في البحث العلمي
-                    </p>
-                    <a href="about.html" class="service-link">
-                        <i class="fas fa-arrow-left"></i>
-                        اقرأ المزيد
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 النمذجة المكانية للمياه الجوفية - جامعة سوهاج | جميع الحقوق محفوظة</p>
-        </div>
-    </footer>
-
-    <script>
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Fade in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Service card click effect
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.addEventListener('click', function () {
-                this.style.transform = 'scale(0.98) translateY(-10px)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 150);
-            });
-        });
-
-        // Typing animation
-        function typeWriter(element, text, speed = 50) {
-            element.innerHTML = '';
-            element.style.opacity = '1';
-            let i = 0;
-
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                } else {
-                    element.classList.remove('typing-cursor');
-                }
-            }
-
-            element.classList.add('typing-cursor');
-            type();
-        }
-
-        // Initialize animations
-        window.addEventListener('load', () => {
-            // Start typing animations
-            setTimeout(() => {
-                const title = document.getElementById('typing-title');
-                const description = document.getElementById('typing-description');
-
-                typeWriter(title, 'النمذجة المكانية للمياه الجوفية في سوهاج', 100);
-
-                setTimeout(() => {
-                    typeWriter(description, 'مشروع متطور يستخدم الجيوماتكس والبيئة البرمجية والذكاء الاصطناعي لنمذجة احتمالية وجود المياه الجوفية في محافظة سوهاج باستخدام أحدث تقنيات نظم المعلومات الجغرافية والاستشعار عن بعد', 30);
-                }, 3000);
-            }, 1000);
-        });
-    </script>
-
-    <!-- Particle Network Animation Script -->
     <script src="js/network-animation.js"></script>
 
     <!-- Theme Switcher Script -->
     <script src="js/theme-switcher.js"></script>
+
+    <!-- Minimal JS for navbar & year -->
+    <script>
+        // Mobile menu
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-links');
+        const overlay = document.querySelector('.sidebar-overlay');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+
+        overlay.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        });
+
+        // Active link on scroll (only for internal anchors)
+        const links = document.querySelectorAll('.nav-link[href^="#"]');
+        const sections = [...links].map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+        window.addEventListener('scroll', () => {
+            const pos = window.scrollY + 100;
+            sections.forEach((sec, i) => {
+                const top = sec.offsetTop;
+                const bottom = top + sec.offsetHeight;
+                links[i].classList.toggle('active', pos >= top && pos < bottom);
+            });
+        });
+
+        // Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Local Statistics Fallback (For testing before upload)
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const pvContainer = document.getElementById('busuanzi_container_site_pv');
+                const uvContainer = document.getElementById('busuanzi_container_site_uv');
+
+                // If Busuanzi didn't load (local environment), show placeholder numbers
+                if (pvContainer && pvContainer.style.display === 'none') {
+                    pvContainer.style.display = 'flex';
+                    uvContainer.style.display = 'flex';
+                    document.getElementById('busuanzi_value_site_pv').textContent = '1,240';
+                    document.getElementById('busuanzi_value_site_uv').textContent = '850';
+                }
+            }, 2000); // Wait 2 seconds for Busuanzi to try loading
+        });
+
+        // Professional Typewriter Effect
+        const textToType = "النمذجة المكانية لإحتمالية وجود المياه الجوفية في محافظة سوهاج بإستخدام الجيوماتكس والبيئة البرمجية والذكاء الإصطناعي";
+        const typewriterElement = document.getElementById('typewriter-text');
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeEffect() {
+            const currentText = textToType.substring(0, charIndex);
+            typewriterElement.textContent = currentText;
+
+            let typeSpeed = isDeleting ? 30 : 60;
+
+            if (!isDeleting && charIndex === textToType.length) {
+                isDeleting = true;
+                typeSpeed = 4000; // Pause at end
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                typeSpeed = 1000; // Pause before start
+            }
+
+            charIndex += isDeleting ? -1 : 1;
+            setTimeout(typeEffect, typeSpeed);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(typeEffect, 1200);
+        });
+
+        // Initialize Network Animation
+        if (typeof createNetworkAnimation === 'function') {
+            createNetworkAnimation('networkContainer');
+        }
+    </script>
+
     <script src="global-fixes.js"></script>
 </body>
 

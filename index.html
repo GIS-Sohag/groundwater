@@ -1,340 +1,408 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الصفحة الرئيسية - مشروع المياه الجوفية بسوهاج</title>
 
-    <!-- Fonts & Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- SEO Core -->
+    <title>نظام رصد المياه الجوفية - محافظة سوهاج</title>
+    <meta name="description" content="نظام تفاعلي لرصد لاحتمالية وجود المياه الجوفية في محافظة سوهاج - مشروع تخرج قسم الجغرافيا جامعة سوهاج">
+    <meta name="keywords" content="المياه الجوفية, سوهاج, نمذجة مكانية, GIS, خريطة تفاعلية, جامعة سوهاج, جغرافيا">
+    <meta name="author" content="قسم الجغرافيا - كلية الآداب - جامعة سوهاج">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://gis-sohag.github.io/groundwater/index.html">
 
-    <!-- Network Animation CSS -->
-    <link rel="stylesheet" href="css/network-animation.css">
+    <!-- Open Graph (Facebook / WhatsApp) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="نظام رصد المياه الجوفية - محافظة سوهاج">
+    <meta property="og:description" content="نظام تفاعلي لرصد احتمالية وجود المياه الجوفية في محافظة سوهاج">
+    <meta property="og:image" content="https://gis-sohag.github.io/groundwater/images/univ_logo.png">
+    <meta property="og:url" content="https://gis-sohag.github.io/groundwater/index.html">
+    <meta property="og:locale" content="ar_EG">
+    <meta property="og:site_name" content="المياه الجوفية بسوهاج">
 
-    <!-- Theme Switcher CSS -->
-    <link rel="stylesheet" href="css/theme-switcher.css">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="نظام رصد المياه الجوفية - محافظة سوهاج">
+    <meta name="twitter:description" content="نظام تفاعلي لرصد احتمالية وجود المياه الجوفية في محافظة سوهاج">
+    <meta name="twitter:image" content="https://gis-sohag.github.io/groundwater/images/univ_logo.png">
 
-    <!-- Main Styles -->
-    <link rel="stylesheet" href="css/style.css">
-</head>
+    <!-- Theme & Favicon -->
+    <meta name="theme-color" content="#0ea5e9">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="icon" type="image/png" href="images/univ_logo.png">
+    <link rel="apple-touch-icon" href="images/univ_logo.png">
 
-<body>
-    <div class="network-background">
-        <div class="network-container" id="networkContainer"></div>
-    </div>
-    <div class="page-container">
-        <!-- Navbar -->
-        <nav class="navbar">
-            <div class="nav-container">
-                <a href="index.html" class="nav-brand">
-                    <i class="fas fa-water"></i>
-                    <span>المياه الجوفية بسوهاج</span>
-                </a>
-                <div class="nav-links">
-                    <a class="nav-link active" href="index.html">الرئيسية</a>
-                    <a class="nav-link" href="groundwater.html">الخريطة التفاعلية</a>
-                    <a class="nav-link" href="gallery.html">المعرض</a>
-                    <a class="nav-link" href="palestine.html">أولى القبلتين</a>
-                    <a class="nav-link" href="about.html">عن المشروع</a>
-                    <button class="theme-switcher-btn" id="theme-switcher" aria-label="تبديل الوضع">
-                        <i class="fas fa-sun"></i>
-                    </button>
-                </div>
-                <div class="hamburger" aria-label="فتح/إغلاق القائمة">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-            </div>
-        </nav>
-        <div class="sidebar-overlay"></div>
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "المياه الجوفية بسوهاج",
+      "alternateName": "نظام النمذجة المكانية للمياه الجوفية",
+      "url": "https://gis-sohag.github.io/groundwater/",
+      "description": "نظام تفاعلي للنمذجة المكانية لاحتمالية وجود المياه الجوفية في محافظة سوهاج - مشروع تخرج قسم الجغرافيا جامعة سوهاج",
+      "publisher": {
+        "@type": "CollegeOrUniversity",
+        "name": "جامعة سوهاج - كلية الآداب - قسم الجغرافيا"
+      }
+    }
+    </script>
 
-        <!-- Hero -->
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    <span id="typewriter-text"></span><span class="typewriter-cursor"></span>
-                </h1>
-            </div>
-
-            <!-- Decorative Floating Icons -->
-            <div class="floating-elements" aria-hidden="true">
-                <span class="floating-element" style="--duration:7s; --delay:.2s;"><i class="fas fa-droplet"></i></span>
-                <span class="floating-element" style="--duration:9s; --delay:1s;"><i class="fas fa-water"></i></span>
-                <span class="floating-element" style="--duration:11s; --delay:.6s;"><i class="fas fa-wind"></i></span>
-            </div>
-
-            <!-- Waves -->
-            <div class="wave-container" aria-hidden="true">
-                <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                    viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-                    <defs>
-                        <path id="gentle-wave"
-                            d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-                    </defs>
-                    <g class="parallax">
-                        <use xlink:href="#gentle-wave" x="48" y="0" style="fill: var(--wave-color); opacity: 0.7" />
-                        <use xlink:href="#gentle-wave" x="48" y="3" style="fill: var(--wave-color); opacity: 0.5" />
-                        <use xlink:href="#gentle-wave" x="48" y="5" style="fill: var(--wave-color); opacity: 0.3" />
-                        <use xlink:href="#gentle-wave" x="48" y="7" style="fill: var(--wave-color); opacity: 1" />
-                    </g>
-                </svg>
-            </div>
-        </section>
-
-        <!-- NEW: Site Sections (MOVED BEFORE FEATURES) -->
-        <section id="site-sections" class="section" style="padding-top: 2rem;">
-            <div class="container">
-                <h2 class="section-title">أقسام الموقع</h2>
-                <p class="section-description">انطلق مباشرة إلى أهم صفحات المشروع.</p>
-
-                <div class="site-sections-grid">
-                    <!-- Card 1: Groundwater Map -->
-                    <a href="groundwater.html" class="section-card" style="--accent-color: #3b82f6;">
-                        <div class="card-icon"><i class="fas fa-layer-group"></i></div>
-                        <h3 class="card-title">خريطة احتمالية المياه الجوفية</h3>
-                        <p class="card-description">استكشف طبقة الاحتمالية وتعرّف على تفاصيل كل منطقة بصورة تفاعلية.</p>
-                        <div class="card-footer">
-                            <span>ابدأ الآن</span>
-                            <i class="fas fa-arrow-left"></i>
-                        </div>
-                    </a>
-
-                    <a href="palestine.html" class="section-card" style="--accent-color: #10b981;">
-                        <div class="card-icon"><i class="fas fa-mosque"></i></div>
-                        <h3 class="card-title">خريطة فلسطين</h3>
-                        <p class="card-description">تعرّف على حدود المحافظات مع عرض تفاعلي لأهم معالم المسجد الأقصى.</p>
-                        <div class="card-footer">
-                            <span>اكتشف التفاصيل</span>
-                            <i class="fas fa-arrow-left"></i>
-                        </div>
-                    </a>
-
-                    <!-- Card 3: Gallery -->
-                    <a href="gallery.html" class="section-card" style="--accent-color: #a855f7;">
-                        <div class="card-icon"><i class="fas fa-images"></i></div>
-                        <h3 class="card-title">المعرض</h3>
-                        <p class="card-description">مجموعة خرائط وصور عالية الدقة توضح مخرجات التحليل الجغرافي للمشروع.
-                        </p>
-                        <div class="card-footer">
-                            <span>شاهد الأعمال</span>
-                            <i class="fas fa-arrow-left"></i>
-                        </div>
-                    </a>
-
-                    <!-- Card 4: Site Info -->
-                    <a href="about.html" class="section-card" style="--accent-color: #f59e0b;">
-                        <div class="card-icon"><i class="fas fa-info-circle"></i></div>
-                        <h3 class="card-title">معلومات الموقع</h3>
-                        <p class="card-description">تعرّف على تفاصيل المشروع والفريق والإشراف والجامعة التي قدمت الدعم.
-                        </p>
-                        <div class="card-footer">
-                            <span>اقرأ المزيد</span>
-                            <i class="fas fa-arrow-left"></i>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features -->
-        <section id="features" class="section">
-            <div class="container">
-                <h2 class="section-title">لماذا هذا المشروع مميز؟</h2>
-                <p class="section-description">نهج علمي حديث يجمع بيانات مكانية، نماذج تنبؤية، وواجهة تفاعلية سهلة
-                    الاستخدام.</p>
-
-                <div class="features-grid"
-                    style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;">
-                    <div class="feature-card"
-                        style="background:var(--bg-card);border-radius:16px;padding:24px;box-shadow:var(--shadow);border:1px solid var(--border-color);">
-                        <div style="font-size:28px;color:var(--accent-blue);margin-bottom:10px;"><i
-                                class="fas fa-cogs"></i></div>
-                        <h3 style="margin-bottom:8px;color:var(--text-primary);">تحليل مكاني متقدم</h3>
-                        <p style="color:var(--text-secondary);">معالجة طبقات GIS متعددة وربطها بمؤشرات احتمالية دقيقة.
-                        </p>
-                    </div>
-                    <div class="feature-card"
-                        style="background:var(--bg-card);border-radius:16px;padding:24px;box-shadow:var(--shadow);border:1px solid var(--border-color);">
-                        <div style="font-size:28px;color:var(--accent-blue);margin-bottom:10px;"><i
-                                class="fas fa-robot"></i></div>
-                        <h3 style="margin-bottom:8px;color:var(--text-primary);">نمذجة بالذكاء الاصطناعي</h3>
-                        <p style="color:var(--text-secondary);">خوارزميات محسّنة لتوقع المناطق الأكثر ملاءمة لاستخراج
-                            المياه.</p>
-                    </div>
-                    <div class="feature-card"
-                        style="background:var(--bg-card);border-radius:16px;padding:24px;box-shadow:var(--shadow);border:1px solid var(--border-color);">
-                        <div style="font-size:28px;color:var(--accent-blue);margin-bottom:10px;"><i
-                                class="fas fa-mouse-pointer"></i></div>
-                        <h3 style="margin-bottom:8px;color:var(--text-primary);">طبقات تفاعلية</h3>
-                        <p style="color:var(--text-secondary);">عرض تفاعلي للطبقات مع نوافذ منبثقة ومفتاح تفسيري واضح.
-                        </p>
-                    </div>
-                    <div class="feature-card"
-                        style="background:var(--bg-card);border-radius:16px;padding:24px;box-shadow:var(--shadow);border:1px solid var(--border-color);">
-                        <div style="font-size:28px;color:var(--accent-blue);margin-bottom:10px;"><i
-                                class="fas fa-palette"></i></div>
-                        <h3 style="margin-bottom:8px;color:var(--text-primary);">تصميم متجاوب</h3>
-                        <p style="color:var(--text-secondary);">تجربة مستخدم سلسة على الجوال والتابلت وسطح المكتب.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About CTA -->
-        <section id="about-cta" class="section">
-            <div class="container about-cta-container">
-                <div>
-                    <h2 class="section-title" style="text-align: right; margin-bottom: 1rem;">نبذة عن المشروع</h2>
-                    <p class="section-description" style="text-align: right; margin-bottom:1.5rem;">مشروع تخرج — جامعة
-                        سوهاج، كلية الآداب، قسم الجغرافيا ونظم المعلومات الجغرافية. يهدف لتحديد أفضل المناطق لاكتشاف
-                        المياه الجوفية بدقة.</p>
-                    <div class="cta-buttons">
-                        <a class="cta-button" href="about.html">
-                            تفاصيل المشروع <i class="fas fa-arrow-left"></i>
-                        </a>
-                        <a class="cta-button secondary" href="instructions.html">
-                            طريقة الاستخدام <i class="fas fa-book-open"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="supervisor-card">
-                    <div class="supervisor-icon"><i class="fas fa-award"></i></div>
-                    <h3>إشراف: أ.م.د حمدي نبيه عيد</h3>
-                    <p>بدعم فريق طلاب قسم الجغرافيا ونظم المعلومات الجغرافية</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer id="contact" class="main-footer">
-            <div class="footer-container">
-                <div class="footer-about">
-                    <div class="nav-logo">
-                        <i class="fas fa-water"></i>
-                        <span>المياه الجوفية بسوهاج</span>
-                    </div>
-                    <p>واجهة تفاعلية لعرض وتحليل احتمالية وجود المياه الجوفية باستخدام أدوات GIS الحديثة.</p>
-                    <div class="social-links">
-                        <a href="https://wa.me/201069439981" target="_blank" aria-label="WhatsApp"><i
-                                class="fab fa-whatsapp"></i></a>
-                        <a href="https://www.facebook.com/mohammed.harp.50" target="_blank" aria-label="Facebook"><i
-                                class="fab fa-facebook-f"></i></a>
-                        <a href="https://t.me/Skechware_application_programmer" target="_blank" aria-label="Telegram"><i
-                                class="fab fa-telegram"></i></a>
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <h4>روابط سريعة</h4>
-                    <ul>
-                        <li><a href="groundwater.html">خريطة المياه الجوفية</a></li>
-                        <li><a href="gallery.html">المعرض</a></li>
-                        <li><a href="palestine.html">خريطة فلسطين</a></li>
-                        <li><a href="about.html">عن المشروع</a></li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h4>تواصل معنا</h4>
-                    <p><i class="fab fa-whatsapp" style="color: #25D366;"></i> <a href="https://wa.me/201069439981"
-                            target="_blank" style="text-decoration: none; color: inherit;">01069439981</a></p>
-                    <p><i class="fas fa-envelope"></i> abdelradymohamed74@gmail.com</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© <span id="year"></span> جميع الحقوق محفوظة لمشروع النمذجة المكانية للمياه الجوفية.</p>
-            </div>
-        </footer>
-    </div>
-
-    <script src="js/network-animation.js"></script>
-
-    <!-- Theme Switcher Script -->
-    <script src="js/theme-switcher.js"></script>
-
-    <!-- Minimal JS for navbar & year -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Early Theme Detection -->
     <script>
-        // Mobile menu
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-links');
-        const overlay = document.querySelector('.sidebar-overlay');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            overlay.classList.toggle('active');
-        });
-
-        overlay.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            overlay.classList.remove('active');
-        });
-
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                overlay.classList.remove('active');
-            });
-        });
-
-        // Active link on scroll (only for internal anchors)
-        const links = document.querySelectorAll('.nav-link[href^="#"]');
-        const sections = [...links].map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-        window.addEventListener('scroll', () => {
-            const pos = window.scrollY + 100;
-            sections.forEach((sec, i) => {
-                const top = sec.offsetTop;
-                const bottom = top + sec.offsetHeight;
-                links[i].classList.toggle('active', pos >= top && pos < bottom);
-            });
-        });
-
-        // Year
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // Professional Typewriter Effect
-        const textToType = "النمذجة المكانية لإحتمالية وجود المياه الجوفية في محافظة سوهاج بإستخدام الجيوماتكس والبيئة البرمجية والذكاء الإصطناعي";
-        const typewriterElement = document.getElementById('typewriter-text');
-        let charIndex = 0;
-        let isDeleting = false;
-
-        function typeEffect() {
-            const currentText = textToType.substring(0, charIndex);
-            typewriterElement.textContent = currentText;
-
-            let typeSpeed = isDeleting ? 30 : 60;
-
-            if (!isDeleting && charIndex === textToType.length) {
-                isDeleting = true;
-                typeSpeed = 4000; // Pause at end
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                typeSpeed = 1000; // Pause before start
-            }
-
-            charIndex += isDeleting ? -1 : 1;
-            setTimeout(typeEffect, typeSpeed);
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(typeEffect, 1200);
-        });
-
-        // Initialize Network Animation
-        if (typeof createNetworkAnimation === 'function') {
-            createNetworkAnimation('networkContainer');
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
         }
     </script>
 
-    <script src="global-fixes.js"></script>
-</body>
+    <style>
+        :root {
+            --primary: #0ea5e9;
+            --primary-dark: #0284c7;
+            --secondary: #3b82f6;
+            --bg-dark: #020617;
+            --text-light: #f8fafc;
+            --card-glass: rgba(15, 23, 42, 0.6);
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Abstract Gradient Background Animations */
+        .color-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            animation: float 10s ease-in-out infinite;
+        }
+        .blob-1 {
+            width: 400px;
+            height: 400px;
+            background: rgba(14, 165, 233, 0.4);
+            top: -100px;
+            right: -100px;
+        }
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background: rgba(59, 130, 246, 0.3);
+            bottom: -150px;
+            left: -150px;
+            animation-delay: -5s;
+        }
+        .blob-3 {
+            width: 300px;
+            height: 300px;
+            background: rgba(16, 185, 129, 0.2);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-duration: 15s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.05); }
+        }
+
+        /* Network Canvas overlay */
+        .network-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.6;
+        }
+
+        /* Main Content Glass Card */
+        .splash-content {
+            position: relative;
+            z-index: 10;
+            background: var(--card-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4rem 3rem;
+            border-radius: 24px;
+            text-align: center;
+            max-width: 650px;
+            width: 90%;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        @keyframes fade-up {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo-icon {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            animation: pulse-glow 3s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(14, 165, 233, 0.4)); }
+            50% { filter: drop-shadow(0 0 25px rgba(14, 165, 233, 0.8)); transform: scale(1.05); }
+        }
+
+        .splash-title {
+            font-size: 1.8rem; /* Reduced from 2.2rem */
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, #7dd3fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .splash-subtitle {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .progress-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 2rem auto 0;
+            text-align: right;
+            direction: rtl;
+        }
+
+        .progress-percent-container {
+            font-size: 4rem;
+            font-weight: 800;
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            gap: 5px;
+            margin-bottom: 0.8rem;
+            color: #ffffff;
+            text-shadow: 0 0 25px rgba(14, 165, 233, 0.6);
+            direction: ltr;
+        }
+
+        .percent-sign {
+            font-size: 2rem;
+            color: var(--secondary);
+            font-weight: 700;
+            opacity: 0.9;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--primary);
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            border-radius: 10px;
+            transition: width 0.1s linear;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.6);
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.4) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) skewX(-20deg); }
+            100% { transform: translateX(200%) skewX(-20deg); }
+        }
+
+        /* ----- Light Mode Variations ----- */
+        html[data-theme="light"], html[data-theme="light"] body {
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+
+        html[data-theme="light"] .splash-content {
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+        }
+
+        html[data-theme="light"] .splash-title {
+            background: linear-gradient(135deg, #0f172a, #0284c7);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        html[data-theme="light"] .splash-subtitle {
+            color: #475569;
+        }
+
+        html[data-theme="light"] .progress-percent-container {
+            color: #0f172a;
+            text-shadow: 0 0 15px rgba(14, 165, 233, 0.2);
+        }
+
+        html[data-theme="light"] .percent-sign {
+            color: #0284c7;
+        }
+
+        html[data-theme="light"] #progressMessage {
+            color: #334155 !important;
+            font-weight: 700;
+        }
+
+        html[data-theme="light"] .progress-track {
+            background: rgba(0, 0, 0, 0.08); /* Thicker contrast on white */
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .splash-title { font-size: 1.6rem; }
+            .splash-content { padding: 2rem 1.2rem; width: 95%; }
+            .progress-container { margin-top: 1.5rem; width: 100%; }
+            .progress-percent-container { font-size: 3rem; margin-bottom: 0.5rem; }
+            .percent-sign { font-size: 1.5rem; }
+            .splash-subtitle { font-size: 1.05rem; margin-bottom: 1.5rem; }
+            .logo-icon { font-size: 3rem; margin-bottom: 1rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Background Effects -->
+    <div class="color-blob blob-1"></div>
+    <div class="color-blob blob-2"></div>
+    <div class="color-blob blob-3"></div>
+    
+    <div class="network-container" id="networkContainer"></div>
+
+    <!-- Main Content -->
+    <main class="splash-content">
+        <i class="fas fa-layer-group logo-icon"></i>
+        <h1 class="splash-title">نظام رصد المياه الجوفية - محافظة سوهاج</h1>
+
+        <div class="progress-container">
+            <div class="progress-percent-container">
+                <span id="progressPercent">0</span><span class="percent-sign">%</span>
+            </div>
+            <div class="progress-header">
+                <span id="progressMessage" style="color: var(--text-light); opacity: 0.8; font-size: 1rem;">تهيئة النظام...</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Network Animation JS (reused from your project) -->
+    <script src="js/network-animation.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const fill = document.getElementById('progressFill');
+            const percentText = document.getElementById('progressPercent');
+            const messageText = document.getElementById('progressMessage');
+            
+            let progress = 0;
+            // Simulated loading timing
+            const loadingInterval = setInterval(() => {
+                // Determine increment size logic
+                let increment = Math.random() * 2.5 + 0.5;
+                if (progress > 80) increment *= 0.5; // slow down at the end
+                
+                progress += increment;
+                
+                if (progress >= 100) {
+                    progress = 100;
+                    fill.style.width = '100%';
+                    percentText.innerText = '100';
+                    messageText.innerText = 'اكتمل التحميل، جاري التوجيه...';
+                    clearInterval(loadingInterval);
+                    
+                    // Delay before redirecting to home page
+                    setTimeout(() => {
+                        window.location.href = 'home.html';
+                    }, 500);
+                } else {
+                    fill.style.width = progress + '%';
+                    percentText.innerText = Math.floor(progress);
+                    
+                    if(progress < 30) messageText.innerText = 'تهيئة النظام المتجهي...';
+                    else if(progress < 60) messageText.innerText = 'تحميل النماذج المكانية (GeoTIFF)...';
+                    else if(progress < 85) messageText.innerText = 'معالجة البيانات الجيوفيزيائية...';
+                    else messageText.innerText = 'جاري تحضير واجهة المستخدم...';
+                }
+            }, 60);
+        });
+    </script>
+</body>
 </html>
