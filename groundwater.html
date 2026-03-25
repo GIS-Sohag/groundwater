@@ -1060,6 +1060,7 @@
 
     <!-- GeoTIFF Handling Libraries -->
     <script src="https://unpkg.com/proj4"></script>
+    <script src="https://unpkg.com/geotiff"></script>
     <script src="https://unpkg.com/georaster"></script>
     <script src="https://unpkg.com/geoblaze"></script>
 
@@ -1227,19 +1228,19 @@
             let geojsonData = null; // Will be loaded via fetch
             let depthRaster = null; // Will hold the GeoTIFF reference
 
-            // Initialize GeoTIFF depth raster
+            let tiffObject = null; // Holds the streaming GeoTIFF reference
+
+            // Initialize GeoTIFF depth raster (Optimized: Only loads header/partial data)
             async function initDepthRaster() {
                 const url = "data/groundwater_depth.tif";
                 try {
-                    const response = await fetch(url);
-                    if (!response.ok) throw new Error("فشل تحميل الملف");
-                    const buffer = await response.arrayBuffer();
-                    depthRaster = await parseGeoraster(buffer);
-                    console.log("تم تهيئة ملف أعماق المياه الجوفية بنجاح");
-                    // Refresh legend
+                    // This ONLY fetches the header, NOT the whole file. 
+                    // This makes the page load instantly regardless of TIF size.
+                    tiffObject = await GeoTIFF.fromUrl(url); 
+                    console.log("تم تهيئة ملف أعماق المياه الجوفية (نظام التحميل الذكي) بنجاح");
                     createLegend();
                 } catch (e) {
-                    console.warn("ملف أعماق المياه الجوفية غير موجود أو لا يمكن تحميله:", e);
+                    console.warn("ملف أعماق المياه الجوفية غير موجود أو لا يدعم التحميل الجزئي:", e);
                 }
             }
             initDepthRaster();
@@ -1431,8 +1432,8 @@
                     }
                 }
 
-                // Add Depth Layer Legend (TIF)
-                if (depthRaster) {
+                // Add Depth Layer Legend (TIF - now using streaming tiffObject)
+                if (tiffObject) {
                     legendHTML += `
                         <div style="margin-top: 1.2rem; margin-bottom: 0.8rem; font-weight: 700; font-size: 0.9rem; border-top: 1px solid var(--border-color); padding-top: 0.8rem; color: var(--text-secondary);">العمق التقريبي للموقع المحدد</div>
                         <div class="legend-item">
@@ -1787,69 +1788,61 @@
                     // No need to set display:block on screen - that causes logos to flash!
                     setTimeout(() => {
                         window.print();
-                        // printContainer is still display:none on screen, no cleanup needed
-                    }, 300);
+                    }, 800); // Increased delay for browser to render the image properly
                 };
 
                 if (!isNaN(lat) && !isNaN(lng)) {
                     const captureDiv = document.getElementById('google-capture-div');
+                    const gmap = window.printGmap;
                     
-                    // Re-use pre-initialized map if available, otherwise create new one
-                    const gmap = window.printGmap || new google.maps.Map(captureDiv, {
-                        center: { lat: lat, lng: lng },
-                        zoom: 15,
-                        mapTypeId: google.maps.MapTypeId.SATELLITE,
-                        disableDefaultUI: true,
-                        gestureHandling: 'none'
-                    });
-                    window.printGmap = gmap;
+                    if (gmap) {
+                        let captureDone = false;
+                        const finalize = () => {
+                            if (captureDone) return;
+                            captureDone = true;
+                            
+                            // Hide UI controls in capture
+                            captureDiv.querySelectorAll('.gm-style-cc, .gm-bundled-control, .gmnoprint, a').forEach(el => {
+                                el.style.setProperty('display', 'none', 'important');
+                            });
 
-                    // Capture function
-                    let captured = false;
-                    const doCapture = () => {
-                        if (captured) return;
-                        captured = true;
+                            html2canvas(captureDiv, {
+                                useCORS: true,
+                                allowTaint: false, // Ensure no security errors
+                                logging: false,
+                                width: 800,
+                                height: 500,
+                                scale: 1.5 // Good balance of quality and speed
+                            }).then(function(canvas) {
+                                mapImg.src = canvas.toDataURL('image/png');
+                                setTimeout(finishPrint, 1000);
+                            }).catch(function(err) {
+                                console.warn('Capture failed:', err);
+                                // Absolute fallback to Esri if capture breaks
+                                mapImg.src = `https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=${lng-0.005},${lat-0.005},${lng+0.005},${lat+0.005}&bboxSR=4326&size=800,500&imageSR=4326&format=jpg&f=image`;
+                                setTimeout(finishPrint, 1000);
+                            });
+                        };
 
-                        // Hide Google Maps attribution/copyright text before capturing
-                        captureDiv.querySelectorAll('.gm-style-cc, .gm-bundled-control, .gmnoprint, a').forEach(el => {
-                            el.style.setProperty('display', 'none', 'important');
+                        // Use both 'idle' and 'tilesloaded' for maximum stability
+                        const tilesListener = google.maps.event.addListenerOnce(gmap, 'tilesloaded', () => {
+                            setTimeout(finalize, 2000);
                         });
 
-                        html2canvas(captureDiv, {
-                            useCORS: true,
-                            allowTaint: true,
-                            logging: false,
-                            width: 800,
-                            height: 500
-                        }).then(function(canvas) {
-                            mapImg.src = canvas.toDataURL('image/png');
-                            window.scrollTo(0, 0); // Prevent page scroll side-effects
-                            finishPrint(); // No display:block - @media print handles it
-                        }).catch(function(err) {
-                            console.warn('html2canvas failed:', err);
-                            mapImg.src = `https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=${lng-0.005},${lat-0.005},${lng+0.005},${lat+0.005}&bboxSR=4326&size=800,500&imageSR=4326&format=jpg&f=image`;
-                            window.scrollTo(0, 0);
-                            finishPrint();
-                        });
-                    };
+                        // Failsafe for tilesloaded
+                        setTimeout(() => {
+                            if (!captureDone) finalize();
+                        }, 5000);
 
-                    // IMPORTANT: Register idle listener BEFORE setCenter/setZoom so we never miss it
-                    const idleFailsafe = setTimeout(() => doCapture(), 5000);
-                    
-                    const registerIdleAndMove = () => {
-                        google.maps.event.addListenerOnce(gmap, 'idle', function() {
-                            clearTimeout(idleFailsafe);
-                            setTimeout(doCapture, 1500);
-                        });
                         gmap.setCenter({ lat: lat, lng: lng });
                         gmap.setZoom(15);
-                    };
-
-                    setTimeout(registerIdleAndMove, 100);
+                    } else {
+                        finishPrint();
+                    }
                 } else {
-                    finishPrint(); // No coords, just print without map
+                    finishPrint();
                 }
-            }
+            };
 
 
             // Initial state for cards
@@ -1916,15 +1909,31 @@
                     }
                 }
 
-                // Query Depth value once
+                // Query Depth value using Optimized Partial Fetch
                 let depthValue = null;
-                if (depthRaster) {
+                if (tiffObject) {
                     try {
-                        const result = await geoblaze.identify(depthRaster, [latlng.lng, latlng.lat]);
-                        if (result && result[0] !== null && result[0] !== undefined && !isNaN(result[0])) {
-                            depthValue = result[0];
+                        const image = await tiffObject.getImage();
+                        const bbox = image.getBoundingBox();
+                        const [resx, resy] = image.getResolution();
+                        
+                        // Convert LatLng to appropriate pixel coordinates
+                        const px = Math.floor((latlng.lng - bbox[0]) / resx);
+                        const py = Math.floor((bbox[3] - latlng.lat) / Math.abs(resy));
+
+                        // Fetch ONLY the 1x1 pixel data for this specific location
+                        const data = await image.readRasters({
+                            window: [px, py, px + 1, py + 1],
+                            samples: [0]
+                        });
+
+                        if (data && data[0] && data[0][0] !== undefined) {
+                            const val = data[0][0];
+                            if (val > -1000 && val < 5000) { // Practical bounds check
+                                depthValue = val;
+                            }
                         }
-                    } catch (err) { console.error("Raster identify error:", err); }
+                    } catch (err) { console.warn("Raster partial read error:", err); }
                 }
 
                 try {
