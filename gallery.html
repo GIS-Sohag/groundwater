@@ -957,10 +957,10 @@
     <div class="nav-container">
       <div class="nav-brand">
         <i class="fas fa-water"></i>
-        <span>المياه الجوفية بسوهاج</span>
+        <span data-i18n="nav.brand">المياه الجوفية بسوهاج</span>
       </div>
       <div class="nav-links">
-        <a href="home.html" class="nav-link">الرئيسية</a>
+
         <a href="groundwater.html" class="nav-link">الخريطة التفاعلية</a>
         <a href="palestine.html" class="nav-link">أولى القبلتين</a>
         <a href="about.html" class="nav-link">عن المشروع</a>
@@ -1638,6 +1638,53 @@ print('Number of images used:', s2Filtered.size());`
     }
 
     // Render gallery with performance optimization
+        function translateText(text) {
+        if(!window.i18n || window.i18n.lang !== 'en' || !text) return text;
+        const replacements = {
+            'خريطة جيولوجية سوهاج': 'Geological Map of Sohag',
+            'توضح التراكيب والصخور التي تؤثر على الخزانات الجوفية.': 'Shows structures and rocks affecting aquifers.',
+            'خريطة الارتفاعات الرقمية': 'DEM Map',
+            'خريطة الانحدار': 'Slope Map',
+            'خريطة الجيومورفولوجيا': 'Geomorphology Map',
+            'توضح تضاريس المحافظة ومسارات تصريف المياه.': 'Shows topography and drainage paths.',
+            'توضح درجة ميل الأرض وتأثيرها على تسرب المياه.': 'Shows land slopes affecting infiltration.',
+            'توضح الأشكال الأرضية المؤثرة على تجمع المياه.': 'Shows landforms affecting water accumulation.',
+            'خريطة مؤشر الرطوبة الطبوغرافي': 'Topographic Wetness Index Map',
+            'خريطة معدلات مجموع المطر السنوي': 'Annual Precipitation Map',
+            'خريطة معدلات التبخر النتح السنوي': 'Annual Evapotranspiration Map',
+            'خريطة مؤشر الغطاء النباتي المطبع': 'NDVI Map',
+            'خريطة نسيج التربة': 'Soil Texture Map',
+            'خريطة القرب والبعد عن المسطحات المائية': 'Distance from Water Bodies Map',
+            'خريطة كثافة التراكيب الخطية': 'Lineament Density Map',
+            'خريطة كثافة المجاري المائية': 'Drainage Density Map',
+            'خريطة منطقة الدراسة': 'Study Area Map',
+            'خريطة التقسيم الإداري': 'Administrative Division Map',
+            'خريطة الكثافة السكانية': 'Population Density Map',
+            'لمحافظة سوهاج': 'of Sohag',
+            'في محافظة سوهاج': 'in Sohag Governorate',
+            'تم الاعتماد على': 'Based on',
+            'شيب فايل الحدود الإدارية لمصر لآخر تعداد عام 2017': 'Egypt Administrative Boundaries Shapefile (2017 census)',
+            'تم استخراج خريطة الكثافة بالاعتماد على خريطة التراكيب الخطية بواسطة': 'Density map extracted using Line Density tool in',
+            'تم اشتقاق كثافة المجاري بالاعتماد على خريطة شبكة المجاري المائية بواسطة': 'Drainage density derived using Line Density tool in',
+            'خريطة توضح أنواع ونسيج التربة وخصائصها': 'Map showing soil texture and characteristics',
+            'خريطة تحليل كثافة شبكة المجاري المائية والتصريف': 'Analysis map of drainage network density',
+            'خريطة تحليل المسافة من المسطحات المائية والأنهار': 'Analysis map of distance to rivers',
+            'خريطة توزيع معدلات هطول الأمطار السنوية': 'Annual rainfall rates distribution map',
+            'خريطة عامة توضح حدود وموقع منطقة الدراسة': 'General map showing the study area location',
+            'خريطة التقسيم الإداري والمراكز والمدن': 'Map of administrative divisions and cities',
+            'خريطة توزيع الكثافة السكانية والتجمعات العمرانية': 'Map of population density and urban clusters 2024',
+            'دقة مكانية': 'Spatial Resolution',
+            'موقع': 'website',
+            'الكود الأول': 'First Code',
+            'المصدر': 'Source',
+            'والوصف': 'Description'
+        };
+        let t = text;
+        for (const [ar, en] of Object.entries(replacements)) {
+            t = t.split(ar).join(en);
+        }
+        return t;
+    }
     function renderGallery() {
       const grid = document.getElementById('galleryGrid');
       const emptyState = document.getElementById('emptyState');
@@ -1668,14 +1715,14 @@ print('Number of images used:', s2Filtered.size());`
               <div class="image-container">
                 <div class="image-placeholder">
                   <i class="fas fa-image"></i>
-                  <span>جاري التحميل...</span>
+                  <span>${window.i18n && window.i18n.lang === 'en' ? 'Loading...' : 'جاري التحميل...'}</span>
                 </div>
-                <img data-src="${image.thumbnail || image.src}" alt="${image.title}" class="gallery-image lazy-image" 
+                <img data-src="${image.thumbnail || image.src}" alt="${translateText(image.title)}" class="gallery-image lazy-image" 
                      loading="lazy">
               </div>
               <div class="gallery-info">
-                <div class="gallery-title">${image.title}</div>
-                <div class="gallery-description">${image.description}</div>
+                <div class="gallery-title">${translateText(image.title)}</div>
+                <div class="gallery-description">${translateText(image.description)}</div>
                 <div class="gallery-meta">
                   <div class="gallery-date">
                     <i class="fas fa-calendar"></i>
@@ -2056,9 +2103,13 @@ print('Number of images used:', s2Filtered.size());`
 
   <script src="js/network-animation.js"></script>
 
-  <!-- Theme Switcher Script -->
+  <!-- Theme Switcher JS -->
+  <script src="js/i18n.js?v=4"></script>
   <script src="js/theme-switcher.js"></script>
   <script src="global-fixes.js"></script>
 </body>
 
 </html>
+
+
+

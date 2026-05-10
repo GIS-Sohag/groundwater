@@ -1368,14 +1368,14 @@
         <div class="nav-container">
             <div class="nav-brand">
                 <i class="fas fa-mosque"></i>
-                <span>أولى القبلتين</span>
+                <span data-i18n="nav.brand">أولى القبلتين</span>
             </div>
             <div class="nav-links">
-                <a class="nav-link" href="home.html">الرئيسية</a>
-                <a class="nav-link" href="groundwater.html">الخريطة التفاعلية</a>
-                <a class="nav-link" href="gallery.html">المعرض</a>
-                <a class="nav-link active" href="palestine.html">أولى القبلتين</a>
-                <a class="nav-link" href="about.html">عن المشروع</a>
+                <a class="nav-link" href="home.html" data-i18n="nav.home">الرئيسية</a>
+                <a class="nav-link" href="groundwater.html" data-i18n="nav.map">الخريطة التفاعلية</a>
+                <a class="nav-link" href="gallery.html" data-i18n="nav.gallery">المعرض</a>
+                <a class="nav-link active" href="palestine.html" data-i18n="nav.palestine">أولى القبلتين</a>
+                <a class="nav-link" href="about.html" data-i18n="nav.about">عن المشروع</a>
                 <button class="theme-switcher-btn" id="theme-switcher" title="تبديل الوضع">
                     <i class="fas fa-sun"></i>
                 </button>
@@ -1393,17 +1393,18 @@
     <main class="main-content">
         <!-- Page Title -->
         <div class="page-title">
-            <h1><i class="fas fa-mosque"></i> أولى القبلتين</h1>
-            <p>المسجد الأقصى المبارك - قبلة المسلمين الأولى وثالث الحرمين الشريفين</p>
+            <h1 data-i18n="pal.page.title"><i class="fas fa-mosque"></i> أولى القبلتين</h1>
+            <p data-i18n="pal.subtitle">المسجد الأقصى المبارك - قبلة المسلمين الأولى وثالث الحرمين الشريفين</p>
         </div>
 
         <!-- Quran Verse -->
         <div class="quran-verse">
-            <div class="verse-text">
+            <div class="verse-text quran-text">
                 "سُبْحَانَ الَّذِي أَسْرَىٰ بِعَبْدِهِ لَيْلًا مِّنَ الْمَسْجِدِ الْحَرَامِ إِلَى الْمَسْجِدِ الْأَقْصَى
                 الَّذِي بَارَكْنَا حَوْلَهُ لِنُرِيَهُ مِنْ آيَاتِنَا ۚ إِنَّهُ هُوَ السَّمِيعُ الْبَصِيرُ"
             </div>
-            <div class="verse-reference">سورة الإسراء - الآية 1</div>
+            <div class="verse-translation" data-i18n="pal.verse.text" style="display:none; padding: 10px; font-size: 1rem; opacity: 0.9; line-height: 1.6; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 15px;"></div>
+            <div class="verse-reference" data-i18n="pal.verse.ref">سورة الإسراء - الآية 1</div>
         </div>
 
         <!-- Map Section -->
@@ -1427,8 +1428,8 @@
             <div class="aqsa-header">
                 <button class="close-card-btn" onclick="closeAqsaCard()"><i class="fas fa-times"></i></button>
                 <div class="quote-icon"><i class="fas fa-mosque"></i></div>
-                <h2 style="color: var(--accent-blue); margin-bottom: 0.5rem;">المسجد الأقصى المبارك</h2>
-                <p style="color: var(--text-secondary);">القدس الشريف - فلسطين</p>
+                <h2 data-i18n="pal.mosque.title" style="color: var(--accent-blue); margin-bottom: 0.5rem;">المسجد الأقصى المبارك</h2>
+                <p data-i18n="pal.mosque.loc" style="color: var(--text-secondary);">القدس الشريف - فلسطين</p>
             </div>
 
             <div class="aqsa-content-grid">
@@ -1439,11 +1440,11 @@
                     </p>
                     <div class="audio-controls"
                         style="background: var(--bg-primary); padding: 1rem; border-radius: 15px; border: 1px solid var(--border-color);">
-                        <p id="audioStatus"
-                            style="margin-bottom: 1rem; font-weight: bold; color: var(--text-secondary);"><i
-                                class="fas fa-volume-mute"></i> الصوت متوقف</p>
+                        <p id="audioStatus" style="margin-bottom: 1rem; font-weight: bold; color: var(--text-secondary);">
+                            <i class="fas fa-volume-mute"></i> <span data-i18n="pal.adhan.off">الصوت متوقف</span>
+                        </p>
                         <button id="audioBtn" class="control-btn" onclick="toggleAdhan()">
-                            <i class="fas fa-play"></i> تشغيل الأذان
+                            <i class="fas fa-play"></i> <span data-i18n="pal.adhan.play">تشغيل الأذان</span>
                         </button>
                     </div>
                 </div>
@@ -1505,7 +1506,7 @@
         <div class="messages-card">
             <div class="messages-header">
                 <div class="quote-icon"><i class="fas fa-book-quran"></i></div>
-                <h2>رسائل من القرآن الكريم لأهل فلسطين</h2>
+                <h2 data-i18n="pal.messages.title">رسائل من القرآن الكريم لأهل فلسطين</h2>
                 <div style="margin-top: 1.5rem;">
                     <label for="reciterSelect" style="color: var(--text-secondary); margin-left: 0.5rem;">اختر
                         القارئ:</label>
@@ -1527,7 +1528,7 @@
             <div class="messages-grid">
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text" style="font-size: 1.6rem;">"يَا أَيُّهَا الَّذِينَ آمَنُوا اسْتَعِينُوا
@@ -1560,13 +1561,13 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"أَمْ حَسِبْتُمْ أَن تَدْخُلُوا الْجَنَّةَ وَلَمَّا يَأْتِكُم مَّثَلُ
                             الَّذِينَ خَلَوْا مِن قَبْلِكُم ۖ مَّسَّتْهُمُ الْبَأْسَاءُ وَالضَّرَّاءُ وَزُلْزِلُوا
                             حَتَّىٰ يَقُولَ الرَّسُولُ وَالَّذِينَ آمَنُوا مَعَهُ مَتَىٰ نَصْرُ اللَّهِ ۗ أَلَا إِنَّ
-                            نَصْرَ اللَّهِ قَرِيبٌ ﴿٢١٤﴾"</p>
+                            نَصْرُ اللَّهِ قَرِيبٌ ﴿٢١٤﴾"</p>
                         <span class="verse-ref">سورة البقرة - الآية 214</span>
                     </div>
                     <div class="message-actions">
@@ -1591,7 +1592,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"فَلَمَّا فَصَلَ طَالُوتُ بِالْجُنُودِ قَالَ لَا تَشْرَبُوا مِنْهُ إِلَّا
@@ -1624,7 +1625,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"قُل لِّلَّذِينَ كَفَرُوا سَتُغْلَبُونَ وَتُحْشَرُونَ إِلَىٰ جَهَنَّمَ ۚ
@@ -1655,7 +1656,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"لَن يَضُرُّوكُمْ إِلَّا أَذًى ۖ وَإِن يُقَاتِلُوكُمْ يُوَلُّوكُمُ
@@ -1687,7 +1688,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"إِن تَمْسَسْكُمْ حَسَنَةٌ تَسُؤْهُمْ وَإِن تُصِبْكُمْ سَيِّئَةٌ
@@ -1716,7 +1717,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"وَلَا تَهِنُوا وَلَا تَحْزَنُوا وَأَنتُمُ الْأَعْلَوْنَ إِن كُنتُم
@@ -1750,7 +1751,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"وَلَئِن قُتِلْتُمْ فِي سَبِيلِ اللَّهِ أَوْ مُتُّمْ لَمَغْفِرَةٌ مِّنَ
@@ -1779,7 +1780,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"إِن يَنصُرْكُمُ اللَّهُ فَلَا غَالِبَ لَكُمْ ۖ وَإِن يَخْذُلْكُمْ فَمَن
@@ -1808,7 +1809,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"وَمَا أَصَابَكُمْ يَوْمَ الْتَقَى الْجَمْعَانِ فَبِإِذْنِ اللَّهِ
@@ -1816,7 +1817,7 @@
                             تَعَالَوْا قَاتِلُوا فِي سَبِيلِ اللَّهِ أَوِ ادْفَعُوا ۖ قَالُوا لَوْ نَعْلَمُ قِتَالًا
                             لَّاتَّبَعْنَاكُمْ ۗ هُمْ لِلْكُفْرِ يَوْمَئِذٍ أَقْرَبُ مِنْهُمْ لِلْإِيمَانِ ۚ يَقُولُونَ
                             بِأَفْوَاهِهِم مَّا لَيْسَ فِي قُلُوبِهِمْ ۗ وَاللَّهُ أَعْلَمُ بِمَا يَكْتُمُونَ ﴿١٦٧﴾
-                            الَّذِينَ قَالُوا لِإِخْوَانِهِمْ وَقَعَدُوا لَوْ أَطَاعُونَا مَا قُتِلُوا ۗ قُلْ
+                            الَّذِينَ قَالُوا لِإِخْوَانِهِمْ وَقَدُوا لَوْ أَطَاعُونَا مَا قُتِلُوا ۗ قُلْ
                             فَادْرَءُوا عَنْ أَنفُسِكُمُ الْمَوْتَ إِن كُنتُمْ صَادِقِينَ ﴿١٦٨﴾ وَلَا تَحْسَبَنَّ
                             الَّذِينَ قُتِلُوا فِي سَبِيلِ اللَّهِ أَمْوَاتًا ۚ بَلْ أَحْيَاءٌ عِندَ رَبِّهِمْ
                             يُرْزَقُونَ ﴿١٦٩﴾ فَرِحِينَ بِمَا آتَاهُمُ اللَّهُ مِن فَضْلِهِ وَيَسْتَبْشِرُونَ
@@ -1852,7 +1853,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"رَبَّنَا وَآتِنَا مَا وَعَدتَّنَا عَلَىٰ رُسُلِكَ وَلَا تُخْزِنَا يَوْمَ
@@ -1889,7 +1890,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"يَا أَيُّهَا الَّذِينَ آمَنُوا خُذُوا حِذْرَكُمْ فَانفِرُوا ثُبَاتٍ أَوِ
@@ -1934,7 +1935,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"لَّا يَسْتَوِي الْقَاعِدُونَ مِنَ الْمُؤْمِنِينَ غَيْرُ أُولِي الضَّرَرِ
@@ -1967,7 +1968,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"إِذْ يُوحِي رَبُّكَ إِلَى الْمَلَائِكَةِ أَنِّي مَعَكُمْ فَثَبِّتُوا
@@ -1997,7 +1998,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا لَقِيتُمُ الَّذِينَ كَفَرُوا زَحْفًا
@@ -2033,7 +2034,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"إِنَّ الَّذِينَ كَفَرُوا يُنفِقُونَ أَمْوَالَهُمْ لِيَصُدُّوا عَن سَبِيلِ
@@ -2063,7 +2064,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"وَأَعِدُّوا لَهُم مَّا اسْتَطَعْتُم مِّن قُوَّةٍ وَمِن رِّبَاطِ الْخَيْلِ
@@ -2094,7 +2095,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"قَاتِلُوهُمْ يُعَذِّبْهُمُ اللَّهُ بِأَيْدِيكُمْ وَيُخْزِهِمْ
@@ -2124,7 +2125,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"إِنَّ اللَّهَ اشْتَرَىٰ مِنَ الْمُؤْمِنِينَ أَنفُسَهُمْ وَأَمْوَالَهُم
@@ -2156,7 +2157,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"يَا أَيُّهَا الَّذِينَ آمَنُوا قَاتِلُوا الَّذِينَ يَلُونَكُم مِّنَ
@@ -2169,7 +2170,7 @@
                             سُورَةٌ نَّظَرَ بَعْضُهُمْ إِلَىٰ بَعْضٍ هَلْ يَرَاكُم مِّنْ أَحَدٍ ثُمَّ انصَرَفُوا ۚ
                             صَرَفَ اللَّهُ قُلُوبَهُم بِأَنَّهُمْ قَوْمٌ لَّا يَفْقَهُونَ ﴿١٢٧﴾ لَقَدْ جَاءَكُمْ رَسُولٌ
                             مِّنْ أَنفُسِكُمْ عَزِيزٌ عَلَيْهِ مَا عَنِتُّمْ حَرِيصٌ عَلَيْكُم بِالْمُؤْمِنِينَ رَءُوفٌ
-                            رَّحِيمٌ ﴿١٢٨﴾ فَإِن تَوَلَّوْا فَقُلْ حَسْبِيَ اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ ۖ عَلَيْهِ
+                            رَّحِيمًا ﴿١٢٨﴾ فَإِن تَوَلَّوْا فَقُلْ حَسْبِيَ اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ ۖ عَلَيْهِ
                             تَوَكَّلْتُ ۖ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ ﴿١٢٩﴾"</p>
                         <span class="verse-ref">سورة التوبة - الآيات 123-129</span>
                     </div>
@@ -2195,7 +2196,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"وَلَا تَحْسَبَنَّ اللَّهَ غَافِلًا عَمَّا يَعْمَلُ الظَّالِمُونَ ۚ
@@ -2232,7 +2233,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"إِنَّ اللَّهَ يُدَافِعُ عَنِ الَّذِينَ آمَنُوا ۗ إِنَّ اللَّهَ لَا
@@ -2261,7 +2262,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"ارْجِعْ إِلَيْهِمْ فَلَنَأْتِيَنَّهُم بِجُنُودٍ لَّا قِبَلَ لَهُم بِهَا
@@ -2289,7 +2290,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"وَمِنْ آيَاتِهِ أَن يُرْسِلَ الرِّيَاحَ مُبَشِّرَاتٍ وَلِيُذِيقَكُم مِّن
@@ -2320,7 +2321,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"فَاصْبِرْ إِنَّ وَعْدَ اللَّهِ حَقٌّ ۖ وَلَا يَسْتَخِفَّنَّكَ الَّذِينَ
@@ -2348,7 +2349,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"مِّنَ الْمُؤْمِنِينَ رِجَالٌ صَدَقُوا مَا عَاهَدُوا اللَّهَ عَلَيْهِ ۖ
@@ -2379,7 +2380,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"وَلَقَدْ سَبَقَتْ كَلِمَتُنَا لِعِبَادِنَا الْمُرْسَلِينَ ﴿١٧١﴾ إِنَّهُمْ
@@ -2408,7 +2409,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"إِنَّا لَنَنصُرُ رُسُلَنَا وَالَّذِينَ آمَنُوا فِي الْحَيَاةِ الدُّنْيَا
@@ -2438,7 +2439,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"فَإِذَا لَقِيتُمُ الَّذِينَ كَفَرُوا فَضَرْبَ الرِّقَابِ حَتَّىٰ إِذَا
@@ -2473,7 +2474,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"أَمْ يَقُولُونَ نَحْنُ جَمِيعٌ مُّنتَصِرٌ ﴿٤٤﴾ سَيُهْزَمُ الْجَمْعُ
@@ -2504,7 +2505,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text" style="font-size: 1.25rem; line-height: 2;">"أَلَمْ تَرَ إِلَى الَّذِينَ
@@ -2547,7 +2548,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"لَا يُقَاتِلُونَكُمْ جَمِيعًا إِلَّا فِي قُرًى مُّحَصَّنَةٍ أَوْ مِن
@@ -2577,7 +2578,7 @@
 
                 <div class="message-item">
                     <div class="message-header">
-                        <h3>يا أهل فلسطين</h3>
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"يَا أَيُّهَا الَّذِينَ آمَنُوا هَلْ أَدُلُّكُمْ عَلَىٰ تِجَارَةٍ
@@ -2585,7 +2586,7 @@
                             سَبِيلِ اللَّهِ بِأَمْوَالِكُمْ وَأَنفُسِكُمْ ۚ ذَٰلِكُمْ خَيْرٌ لَّكُمْ إِن كُنتُمْ
                             تَعْلَمُونَ ﴿١١﴾ يَغْفِرْ لَكُمْ ذُنُوبَكُمْ وَيُدْخِلْكُمْ جَنَّاتٍ تَجْرِي مِن تَحْتِهَا
                             الْأَنْهَارُ وَمَسَاكِنَ طَيِّبَةً فِي جَنَّاتِ عَدْنٍ ۚ ذَٰلِكَ الْفَوْزُ الْعَظِيمُ ﴿١٢﴾
-                            وَأُخْرَىٰ تُحِبُّونَهَا ۖ نَصْرٌ مِّنَ اللَّهِ وَفَتْحٌ قَرِيبٌ ۗ وَبَشِّرِ الْمُؤْمِنِينَ
+                            وَأُخْرَىٰ تُحِبُّونَهَا ۖ نَصْرٌ مِّنَ اللَّهِ وَفَتْحٌ قَرِيبٌ ۗ وبَشِّرِ الْمُؤْمِنِينَ
                             ﴿١٣﴾"</p>
                         <span class="verse-ref">سورة الصف - الآيات 10-13</span>
                     </div>
@@ -2615,7 +2616,7 @@
         <div class="messages-card video-card" style="margin-top: 2rem;">
             <div class="messages-header">
                 <div class="quote-icon"><i class="fab fa-youtube"></i></div>
-                <h2>فيديو عن فلسطين</h2>
+                <h2 data-i18n="pal.video.title">فيديو عن فلسطين</h2>
             </div>
             <div
                 style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; border-radius: 15px; margin-bottom: 1.5rem; background: #000;">
@@ -2632,13 +2633,13 @@
                 <img src="images/خريطة دولة فلسطين.png" alt="خريطة دولة فلسطين" class="gallery-image">
             </div>
             <div class="gallery-info">
-                <div class="gallery-title">خريطة دولة فلسطين</div>
-                <div class="gallery-description">خريطة تفصيلية وشاملة لحدود دولة فلسطين التاريخية، توضح المحافظات
+                <div class="gallery-title" data-i18n="pal.map.title">خريطة دولة فلسطين</div>
+                <div class="gallery-description" data-i18n="pal.map.desc">خريطة تفصيلية وشاملة لحدود دولة فلسطين التاريخية، توضح المحافظات
                     والمقاطعات والمعالم الجغرافية الرئيسية.</div>
                 <div class="gallery-meta">
                     <div class="gallery-date">
                         <i class="fas fa-calendar"></i>
-                        7 أكتوبر 2025
+                        <span data-i18n='pal.map.date'>7 أكتوبر 2025</span>
                     </div>
                     <div class="gallery-size">
                         <i class="fas fa-file-image"></i>
@@ -2706,6 +2707,7 @@
     <script src="https://unpkg.com/leaflet-geosearch@3.8.0/dist/geosearch.umd.js"></script>
     <script src="https://unpkg.com/leaflet.polylinemeasure/Leaflet.Polyline.Measure.js"></script>
     <script src="js/network-animation.js"></script>
+    <script src="js/i18n.js?v=4"></script>
     <script src="js/theme-switcher.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -2744,7 +2746,7 @@
 
             function onEachFeature(feature, layer) {
                 if (feature.properties && feature.properties.اسم_ا) {
-                    layer.bindTooltip(feature.properties.اسم_ا, {
+                    layer.bindTooltip(translatePalestine(feature.properties.اسم_ا), {
                         permanent: false,
                         direction: 'center',
                         sticky: true,
@@ -2772,17 +2774,71 @@
                 });
             }
 
+            function translatePalestine(text) {
+                if(!window.i18n || window.i18n.lang !== 'en' || !text) return text;
+                const dict = {
+                    'بيانات المنطقة': 'Area Data',
+                    'المقاطعة:': 'District:',
+                    'المساحة:': 'Area:',
+                    'غير متوفر': 'N/A',
+                    'كم²': 'km²',
+                    'انقر على منطقة لعرض تفاصيلها': 'Click on an area to view details',
+                    'مفتاح الخريطة': 'Map Legend',
+                    'تحديد موقعي': 'Locate Me',
+                    'ابحث عن مكان...': 'Search for a place...',
+                    'مقاطعات فلسطين': 'Palestine Districts',
+                    'موقعك الحالي': 'Your Current Location',
+                    'المحافظة:': 'Governorate:',
+                    'المساحة التقريبية:': 'Approximate Area:',
+                    'السكان:': 'Population:',
+                    'المسجد الأقصى': 'Al-Aqsa Mosque',
+                    'القدس': 'Jerusalem',
+                    'مقاطعة الجليل': 'Galilee District',
+                    'مقاطعة حيفا': 'Haifa District',
+                    'مقاطعة السامرية': 'Samaria District',
+                    'مقاطعة اللد': 'Lydda District',
+                    'مقاطعة القدس': 'Jerusalem District',
+                    'مقاطعة الخليل': 'Hebron District',
+                    'مقاطعة غزة': 'Gaza District',
+                    'قضاء القدس': 'Jerusalem Sub-district',
+                    'قضاء الخليل': 'Hebron Sub-district',
+                    'قضاء حيفا': 'Haifa Sub-district',
+                    'قضاء يافا': 'Jaffa Sub-district',
+                    'قضاء غزة': 'Gaza Sub-district',
+                    'قضاء اللد': 'Lydda Sub-district',
+                    'قضاء الرملة': 'Ramla Sub-district',
+                    'قضاء صفد': 'Safad Sub-district',
+                    'قضاء عكا': 'Acre Sub-district',
+                    'قضاء طبريا': 'Tiberias Sub-district',
+                    'قضاء الناصرة': 'Nazareth Sub-district',
+                    'قضاء بيسان': 'Beisan Sub-district',
+                    'قضاء جنين': 'Jenin Sub-district',
+                    'قضاء طولكرم': 'Tulkarm Sub-district',
+                    'قضاء نابلس': 'Nablus Sub-district',
+                    'قضاء رام الله': 'Ramallah Sub-district',
+                    'قضاء بئر السبع': 'Beersheba Sub-district',
+                    'قضاء بيت لحم': 'Bethlehem Sub-district',
+                    'قضاء اريحا': 'Jericho Sub-district',
+                    'قضاء جنين': 'Jenin Sub-district'
+                };
+                let t = String(text);
+                for (const [ar, en] of Object.entries(dict)) {
+                    t = t.split(ar).join(en);
+                }
+                return t;
+            }
+
             function updateDetailsCard(props) {
                 const detailsContainer = document.getElementById('details-container');
                 if (props) {
                     detailsContainer.innerHTML = `
-                        <h4>${props.اسم_ا || 'بيانات المنطقة'}</h4>
+                        <h4>${translatePalestine(props.NAME_EN || props.اسم_ا || 'بيانات المنطقة')}</h4>
                         <div class="details-grid">
-                            <p><strong>المقاطعة:</strong> <span>${props.المقا || 'غير متوفر'}</span></p>
-                            <p><strong>المساحة:</strong> <span>${props.المسا ? props.المسا.toFixed(2) + ' كم²' : 'غير متوفر'}</span></p>
+                            <p><strong>${translatePalestine('المقاطعة:')}</strong> <span>${translatePalestine(props.المقا || props.District || 'غير متوفر')}</span></p>
+                            <p><strong>${translatePalestine('المساحة:')}</strong> <span>${translatePalestine(props.المسا ? props.المسا.toFixed(2) + ' كم²' : 'غير متوفر')}</span></p>
                         </div>`;
                 } else {
-                    detailsContainer.innerHTML = `<div class="details-placeholder"><p>انقر على منطقة لعرض تفاصيلها</p></div>`;
+                    detailsContainer.innerHTML = `<div class="details-placeholder"><p>${translatePalestine('انقر على منطقة لعرض تفاصيلها')}</p></div>`;
                 }
             }
 
@@ -2808,19 +2864,19 @@
                     'مقاطعة غزة'
                 ];
 
-                let legendHTML = '<h4>مفتاح الخريطة</h4>';
+                let legendHTML = `<h4>${translatePalestine('مفتاح الخريطة')}</h4>`;
 
                 orderedKeys.forEach(key => {
                     if (categories.has(key)) {
                         const color = categories.get(key);
-                        legendHTML += `<div class="legend-item"><i style="background:${color}"></i> <span>${key}</span></div>`;
+                        legendHTML += `<div class="legend-item"><i style="background:${color}"></i> <span>${translatePalestine(key)}</span></div>`;
                     }
                 });
 
                 // Add any remaining keys that weren't in the ordered list
                 for (const [label, color] of categories.entries()) {
                     if (!orderedKeys.includes(label)) {
-                        legendHTML += `<div class="legend-item"><i style="background:${color}"></i> <span>${label}</span></div>`;
+                        legendHTML += `<div class="legend-item"><i style="background:${color}"></i> <span>${translatePalestine(label)}</span></div>`;
                     }
                 }
 
@@ -2853,7 +2909,7 @@
                 if (!provinceLabelsGroup || !feature.properties || !feature.properties.اسم_ا) return;
                 const centroid = layer.getBounds().getCenter();
                 const marker = L.marker(centroid, {
-                    icon: buildProvinceLabelIcon(feature.properties.اسم_ا),
+                    icon: buildProvinceLabelIcon(translatePalestine(feature.properties.اسم_ا)),
                     interactive: false
                 });
                 provinceLabelsGroup.addLayer(marker);
@@ -2868,7 +2924,7 @@
                     item.marker.setLatLng(centroid);
                     item.marker.setIcon(L.divIcon({
                         className: 'province-label',
-                        html: `<span class="province-label-text" style="font-size:${fontSize}px;">${item.feature.properties.اسم_ا ? item.feature.properties.اسم_ا.replace(/</g, '&lt;').replace(/>/g, '&gt;') : ''}</span>`,
+                        html: `<span class="province-label-text" style="font-size:${fontSize}px;">${item.feature.properties.اسم_ا ? translatePalestine(item.feature.properties.اسم_ا).replace(/</g, '&lt;').replace(/>/g, '&gt;') : ''}</span>`,
                         iconSize: [0, 0]
                     }));
                 });
@@ -2933,7 +2989,7 @@
                     clearProvinceLabels();
                     geojsonLayer = L.geoJSON(data, { style, onEachFeature }).addTo(map);
                     if (geojsonLayer.getBounds().isValid()) map.fitBounds(geojsonLayer.getBounds());
-                    layerControl.addOverlay(geojsonLayer, "مقاطعات فلسطين");
+                    layerControl.addOverlay(geojsonLayer, translatePalestine("مقاطعات فلسطين"));
                     createLegend(data);
                     updateProvinceLabels();
 
@@ -2952,7 +3008,7 @@
                 onAdd: function (map) {
                     const btn = L.DomUtil.create('button', 'leaflet-bar leaflet-control leaflet-control-custom');
                     btn.innerHTML = '<i class="fas fa-map-marker-alt"></i>';
-                    btn.title = 'تحديد موقعي';
+                    btn.title = translatePalestine('تحديد موقعي');
                     btn.onclick = (e) => { L.DomEvent.stop(e); map.locate({ setView: true, maxZoom: 14 }); };
                     return btn;
                 }
@@ -3014,7 +3070,7 @@
 
             try {
                 map.addControl(new GeoSearch.GeoSearchControl({
-                    provider: new GeoSearch.OpenStreetMapProvider(), style: 'bar', autoClose: true, keepResult: true, searchLabel: 'ابحث عن مكان...'
+                    provider: new GeoSearch.OpenStreetMapProvider(), style: 'bar', autoClose: true, keepResult: true, searchLabel: translatePalestine('ابحث عن مكان...')
                 }));
                 L.control.polylineMeasure({ position: 'topleft', unit: 'metres', showBearings: false, clearMeasurementsOnStop: true, showClearControl: true, showUnitControl: true }).addTo(map);
             } catch (e) { console.warn("Could not add search/measure controls", e); }
@@ -3649,3 +3705,5 @@
 </body>
 
 </html>
+
+

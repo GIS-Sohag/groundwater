@@ -2825,14 +2825,14 @@
         <div class="nav-container">
             <a href="home.html" class="nav-brand">
                 <i class="fas fa-water"></i>
-                <span>المياه الجوفية بسوهاج</span>
+                <span data-i18n="nav.brand">المياه الجوفية بسوهاج</span>
             </a>
             <div class="nav-links">
-                <a class="nav-link" href="home.html">الرئيسية</a>
-                <a class="nav-link" href="groundwater.html">الخريطة التفاعلية</a>
-                <a class="nav-link" href="gallery.html">المعرض</a>
-                <a class="nav-link" href="palestine.html">أولى القبلتين</a>
-                <a class="nav-link active" href="about.html">عن المشروع</a>
+                <a class="nav-link" href="home.html" data-i18n="nav.home">الرئيسية</a>
+                <a class="nav-link" href="groundwater.html" data-i18n="nav.map">الخريطة التفاعلية</a>
+                <a class="nav-link" href="gallery.html" data-i18n="nav.gallery">المعرض</a>
+                <a class="nav-link" href="palestine.html" data-i18n="nav.palestine">أولى القبلتين</a>
+                <a class="nav-link active" href="about.html" data-i18n="nav.about">عن المشروع</a>
                 <button class="theme-switcher-btn" id="theme-switcher" title="تبديل الوضع">
                     <i class="fas fa-sun"></i>
                 </button>
@@ -2851,8 +2851,8 @@
         <div class="container">
             <!-- Page Header -->
             <div class="page-header">
-                <h1 class="page-title"><i class="fas fa-graduation-cap"></i> عن المشروع</h1>
-                <p class="page-subtitle">نظام رصد المياه الجوفية - محافظة سوهاج</p>
+                <h1 class="page-title"><i class="fas fa-graduation-cap"></i> <span data-i18n="about.page.title">عن المشروع</span></h1>
+                <p class="page-subtitle" data-i18n="about.page.subtitle">نظام رصد المياه الجوفية - محافظة سوهاج</p>
             </div>
 
             <!-- Project Overview Card (Replaces Page Header) -->
@@ -2863,14 +2863,16 @@
                         <div class="icon-title-wrapper">
                             <i class="fas fa-binoculars"></i>
                             <div class="title-text-group">
-                                <h3>نظرة عامة على المشروع</h3>
+                                <h3 data-i18n="about.overview.title">نظرة عامة على المشروع</h3>
                             </div>
                         </div>
                         <div class="graduated-line"></div>
                     </div>
-                    <p class="member-description"
-                        style="font-size: 1.1rem; font-weight: 600; min-height: 60px; text-align: right; white-space: pre-line;">
-                        <span id="overview-typewriter"></span><span class="cursor">|</span>
+                    <p class="member-description" data-i18n="about.overview.text"
+                        style="font-size: 1.1rem; font-weight: 600; min-height: 60px; white-space: pre-line;">
+                        نظام رصد المياه الجوفية هو مشروع تخرج متقدم يهدف إلى توفير أداة تفاعلية لاستكشاف احتمالية وجود المياه الجوفية في محافظة سوهاج باستخدام أحدث تقنيات نظم المعلومات الجغرافية والخرائط التفاعلية.
+
+يجمع المشروع بين التقنيات الحديثة والبيانات الجغرافية لتقديم تجربة مستخدم متميزة تساعد الباحثين والمهتمين في مجال المياه الجوفية على اتخاذ قرارات مدروسة.
                     </p>
                 </div>
             </section>
@@ -2881,7 +2883,7 @@
                     <div class="card-header-custom">
                         <div class="icon-title-wrapper">
                             <i class="fas fa-user-tie"></i>
-                            <h2>رئيس الجامعة</h2>
+                            <h2 data-i18n="about.president.section">رئيس الجامعة</h2>
                         </div>
                         <div class="graduated-line"></div>
                     </div>
@@ -2891,9 +2893,9 @@
                                 <img src="images/profile/president.jpg" alt="رئيس الجامعة">
                             </div>
                             <div class="member-info">
-                                <h3 class="member-name">أ.د حسان النعماني</h3>
-                                <p class="member-title">رئيس جامعة سوهاج</p>
-                                <p class="member-description">
+                                <h3 class="member-name" data-i18n="about.president.name">أ.د حسان النعماني</h3>
+                                <p class="member-title" data-i18n="about.president.title">رئيس جامعة سوهاج</p>
+                                <p class="member-description" data-i18n="about.president.desc">
                                     يشرف سعادة الأستاذ الدكتور حسان النعماني رئيس جامعة سوهاج على جميع الأنشطة
                                     الأكاديمية والبحثية بالجامعة، ويدعم مشاريع الطلاب المتميزة في مختلف التخصصات، ويحرص
                                     على تطوير التعليم الجامعي وربطه بالتطبيقات العملية والتكنولوجيا الحديثة.
@@ -2910,7 +2912,7 @@
                     <div class="card-header-custom">
                         <div class="icon-title-wrapper">
                             <i class="fas fa-chalkboard-teacher"></i>
-                            <h2>المشرف على المشروع</h2>
+                            <h2 data-i18n="about.supervisor.section">المشرف على المشروع</h2>
                         </div>
                         <div class="graduated-line"></div>
                     </div>
@@ -2921,9 +2923,9 @@
                                 <img src="images/profile/hamdy_nabih.png" alt="المشرف">
                             </div>
                             <div class="member-info">
-                                <h3 class="member-name">أ.م.د حمدي نبيه عيد</h3>
-                                <p class="member-title">أستاذ مساعد الجغرافيا الطبيعية ونظم المعلومات الجغرافية</p>
-                                <p class="member-description">
+                                <h3 class="member-name" data-i18n="about.supervisor.name">أ.م.د حمدي نبيه عيد</h3>
+                                <p class="member-title" data-i18n="about.supervisor.title">أستاذ مساعد الجغرافيا الطبيعية ونظم المعلومات الجغرافية</p>
+                                <p class="member-description" data-i18n="about.supervisor.desc">
                                     المشرف الأكاديمي على المشروع، متخصص في نظم المعلومات الجغرافية والاستشعار عن بعد،
                                     يوجه الطلاب في تطبيق أحدث التقنيات في مجال النمذجة المكانية.
                                 </p>
@@ -2939,7 +2941,7 @@
                     <div class="card-header-custom">
                         <div class="icon-title-wrapper">
                             <i class="fas fa-hand-holding-heart" style="color: #2196F3;"></i>
-                            <h2>ساهم في المشروع</h2>
+                            <h2 data-i18n="about.contributor.section">ساهم في المشروع</h2>
                         </div>
                         <div class="graduated-line"></div>
                     </div>
@@ -2950,9 +2952,9 @@
                                 <img src="images/profile/Omar Abdullah.jpg" alt="ساهم في المشروع">
                             </div>
                             <div class="member-info">
-                                <h3 class="member-name">أ.م.د عمر عبدالله اسماعيل القصاب</h3>
-                                <p class="member-title">أستاذ مساعد الجغرافيا البشرية ونظم المعلومات الجغرافية</p>
-                                <p class="member-description">
+                                <h3 class="member-name" data-i18n="about.contributor.name">أ.م.د عمر عبدالله اسماعيل القصاب</h3>
+                                <p class="member-title" data-i18n="about.contributor.title">أستاذ مساعد الجغرافيا البشرية ونظم المعلومات الجغرافية</p>
+                                <p class="member-description" data-i18n="about.contributor.desc">
                                     وهو من دولة العراق الشقيقة ويعمل كأستاذ مساعد بكلية التريية للعلوم الإنسانية جامعة
                                     الموصل وله الفضل في امدادنا بالمعلومات والإرشاد العلمي وتوفير لنا أداة النمذجة
                                     المكانية لاحتمالية توطن المياه الجوفية الخاصة بأحد طلبته في رسالة الماجستير فله جزيل
@@ -2970,7 +2972,7 @@
                     <div class="card-header-custom">
                         <div class="icon-title-wrapper">
                             <i class="fas fa-university"></i>
-                            <h2>عميد كلية الآداب</h2>
+                            <h2 data-i18n="about.dean.section">عميد كلية الآداب</h2>
                         </div>
                         <div class="graduated-line"></div>
                     </div>
@@ -2981,9 +2983,9 @@
                                 <img src="images/profile/dean.png" alt="عميد كلية الآداب">
                             </div>
                             <div class="member-info">
-                                <h3 class="member-name">أ.د محمد توفيق محمد</h3>
-                                <p class="member-title">عميد كلية الآداب ورئيس قسم الجغرافيا</p>
-                                <p class="member-description">
+                                <h3 class="member-name" data-i18n="about.dean.name">أ.د محمد توفيق محمد</h3>
+                                <p class="member-title" data-i18n="about.dean.title">عميد كلية الآداب ورئيس قسم الجغرافيا</p>
+                                <p class="member-description" data-i18n="about.dean.desc">
                                     يشرف على جميع الأنشطة الأكاديمية في الكلية ويدعم البحث العلمي والمشاريع الطلابية
                                     المتميزة، له دور كبير في تطوير المناهج وتحديث طرق التدريس.
                                 </p>
@@ -3009,8 +3011,8 @@
                                 <div class="member-photo">
                                     <img src="images/profile/dean.png" alt="أ.د محمد توفيق محمد">
                                 </div>
-                                <h3 class="member-name">أ.د محمد توفيق محمد</h3>
-                                <p class="member-title">أستاذ الجغرافيا المناخية</p>
+                                <h3 class="member-name" data-i18n="about.committee.member1">أ.د محمد توفيق محمد</h3>
+                                <p class="member-title" data-i18n="about.committee.title1">أستاذ الجغرافيا المناخية</p>
                             </div>
                         </div>
 
@@ -3019,8 +3021,8 @@
                                 <div class="member-photo">
                                     <img src="images/profile/karim_saleh.jpg" alt="عضو اللجنة">
                                 </div>
-                                <h3 class="member-name">أ.د كريم مصلح صالح</h3>
-                                <p class="member-title">أستاذ الجغرافيا الطبيعية</p>
+                                <h3 class="member-name" data-i18n="about.committee.member2">أ.د كريم مصلح صالح</h3>
+                                <p class="member-title" data-i18n="about.committee.title2">أستاذ الجغرافيا الطبيعية</p>
                             </div>
                         </div>
 
@@ -3029,8 +3031,8 @@
                                 <div class="member-photo">
                                     <img src="images/profile/ahmed_fawzy.jpg" alt="عضو اللجنة">
                                 </div>
-                                <h3 class="member-name">أ.د أحمد فوزي ضاحي</h3>
-                                <p class="member-title">أستاذ الجغرافيا الطبيعية ونظم المعلومات الجغرافية</p>
+                                <h3 class="member-name" data-i18n="about.committee.member3">أ.د أحمد فوزي ضاحي</h3>
+                                <p class="member-title" data-i18n="about.committee.title3">أستاذ الجغرافيا الطبيعية ونظم المعلومات الجغرافية</p>
                             </div>
                         </div>
 
@@ -3039,8 +3041,8 @@
                                 <div class="member-photo">
                                     <img src="images/profile/hamdy_nabih.png" alt="أ.م.د حمدي نبيه عيد">
                                 </div>
-                                <h3 class="member-name">أ.م.د حمدي نبيه عيد</h3>
-                                <p class="member-title">أستاذ مساعد الجغرافيا الطبيعية ونظم المعلومات الجغرافية</p>
+                                <h3 class="member-name" data-i18n="about.committee.member4">أ.م.د حمدي نبيه عيد</h3>
+                                <p class="member-title" data-i18n="about.committee.title4">أستاذ مساعد الجغرافيا الطبيعية ونظم المعلومات الجغرافية</p>
                             </div>
                         </div>
 
@@ -3049,8 +3051,8 @@
                                 <div class="member-photo">
                                     <img src="images/profile/mohamed_khalaf.jpg" alt="د. محمد خلف عويس">
                                 </div>
-                                <h3 class="member-name">د. محمد خلف عويس</h3>
-                                <p class="member-title">مدرس جغرافية البيئة بقسم الجغرافيا</p>
+                                <h3 class="member-name" data-i18n="about.committee.member5">د. محمد خلف عويس</h3>
+                                <p class="member-title" data-i18n="about.committee.title5">مدرس جغرافية البيئة بقسم الجغرافيا</p>
                             </div>
                         </div>
 
@@ -3061,8 +3063,8 @@
                                     <i class="fas fa-user-graduate"
                                         style="font-size: 4rem; color: var(--accent-blue);"></i>
                                 </div>
-                                <h3 class="member-name">د. سيدة سيد رسلان</h3>
-                                <p class="member-title">مدرس التخطيط الحضري والإقليمي ونظم المعلومات الجغرافية</p>
+                                <h3 class="member-name" data-i18n="about.committee.member6">د. سيدة سيد رسلان</h3>
+                                <p class="member-title" data-i18n="about.committee.title6">مدرس التخطيط الحضري والإقليمي ونظم المعلومات الجغرافية</p>
                             </div>
                         </div>
                     </div>
@@ -3071,43 +3073,43 @@
 
             <!-- Students Section -->
             <section class="students-section">
-                <h2 class="section-title">طلاب قسم الجغرافيا ونظم المعلومات الجغرافية المشاركون في المشروع</h2>
+                <h2 class="section-title" data-i18n="about.students.title">طلاب قسم الجغرافيا ونظم المعلومات الجغرافية المشاركون في المشروع</h2>
                 <div class="students-grid three-columns">
                     <div class="subsection">
                         <div class="group-indicator"></div>
-                        <h3 class="subsection-title">طلاب شعبة نظم المعلومات </h3>
+                        <h3 class="subsection-title" data-i18n="about.students.gis">طلاب شعبة نظم المعلومات </h3>
                         <div class="glass-wrapper" style="padding: 1.5rem;">
                             <div class="students-grid compact" id="gis-names">
-                                <div class="student-chip">محمد عبد الراضي محمد خيامي</div>
-                                <div class="student-chip">محمد ممدوح السيد محمد</div>
-                                <div class="student-chip">محمود بخيت احمد حجازي</div>
-                                <div class="student-chip">عبدالعال احمد محمد عبدالعال</div>
-                                <div class="student-chip">خالد جمال محمد محمد</div>
-                                <div class="student-chip">محمد اليمني حسن خلاف</div>
-                                <div class="student-chip">احمد عوض حسين محمود</div>
-                                <div class="student-chip">محمد صفوت عبد المبدى احمد</div>
-                                <div class="student-chip">نورهان احمد علي حسانين</div>
-                                <div class="student-chip">منة الله حافظ إبراهيم السيد</div>
-                                <div class="student-chip">نورهان محمد الزهري محمد</div>
-                                <div class="student-chip">اسراء محمد محمد علي</div>
-                                <div class="student-chip">امانى احمد سالمان عثمان</div>
-                                <div class="student-chip">اميره محمد ابو ضيف احمد</div>
-                                <div class="student-chip">شهد صفوت عبد الكريم احمد</div>
-                                <div class="student-chip">مريم ايمن شبيب اسعد</div>
-                                <div class="student-chip">لانا رمضان محمد عبد المطلب</div>
-                                <div class="student-chip">غاده محمود عبدالحميد احمد</div>
-                                <div class="student-chip">ريم ممدوح سيد محمد</div>
-                                <div class="student-chip">ريهام اسماعيل احمد عصمان</div>
-                                <div class="student-chip">نجلاء محمود عبداللاه بدوي</div>
-                                <div class="student-chip">داليا عبد الناصر عبد الرحيم عبد الرحيم</div>
-                                <div class="student-chip">ماريا موريس لويس قاصد</div>
-                                <div class="student-chip">مصريه عبدالعليم محمد محمد</div>
-                                <div class="student-chip">صفاء عبد اللطيف عبد الحليم بخيت</div>
-                                <div class="student-chip">مروه مهران عثمان عبدالظاهر</div>
-                                <div class="student-chip">مادونا ناجح عازر جورجي</div>
-                                <div class="student-chip">الاء حسني عبد العزيز محمد</div>
-                                <div class="student-chip">نورهان السيد علي مسعود</div>
-                                <div class="student-chip">هايدي هاني عصمت درويش</div>
+                                <div class="student-chip" data-i18n="student.1">محمد عبد الراضي محمد خيامي</div>
+                                <div class="student-chip" data-i18n="student.2">محمد ممدوح السيد محمد</div>
+                                <div class="student-chip" data-i18n="student.3">محمود بخيت احمد حجازي</div>
+                                <div class="student-chip" data-i18n="student.4">عبدالعال احمد محمد عبدالعال</div>
+                                <div class="student-chip" data-i18n="student.5">خالد جمال محمد محمد</div>
+                                <div class="student-chip" data-i18n="student.6">محمد اليمني حسن خلاف</div>
+                                <div class="student-chip" data-i18n="student.7">احمد عوض حسين محمود</div>
+                                <div class="student-chip" data-i18n="student.8">محمد صفوت عبد المبدى احمد</div>
+                                <div class="student-chip" data-i18n="student.9">نورهان احمد علي حسانين</div>
+                                <div class="student-chip" data-i18n="student.10">منة الله حافظ إبراهيم السيد</div>
+                                <div class="student-chip" data-i18n="student.11">نورهان محمد الزهري محمد</div>
+                                <div class="student-chip" data-i18n="student.12">اسراء محمد محمد علي</div>
+                                <div class="student-chip" data-i18n="student.13">امانى احمد سالمان عثمان</div>
+                                <div class="student-chip" data-i18n="student.14">اميره محمد ابو ضيف احمد</div>
+                                <div class="student-chip" data-i18n="student.15">شهد صفوت عبد الكريم احمد</div>
+                                <div class="student-chip" data-i18n="student.16">مريم ايمن شبيب اسعد</div>
+                                <div class="student-chip" data-i18n="student.17">لانا رمضان محمد عبد المطلب</div>
+                                <div class="student-chip" data-i18n="student.18">غاده محمود عبدالحميد احمد</div>
+                                <div class="student-chip" data-i18n="student.19">ريم ممدوح سيد محمد</div>
+                                <div class="student-chip" data-i18n="student.20">ريهام اسماعيل احمد عصمان</div>
+                                <div class="student-chip" data-i18n="student.21">نجلاء محمود عبداللاه بدوي</div>
+                                <div class="student-chip" data-i18n="student.22">داليا عبد الناصر عبد الرحيم عبد الرحيم</div>
+                                <div class="student-chip" data-i18n="student.23">ماريا موريس لويس قاصد</div>
+                                <div class="student-chip" data-i18n="student.24">مصريه عبدالعليم محمد محمد</div>
+                                <div class="student-chip" data-i18n="student.25">صفاء عبد اللطيف عبد الحليم بخيت</div>
+                                <div class="student-chip" data-i18n="student.26">مروه مهران عثمان عبدالظاهر</div>
+                                <div class="student-chip" data-i18n="student.27">مادونا ناجح عازر جورجي</div>
+                                <div class="student-chip" data-i18n="student.28">الاء حسني عبد العزيز محمد</div>
+                                <div class="student-chip" data-i18n="student.29">نورهان السيد علي مسعود</div>
+                                <div class="student-chip" data-i18n="student.30">هايدي هاني عصمت درويش</div>
                             </div>
                         </div>
                     </div>
@@ -3115,7 +3117,7 @@
                     <!-- الشعبة العامة -->
                     <div class="subsection">
                         <div class="group-indicator"></div>
-                        <h3 class="subsection-title">طلاب الشعبة العامة</h3>
+                        <h3 class="subsection-title" data-i18n="about.students.general">طلاب الشعبة العامة</h3>
                         <div class="glass-wrapper" style="padding: 1.5rem;">
                             <div class="students-grid compact">
                                 <div class="student-chip">ابراهيم خالد ابراهيم عثمان</div>
@@ -3149,7 +3151,7 @@
                     <!-- شعبة المساحة -->
                     <div class="subsection">
                         <div class="group-indicator"></div>
-                        <h3 class="subsection-title">طلاب شعبة المساحة</h3>
+                        <h3 class="subsection-title" data-i18n="about.students.survey">طلاب شعبة المساحة</h3>
                         <div class="glass-wrapper" style="padding: 1.5rem;">
                             <div class="students-grid compact">
                                 <div class="student-chip">احمد حسن احمد بدران</div>
@@ -3193,8 +3195,8 @@
                         <div class="info-icon">
                             <i class="fas fa-graduation-cap"></i>
                         </div>
-                        <h3 class="info-title">مشروع التخرج</h3>
-                        <p class="info-description">
+                        <h3 class="info-title" data-i18n="about.info.grad">مشروع التخرج</h3>
+                        <p class="info-description" data-i18n="about.info.grad.desc">
                             مشروع تخرج طلاب الفرقة الرابعة قسم الجغرافيا شعبة نظم المعلومات الجغرافية
                         </p>
                     </div>
@@ -3202,8 +3204,8 @@
                         <div class="info-icon">
                             <i class="fas fa-map-location-dot"></i>
                         </div>
-                        <h3 class="info-title">المنطقة المدروسة</h3>
-                        <p class="info-description">
+                        <h3 class="info-title" data-i18n="about.info.area">المنطقة المدروسة</h3>
+                        <p class="info-description" data-i18n="about.info.area.desc">
                             محافظة سوهاج - جمهورية مصر العربية
                         </p>
                     </div>
@@ -3211,8 +3213,8 @@
                         <div class="info-icon">
                             <i class="fas fa-water"></i>
                         </div>
-                        <h3 class="info-title">موضوع الدراسة</h3>
-                        <p class="info-description">
+                        <h3 class="info-title" data-i18n="about.info.topic">موضوع الدراسة</h3>
+                        <p class="info-description" data-i18n="about.info.topic.desc">
                             النمذجة المكانية لإحتمالية وجود المياه الجوفية في محافظة سوهاج بإستخدام الجيوماتكس والبيئة
                             البرمجية والذكاء الإصطناعي
                         </p>
@@ -3221,7 +3223,7 @@
                         <div class="info-icon">
                             <i class="fas fa-calendar-days"></i>
                         </div>
-                        <h3 class="info-title">العام الأكاديمي</h3>
+                        <h3 class="info-title" data-i18n="about.info.year">العام الأكاديمي</h3>
                         <p class="info-description">
                             2025 - 2024
                         </p>
@@ -3232,14 +3234,14 @@
             <!-- Technologies Used Section - Professional Redesign -->
             <section class="tech-container-wrapper">
                 <div class="tech-container">
-                    <h2 class="section-title">التقنيات المستخدمة في المشروع</h2>
+                    <h2 class="section-title" data-i18n="about.tech.title">التقنيات المستخدمة في المشروع</h2>
 
                     <div class="tech-categories-grid">
                         <!-- Programming Languages -->
                         <div class="tech-category-card">
                             <div class="category-header">
                                 <i class="fas fa-code category-icon"></i>
-                                <h3>لغات البرمجة</h3>
+                                <h3 data-i18n="about.tech.prog">لغات البرمجة</h3>
                             </div>
                             <div class="tech-progress-list">
                                 <div class="tech-progress-item">
@@ -3285,7 +3287,7 @@
                         <div class="tech-category-card">
                             <div class="category-header">
                                 <i class="fas fa-map-marked-alt category-icon"></i>
-                                <h3>مكتبات الخرائط والجيوماتكس</h3>
+                                <h3 data-i18n="about.tech.mapping">مكتبات الخرائط والجيوماتكس</h3>
                             </div>
                             <div class="tech-items-list">
                                 <div class="tech-pill"><i class="fas fa-map"></i> Leaflet.js</div>
@@ -3300,7 +3302,7 @@
                         <div class="tech-category-card">
                             <div class="category-header">
                                 <i class="fas fa-database category-icon"></i>
-                                <h3>إدارة ومعالجة البيانات</h3>
+                                <h3 data-i18n="about.tech.data">إدارة ومعالجة البيانات</h3>
                             </div>
                             <div class="tech-items-list">
                                 <div class="tech-pill"><i class="fas fa-draw-polygon"></i> GeoJSON</div>
@@ -3313,7 +3315,7 @@
                         <div class="tech-category-card">
                             <div class="category-header">
                                 <i class="fas fa-mobile-alt category-icon"></i>
-                                <h3>التصميم والواجهة</h3>
+                                <h3 data-i18n="about.tech.ui">التصميم والواجهة</h3>
                             </div>
                             <div class="tech-items-list">
                                 <div class="tech-pill"><i class="fas fa-paint-brush"></i> UI/UX احترافي</div>
@@ -3362,7 +3364,7 @@
         // Initialize animations when page loads
         document.addEventListener('DOMContentLoaded', () => {
             // Typewriter Logic
-            const overviewText = "نظام رصد المياه الجوفية هو مشروع تخرج متقدم يهدف إلى توفير أداة تفاعلية لاستكشاف احتمالية وجود المياه الجوفية في محافظة سوهاج باستخدام أحدث تقنيات نظم المعلومات الجغرافية والخرائط التفاعلية.\n\nيجمع المشروع بين التقنيات الحديثة والبيانات الجغرافية لتقديم تجربة مستخدم متميزة تساعد الباحثين والمهتمين في مجال المياه الجوفية على اتخاذ قرارات مدروسة.";
+            const overviewText = window.i18n && window.i18n.lang === 'en' ? window.i18n.t('about.hero.typewriter') : "نظام رصد المياه الجوفية هو مشروع تخرج متقدم يهدف إلى توفير أداة تفاعلية لاستكشاف احتمالية وجود المياه الجوفية في محافظة سوهاج باستخدام أحدث تقنيات نظم المعلومات الجغرافية والخرائط التفاعلية.\n\nيجمع المشروع بين التقنيات الحديثة والبيانات الجغرافية لتقديم تجربة مستخدم متميزة تساعد الباحثين والمهتمين في مجال المياه الجوفية على اتخاذ قرارات مدروسة.";
             const overviewElement = document.getElementById('overview-typewriter');
             let overviewIndex = 0;
             let overviewIsDeleting = false;
@@ -3385,6 +3387,22 @@
                 }
             }
 
+                        // Inject translation for tech pills
+            setTimeout(() => {
+                if(window.i18n && window.i18n.lang === 'en') {
+                    document.querySelectorAll('.tech-pill, .info-description').forEach(pill => {
+                        pill.innerHTML = pill.innerHTML
+                                                       .replace("Proj4 (إسقاط)", "Proj4 (Projection)")
+                                                       .replace("النمذجة المكانية لإحتمالية وجود المياه الجوفية في محافظة سوهاج بإستخدام الجيوماتكس والبيئة البرمجية والذكاء الإصطناعي", "Spatial Modeling of Groundwater Potential in Sohag Governorate using Geomatics, Programming Environments & AI")
+                                                       .replace("النمذجة المكانية", "Spatial Modeling")
+                                                       .replace("الذكاء الاصطناعي", "Artificial Intelligence")
+                                                       .replace("UI/UX احترافي", "Professional UI/UX")
+                                                       .replace("تصميم متجاوب", "Responsive Design")
+                                                       .replace("محافظة سوهاج - جمهورية مصر العربية", "Sohag Governorate - Arab Republic of Egypt")
+                                                       .replace("مشروع تخرج طلاب الفرقة الرابعة قسم الجغرافيا شعبة نظم المعلومات الجغرافية", "Graduation project for 4th year students, Geography Dept, GIS Section");
+                    });
+                }
+            }, 200);
             // Start Typewriter
             typeOverview();
 
@@ -3414,9 +3432,13 @@
     <!-- Particle Network Animation Script -->
     <script src="js/network-animation.js"></script>
 
-    <!-- Theme Switcher Script -->
+    <script src="js/i18n.js?v=4"></script>
     <script src="js/theme-switcher.js"></script>
     <script src="global-fixes.js"></script>
 </body>
 
 </html>
+
+
+
+

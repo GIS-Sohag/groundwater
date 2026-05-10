@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -348,14 +348,14 @@
     <!-- Main Content -->
     <main class="splash-content">
         <i class="fas fa-layer-group logo-icon"></i>
-        <h1 class="splash-title">نظام رصد المياه الجوفية - محافظة سوهاج</h1>
+        <h1 class="splash-title" data-i18n="index.title">نظام رصد المياه الجوفية - محافظة سوهاج</h1>
 
         <div class="progress-container">
             <div class="progress-percent-container">
                 <span id="progressPercent">0</span><span class="percent-sign">%</span>
             </div>
             <div class="progress-header">
-                <span id="progressMessage" style="color: var(--text-light); opacity: 0.8; font-size: 1rem;">تهيئة النظام...</span>
+                <span id="progressMessage" style="color: var(--text-light); opacity: 0.8; font-size: 1rem;" data-i18n="index.msg.init">تهيئة النظام...</span>
             </div>
             <div class="progress-track">
                 <div class="progress-fill" id="progressFill"></div>
@@ -363,6 +363,7 @@
         </div>
     </main>
 
+    <script src="js/i18n.js?v=4"></script>
     <!-- Network Animation JS (reused from your project) -->
     <script src="js/network-animation.js"></script>
     
@@ -385,7 +386,7 @@
                     progress = 100;
                     fill.style.width = '100%';
                     percentText.innerText = '100';
-                    messageText.innerText = 'اكتمل التحميل، جاري التوجيه...';
+                    messageText.innerText = window.i18n ? window.i18n.t('index.msg.done') : 'اكتمل التحميل، جاري التوجيه...';
                     clearInterval(loadingInterval);
                     
                     // Delay before redirecting to home page
@@ -396,13 +397,15 @@
                     fill.style.width = progress + '%';
                     percentText.innerText = Math.floor(progress);
                     
-                    if(progress < 30) messageText.innerText = 'تهيئة النظام المتجهي...';
-                    else if(progress < 60) messageText.innerText = 'تحميل النماذج المكانية (GeoTIFF)...';
-                    else if(progress < 85) messageText.innerText = 'معالجة البيانات الجيوفيزيائية...';
-                    else messageText.innerText = 'جاري تحضير واجهة المستخدم...';
+                    if(progress < 30) messageText.innerText = window.i18n ? window.i18n.t('index.msg.vector') : 'تهيئة النظام المتجهي...';
+                    else if(progress < 60) messageText.innerText = window.i18n ? window.i18n.t('index.msg.raster') : 'تحميل النماذج المكانية (GeoTIFF)...';
+                    else if(progress < 85) messageText.innerText = window.i18n ? window.i18n.t('index.msg.data') : 'معالجة البيانات الجيوفيزيائية...';
+                    else messageText.innerText = window.i18n ? window.i18n.t('index.msg.ui') : 'جاري تحضير واجهة المستخدم...';
                 }
             }, 60);
         });
     </script>
 </body>
 </html>
+
+

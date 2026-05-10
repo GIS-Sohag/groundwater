@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
@@ -84,13 +84,13 @@
             <div class="nav-container">
                 <a href="home.html" class="nav-brand">
                     <i class="fas fa-water"></i>
-                    <span>المياه الجوفية بسوهاج</span>
+                    <span data-i18n="nav.brand">المياه الجوفية بسوهاج</span>
                 </a>
                 <div class="nav-links">
-                    <a class="nav-link" href="groundwater.html">الخريطة التفاعلية</a>
-                    <a class="nav-link" href="gallery.html">المعرض</a>
-                    <a class="nav-link" href="palestine.html">أولى القبلتين</a>
-                    <a class="nav-link" href="about.html">عن المشروع</a>
+                    <a class="nav-link" href="groundwater.html" data-i18n="nav.map">الخريطة التفاعلية</a>
+                    <a class="nav-link" href="gallery.html" data-i18n="nav.gallery">المعرض</a>
+                    <a class="nav-link" href="palestine.html" data-i18n="nav.palestine">أولى القبلتين</a>
+                    <a class="nav-link" href="about.html" data-i18n="nav.about">عن المشروع</a>
                     <button class="theme-switcher-btn" id="theme-switcher" aria-label="تبديل الوضع">
                         <i class="fas fa-sun"></i>
                     </button>
@@ -141,27 +141,27 @@
         <!-- NEW: Site Sections (MOVED BEFORE FEATURES) -->
         <section id="site-sections" class="section" style="padding-top: 2rem;">
             <div class="container">
-                <h2 class="section-title">أقسام الموقع</h2>
-                <p class="section-description">انطلق مباشرة إلى أهم صفحات المشروع.</p>
+                <h2 class="section-title" data-i18n="home.sections.title">أقسام الموقع</h2>
+                <p class="section-description" data-i18n="home.sections.desc">انطلق مباشرة إلى أهم صفحات المشروع.</p>
 
                 <div class="site-sections-grid">
                     <!-- Card 1: Groundwater Map -->
                     <a href="groundwater.html" class="section-card" style="--accent-color: #3b82f6;">
                         <div class="card-icon"><i class="fas fa-layer-group"></i></div>
-                        <h3 class="card-title">خريطة احتمالية المياه الجوفية</h3>
-                        <p class="card-description">استكشف طبقة الاحتمالية وتعرّف على تفاصيل كل منطقة بصورة تفاعلية.</p>
+                        <h3 class="card-title" data-i18n="home.card.map.title">خريطة احتمالية المياه الجوفية</h3>
+                        <p class="card-description" data-i18n="home.card.map.desc">استكشف طبقة الاحتمالية وتعرّف على تفاصيل كل منطقة بصورة تفاعلية.</p>
                         <div class="card-footer">
-                            <span>ابدأ الآن</span>
+                            <span data-i18n="home.card.map.cta">ابدأ الآن</span>
                             <i class="fas fa-arrow-left"></i>
                         </div>
                     </a>
 
                     <a href="palestine.html" class="section-card" style="--accent-color: #10b981;">
                         <div class="card-icon"><i class="fas fa-mosque"></i></div>
-                        <h3 class="card-title">خريطة فلسطين</h3>
-                        <p class="card-description">تعرّف على حدود المحافظات مع عرض تفاعلي لأهم معالم المسجد الأقصى.</p>
+                        <h3 class="card-title" data-i18n="home.card.palestine.title">خريطة فلسطين</h3>
+                        <p class="card-description" data-i18n="home.card.palestine.desc">تعرّف على حدود المحافظات مع عرض تفاعلي لأهم معالم المسجد الأقصى.</p>
                         <div class="card-footer">
-                            <span>اكتشف التفاصيل</span>
+                            <span data-i18n="home.card.palestine.cta">اكتشف التفاصيل</span>
                             <i class="fas fa-arrow-left"></i>
                         </div>
                     </a>
@@ -169,11 +169,10 @@
                     <!-- Card 3: Gallery -->
                     <a href="gallery.html" class="section-card" style="--accent-color: #a855f7;">
                         <div class="card-icon"><i class="fas fa-images"></i></div>
-                        <h3 class="card-title">المعرض</h3>
-                        <p class="card-description">مجموعة خرائط وصور عالية الدقة توضح مخرجات التحليل الجغرافي للمشروع.
-                        </p>
+                        <h3 class="card-title" data-i18n="home.card.gallery.title">المعرض</h3>
+                        <p class="card-description" data-i18n="home.card.gallery.desc">مجموعة خرائط وصور عالية الدقة توضح مخرجات التحليل الجغرافي للمشروع.</p>
                         <div class="card-footer">
-                            <span>شاهد الأعمال</span>
+                            <span data-i18n="home.card.gallery.cta">شاهد الأعمال</span>
                             <i class="fas fa-arrow-left"></i>
                         </div>
                     </a>
@@ -181,11 +180,10 @@
                     <!-- Card 4: Site Info -->
                     <a href="about.html" class="section-card" style="--accent-color: #f59e0b;">
                         <div class="card-icon"><i class="fas fa-info-circle"></i></div>
-                        <h3 class="card-title">معلومات الموقع</h3>
-                        <p class="card-description">تعرّف على تفاصيل المشروع والفريق والإشراف والجامعة التي قدمت الدعم.
-                        </p>
+                        <h3 class="card-title" data-i18n="home.card.about.title">معلومات الموقع</h3>
+                        <p class="card-description" data-i18n="home.card.about.desc">تعرّف على تفاصيل المشروع والفريق والإشراف والجامعة التي قدمت الدعم.</p>
                         <div class="card-footer">
-                            <span>اقرأ المزيد</span>
+                            <span data-i18n="home.card.about.cta">اقرأ المزيد</span>
                             <i class="fas fa-arrow-left"></i>
                         </div>
                     </a>
@@ -196,9 +194,8 @@
         <!-- Features -->
         <section id="features" class="section">
             <div class="container">
-                <h2 class="section-title">لماذا هذا المشروع مميز؟</h2>
-                <p class="section-description">نهج علمي حديث يجمع بيانات مكانية، نماذج تنبؤية، وواجهة تفاعلية سهلة
-                    الاستخدام.</p>
+                <h2 class="section-title" data-i18n="home.features.title">لماذا هذا المشروع مميز؟</h2>
+                <p class="section-description" data-i18n="home.features.desc">نهج علمي حديث يجمع بيانات مكانية، نماذج تنبؤية، وواجهة تفاعلية سهلة الاستخدام.</p>
 
                 <div class="features-grid"
                     style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;">
@@ -206,32 +203,29 @@
                         style="background:var(--bg-card);border-radius:16px;padding:24px;box-shadow:var(--shadow);border:1px solid var(--border-color);">
                         <div style="font-size:28px;color:var(--accent-blue);margin-bottom:10px;"><i
                                 class="fas fa-cogs"></i></div>
-                        <h3 style="margin-bottom:8px;color:var(--text-primary);">تحليل مكاني متقدم</h3>
-                        <p style="color:var(--text-secondary);">معالجة طبقات GIS متعددة وربطها بمؤشرات احتمالية دقيقة.
-                        </p>
+                        <h3 style="margin-bottom:8px;color:var(--text-primary);" data-i18n="home.feat1.title">تحليل مكاني متقدم</h3>
+                        <p style="color:var(--text-secondary);" data-i18n="home.feat1.desc">معالجة طبقات GIS متعددة وربطها بمؤشرات احتمالية دقيقة.</p>
                     </div>
                     <div class="feature-card"
                         style="background:var(--bg-card);border-radius:16px;padding:24px;box-shadow:var(--shadow);border:1px solid var(--border-color);">
                         <div style="font-size:28px;color:var(--accent-blue);margin-bottom:10px;"><i
                                 class="fas fa-robot"></i></div>
-                        <h3 style="margin-bottom:8px;color:var(--text-primary);">نمذجة بالذكاء الاصطناعي</h3>
-                        <p style="color:var(--text-secondary);">خوارزميات محسّنة لتوقع المناطق الأكثر ملاءمة لاستخراج
-                            المياه.</p>
+                        <h3 style="margin-bottom:8px;color:var(--text-primary);" data-i18n="home.feat2.title">نمذجة بالذكاء الاصطناعي</h3>
+                        <p style="color:var(--text-secondary);" data-i18n="home.feat2.desc">خوارزميات محسّنة لتوقع المناطق الأكثر ملاءمة لاستخراج المياه.</p>
                     </div>
                     <div class="feature-card"
                         style="background:var(--bg-card);border-radius:16px;padding:24px;box-shadow:var(--shadow);border:1px solid var(--border-color);">
                         <div style="font-size:28px;color:var(--accent-blue);margin-bottom:10px;"><i
                                 class="fas fa-mouse-pointer"></i></div>
-                        <h3 style="margin-bottom:8px;color:var(--text-primary);">طبقات تفاعلية</h3>
-                        <p style="color:var(--text-secondary);">عرض تفاعلي للطبقات مع نوافذ منبثقة ومفتاح تفسيري واضح.
-                        </p>
+                        <h3 style="margin-bottom:8px;color:var(--text-primary);" data-i18n="home.feat3.title">طبقات تفاعلية</h3>
+                        <p style="color:var(--text-secondary);" data-i18n="home.feat3.desc">عرض تفاعلي للطبقات مع نوافذ منبثقة ومفتاح تفسيري واضح.</p>
                     </div>
                     <div class="feature-card"
                         style="background:var(--bg-card);border-radius:16px;padding:24px;box-shadow:var(--shadow);border:1px solid var(--border-color);">
                         <div style="font-size:28px;color:var(--accent-blue);margin-bottom:10px;"><i
                                 class="fas fa-palette"></i></div>
-                        <h3 style="margin-bottom:8px;color:var(--text-primary);">تصميم متجاوب</h3>
-                        <p style="color:var(--text-secondary);">تجربة مستخدم سلسة على الجوال والتابلت وسطح المكتب.</p>
+                        <h3 style="margin-bottom:8px;color:var(--text-primary);" data-i18n="home.feat4.title">تصميم متجاوب</h3>
+                        <p style="color:var(--text-secondary);" data-i18n="home.feat4.desc">تجربة مستخدم سلسة على الجوال والتابلت وسطح المكتب.</p>
                     </div>
                 </div>
             </div>
@@ -241,23 +235,21 @@
         <section id="about-cta" class="section">
             <div class="container about-cta-container">
                 <div>
-                    <h2 class="section-title" style="text-align: right; margin-bottom: 1rem;">نبذة عن المشروع</h2>
-                    <p class="section-description" style="text-align: right; margin-bottom:1.5rem;">مشروع تخرج — جامعة
-                        سوهاج، كلية الآداب، قسم الجغرافيا ونظم المعلومات الجغرافية. يهدف لتحديد أفضل المناطق لاكتشاف
-                        المياه الجوفية بدقة.</p>
+                    <h2 class="section-title" style="text-align: right; margin-bottom: 1rem;" data-i18n="home.about.title">نبذة عن المشروع</h2>
+                    <p class="section-description" style="text-align: right; margin-bottom:1.5rem;" data-i18n="home.about.desc">مشروع تخرج — جامعة سوهاج، كلية الآداب، قسم الجغرافيا ونظم المعلومات الجغرافية. يهدف لتحديد أفضل المناطق لاكتشاف المياه الجوفية بدقة.</p>
                     <div class="cta-buttons">
                         <a class="cta-button" href="about.html">
-                            تفاصيل المشروع <i class="fas fa-arrow-left"></i>
+                            <span data-i18n="home.about.btn1">تفاصيل المشروع</span> <i class="fas fa-arrow-left"></i>
                         </a>
                         <a class="cta-button secondary" href="instructions.html">
-                            طريقة الاستخدام <i class="fas fa-book-open"></i>
+                            <span data-i18n="home.about.btn2">طريقة الاستخدام</span> <i class="fas fa-book-open"></i>
                         </a>
                     </div>
                 </div>
                 <div class="supervisor-card">
                     <div class="supervisor-icon"><i class="fas fa-award"></i></div>
-                    <h3>إشراف: أ.م.د حمدي نبيه عيد</h3>
-                    <p>بدعم فريق طلاب قسم الجغرافيا ونظم المعلومات الجغرافية</p>
+                    <h3 data-i18n="home.supervisor">إشراف: أ.م.د حمدي نبيه عيد</h3>
+                    <p data-i18n="home.supervisor.team">بدعم فريق طلاب قسم الجغرافيا ونظم المعلومات الجغرافية</p>
                 </div>
             </div>
         </section>
@@ -268,9 +260,9 @@
                 <div class="footer-about">
                     <div class="nav-logo">
                         <i class="fas fa-water"></i>
-                        <span>المياه الجوفية بسوهاج</span>
+                        <span data-i18n="nav.brand">المياه الجوفية بسوهاج</span>
                     </div>
-                    <p>واجهة تفاعلية لعرض وتحليل احتمالية وجود المياه الجوفية باستخدام أدوات GIS الحديثة.</p>
+                    <p data-i18n="footer.about.desc">واجهة تفاعلية لعرض وتحليل احتمالية وجود المياه الجوفية باستخدام أدوات GIS الحديثة.</p>
                     <div class="social-links">
                         <a href="https://wa.me/201069439981" target="_blank" aria-label="WhatsApp"><i
                                 class="fab fa-whatsapp"></i></a>
@@ -281,35 +273,35 @@
                     </div>
                 </div>
                 <div class="footer-links">
-                    <h4>روابط سريعة</h4>
+                    <h4 data-i18n="footer.links">روابط سريعة</h4>
                     <ul>
-                        <li><a href="groundwater.html">خريطة المياه الجوفية</a></li>
-                        <li><a href="gallery.html">المعرض</a></li>
-                        <li><a href="palestine.html">خريطة فلسطين</a></li>
-                        <li><a href="about.html">عن المشروع</a></li>
+                        <li><a href="groundwater.html" data-i18n="footer.link1">خريطة المياه الجوفية</a></li>
+                        <li><a href="gallery.html" data-i18n="nav.gallery">المعرض</a></li>
+                        <li><a href="palestine.html" data-i18n="footer.link3">خريطة فلسطين</a></li>
+                        <li><a href="about.html" data-i18n="nav.about">عن المشروع</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
-                    <h4>تواصل معنا</h4>
+                    <h4 data-i18n="footer.contact">تواصل معنا</h4>
                     <p><i class="fab fa-whatsapp" style="color: #25D366;"></i> <a href="https://wa.me/201069439981"
                             target="_blank" style="text-decoration: none; color: inherit;">01069439981</a></p>
                     <p><i class="fas fa-envelope"></i> abdelradymohamed74@gmail.com</p>
                 </div>
                 <div class="footer-stats">
-                    <h4>إحصائيات الموقع</h4>
+                    <h4 data-i18n="footer.stats">إحصائيات الموقع</h4>
                     <div class="stats-grid">
                         <div class="stat-item" id="busuanzi_container_site_pv" style="display:none">
                             <i class="fas fa-users"></i>
                             <div class="stat-info">
                                 <span class="stat-value" id="busuanzi_value_site_pv"></span>
-                                <span class="stat-label">إجمالي الزيارات</span>
+                                <span class="stat-label" data-i18n="footer.visits">إجمالي الزيارات</span>
                             </div>
                         </div>
                         <div class="stat-item" id="busuanzi_container_site_uv" style="display:none">
                             <i class="fas fa-eye"></i>
                             <div class="stat-info">
                                 <span class="stat-value" id="busuanzi_value_site_uv"></span>
-                                <span class="stat-label">زوار الموقع</span>
+                                <span class="stat-label" data-i18n="footer.visitors">زوار الموقع</span>
                             </div>
                         </div>
                     </div>
@@ -323,7 +315,8 @@
 
     <script src="js/network-animation.js"></script>
 
-    <!-- Theme Switcher Script -->
+    <!-- Scripts -->
+    <script src="js/i18n.js?v=4"></script>
     <script src="js/theme-switcher.js"></script>
 
     <!-- Minimal JS for navbar & year -->
@@ -386,7 +379,9 @@
         });
 
         // Professional Typewriter Effect
-        const textToType = "النمذجة المكانية لإحتمالية وجود المياه الجوفية في محافظة سوهاج بإستخدام الجيوماتكس والبيئة البرمجية والذكاء الإصطناعي";
+        const _arText = "النمذجة المكانية لإحتمالية وجود المياه الجوفية في محافظة سوهاج بإستخدام الجيوماتكس والبيئة البرمجية والذكاء الإصطناعي";
+        const _enText = "Spatial Modeling of Groundwater Potential in Sohag Governorate using Geomatics, Programming Environments & AI";
+        const textToType = (window.i18n && window.i18n.lang === 'en') ? _enText : _arText;
         const typewriterElement = document.getElementById('typewriter-text');
         let charIndex = 0;
         let isDeleting = false;
@@ -423,3 +418,5 @@
 </body>
 
 </html>
+
+

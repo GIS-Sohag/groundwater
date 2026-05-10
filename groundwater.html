@@ -79,6 +79,8 @@
         html {
             scrollbar-gutter: stable;
             isolation: isolate;
+            overflow-x: hidden;
+            max-width: 100%;
         }
 
         body {
@@ -86,9 +88,8 @@
             background: var(--bg-primary);
             color: var(--text-primary);
             overflow-y: auto;
-            /* FIX: Allow vertical scrolling */
             overflow-x: hidden;
-            /* Prevent horizontal scroll */
+            max-width: 100%;
             position: relative;
         }
 
@@ -603,30 +604,53 @@
         }
 
         @media (max-width: 992px) {
+            .main-content {
+                padding: 1rem 1rem 2rem;
+                padding-top: 80px;
+            }
+
             .map-section {
                 grid-template-columns: 1fr;
                 height: auto;
             }
 
             .map-container {
-                height: 500px;
-                min-height: 500px;
+                height: 55vh;
+                min-height: 400px;
             }
 
             .map-info-panel {
                 height: auto;
-                margin-top: 2rem;
+                margin-top: 1.5rem;
+            }
+
+            .page-title-card h1 {
+                font-size: 1.8rem;
+                flex-wrap: wrap;
+            }
+
+            .page-title-card p {
+                font-size: 0.95rem;
+            }
+
+            .report-card, .coords-card {
+                padding: 1.2rem;
+                overflow-wrap: break-word;
             }
         }
 
         @media (max-width: 768px) {
             .map-section {
-                min-height: 450px;
+                min-height: 400px;
             }
 
             .map-container {
-                height: 450px;
-                min-height: 450px;
+                height: 50vh;
+                min-height: 350px;
+            }
+
+            .page-title-card h1 {
+                font-size: 1.5rem;
             }
         }
 
@@ -896,19 +920,19 @@
         <div class="nav-container">
             <div class="nav-brand">
                 <i class="fas fa-water"></i>
-                <span>المياه الجوفية بسوهاج</span>
+                <span data-i18n="nav.brand">المياه الجوفية بسوهاج</span>
             </div>
             <div class="nav-links">
-                <a href="home.html" class="nav-link">الرئيسية</a>
-                <a href="groundwater.html" class="nav-link active">الخريطة التفاعلية</a>
-                <a href="gallery.html" class="nav-link">المعرض</a>
-                <a href="palestine.html" class="nav-link">أولى القبلتين</a>
-                <a href="about.html" class="nav-link">عن المشروع</a>
-                <button class="theme-switcher-btn" id="theme-switcher" title="تبديل الوضع">
+                <a href="home.html" class="nav-link" data-i18n="nav.home">الرئيسية</a>
+                <a href="groundwater.html" class="nav-link active" data-i18n="nav.map">الخريطة التفاعلية</a>
+                <a href="gallery.html" class="nav-link" data-i18n="nav.gallery">المعرض</a>
+                <a href="palestine.html" class="nav-link" data-i18n="nav.palestine">أولى القبلتين</a>
+                <a href="about.html" class="nav-link" data-i18n="nav.about">عن المشروع</a>
+                <button class="theme-switcher-btn" id="theme-switcher" title="تبديل الوضع" data-i18n="[title]nav.theme">
                     <i class="fas fa-sun"></i>
                 </button>
             </div>
-            <div class="hamburger" aria-label="فتح/إغلاق القائمة">
+            <div class="hamburger" aria-label="فتح/إغلاق القائمة" data-i18n="[aria-label]nav.menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -920,15 +944,14 @@
     <!-- Main Content -->
     <main class="main-content">
         <div class="page-title-card" id="page-title-card">
-            <h1><i class="fas fa-tint"></i> المياه الجوفية</h1>
+            <h1><i class="fas fa-tint"></i> <span data-i18n="gw.title">المياه الجوفية</span></h1>
             <p><span id="typewriter-text"></span><span class="cursor">|</span></p>
         </div>
 
         <div class="quran-verse">
-            <p class="verse-text">"وَأَنزَلْنَا مِنَ السَّمَاءِ مَاءً بِقَدَرٍ فَأَسْكَنَّاهُ فِي الْأَرْضِ ۖ
-                وَإِنَّا
-                عَلَىٰ ذَهَابٍ بِهِ لَقَادِرُونَ"</p>
-            <p class="verse-reference">(سورة المؤمنون - الآية 18)</p>
+            <p class="verse-text quran-text" data-i18n="gw.verse">"وَأَنزَلْنَا مِنَ السَّمَاءِ مَاءً بِقَدَرٍ فَأَسْكَنَّاهُ فِي الْأَرْضِ ۖ وَإِنَّا عَلَىٰ ذَهَابٍ بِهِ لَقَادِرُونَ"</p>
+            <div class="verse-translation" data-i18n="gw.verse" style="display:none; padding: 10px; font-size: 1.1rem; border-top: 1px solid var(--border-color); margin-top: 10px;"></div>
+            <p class="verse-reference" data-i18n="gw.verse.ref">(سورة المؤمنون - الآية 18)</p>
         </div>
 
         <div class="map-section">
@@ -952,9 +975,9 @@
 
         <div class="report-card">
             <div class="report-header">
-                <h4><i class="fas fa-file-alt"></i> تقرير تحليلي</h4>
+                <h4><i class="fas fa-file-alt"></i> <span data-i18n="gw.report.title">تقرير تحليلي</span></h4>
                 <button id="print-btn" class="control-btn" style="display: none;" onclick="printReport()"><i
-                        class="fas fa-print"></i> طباعة التقرير</button>
+                        class="fas fa-print"></i> <span data-i18n="gw.btn.print">طباعة التقرير</span></button>
             </div>
             <div id="report-container" class="report-content"></div>
         </div>
@@ -973,20 +996,20 @@
         <div class="print-official-header">
             <div class="header-side">
                 <img src="images/univ_logo.png" alt="University Logo" class="header-logo" onerror="this.style.display='none'">
-                <p>جامعة سوهاج</p>
+                <p data-i18n="print.univ">جامعة سوهاج</p>
             </div>
             <div class="header-center">
-                <h3 style="color: #000 !important; text-decoration: underline;">تقرير احتمالية وجود المياه الجوفية</h3>
+                <h3 style="color: #000 !important; text-decoration: underline;" data-i18n="print.report.title">تقرير احتمالية وجود المياه الجوفية</h3>
             </div>
             <div class="header-side" style="direction: rtl;">
                 <img src="images/college_logo.png" alt="Faculty Logo" class="header-logo" onerror="this.style.display='none'">
-                <p>كلية الآداب</p>
-                <p>قسم الجغرافيا ونظم المعلومات الجغرافية</p>
+                <p data-i18n="print.faculty">كلية الآداب</p>
+                <p data-i18n="print.dept">قسم الجغرافيا ونظم المعلومات الجغرافية</p>
             </div>
         </div>
 
         <!-- Map Thumbnail Area -->
-        <h3 class="print-section-title">صورة القمر الصناعي للموقع:</h3>
+        <h3 class="print-section-title" data-i18n="print.sat.title">صورة القمر الصناعي للموقع:</h3>
         <div style="text-align: center;"> 
             <div class="print-map-wrapper" id="print-map-wrapper" style="padding: 0; background: #000;">
                 <img id="print-map-img" class="print-map-thumbnail" alt="خريطة الموقع" style="width: 100%; height: 400px; object-fit: cover; display: block;">
@@ -1009,14 +1032,14 @@
         </div>
 
         <!-- Info Table -->
-        <h3 class="print-section-title">إحداثيات وبيانات الموقع:</h3>
+        <h3 class="print-section-title" data-i18n="print.coords.title">إحداثيات وبيانات الموقع:</h3>
         <table class="print-table">
             <thead>
                 <tr>
-                    <th>المحافظة</th>
-                    <th>المنطقة / المركز</th>
-                    <th>خط العرض (Lat)</th>
-                    <th>خط الطول (Lng)</th>
+                    <th data-i18n="print.col.gov">المحافظة</th>
+                    <th data-i18n="print.col.area">المنطقة / المركز</th>
+                    <th data-i18n="print.col.lat">خط العرض (Lat)</th>
+                    <th data-i18n="print.col.lng">خط الطول (Lng)</th>
                 </tr>
             </thead>
             <tbody>
@@ -1030,24 +1053,24 @@
         </table>
 
         <!-- Report Content -->
-        <h3 class="print-section-title" style="page-break-before: always; margin-top: 1cm;">التحليل الفني والتوصيات:</h3>
+        <h3 class="print-section-title" style="page-break-before: always; margin-top: 1cm;" data-i18n="print.analysis.title">التحليل الفني والتوصيات:</h3>
         <div id="print-report-text" class="print-text"></div>
 
         <div class="signature-area" style="position: relative; align-items: flex-end; margin-top: 80px; width: 100%;">
             <div class="sig-block" style="position: relative; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 5px; min-height: 80px;">
                 <!-- Seal rotated behind dots line -->
                 <img src="images/Seal and signature.png" alt="Seal" style="position: absolute; bottom: -5px; width: 140px; z-index: 1; opacity: 0.85; transform: rotate(-10deg);" onerror="this.style.display='none'">
-                <p class="sig-text" style="position: relative; z-index: 2;">توقيع معد التقرير</p>
+                <p class="sig-text" style="position: relative; z-index: 2;" data-i18n="print.sig.author">توقيع معد التقرير</p>
                 <p class="sig-text" style="margin-top: 10px; position: relative; z-index: 2; letter-spacing: 3px;">....................</p>
             </div>
             <div class="sig-block" style="text-align: center; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 10px;">
-                <p>اعتماد المشرف الأكاديمى</p>
-                <p>أ.م.د حمدي نبيه عيد</p>
+                <p data-i18n="print.sig.supervisor">اعتماد المشرف الأكاديمى</p>
+                <p data-i18n="print.supervisor.name">أ.م.د حمدي نبيه عيد</p>
             </div>
         </div>
         
         <div class="print-footer" style="text-align: center; margin-top: 100px; padding-bottom: 20px; font-weight: bold; font-size: 10pt;">
-            <p>تم استخراج هذا التقرير آليا عبر نظام النمذجة المكانية للمياه الجوفية - سوهاج © 2025</p>
+            <p data-i18n="print.footer">تم استخراج هذا التقرير آليا عبر نظام النمذجة المكانية للمياه الجوفية - سوهاج © 2025</p>
         </div>
     </div>
 
@@ -1065,6 +1088,7 @@
     <script src="https://unpkg.com/geoblaze"></script>
 
     <!-- Custom Scripts -->
+    <script src="js/i18n.js?v=4"></script>
     <script src="js/network-animation.js"></script>
     <script src="js/theme-switcher.js"></script>
 
@@ -1133,6 +1157,7 @@
          * @returns {Promise<object|null>} Location object or null.
          */
         async function getLocalLocationInfo(latlng) {
+            const isEn = window.i18n && window.i18n.lang === 'en';
             // Quick check: If outside Sohag general area, don't bother
             if (latlng.lat < SOHAG_BBOX.minLat || latlng.lat > SOHAG_BBOX.maxLat || 
                 latlng.lng < SOHAG_BBOX.minLng || latlng.lng > SOHAG_BBOX.maxLng) {
@@ -1169,9 +1194,9 @@
                 if (feature.geometry.type === 'Polygon') {
                     if (isPointInPolygon(point, feature.geometry.coordinates[0])) {
                         return {
-                            state: feature.properties.Gov_A_Name || 'سوهاج',
-                            county: feature.properties.city || 'غير محدد',
-                            village: feature.properties.village || 'غير محدد',
+                            state: feature.properties.Gov_A_Name || (isEn ? 'Sohag' : 'سوهاج'),
+                            county: feature.properties.city || (isEn ? 'Undefined' : 'غير محدد'),
+                            village: feature.properties.village || (isEn ? 'Undefined' : 'غير محدد'),
                             source: 'local'
                         };
                     }
@@ -1196,7 +1221,8 @@
         // --- Main Application Logic ---
 
         // Typewriter Effect for Title
-        const titleText = "النمذجة المكانية لإحتمالية وجود المياه الجوفية في محافظة سوهاج بإستخدام\nالجيوماتكس والبيئة البرمجية والذكاء الإصطناعي";
+        const originalTitleText = "النمذجة المكانية لإحتمالية وجود المياه الجوفية في محافظة سوهاج بإستخدام\nالجيوماتكس والبيئة البرمجية والذكاء الإصطناعي";
+        const titleText = window.i18n && window.i18n.lang === 'en' ? window.appTranslator.t('gw.typewriter') : originalTitleText;
         const titleElement = document.getElementById('typewriter-text');
         let titleIsDeleting = false;
         let titleCharIndex = 0;
@@ -1234,13 +1260,12 @@
             async function initDepthRaster() {
                 const url = "data/groundwater_depth.tif";
                 try {
-                    // This ONLY fetches the header, NOT the whole file. 
-                    // This makes the page load instantly regardless of TIF size.
+                    // جلب رأس الملف فقط (Headers) لقراءة تفاصيل الموقع المحدد لتوفير باقة الإنترنت
                     tiffObject = await GeoTIFF.fromUrl(url); 
-                    console.log("تم تهيئة ملف أعماق المياه الجوفية (نظام التحميل الذكي) بنجاح");
+                    console.log("تم تهيئة ملف أعماق المياه الجوفية (نظام التحميل الجزئي لتوفير البيانات) بنجاح");
                     createLegend();
                 } catch (e) {
-                    console.warn("ملف أعماق المياه الجوفية غير موجود أو لا يدعم التحميل الجزئي:", e);
+                    console.warn("تنبيه: ملف أعماق المياه الجوفية غير متوفر أو مسار خاطئ:", e);
                 }
             }
             initDepthRaster();
@@ -1301,18 +1326,19 @@
             const esriNatGeo = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', { attribution: '' });
 
             // Layer Control Object
+            const isEn = window.i18n && window.i18n.lang === 'en';
             const baseMaps = {
-                "🗺️ شوارع (OSM)": osm,
-                "🛰️ صور جوجل (Satellite)": googleSatellite,
-                "🌍 جوجل هجين (Hybrid)": googleHybrid,
-                "🏔️ جوجل تضاريس (Terrain)": googleTerrain,
-                "🛣️ خرائط جوجل (Streets)": googleStreets,
-                "🌑 لوحة داكنة (Esri)": esriDarkGray,
-                "⬜ لوحة فاتحة (Esri)": esriLightGray,
-                "📡 أقمار صناعية (Esri)": esriImagery,
-                "🛤️ شوارع (Esri)": esriStreets,
-                "⛰️ تضاريس (OpenTopo)": openTopo,
-                "🌿 ناشيونال جيوغرافيك": esriNatGeo,
+                [isEn ? "🗺️ OSM Streets" : "🗺️ شوارع (OSM)"]: osm,
+                [isEn ? "🛰️ Google Satellite" : "🛰️ صور جوجل (Satellite)"]: googleSatellite,
+                [isEn ? "🌍 Google Hybrid" : "🌍 جوجل هجين (Hybrid)"]: googleHybrid,
+                [isEn ? "🏔️ Google Terrain" : "🏔️ جوجل تضاريس (Terrain)"]: googleTerrain,
+                [isEn ? "🛣️ Google Streets" : "🛣️ خرائط جوجل (Streets)"]: googleStreets,
+                [isEn ? "🌑 Esri Dark" : "🌑 لوحة داكنة (Esri)"]: esriDarkGray,
+                [isEn ? "⬜ Esri Light" : "⬜ لوحة فاتحة (Esri)"]: esriLightGray,
+                [isEn ? "📡 Esri Satellite" : "📡 أقمار صناعية (Esri)"]: esriImagery,
+                [isEn ? "🛤️ Esri Streets" : "🛤️ شوارع (Esri)"]: esriStreets,
+                [isEn ? "⛰️ OpenTopo" : "⛰️ تضاريس (OpenTopo)"]: openTopo,
+                [isEn ? "🌿 NatGeo" : "🌿 ناشيونال جيوغرافيك"]: esriNatGeo,
             };
 
             // Layer Control
@@ -1320,11 +1346,19 @@
 
             // Function to handle interactions for each feature
             function onEachFeature(feature, layer) {
-                if (feature.properties && feature.properties.الفئا) { // FIX: Use "الفئا"
-                    layer.bindTooltip(feature.properties.الفئا, {
+                if (feature.properties && feature.properties.الفئا) {
+                    const catMap = {
+                        'مرتفع جداً': 'Very High',
+                        'مرتفع': 'High',
+                        'متوسط': 'Medium',
+                        'منخفض': 'Low',
+                        'منخفض جداً': 'Very Low'
+                    };
+                    const label = isEn ? (catMap[feature.properties.الفئا] || feature.properties.الفئا) : feature.properties.الفئا;
+                    layer.bindTooltip(label, {
                         permanent: false,
                         direction: 'center',
-                        className: 'hover-tooltip' // You can style this class
+                        className: 'hover-tooltip'
                     });
                 }
 
@@ -1354,7 +1388,7 @@
                 loadingDiv.style.cssText = 'position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 2000; background: var(--bg-card); padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px var(--shadow-medium);';
                 loadingDiv.innerHTML = `
                     <i class="fas fa-spinner fa-spin" style="font-size: 3rem; color: var(--accent-blue); margin-bottom: 1rem;"></i>
-                    <p style="color: var(--text-primary); font-weight: 600;">جاري تحميل بيانات الخريطة...</p>
+                    <p style="color: var(--text-primary); font-weight: 600;">${isEn ? 'Loading Map Data...' : 'جاري تحميل بيانات الخريطة...'}</p>
                 `;
                 mapElement.parentElement.appendChild(loadingDiv);
 
@@ -1413,6 +1447,7 @@
                 const activeData = data || geojsonData;
                 const legendContainer = document.getElementById('legend-container');
                 const categories = new Map();
+                const t = (key) => window.i18n ? window.i18n.t(key) : key;
 
                 activeData.features.forEach(feature => {
                     const props = feature.properties;
@@ -1421,24 +1456,35 @@
                     }
                 });
 
-                let legendHTML = '<h4>مفتاح الخريطة</h4>';
+                let legendHTML = `<h4>${t('gw.legend.title')}</h4>`;
+
+                // Category labels bilingual map
+                const catMap = {
+                    'مرتفع جداً': { ar: 'مرتفع جداً', en: 'Very High' },
+                    'مرتفع':     { ar: 'مرتفع',     en: 'High' },
+                    'متوسط':     { ar: 'متوسط',     en: 'Medium' },
+                    'منخفض':     { ar: 'منخفض',     en: 'Low' },
+                    'منخفض جداً':{ ar: 'منخفض جداً',en: 'Very Low' },
+                };
+                const isEn = window.i18n && window.i18n.lang === 'en';
 
                 // Add GeoJSON Categories
                 if (categories.size > 0) {
-                    legendHTML += '<div style="margin-bottom: 0.8rem; font-weight: 700; font-size: 0.9rem; color: var(--text-secondary);">احتمالية المياه</div>';
+                    legendHTML += `<div style="margin-bottom: 0.8rem; font-weight: 700; font-size: 0.9rem; color: var(--text-secondary);">${t('gw.potential')}</div>`;
                     const sortedCategories = Array.from(categories.entries()).sort((a, b) => Number(b[1]) - Number(a[1]));
                     for (const [label, gridcode] of sortedCategories) {
-                        legendHTML += `<div class="legend-item"><i style="background:${getColor({ gridcode: gridcode })}"></i> <span>${label}</span></div>`;
+                        const dispLabel = isEn ? (catMap[label]?.en || label) : label;
+                        legendHTML += `<div class="legend-item"><i style="background:${getColor({ gridcode: gridcode })}"></i> <span>${dispLabel}</span></div>`;
                     }
                 }
 
-                // Add Depth Layer Legend (TIF - now using streaming tiffObject)
+                // Add Depth Layer Legend
                 if (tiffObject) {
                     legendHTML += `
-                        <div style="margin-top: 1.2rem; margin-bottom: 0.8rem; font-weight: 700; font-size: 0.9rem; border-top: 1px solid var(--border-color); padding-top: 0.8rem; color: var(--text-secondary);">العمق التقريبي للموقع المحدد</div>
+                        <div style="margin-top: 1.2rem; margin-bottom: 0.8rem; font-weight: 700; font-size: 0.9rem; border-top: 1px solid var(--border-color); padding-top: 0.8rem; color: var(--text-secondary);">${t('gw.depth.label')}</div>
                         <div class="legend-item">
                             <i style="background: linear-gradient(to bottom, #dbeafe, #1e40af); border-radius: 2px;"></i> 
-                            <span id="legend-depth-value">العمق التقريبي (متر)</span>
+                            <span id="legend-depth-value">${t('gw.depth.unit')}</span>
                         </div>
                     `;
                 }
@@ -1446,6 +1492,7 @@
                 legendContainer.innerHTML = legendHTML;
                 legendDepthSpan = document.getElementById('legend-depth-value');
             }
+
 
             // Helper for Report Typewriter (with cancellation to prevent duplication)
             let currentTypingId = 0;
@@ -1503,7 +1550,8 @@
                 } catch (e) { console.warn("Local lookup failed, falling back to APIs"); }
 
                 // Priority 2: Try Google Geocoding API
-                const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latlng.lat},${latlng.lng}&key=AIzaSyBrz3rKpKaE3zFl0mFVtxCaR0hYnif2wRo&language=ar`;
+                const gLang = window.i18n && window.i18n.lang === 'en' ? 'en' : 'ar';
+                const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latlng.lat},${latlng.lng}&key=AIzaSyBrz3rKpKaE3zFl0mFVtxCaR0hYnif2wRo&language=${gLang}`;
                 try {
                     const response = await fetch(url);
                     const data = await response.json();
@@ -1550,8 +1598,9 @@
                 } catch (e) { console.error("Google Geocoding error:", e); }
 
                 // Fallback 1: OpenStreetMap Nominatim
+                const oLang = window.i18n && window.i18n.lang === 'en' ? 'en' : 'ar';
                 try {
-                    const osmUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latlng.lat}&lon=${latlng.lng}&zoom=18&addressdetails=1&accept-language=ar`;
+                    const osmUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latlng.lat}&lon=${latlng.lng}&zoom=18&addressdetails=1&accept-language=${oLang}`;
                     const osmResponse = await fetch(osmUrl);
                     const osmData = await osmResponse.json();
                     if (osmData && osmData.address) {
@@ -1572,20 +1621,20 @@
                 // Fallback 2: Heuristic for Sohag Governorate
                 if (latlng.lat > 25.5 && latlng.lat < 27.5 && latlng.lng > 31.0 && latlng.lng < 32.5) {
                     return {
-                        state: 'سوهاج',
-                        county: 'محافظة سوهاج',
-                        village: 'موقع محدد',
-                        full: 'محافظة سوهاج، مصر',
+                        state: isEn ? 'Sohag' : 'سوهاج',
+                        county: isEn ? 'Sohag Governorate' : 'محافظة سوهاج',
+                        village: isEn ? 'Specified Site' : 'موقع محدد',
+                        full: isEn ? 'Sohag Governorate, Egypt' : 'محافظة سوهاج، مصر',
                         source: 'heuristic'
                     };
                 }
 
                 // Ultimate Fallback
                 return {
-                    state: 'غير محدد',
-                    county: 'غير محدد',
-                    village: 'موقع محدد',
-                    full: 'إحداثيات غير معروفة',
+                    state: isEn ? 'Undefined' : 'غير محدد',
+                    county: isEn ? 'Undefined' : 'غير محدد',
+                    village: isEn ? 'Specified Site' : 'موقع محدد',
+                    full: isEn ? 'Unknown Coordinates' : 'إحداثيات غير معروفة',
                     source: 'none'
                 };
             }
@@ -1593,30 +1642,31 @@
 
             async function updateCoordinatesCard(latlng, props, isLocating = false, depthValue = null) {
                 const coordsCard = document.getElementById('coords-card');
+                const t = (k) => window.i18n ? window.i18n.t(k) : k;
                 if (latlng) {
                     let content = `
                         <h4 style="color: var(--accent-blue); font-size: 1.3rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(var(--accent-blue-rgb), 0.3); padding-bottom: 0.5rem;">
-                            <i class="fas fa-map-marker-alt"></i> معلومات الموقع
+                            <i class="fas fa-map-marker-alt"></i> ${t('gw.card.location')}
                         </h4>
                         <div class="details-grid" style="border:none; padding-top:0; gap: 0.7rem;">
-                            <p><strong>خط العرض:</strong> <span>${latlng.lat.toFixed(6)}</span></p>
-                            <p><strong>خط الطول:</strong> <span>${latlng.lng.toFixed(6)}</span></p>
+                            <p><strong>${t('gw.card.lat')}:</strong> <span>${latlng.lat.toFixed(6)}</span></p>
+                            <p><strong>${t('gw.card.lng')}:</strong> <span>${latlng.lng.toFixed(6)}</span></p>
                     `;
                     if (props && props.gridcode) {
-                        content += `<p><strong>كود الفئة:</strong> <span>${props.gridcode}</span></p>`;
+                        content += `<p><strong>${t('gw.card.code')}:</strong> <span>${props.gridcode}</span></p>`;
                     }
 
                     // Use unified geocoding (Local -> Google -> OSM)
                     const address = isLocating ? await getUnifiedReverseGeocode(latlng) : (coordsCard.dataset.address ? JSON.parse(coordsCard.dataset.address) : await getUnifiedReverseGeocode(latlng));
                     if (address) {
                         if (address.village && address.village !== 'موقع محدد' && address.village !== 'غير محدد') {
-                            content += `<p><strong>المنطقة / القرية:</strong> <span>${address.village}</span></p>`;
+                            content += `<p><strong>${t('gw.card.area')}:</strong> <span>${address.village}</span></p>`;
                         }
                         if (address.county && address.county !== 'غير محدد' && address.county !== address.village) {
-                            content += `<p><strong>المركز / القسم:</strong> <span>${address.county}</span></p>`;
+                            content += `<p><strong>${t('gw.card.county')}:</strong> <span>${address.county}</span></p>`;
                         }
                         if (address.state && address.state !== 'غير محدد') {
-                            content += `<p><strong>المحافظة:</strong> <span>${address.state}</span></p>`;
+                            content += `<p><strong>${t('gw.card.gov')}:</strong> <span>${address.state}</span></p>`;
                         }
                         
                         // Debug/Info: Source of location data
@@ -1642,7 +1692,7 @@
                         const locEl = document.getElementById('print-location-name-table');
                         if (govEl) govEl.innerText = address.state && address.state !== 'غير محدد' ? address.state : 'سوهاج';
                         
-                        let printLoc = 'نطاق صحراوي / غير محصور';
+                        let printLoc = window.i18n && window.i18n.lang === 'en' ? 'Desert Zone / Unaddressed' : 'نطاق صحراوي / غير محصور';
                         if (address.village && address.village !== 'موقع محدد' && address.village !== 'غير محدد') {
                             printLoc = address.county && address.county !== 'غير محدد' && address.county !== address.village ? `${address.county} - ${address.village}` : address.village;
                         } else if (address.county && address.county !== 'غير محدد') {
@@ -1652,8 +1702,8 @@
                     } else {
                         const govEl = document.getElementById('print-gov');
                         const locEl = document.getElementById('print-location-name-table');
-                        if (govEl) govEl.innerText = 'محددة بالإحداثيات';
-                        if (locEl) locEl.innerText = 'نطاق صحراوي / منطقة غير معنونة';
+                        if (govEl) govEl.innerText = t('gw.card.gov');
+                        if (locEl) locEl.innerText = t('gw.card.nodata');
                     }
                     coordsCard.style.display = 'block';
                     return address; // CRITICAL: Return the address object for downstream usage
@@ -1665,33 +1715,113 @@
 
             function updateDetailsCard(props) {
                 const detailsContainer = document.getElementById('details-container');
+                const t = (k) => window.i18n ? window.i18n.t(k) : k;
+                const isEn = window.i18n && window.i18n.lang === 'en';
                 if (props) {
-                    // Try to detect common property names in Arabic-GeoJSON (sometimes malformed or shortened)
-                    const label = props.الفئا || props.الفئة || props.Category || 'بيانات المنطقة';
+                    const label = props.الفئا || props.الفئة || props.Category || (isEn ? 'Zone Data' : 'بيانات المنطقة');
                     const area = props.المسا || props.المساحة || props.Area || null;
                     const percent = props.النسب || props.النسبة || props.Percent || null;
                     
                     detailsContainer.innerHTML = `
                         <h4><i class="fas fa-info-circle"></i> ${label}</h4>
                         <div class="details-grid">
-                            <p><strong>المساحة:</strong> <span>${area ? area.toFixed(2) + ' كم²' : 'غير متوفر'}</span></p>
-                            <p><strong>النسبة:</strong> <span>${percent ? percent.toFixed(2) + '%' : 'غير متوفر'}</span></p>
-                            <p><strong>كود الفئة:</strong> <span>${props.gridcode || 'N/A'}</span></p>
+                            <p><strong>${t('gw.card.area2')}:</strong> <span>${area ? area.toFixed(2) + ' km²' : t('gw.card.nodata')}</span></p>
+                            <p><strong>${t('gw.card.percent')}:</strong> <span>${percent ? percent.toFixed(2) + '%' : t('gw.card.nodata')}</span></p>
+                            <p><strong>${t('gw.card.code')}:</strong> <span>${props.gridcode || 'N/A'}</span></p>
                         </div>`;
                 } else {
-                    detailsContainer.innerHTML = `<div class="details-placeholder"><p>انقر على منطقة لعرض تفاصيلها</p></div>`;
+                    detailsContainer.innerHTML = `<div class="details-placeholder"><p>${t('gw.click.area')}</p></div>`;
                 }
             }
-
 
             function generateReport(props, isOutside = false, depthValue = null, addressData = null) {
                 const reportContainer = document.getElementById('report-container');
                 const printReportText = document.getElementById('print-report-text');
                 const printBtn = document.getElementById('print-btn');
+                const isEn = window.i18n && window.i18n.lang === 'en';
+
+                // ── Bilingual report strings ──────────────────────────────────
+                const R = {
+                    locationInfo:   isEn ? 'Site Information'      : 'معلومات الموقع',
+                    latLabel:       isEn ? 'Latitude'               : 'خط العرض',
+                    lngLabel:       isEn ? 'Longitude'              : 'خط الطول',
+                    codeLabel:      isEn ? 'Category Code'          : 'كود الفئة',
+                    areaLabel:      isEn ? 'District / Village'     : 'المنطقة / القرية',
+                    countyLabel:    isEn ? 'Markaz / Division'      : 'المركز / القسم',
+                    govLabel:       isEn ? 'Governorate'            : 'المحافظة',
+                    inArea:         isEn ? 'in the area of'          : 'في منطقة',
+                    inScope:        isEn ? 'within the scope of'     : 'في نطاق',
+                    inGov:          isEn ? 'in'                      : 'بـ',
+                    sohagGov:       isEn ? 'Sohag Governorate'      : 'بمحافظة سوهاج',
+                    depthPrefix:    isEn ? 'Based on geomatics data analysis (GeoTIFF), the estimated depth to the groundwater table at this point is approximately' : 'بناءً على تحليل بيانات الجيوماتكس (GeoTIFF)، يبلغ العمق التقديري لمستوى المياه الجوفية في هذه النقطة حوالي',
+                    depthSuffix:    isEn ? 'meters below ground surface.' : 'متر تحت سطح الأرض.',
+                    siteAnalysis:   isEn ? 'Analysis of the Selected Site' : 'تحليل الموقع المختار',
+                    geoIndicators:  isEn ? 'The geological and geophysical data of this site indicate the following:' : 'توضح المعطيات الجيولوجية والجيوفيزيائية لهذا الموقع ما يلي:',
+                    initialAnalysis:isEn ? 'Preliminary Site Analysis' : 'التحليل الأولي للموقع',
+                    geophysRecs:    isEn ? 'Geophysical Recommendations for Field Verification:' : 'التوصيات الجيوفيزيائية للتحقق الميداني:',
+                    importantNote:  isEn ? 'Important Disclaimer:' : 'تنويه هام:',
+                    disclaimer:     isEn ? 'This report is based on a spatial model and serves as a preliminary indicative tool. The final decision always requires comprehensive field studies to verify results on the ground.' : 'هذا التقرير مبني على نموذج مكاني ويعتبر أداة استرشادية أولية. القرار النهائي يتطلب دائمًا إجراء دراسات ميدانية متكاملة للتحقق من النتائج على أرض الواقع.',
+                    outsideRange:   isEn ? 'The selected location is outside the study area boundaries (GeoJSON & Raster). Please click within the colored layer boundaries.' : 'الموقع المحدد يقع خارج نطاق منطقة الدراسة الحالية (GeoJSON & Raster). يرجى النقر داخل حدود الطبقات الملونة.',
+                    placeholder:    isEn ? 'Click on any area on the map to begin groundwater potential analysis and generate a detailed report.' : 'انقر على إحدى مناطق الخريطة لبدء تحليل احتمالية المياه الجوفية وكتابة تقرير مفصل.',
+                    areaLabel2:     isEn ? 'Area'    : 'المساحة',
+                    percLabel:      isEn ? 'Percent' : 'النسبة',
+                    noData:         isEn ? 'N/A'     : 'غير متوفر',
+                    specifiedCoord: isEn ? 'Specified by Coordinates' : 'محددة بالإحداثيات',
+                    desertZone:     isEn ? 'Desert Zone / Unaddressed Area' : 'نطاق صحراوي / منطقة غير معنونة',
+
+                    // Category-specific
+                    catVeryHigh: isEn ? 'Very High' : 'مرتفع جداً',
+                    catHigh:     isEn ? 'High'      : 'مرتفع',
+                    catMedium:   isEn ? 'Medium'    : 'متوسط',
+                    catLow:      isEn ? 'Low'       : 'منخفض',
+
+                    analysis_5: isEn
+                        ? 'All spatial indicators point to ideal conditions for groundwater formation and storage. The area is situated in geological and geomorphological structures with high permeability and good water recharge.'
+                        : 'تشير جميع المؤشرات المكانية إلى وجود ظروف مثالية لتكوّن وتخزين المياه الجوفية. المنطقة تقع في تراكيب جيولوجية وجيومورفولوجية عالية النفاذية مع تغذية مائية جيدة.',
+                    rec_5: isEn
+                        ? 'It is strongly recommended to conduct a detailed geophysical survey using **Electrical Resistivity Tomography (ERT)** to determine the vertical and horizontal extent of the aquifer with precision. This can be supplemented with **Vertical Electrical Soundings (VES)** at promising sites to accurately determine depths before drilling production wells. Note: A sounding device is available at the Faculty of Science, Geology Department, Sohag University for this purpose.'
+                        : 'يوصى بشدة بإجراء مسح جيوفيزيائي تفصيلي باستخدام تقنية **التصوير المقطعي للمقاومة الكهربائية (ERT)** لتحديد الامتداد الرأسي والأفقي للخزان الجوفي بدقة. يمكن استكمال ذلك **بجسات كهربائية رأسية (VES)** في المواقع الواعدة لتحديد الأعماق بدقة قبل البدء في حفر آبار إنتاجية. علماً بأنه يوجد جهاز جسة في كلية العلوم قسم الجيولوجيا جامعة سوهاج لخدمة هذا الغرض.',
+
+                    analysis_4: isEn
+                        ? 'The geological and hydrological conditions in this area are highly favorable for the presence of groundwater accumulations. Some limiting factors may exist, but the overall probability is strong.'
+                        : 'الظروف الجيولوجية والهيدرولوجية في هذه المنطقة مواتية بشكل كبير لوجود تجمعات مائية جوفية. قد تكون هناك بعض العوامل المحددة ولكن الاحتمالية العامة قوية.',
+                    rec_4: isEn
+                        ? 'It is advised to start with **Vertical Electrical Soundings (VES)** to determine initial depths of water-bearing layers. If results are positive, **Ground Penetrating Radar (GPR)** can be used in sedimentary areas to map saturated sandy and gravelly layers. Note: A sounding device is available at the Faculty of Science, Geology Department, Sohag University.'
+                        : 'يُنصح بالبدء **بجسات كهربائية رأسية (VES)** لتحديد الأعماق المبدئية للطبقات الحاملة للمياه. في حال كانت النتائج إيجابية، يمكن استخدام **الرادار الأرضي (GPR)** في المناطق ذات الطبيعة الرسوبية. علماً بأنه يتوفر جهاز جسة في كلية العلوم قسم الجيولوجيا جامعة سوهاج.',
+
+                    analysis_3: isEn
+                        ? 'The area shows mixed characteristics; some parameters support the presence of water while others limit it. Water may exist in scattered pockets or at greater depths.'
+                        : 'تظهر المنطقة خصائص مختلطة، حيث تدعم بعض المعايير وجود المياه بينما تحد عوامل أخرى من ذلك. قد تكون المياه موجودة في جيوب متفرقة أو على أعماق أكبر.',
+                    rec_3: isEn
+                        ? 'A reconnaissance survey using **Electromagnetic (EM) techniques** is suggested to cover a wide area and identify low-resistivity zones that may indicate water presence. Promising sites can later be verified using **VES soundings** available at the Faculty of Science, Geology Dept., Sohag University.'
+                        : 'يُقترح إجراء مسح استطلاعي باستخدام تقنيات **المسح الكهرومغناطيسي (EM)** لتغطية مساحة واسعة. المواقع الواعدة يمكن التحقق منها باستخدام **جسات كهربائية (VES)** المتاحة في كلية العلوم قسم الجيولوجيا جامعة سوهاج.',
+
+                    analysis_low: isEn
+                        ? 'The prevailing characteristics of this area do not strongly support the existence of economically viable groundwater accumulations. Water may exist but in limited quantities or of poor quality.'
+                        : 'الخصائص السائدة في هذه المنطقة لا تدعم بشكل كبير وجود تجمعات مائية جوفية اقتصادية. قد تكون المياه موجودة ولكن بكميات قليلة أو بجودة منخفضة.',
+                    rec_low: isEn
+                        ? 'Before any costly fieldwork, it is recommended to re-analyze linear structures and faults from high-resolution satellite imagery, as water may be trapped along fault zones. Any geophysical work (VES devices available at Faculty of Science, Sohag University) should be limited and precisely targeted.'
+                        : 'قبل أي عمل ميداني مكلف، يوصى بإعادة تحليل التراكيب الخطية والصدوع من صور الأقمار الصناعية. أي عمل جيوفيزيائي (الجسات متوفرة بكلية العلوم جامعة سوهاج) يجب أن يكون محدودًا وموجهًا بدقة.',
+
+                    analysis_none: isEn
+                        ? 'Insufficient vector data is available to provide an accurate analysis of this area.'
+                        : 'لا توجد بيانات متجهية كافية لتقديم تحليل دقيق لهذه المنطقة.',
+                    rec_none: isEn
+                        ? 'Additional field data is required to assess groundwater potential by conducting electrical soundings (device available for use at the Faculty of Science, Geology Dept.).'
+                        : 'يتطلب الأمر المزيد من البيانات الميدانية لتقييم احتمالية وجود المياه الجوفية عبر إجراء الجسات الكهربائية (متوفر جهاز للإيجار بكلية العلوم قسم الجيولوجيا).',
+
+                    analysis_outside: isEn
+                        ? 'This location falls outside the vector classification boundaries (GeoJSON) of the study, however depth data was extracted from the raster model.'
+                        : 'هذا الموقع يقع خارج نطاق التقسيمات المتجهية (GeoJSON) للدراسة، ولكن تم استخراج بيانات العمق من نموذج الراستر.',
+                    rec_outside: isEn
+                        ? 'It is recommended to verify the consistency of this site with neighboring geological data and use electrical soundings (available at the Faculty of Science, Geology Dept., Sohag University) as a first verification step.'
+                        : 'يوصى بالتحقق من مدى اتساق هذا الموقع مع المعطيات الجيولوجية المجاورة واستخدام الجسات الكهربائية (المتاحة في كلية العلوم قسم الجيولوجيا، جامعة سوهاج) كمرحلة أولية للتحقق.',
+                };
+                // ─────────────────────────────────────────────────────────────
 
                 let reportText = '';
                 if (depthValue !== null || props) {
-                    const level = props ? (props.الفئا || props.الفئة || props.Category || 'محددة مكانياً') : 'خارج التصنيف المتجهي';
+                    const level = props ? (props.الفئا || props.الفئة || props.Category || (isEn ? 'Spatially Defined' : 'محددة مكانياً')) : (isEn ? 'Outside Vector Classification' : 'خارج التصنيف المتجهي');
 
                     const getValidStr = (str) => (str && str !== 'موقع محدد' && str !== 'غير محدد') ? str : null;
                     const vName = addressData ? getValidStr(addressData.village) : null;
@@ -1699,44 +1829,57 @@
                     const sName = addressData ? getValidStr(addressData.state) : null;
 
                     let areaStrParts = [];
-                    if (vName) areaStrParts.push(`في منطقة ${vName}`);
-                    else if (cName) areaStrParts.push(`في نطاق ${cName}`);
-                    
-                    if (sName) areaStrParts.push(`بـ ${sName}`);
-                    else areaStrParts.push(`بمحافظة سوهاج`);
+                    if (vName) areaStrParts.push(`${R.inArea} ${vName}`);
+                    else if (cName) areaStrParts.push(`${R.inScope} ${cName}`);
+                    if (sName) areaStrParts.push(`${R.inGov} ${sName}`);
+                    else areaStrParts.push(R.sohagGov);
 
-                    let depthInfo = depthValue !== null ? `بناءً على تحليل بيانات الجيوماتكس (GeoTIFF)، يبلغ العمق التقديري لمستوى المياه الجوفية في هذه النقطة حوالي **${Math.round(depthValue)} متر** تحت سطح الأرض.` : '';
+                    let depthInfo = depthValue !== null
+                        ? `${R.depthPrefix} **${Math.round(depthValue)} ${isEn ? 'm' : 'متر'}** ${R.depthSuffix}`
+                        : '';
 
-                    let siteInfo = `<p><strong>تحليل الموقع المختار (${areaStrParts.join(' ')}):</strong> توضح المعطيات الجيولوجية والجيوفيزيائية لهذا الموقع ما يلي:</p>`;
+                    let siteInfo = `<p><strong>${R.siteAnalysis} (${areaStrParts.join(' ')}):</strong> ${R.geoIndicators}</p>`;
 
                     let analysis = '', recommendations = '';
                     if (props) {
                         const currentLevel = props.الفئا || props.الفئة || props.Category || '';
                         if (currentLevel.includes('مرتفع جداً') || props.gridcode == 5) {
-                            analysis = 'تشير جميع المؤشرات المكانية إلى وجود ظروف مثالية لتكوّن وتخزين المياه الجوفية. المنطقة تقع في تراكيب جيولوجية وجيومورفولوجية عالية النفاذية مع تغذية مائية جيدة.';
-                            recommendations = 'يوصى بشدة بإجراء مسح جيوفيزيائي تفصيلي باستخدام تقنية **التصوير المقطعي للمقاومة الكهربائية (ERT)** لتحديد الامتداد الرأسي والأفقي للخزان الجوفي بدقة. يمكن استكمال ذلك **بجسات كهربائية رأسية (VES)** في المواقع الواعدة لتحديد الأعماق بدقة قبل البدء في حفر آبار إنتاجية. علماً بأنه يوجد جهاز جسة في كلية العلوم قسم الجيولوجيا جامعة سوهاج لخدمة هذا الغرض.';
+                            analysis = R.analysis_5; recommendations = R.rec_5;
                         } else if (currentLevel.includes('مرتفع') || props.gridcode == 4) {
-                            analysis = 'الظروف الجيولوجية والهيدرولوجية في هذه المنطقة مواتية بشكل كبير لوجود تجمعات مائية جوفية. قد تكون هناك بعض العوامل المحددة ولكن الاحتمالية العامة قوية.';
-                            recommendations = 'يُنصح بالبدء **بجسات كهربائية رأسية (VES)** لتحديد الأعماق المبدئية للطبقات الحاملة للمياه. في حال كانت النتائج إيجابية، يمكن استخدام **الرادار الأرضي (GPR)** في المناطق ذات الطبيعة الرسوبية لتحديد امتداد الطبقات الرملية والحصوية المشبعة بالمياه. علماً بأنه يتوفر جهاز جسة في كلية العلوم قسم الجيولوجيا جامعة سوهاج.';
+                            analysis = R.analysis_4; recommendations = R.rec_4;
                         } else if (currentLevel.includes('متوسط') || props.gridcode == 3) {
-                            analysis = 'تظهر المنطقة خصائص مختلطة، حيث تدعم بعض المعايير وجود المياه بينما تحد عوامل أخرى من ذلك. قد تكون المياه موجودة في جيوب متفرقة أو على أعماق أكبر.';
-                            recommendations = 'يُقترح إجراء مسح استطلاعي باستخدام تقنيات **المسح الكهرومغناطيسي (EM)** لتغطية مساحة واسعة وتحديد المناطق ذات المقاومة المنخفضة التي قد تشير لوجود مياه. المواقع الواعدة يمكن التحقق منها لاحقًا باستخدام **جسات كهربائية (VES)** والمتاحة في كلية العلوم قسم الجيولوجيا جامعة سوهاج.';
+                            analysis = R.analysis_3; recommendations = R.rec_3;
                         } else if (currentLevel.includes('منخفض') || props.gridcode <= 2) {
-                            analysis = 'الخصائص السائدة في هذه المنطقة لا تدعم بشكل كبير وجود تجمعات مائية جوفية اقتصادية. قد تكون المياه موجودة ولكن بكميات قليلة أو بجودة منخفضة.';
-                            recommendations = 'قبل أي عمل ميداني مكلف، يوصى بإعادة تحليل التراكيب الخطية والصدوع من خلال صور الأقمار الصناعية عالية الدقة، حيث قد تكون المياه محصورة في نطاقات هذه الصدوع. أي عمل جيوفيزيائي مثل الجسات (المتوفرة بكلية العلوم جامعة سوهاج) يجب أن يكون محدودًا وموجهًا بدقة.';
+                            analysis = R.analysis_low; recommendations = R.rec_low;
                         } else {
-                            analysis = 'لا توجد بيانات متجهية كافية لتقديم تحليل دقيق لهذه المنطقة.';
-                            recommendations = 'يتطلب الأمر المزيد من البيانات الميدانية لتقييم احتمالية وجود المياه الجوفية عبر إجراء الجسات الكهربائية (متوفر جهاز للإيجار بكلية العلوم قسم الجيولوجيا).';
+                            analysis = R.analysis_none; recommendations = R.rec_none;
                         }
                     } else {
-                        analysis = 'هذا الموقع يقع خارج نطاق التقسيمات المتجهية (GeoJSON) للدراسة، ولكن تم استخراج بيانات العمق من نموذج الراستر.';
-                        recommendations = 'يوصى بالتحقق من مدى اتساق هذا الموقع مع المعطيات الجيولوجية المجاورة واستخدام الجسات الكهربائية (المتاحة في كلية العلوم قسم الجيولوجيا، جامعة سوهاج) كمرحلة أولية للتحقق.';
+                        analysis = R.analysis_outside; recommendations = R.rec_outside;
                     }
-                    reportText = siteInfo + `<p><strong>التحليل الأولي للموقع (${level}):</strong></p><p>${analysis}</p><p>${depthInfo}</p><p><strong>التوصيات الجيوفيزيائية للتحقق الميداني:</strong></p><p>${recommendations}</p><p><strong>تنويه هام:</strong> هذا التقرير مبني على نموذج مكاني ويعتبر أداة استرشادية أولية. القرار النهائي يتطلب دائمًا إجراء دراسات ميدانية متكاملة للتحقق من النتائج على أرض الواقع.</p>`;
+
+                    // Translate level label for English
+                    let displayLevel = level;
+                    if (isEn) {
+                        if (level.includes('مرتفع جداً')) displayLevel = 'Very High';
+                        else if (level.includes('مرتفع')) displayLevel = 'High';
+                        else if (level.includes('متوسط')) displayLevel = 'Medium';
+                        else if (level.includes('منخفض جداً')) displayLevel = 'Very Low';
+                        else if (level.includes('منخفض')) displayLevel = 'Low';
+                    }
+
+                    reportText = siteInfo
+                        + `<p><strong>${R.initialAnalysis} (${displayLevel}):</strong></p>`
+                        + `<p>${analysis}</p>`
+                        + (depthInfo ? `<p>${depthInfo}</p>` : '')
+                        + `<p><strong>${R.geophysRecs}</strong></p>`
+                        + `<p>${recommendations}</p>`
+                        + `<p><strong>${R.importantNote}</strong> ${R.disclaimer}</p>`;
+
                 } else if (isOutside) {
-                    reportText = '<p>الموقع المحدد يقع خارج نطاق منطقة الدراسة الحالية (GeoJSON & Raster). يرجى النقر داخل حدود الطبقات الملونة.</p>';
+                    reportText = `<p>${R.outsideRange}</p>`;
                 } else {
-                    reportText = '<p>انقر على إحدى مناطق الخريطة لبدء تحليل احتمالية المياه الجوفية وكتابة تقرير مفصل.</p>';
+                    reportText = `<p>${R.placeholder}</p>`;
                 }
 
                 typeWriterHTML(reportContainer, reportText);
@@ -1746,7 +1889,7 @@
                 if (props || depthValue !== null || isOutside) {
                     if (printBtn) printBtn.style.display = 'inline-flex';
                     
-                    let finalLocName = 'نطاق صحراوي / غير محصور';
+                    let finalLocName = isEn ? 'Desert Zone / Unaddressed' : 'نطاق صحراوي / غير محصور';
                     if (addressData) {
                         const getValid = (s) => (s && s !== 'موقع محدد' && s !== 'غير محدد') ? s : null;
                         const v = getValid(addressData.village);
@@ -1758,7 +1901,6 @@
                     if (printReportTableLoc) printReportTableLoc.innerText = finalLocName;
                     
                     if (printReportText) {
-                        // Apply formatting for the printed version
                         let printableContent = reportText.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
                         printReportText.innerHTML = printableContent;
                     }
@@ -1770,6 +1912,7 @@
 
             // Map image retrieval for printing (static map using satellite tiles)
             window.printReport = function () {
+
                 const lat = parseFloat(document.getElementById('print-lat').innerText);
                 const lng = parseFloat(document.getElementById('print-lng').innerText);
                 const printContainer = document.getElementById('print-report-container');
@@ -1777,7 +1920,8 @@
                 const mapImg = document.getElementById('print-map-img');
 
                 const originalBtnContent = printBtn.innerHTML;
-                printBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التجهيز...';
+                const isEn = window.i18n && window.i18n.lang === 'en';
+                printBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${isEn ? 'Preparing...' : 'جاري التجهيز...'}`;
                 printBtn.disabled = true;
 
                 const finishPrint = () => {
@@ -1824,18 +1968,21 @@
                             });
                         };
 
-                        // Use both 'idle' and 'tilesloaded' for maximum stability
-                        const tilesListener = google.maps.event.addListenerOnce(gmap, 'tilesloaded', () => {
-                            setTimeout(finalize, 2000);
-                        });
-
-                        // Failsafe for tilesloaded
+                        // Force a tiny zoom bounce to trigger 'tilesloaded' reliably for consecutive reports
+                        gmap.setZoom(10);
                         setTimeout(() => {
-                            if (!captureDone) finalize();
-                        }, 5000);
+                            const tilesListener = google.maps.event.addListenerOnce(gmap, 'tilesloaded', () => {
+                                setTimeout(finalize, 1500);
+                            });
 
-                        gmap.setCenter({ lat: lat, lng: lng });
-                        gmap.setZoom(15);
+                            // Failsafe for tilesloaded
+                            setTimeout(() => {
+                                if (!captureDone) finalize();
+                            }, 4500);
+
+                            gmap.setCenter({ lat: lat, lng: lng });
+                            gmap.setZoom(15);
+                        }, 50);
                     } else {
                         finishPrint();
                     }
@@ -1849,7 +1996,8 @@
             function initializeCards() {
                 const detailsContainer = document.getElementById('details-container');
                 const legendContainer = document.getElementById('legend-container');
-                legendContainer.innerHTML = '<div class="details-placeholder"><p>جاري تحميل المفتاح...</p></div>';
+                const isEn = window.i18n && window.i18n.lang === 'en';
+                legendContainer.innerHTML = `<div class="details-placeholder"><p>${isEn ? 'Loading Legend...' : 'جاري تحميل المفتاح...'}</p></div>`;
                 updateDetailsCard(null);
                 updateCoordinatesCard(null, null);
                 generateReport(null);
@@ -1939,7 +2087,8 @@
                 try {
                     // Visual feedback: Show loading in report area while geocoding
                     const reportContainer = document.getElementById('report-container');
-                    if (reportContainer) reportContainer.innerHTML = '<div class="details-placeholder"><p><i class="fas fa-spinner fa-spin"></i> جاري تحليل بيانات الموقع وجلب خرائط Google...</p></div>';
+                    const isEn = window.i18n && window.i18n.lang === 'en';
+                    if (reportContainer) reportContainer.innerHTML = `<div class="details-placeholder"><p><i class="fas fa-spinner fa-spin"></i> ${isEn ? 'Analyzing location and fetching Google maps...' : 'جاري تحليل بيانات الموقع وجلب خرائط Google...'}</p></div>`;
 
                     // Update coords card AND wait for address data
                     const address = await updateCoordinatesCard(latlng, containingFeature ? containingFeature.properties : null, true, depthValue);
@@ -1953,7 +2102,9 @@
 
                 if (legendDepthSpan) {
                     if (depthValue !== null) {
-                        legendDepthSpan.innerHTML = `العمق: <strong style="color: var(--accent-blue);">${Math.round(depthValue)} متر</strong>`;
+                        const label = isEn ? 'Depth:' : 'العمق:';
+                        const unit = isEn ? 'meters' : 'متر';
+                        legendDepthSpan.innerHTML = `${label} <strong style="color: var(--accent-blue);">${Math.round(depthValue)} ${unit}</strong>`;
                     } else {
                         legendDepthSpan.textContent = 'العمق التقريبي (متر)';
                     }
@@ -2056,3 +2207,6 @@
 </body>
 
 </html>
+
+
+

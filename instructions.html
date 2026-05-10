@@ -360,15 +360,15 @@
         <div class="nav-container">
             <a href="home.html" class="nav-brand">
                 <i class="fas fa-water"></i>
-                <span>المياه الجوفية بسوهاج</span>
+                <span data-i18n="nav.brand">المياه الجوفية بسوهاج</span>
             </a>
             <div class="nav-links">
-                <a class="nav-link" href="home.html">الرئيسية</a>
-                <a class="nav-link" href="groundwater.html">الخريطة التفاعلية</a>
-                <a class="nav-link" href="gallery.html">المعرض</a>
-                <a class="nav-link" href="palestine.html">أولى القبلتين</a>
-                <a class="nav-link active" href="instructions.html">طريقة الاستخدام</a>
-                <a class="nav-link" href="about.html">عن المشروع</a>
+                <a class="nav-link" href="home.html" data-i18n="nav.home">الرئيسية</a>
+                <a class="nav-link" href="groundwater.html" data-i18n="nav.map">الخريطة التفاعلية</a>
+                <a class="nav-link" href="gallery.html" data-i18n="nav.gallery">المعرض</a>
+                <a class="nav-link" href="palestine.html" data-i18n="nav.palestine">أولى القبلتين</a>
+                <a class="nav-link active" href="instructions.html" data-i18n="nav.instructions">طريقة الاستخدام</a>
+                <a class="nav-link" href="about.html" data-i18n="nav.about">عن المشروع</a>
                 <button class="theme-switcher-btn" id="theme-switcher" aria-label="تبديل الوضع">
                     <i class="fas fa-sun"></i>
                 </button>
@@ -384,7 +384,7 @@
 
     <main>
         <header class="guide-hero">
-            <h1 class="guide-title">دليل الاستخدام التفاعلي</h1>
+            <h1 class="guide-title" data-i18n="inst.hero.title">دليل الاستخدام التفاعلي</h1>
             <p class="guide-subtitle"><span id="typewriter-text"></span><span class="cursor">|</span></p>
         </header>
 
@@ -392,14 +392,13 @@
             <!-- Step 1: Navigation -->
             <div class="step-card">
                 <div class="step-content">
-                    <span class="step-badge">الخطوة 1: الاستكشاف</span>
-                    <h2>التنقل الذكي في الموقع</h2>
-                    <p>صُممت واجهة الموقع لتكون بديهية. يمكنك الوصول لكافة الأقسام من خلال شريط التنقل العلوي الثابت. في
-                        الأجهزة المحمولة، اضغط على أيقونة (القائمة الجانبية) لعرض الروابط.</p>
+                    <span class="step-badge" data-i18n="inst.step1.badge">الخطوة 1: الاستكشاف</span>
+                    <h2 data-i18n="inst.step1.title">التنقل الذكي في الموقع</h2>
+                    <p data-i18n="inst.step1.desc">صُمّمت واجهة الموقع لتكون بديهية. يمكنك الوصول لكافة الأقسام من خلال شريط التنقل العلوي الثابت. في الأجهزة المحمولة، اضغط على أيقونة (القائمة الجانبية) لعرض الروابط.</p>
                     <ul class="step-features">
-                        <li><i class="fas fa-check-circle"></i> تنقل سلس بين الخرائط والتقارير.</li>
-                        <li><i class="fas fa-check-circle"></i> زر خاص لتبديل الوضع الليلي لراحة العين.</li>
-                        <li><i class="fas fa-check-circle"></i> سرعة عالية في التحميل للأقسام المختلفة.</li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="inst.step1.li1">تنقل سلس بين الخرائط والتقارير.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="inst.step1.li2">زر خاص لتبديل الوضع الليلي لراحة العين.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="inst.step1.li3">سرعة عالية في التحميل للأقسام المختلفة.</span></li>
                     </ul>
                 </div>
                 <div class="step-visual step1-anim">
@@ -420,14 +419,13 @@
             <!-- Step 2: Interactive Map -->
             <div class="step-card">
                 <div class="step-content">
-                    <span class="step-badge">الخطوة 2: التحليل</span>
-                    <h2>استخدام الخريطة التفاعلية</h2>
-                    <p>هذا هو قلب الموقع. يمكنك النقر على أي "خلية" في الخريطة لعرض تفاصيلها الجغرافية. استخدم أدوات
-                        القياس والبحث المتاحة للحصول على أدق النتائج.</p>
+                    <span class="step-badge" data-i18n="inst.step2.badge">الخطوة 2: التحليل</span>
+                    <h2 data-i18n="inst.step2.title">استخدام الخريطة التفاعلية</h2>
+                    <p data-i18n="inst.step2.desc">هذا هو قلب الموقع. يمكنك النقر على أي منطقة في الخريطة لعرض تفاصيلها الجغرافية. استخدم أدوات القياس والبحث المتاحة للحصول على أدق النتائج.</p>
                     <ul class="step-features">
-                        <li><i class="fas fa-check-circle"></i> اضغط على "تحديد موقعي" لمعرفة احتمالية المياه حولك.</li>
-                        <li><i class="fas fa-check-circle"></i> استعرض مفتاح الخريطة لفهم دلالات الألوان.</li>
-                        <li><i class="fas fa-check-circle"></i> قراءة التقارير الآلية الفورية لكل منطقة.</li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="inst.step2.li1">اضغط على «تحديد موقعي» لمعرفة احتمالية المياه حولك.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="inst.step2.li2">استعرض مفتاح الخريطة لفهم دلالات الألوان.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="inst.step2.li3">قراءة التقارير الآلية الفورية لكل منطقة.</span></li>
                     </ul>
                 </div>
                 <div class="step-visual step2-anim">
@@ -448,13 +446,12 @@
             <!-- Step 3: Gallery -->
             <div class="step-card">
                 <div class="step-content">
-                    <span class="step-badge">الخطوة 3: المعرض الرقمي</span>
-                    <h2>تصفح معرض الخرائط</h2>
-                    <p>يوفر المعرض كافة الطبقات الجغرافية المستخدمة في بناء النموذج (مثل الجيولوجيا والارتفاعات). يمكنك
-                        تكبير الصور بدقة عالية وتحميلها واستعراض تفاصيلها العلمية.</p>
+                    <span class="step-badge" data-i18n="inst.step3.badge">الخطوة 3: المعرض الرقمي</span>
+                    <h2 data-i18n="inst.step3.title">تصفح معرض الخرائط</h2>
+                    <p data-i18n="inst.step3.desc">يوفر المعرض كافة الطبقات الجغرافية المستخدمة في بناء النموذج (مثل الجيولوجيا والارتفاعات). يمكنك تكبير الصور بدقة عالية وتحميلها واستعراض تفاصيلها العلمية.</p>
                     <ul class="step-features">
-                        <li><i class="fas fa-check-circle"></i> ميزة التكبير الرقمي (Zoom) للخرائط الضخمة.</li>
-                        <li><i class="fas fa-check-circle"></i> تحميل مباشر للخرائط بصيغة PNG عالية الجودة.</li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="inst.step3.li1">ميزة التكبير الرقمي (Zoom) للخرائط الضخمة.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="inst.step3.li2">تحميل مباشر للخرائط بصيغة PNG عالية الجودة.</span></li>
                     </ul>
                 </div>
                 <div class="step-visual">
@@ -476,13 +473,12 @@
             <!-- Step 4: Documentation -->
             <div class="step-card">
                 <div class="step-content">
-                    <span class="step-badge">الخطوة 4: القيمة العلمية</span>
-                    <h2>التوثيق والتعريف بالمشروع</h2>
-                    <p>لم نكتفِ بالخرائط، بل قدمنا توثيقاً كاملاً (Documentation) يشرح المنهجية العلمية المتبعة. كما
-                        يمكنك التعرف على فريق العمل الأكاديمي المشرف على المشروع.</p>
+                    <span class="step-badge" data-i18n="inst.step4.badge">الخطوة 4: القيمة العلمية</span>
+                    <h2 data-i18n="inst.step4.title">التوثيق والتعريف بالمشروع</h2>
+                    <p data-i18n="inst.step4.desc">لم نكتفِ بالخرائط، بل قدمنا توثيقاً كاملاً (Documentation) يشرح المنهجية العلمية المتبعة. كما يمكنك التعرف على فريق العمل الأكاديمي المشرف على المشروع.</p>
                     <ul class="step-features">
-                        <li><i class="fas fa-check-circle"></i> مراجعة المخرجات الأكاديمية والبحثية.</li>
-                        <li><i class="fas fa-check-circle"></i> التواصل المباشر مع فريق العمل.</li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="inst.step4.li1">مراجعة المخرجات الأكاديمية والبحثية.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="inst.step4.li2">التواصل المباشر مع فريق العمل.</span></li>
                     </ul>
                 </div>
                 <div class="step-visual">
@@ -504,14 +500,13 @@
             <!-- Step 5: Palestine Map -->
             <div class="step-card">
                 <div class="step-content">
-                    <span class="step-badge">الخطوة 5: أولى القبلتين</span>
-                    <h2>تفاعل مع خريطة فلسطين</h2>
-                    <p>قسم مخصص لعرض حدود محافظات فلسطين الشقيقة ومعالم المسجد الأقصى المبارك. يمكنك الضغط على المعالم
-                        لاستماع التواشيح الدينية والتعرف على التاريخ.</p>
+                    <span class="step-badge" data-i18n="inst.step5.badge">الخطوة 5: أولى القبلتين</span>
+                    <h2 data-i18n="inst.step5.title">تفاعل مع خريطة فلسطين</h2>
+                    <p data-i18n="inst.step5.desc">قسم مخصص لعرض حدود محافظات فلسطين الشقيقة ومعالم المسجد الأقصى المبارك. يمكنك الضغط على المعالم لاستماع التواشيح الدينية والتعرف على التاريخ.</p>
                     <ul class="step-features">
-                        <li><i class="fas fa-check-circle"></i> عرض المحافظات الفلسطينية بحدودها التاريخية.</li>
-                        <li><i class="fas fa-check-circle"></i> نقاط تفاعلية لأهم معالم الأقصى وتفاصيله.</li>
-                        <li><i class="fas fa-check-circle"></i> تجربة صوتية إيمانية مصاحبة للاستكشاف.</li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="inst.step5.li1">عرض المحافظات الفلسطينية بحدودها التاريخية.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="inst.step5.li2">نقاط تفاعلية لأهم معالم الأقصى وتفاصيله.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span data-i18n="inst.step5.li3">تجربة صوتية إيمانية مصاحبة للاستكشاف.</span></li>
                     </ul>
                 </div>
                 <div class="step-visual">
@@ -527,16 +522,17 @@
         </section>
 
         <div style="text-align: center; margin-bottom: 8rem; padding: 0 20px;">
-            <h3 style="font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem;">جاهز لبدء تجربتك؟</h3>
-            <p style="font-size: 1.2rem; opacity: 0.8;">اكتشف كنوز المحافظة الجوفية وتفاعل مع الخرائط الآن.</p>
+            <h3 style="font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem;" data-i18n="inst.cta.title">جاهز لبدء تجربتك؟</h3>
+            <p style="font-size: 1.2rem; opacity: 0.8;" data-i18n="inst.cta.desc">اكتشف كنوز المحافظة الجوفية وتفاعل مع الخرائط الآن.</p>
             <a href="home.html" class="btn-start">
-                انطلق إلى الصفحة الرئيسية <i class="fas fa-arrow-left"></i>
+                <span data-i18n="inst.cta.btn">انطلق إلى الصفحة الرئيسية</span> <i class="fas fa-arrow-left"></i>
             </a>
         </div>
     </main>
 
     <!-- Scripts -->
     <script src="js/network-animation.js"></script>
+    <script src="js/i18n.js?v=4"></script>
     <script src="js/theme-switcher.js"></script>
     <script>
         // Reveal animations on scroll
@@ -579,7 +575,8 @@
         }
 
         // Typewriter Effect
-        const textToType = "مرحباً بك في المنصة الإلكترونية لمشروع رصد المياه الجوفية. هذا الدليل سيساعدك على فهم كيفية استغلال كافة أدوات الموقع بكفاءة عالية.";
+        const originalInstText = "مرحباً بك في المنصة الإلكترونية لمشروع رصد المياه الجوفية. هذا الدليل سيساعدك على فهم كيفية استغلال كافة أدوات الموقع بكفاءة عالية.";
+        const textToType = window.i18n && window.i18n.lang === 'en' ? window.i18n.t('inst.typewriter') : originalInstText;
         const typewriterElement = document.getElementById('typewriter-text');
         let charIndex = 0;
         let isDeleting = false;
@@ -607,3 +604,5 @@
 </body>
 
 </html>
+
+
