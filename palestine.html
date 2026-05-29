@@ -303,27 +303,34 @@
 
         /* Quran Verse */
         .quran-verse {
-            background: var(--bg-card);
-            backdrop-filter: blur(10px);
+            background: rgba(var(--bg-card-rgb), 0.45); /* أكثر شفافية */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-radius: 20px;
-            padding: 2rem;
+            padding: 1.5rem;
             margin-bottom: 2rem;
             text-align: center;
             border: 1px solid var(--border-color);
             animation: fadeInUp 0.8s ease-out 0.2s both;
-            box-shadow: 0 10px 30px var(--shadow-light);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* ظل أنعم */
         }
 
         .verse-text {
-            font-size: 1.4rem;
+            font-size: 1.2rem !important; /* تجاوز style.css الذي يضبطه على 1.8rem */
             font-weight: 500;
-            line-height: 2;
-            margin-bottom: 1rem;
+            line-height: 1.9;
+            margin-bottom: 0.8rem;
             color: var(--accent-blue);
         }
 
+        /* تجاوز .quran-text الذي قد يفرض 1.8rem من style.css */
+        .quran-verse .quran-text {
+            font-size: 1.2rem !important;
+            line-height: 1.9 !important;
+        }
+
         .verse-reference {
-            font-size: 1rem;
+            font-size: 0.95rem;
             opacity: 0.8;
             font-style: italic;
             color: var(--text-primary);
@@ -370,6 +377,12 @@
             z-index: 1000;
             box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
             border: 2px solid white;
+        }
+
+        html[lang="en"] .map-container.distinctive::before {
+            content: "📍 Palestine & Al-Aqsa Map";
+            right: auto;
+            left: 30px;
         }
 
         #map {
@@ -579,7 +592,7 @@
             }
 
             .verse-text {
-                font-size: 1.2rem;
+                font-size: 0.95rem;
             }
         }
 
@@ -638,8 +651,12 @@
             border: none;
             box-shadow: none;
             color: var(--text-primary);
-            font-weight: bold;
-            text-shadow: 0 0 3px var(--bg-primary), 0 0 3px var(--bg-primary), 0 0 3px var(--bg-primary);
+            font-weight: 800;
+            text-shadow: 1px 1px 0 var(--bg-primary), -1px -1px 0 var(--bg-primary), 1px -1px 0 var(--bg-primary), -1px 1px 0 var(--bg-primary);
+            font-size: 0.95rem;
+            text-align: center;
+            pointer-events: none;
+            white-space: nowrap;
         }
 
         .province-label {
@@ -710,8 +727,25 @@
         }
 
         .leaflet-control-geosearch form {
-            border-radius: 8px !important;
-            border: 2px solid var(--accent-blue) !important;
+            border-radius: 20px !important;
+            border: 1px solid var(--border-color) !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+            background: var(--bg-card) !important;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .leaflet-control-geosearch form:focus-within {
+            border-color: var(--accent-blue) !important;
+            box-shadow: 0 4px 20px rgba(33, 150, 243, 0.2) !important;
+        }
+
+        .leaflet-control-geosearch form input {
+            padding: 10px 15px !important;
+            font-family: 'Cairo', sans-serif !important;
+            font-size: 0.95rem !important;
+            color: var(--text-primary) !important;
+            background: transparent !important;
         }
 
         /* Fix Dropdown/Layer Control text color in dark mode */
@@ -735,8 +769,8 @@
             margin-top: 2rem;
             border: 1px solid var(--border-color);
             box-shadow: 0 10px 30px var(--shadow-light);
-            display: none;
-            /* Hidden by default */
+            display: block;
+            /* Always visible as requested */
             animation: fadeInUp 0.5s ease-out;
             position: relative;
         }
@@ -748,6 +782,8 @@
         }
 
         .close-card-btn {
+            display: none;
+            /* Hidden since card is always visible */
             position: absolute;
             left: 0;
             top: 0;
@@ -1400,11 +1436,9 @@
         <!-- Quran Verse -->
         <div class="quran-verse">
             <div class="verse-text quran-text">
-                "سُبْحَانَ الَّذِي أَسْرَىٰ بِعَبْدِهِ لَيْلًا مِّنَ الْمَسْجِدِ الْحَرَامِ إِلَى الْمَسْجِدِ الْأَقْصَى
-                الَّذِي بَارَكْنَا حَوْلَهُ لِنُرِيَهُ مِنْ آيَاتِنَا ۚ إِنَّهُ هُوَ السَّمِيعُ الْبَصِيرُ"
+                سُبْحَانَ الَّذِي أَسْرَىٰ بِعَبْدِهِ لَيْلًا مِّنَ الْمَسْجِدِ الْحَرَامِ إِلَى الْمَسْجِدِ الْأَقْصَى الَّذِي بَارَكْنَا حَوْلَهُ لِنُرِيَهُ مِنْ آيَاتِنَا ۚ إِنَّهُ هُوَ السَّمِيعُ الْبَصِيرُ
             </div>
-            <div class="verse-translation" data-i18n="pal.verse.text" style="display:none; padding: 10px; font-size: 1rem; opacity: 0.9; line-height: 1.6; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 15px;"></div>
-            <div class="verse-reference" data-i18n="pal.verse.ref">سورة الإسراء - الآية 1</div>
+            <div class="verse-reference">سورة الإسراء - الآية 1</div>
         </div>
 
         <!-- Map Section -->
@@ -1452,7 +1486,7 @@
                 <div class="prayer-times-section">
                     <h3
                         style="color: var(--text-primary); border-bottom: 2px solid var(--accent-blue); padding-bottom: 0.5rem; display: block; margin-bottom: 1rem;">
-                        <i class="fas fa-clock"></i> أوقات الصلاة في القدس
+                        <i class="fas fa-clock"></i> <span data-i18n="pal.prayer.title">أوقات الصلاة في القدس</span>
                         <span id="hijri-date-display" class="hijri-date"></span>
                     </h3>
                     <div id="prayer-times-grid" class="prayer-grid">
@@ -1468,10 +1502,10 @@
                     style="margin-top: 1rem; background: rgba(var(--accent-blue-rgb), 0.1); border: 1px solid var(--accent-blue);">
                     <div style="text-align: center; padding: 1rem;">
                         <i class="fas fa-hands-praying"
-                            style="font-size: 2rem; color: var(--accent-blue); margin-bottom: 0.5rem;"></i>
-                        <h3 style="margin-bottom: 0.5rem; color: var(--accent-blue);">دعاء للمسجد الأقصى</h3>
-                        <p
-                            style="font-size: 1.1rem; font-family: 'Amiri', serif; line-height: 1.8; font-weight: bold; text-align: justify; direction: rtl;">
+                            style=" color: var(--accent-blue); margin-bottom: 0.5rem;"></i>
+                        <h3 data-i18n="pal.duaa.title" style="margin-bottom: 0.5rem; color: var(--accent-blue);">دعاء للمسجد الأقصى</h3>
+                        <p data-i18n="pal.duaa.text"
+                            style=" font-family: 'Amiri', serif; line-height: 1.8; font-weight: bold; text-align: justify; direction: rtl;">
                             "اللَّهُمَّ ارْزُقْنَا صَلَاةً فِي الْمَسْجِدِ الْأَقْصَى عَاجِلًا غَيْرَ آجِلٍ، اللَّهُمَّ
                             أَقِرَّ أَعْيُنَنَا بِتَحْرِيرِهِ وَاسْتِعَادَتِهِ، اللَّهُمَّ احْفَظْ الْمَسْجِدَ
                             الْأَقْصَى مِنَ الْمُحْتَلِّينَ، وَقَيِّدْ لَهُ قَائِدًا كَصَلَاحِ الدِّينِ يُحَرِّرُهُ مِنْ
@@ -1485,12 +1519,12 @@
                     style="margin-top: 1rem; background: rgba(var(--accent-blue-rgb), 0.1); border: 1px solid var(--accent-blue);">
                     <div style="text-align: center; padding: 1rem;">
                         <i class="fas fa-scroll"
-                            style="font-size: 2rem; color: var(--accent-blue); margin-bottom: 0.5rem;"></i>
-                        <h3 style="margin-bottom: 0.5rem; color: var(--accent-blue);">فضل الصلاة فيه</h3>
-                        <p style="font-size: 1.1rem; font-family: 'Amiri', serif; line-height: 1.8; font-weight: bold;">
+                            style=" color: var(--accent-blue); margin-bottom: 0.5rem;"></i>
+                        <h3 data-i18n="pal.hadith.title" style="margin-bottom: 0.5rem; color: var(--accent-blue);">فضل الصلاة فيه</h3>
+                        <p data-i18n-html="pal.hadith.text" style=" font-family: 'Amiri', serif; line-height: 1.8; font-weight: bold;">
                             قال رسول الله ﷺ:<br>
                             "الصلاةُ في بيتِ المقدسِ بخمسِ مائةِ صلاةٍ"<br>
-                            <span style="font-size: 0.9rem; font-weight: normal;">(رواه الطبراني والبزار)</span>
+                            <span style=" font-weight: normal;">(رواه الطبراني والبزار)</span>
                         </p>
                     </div>
                 </div>
@@ -1531,7 +1565,7 @@
                         <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
-                        <p class="quran-text" style="font-size: 1.6rem;">"يَا أَيُّهَا الَّذِينَ آمَنُوا اسْتَعِينُوا
+                        <p class="quran-text" >"يَا أَيُّهَا الَّذِينَ آمَنُوا اسْتَعِينُوا
                             بِالصَّبْرِ وَالصَّلَاةِ ۚ إِنَّ اللَّهَ مَعَ الصَّابِرِينَ ﴿١٥٣﴾ وَلَا تَقُولُوا لِمَن
                             يُقْتَلُ فِي سَبِيلِ اللَّهِ أَمْوَاتٌ ۚ بَلْ أَحْيَاءٌ وَلَٰكِن لَّا تَشْعُرُونَ ﴿١٥٤﴾
                             وَلَنَبْلُوَنَّكُم بِشَيْءٍ مِّنَ الْخَوْفِ وَالْجُوعِ وَنَقْصٍ مِّنَ الْأَمْوَالِ
@@ -1720,15 +1754,8 @@
                         <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
-                        <p class="quran-text">"وَلَا تَهِنُوا وَلَا تَحْزَنُوا وَأَنتُمُ الْأَعْلَوْنَ إِن كُنتُم
-                            مُّؤْمِنِينَ ﴿١٣٩﴾ إِن يَمْسَسْكُمْ قَرْحٌ فَقَدْ مَسَّ الْقَوْمَ قَرْحٌ مِّثْلُهُ ۚ
-                            وَتِلْكَ الْأَيَّامُ نُدَاوِلُهَا بَيْنَ النَّاسِ وَلِيَعْلَمَ اللَّهُ الَّذِينَ آمَنُوا
-                            وَيَتَّخِذَ مِنكُمْ شُهَدَاءَ ۗ وَاللَّهُ لَا يُحِبُّ الظَّالِمِينَ ﴿١٤٠﴾ وَلِيُمَحِّصَ
-                            اللَّهُ الَّذِينَ آمَنُوا وَيَمْحَقَ الْكَافِرِينَ ﴿١٤١﴾ أَمْ حَسِبْتُمْ أَن تَدْخُلُوا
-                            الْجَنَّةَ وَلَمَّا يَعْلَمِ اللَّهُ الَّذِينَ جَاهَدُوا مِنكُمْ وَيَعْلَمَ الصَّابِرِينَ
-                            ﴿١٤٢﴾ وَلَقَدْ كُنتُمْ تَمَنَّوْنَ الْمَوْتَ مِن قَبْلِ أَن تَلْقَوْهُ فَقَدْ رَأَيْتُمُوهُ
-                            وَأَنتُمْ تَنظُرُونَ ﴿١٤٣﴾"</p>
-                        <span class="verse-ref">سورة آل عمران - الآيات 139-143</span>
+                        <p class="quran-text">"وَلَا تَهِنُوا وَلَا تَحْزَنُوا وَأَنتُمُ الْأَعْلَوْنَ إِن كُنتُم مُّؤْمِنِينَ ﴿١٣٩﴾ إِن يَمْسَسْكُمْ قَرْحٌ فَقَدْ مَسَّ الْقَوْمَ قَرْحٌ مِّثْلُهُ ۚ وَتِلْكَ الْأَيَّامُ نُدَاوِلُهَا بَيْنَ النَّاسِ وَلِيَعْلَمَ اللَّهُ الَّذِينَ آمَنُوا وَيَتَّخِذَ مِنكُمْ شُهَدَاءَ ۗ وَاللَّهُ لَا يُحِبُّ الظَّالِمِينَ ﴿١٤٠﴾ وَلِيُمَحِّصَ اللَّهُ الَّذِينَ آمَنُوا وَيَمْحَقَ الْكَافِرِينَ ﴿١٤١﴾ أَمْ حَسِبْتُمْ أَن تَدْخُلُوا الْجَنَّةَ وَلَمَّا يَعْلَمِ اللَّهُ الَّذِينَ جَاهَدُوا مِنكُمْ وَيَعْلَمَ الصَّابِرِينَ ﴿١٤٢﴾ وَلَقَدْ كُنتُمْ تَمَنَّوْنَ الْمَوْتَ مِن قَبْلِ أَن تَلْقَوْهُ فَقَدْ رَأَيْتُمُوهُ وَأَنتُمْ تَنظُرُونَ ﴿١٤٣﴾ وَمَا مُحَمَّدٌ إِلَّا رَسُولٌ قَدْ خَلَتْ مِن قَبْلِهِ الرُّسُلُ ۚ أَفَإِن مَّاتَ أَوْ قُتِلَ انقَلَبْتُمْ عَلَىٰ أَعْقَابِكُمْ ۚ وَمَن يَنقَلِبْ عَلَىٰ عَقْبَيْهِ فَلَن يَضُرَّ اللَّهَ شَيْئًا ۗ وَسَيَجْزِي اللَّهُ الشَّاكِرِينَ ﴿١٤٤﴾ وَمَا كَانَ لِنَفْسٍ أَن تَمُوتَ إِلَّا بِإِذْنِ اللَّهِ كِتَابًا مُّؤَجَّلًا ۗ وَمَن يُرِدْ ثَوَابَ الدُّنْيَا نُؤْتِهِ مِنْهَا وَمَن يُرِدْ ثَوَابَ الْآخِرَةِ نُؤْتِهِ مِنْهَا ۚ وَسَنَجْزِي الشَّاكِرِينَ ﴿١٤٥﴾ وَكَأَيِّن مِّن نَّبِيٍّ قَاتَلَ مَعَهُ رِبِّيُّونَ كَثِيرٌ فَمَا وَهَنُوا لِمَا أَصَابَهُمْ فِي سَبِيلِ اللَّهِ وَمَا ضَعُفُوا وَمَا اسْتَكَانُوا ۗ وَاللَّهُ يُحِبُّ الصَّابِرِينَ ﴿١٤٦﴾ وَمَا كَانَ قَوْلَهُمْ إِلَّا أَن قَالُوا رَبَّنَا اغْفِرْ لَنَا ذُنُوبَنَا وَإِسْرَافَنَا فِي أَمْرِنَا وَثَبِّتْ أَقْدَامَنَا وَانصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ ﴿١٤٧﴾ فَآتَاهُمُ اللَّهُ ثَوَابَ الدُّنْيَا وَحُسْنَ ثَوَابِ الْآخِرَةِ ۗ وَاللَّهُ يُحِبُّ الْمُحْسِنِينَ ﴿١٤٨﴾ يَا أَيُّهَا الَّذِينَ آمَنُوا إِن تُطِيعُوا الَّذِينَ كَفَرُوا يَرُدُّوكُمْ عَلَىٰ أَعْقَابِكُمْ فَتَنقَلِبُوا خَاسِرِينَ ﴿١٤٩﴾ بَلِ اللَّهُ مَوْلَاكُمْ ۖ وَهُوَ خَيْرُ النَّاصِرِينَ ﴿١٥٠﴾ سَنُلْقِي فِي قُلُوبِ الَّذِينَ كَفَرُوا الرُّعْبَ بِمَا أَشْرَكُوا بِاللَّهِ مَا لَمْ يُنَزِّلْ بِهِ سُلْطَانًا ۖ وَمَأْوَاهُمُ النَّارُ ۚ وَبِئْسَ مَثْوَى الظَّالِمِينَ ﴿١٥١﴾"</p>
+                        <span class="verse-ref">سورة آل عمران - الآيات 139-151</span>
                     </div>
                     <div class="message-actions">
                         <div class="audio-wave">
@@ -1738,9 +1765,9 @@
                             <div class="wave-bar"></div>
                             <div class="wave-bar"></div>
                         </div>
-                        <button class="action-btn" onclick="playVerse('003139-003143', this)" title="استماع"><i
+                        <button class="action-btn" onclick="playVerse('003139-003151', this)" title="استماع"><i
                                 class="fas fa-play"></i></button>
-                        <button class="action-btn" onclick="downloadVerse('003139-003143', this)" title="تحميل"><i
+                        <button class="action-btn" onclick="downloadVerse('003139-003151', this)" title="تحميل"><i
                                 class="fas fa-download"></i></button>
                         <button class="action-btn" onclick="shareMessage(this)" title="مشاركة"><i
                                 class="fas fa-share-alt"></i></button>
@@ -1939,7 +1966,7 @@
                     </div>
                     <div class="message-body">
                         <p class="quran-text">"لَّا يَسْتَوِي الْقَاعِدُونَ مِنَ الْمُؤْمِنِينَ غَيْرُ أُولِي الضَّرَرِ
-                            وَالْمُجَاهِدُونَ فِي سَبِيلِ اللَّهِ بِأَمْوَالِهِمْ وَأَنفُسِهِمْ ۚ فَضَّلَ اللَّهُ
+                            والْمُجَاهِدُونَ فِي سَبِيلِ اللَّهِ بِأَمْوَالِهِمْ وَأَنفُسِهِمْ ۚ فَضَّلَ اللَّهُ
                             الْمُجَاهِدِينَ بِأَمْوَالِهِمْ وَأَنفُسِهِمْ عَلَى الْقَاعِدِينَ دَرَجَةً ۚ وَكُلًّا وَعَدَ
                             اللَّهُ الْحُسْنَىٰ ۚ وَفَضَّلَ اللَّهُ الْمُجَاهِدِينَ عَلَى الْقَاعِدِينَ أَجْرًا عَظِيمًا
                             ﴿٩٥﴾ دَرَجَاتٍ مِّنْهُ وَمَغْفِرَةً وَرَحْمَةً ۚ وَكَانَ اللَّهُ غَفُورًا رَّحِيمًا ﴿٩٦﴾"
@@ -1957,6 +1984,34 @@
                         <button class="action-btn" onclick="playVerse('004095-004096', this)" title="استماع"><i
                                 class="fas fa-play"></i></button>
                         <button class="action-btn" onclick="downloadVerse('004095-004096', this)" title="تحميل"><i
+                                class="fas fa-download"></i></button>
+
+                        <button class="action-btn" onclick="shareMessage(this)" title="مشاركة"><i
+                                class="fas fa-share-alt"></i></button>
+                        <button class="action-btn" onclick="copyMessage(this)" title="نسخ"><i
+                                class="fas fa-copy"></i></button>
+                    </div>
+                </div>
+
+                <div class="message-item">
+                    <div class="message-header">
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
+                    </div>
+                    <div class="message-body">
+                        <p class="quran-text">"يَا أَيُّهَا الَّذِينَ آمَنُوا مَن يَرْتَدَّ مِنكُمْ عَن دِينِهِ فَسَوْفَ يَأْتِي اللَّهُ بِقَوْمٍ يُحِبُّهُمْ وَيُحِبُّونَهُ أَذِلَّةٍ عَلَى الْمُؤْمِنِينَ أَعِزَّةٍ عَلَى الْكَافِرِينَ يُجَاهِدُونَ فِي سَبِيلِ اللَّهِ وَلَا يَخَافُونَ لَوْمَةَ لَائِمٍ ۚ ذَٰلِكَ فَضْلُ اللَّهِ يُؤْتِيهِ مَن يَشَاءُ ۚ وَاللَّهُ وَاسِعٌ عَلِيمٌ ﴿٥٤﴾ إِنَّمَا وَلِيُّكُمُ اللَّهُ وَرَسُولُهُ وَالَّذِينَ آمَنُوا الَّذِينَ يُقِيمُونَ الصَّلَاةَ وَيُؤْتُونَ الزَّكَاةَ وَهُمْ رَاكِعُونَ ﴿٥٥﴾ وَمَن يَتَوَلَّ اللَّهَ وَرَسُولَهُ وَالَّذِينَ آمَنُوا فَإِنَّ حِزْبَ اللَّهِ هُمُ الْغَالِبُونَ ﴿٥٦﴾"</p>
+                        <span class="verse-ref">سورة المائدة - الآيات 54-56</span>
+                    </div>
+                    <div class="message-actions">
+                        <div class="audio-wave">
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                        </div>
+                        <button class="action-btn" onclick="playVerse('005054-005056', this)" title="استماع"><i
+                                class="fas fa-play"></i></button>
+                        <button class="action-btn" onclick="downloadVerse('005054-005056', this)" title="تحميل"><i
                                 class="fas fa-download"></i></button>
 
                         <button class="action-btn" onclick="shareMessage(this)" title="مشاركة"><i
@@ -2199,7 +2254,7 @@
                         <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
-                        <p class="quran-text">"وَلَا تَحْسَبَنَّ اللَّهَ غَافِلًا عَمَّا يَعْمَلُ الظَّالِمُونَ ۚ
+                        <p class="quran-text">"وَلَا تَحسبَنَّ اللَّهَ غَافِلًا عَمَّا يَعْمَلُ الظَّالِمُونَ ۚ
                             إِنَّمَا يُؤَخِّرُهُمْ لِيَوْمٍ تَشْخَصُ فِيهِ الْأَبْصَارُ ﴿٤٢﴾ مُهْطِعِينَ مُقْنِعِي
                             رُءُوسِهِمْ لَا يَرْتَدُّ إِلَيْهِمْ طَرْفُهُمْ ۖ وَأَفْئِدَتُهُمْ هَوَاءٌ ﴿٤٣﴾ وَأَنذِرِ
                             النَّاسَ يَوْمَ يَأْتِيهِمُ الْعَذَابُ فَيَقُولُ الَّذِينَ ظَلَمُوا رَبَّنَا أَخِّرْنَا
@@ -2222,6 +2277,34 @@
                         <button class="action-btn" onclick="playVerse('014042-014047', this)" title="استماع"><i
                                 class="fas fa-play"></i></button>
                         <button class="action-btn" onclick="downloadVerse('014042-014047', this)" title="تحميل"><i
+                                class="fas fa-download"></i></button>
+
+                        <button class="action-btn" onclick="shareMessage(this)" title="مشاركة"><i
+                                class="fas fa-share-alt"></i></button>
+                        <button class="action-btn" onclick="copyMessage(this)" title="نسخ"><i
+                                class="fas fa-copy"></i></button>
+                    </div>
+                </div>
+
+                <div class="message-item">
+                    <div class="message-header">
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
+                    </div>
+                    <div class="message-body">
+                        <p class="quran-text">"وَقَضَيْنَا إِلَىٰ بَنِي إِسْرَائِيلَ فِي الْكِتَابِ لَتُفْسِدُنَّ فِي الْأَرْضِ مَرَّتَيْنِ وَلَتَعْلُنَّ عُلُوًّا كَبِيرًا ﴿٤﴾ فَإِذَا جَاءَ وَعْدُ أُولَاهُمَا بَعَثْنَا عَلَيْكُمْ عِبَادًا لَّنَا أُولِي بَأْسٍ شَدِيدٍ فَجَاسُوا خِلَالَ الدِّيَارِ ۚ وَكَانَ وَعْدًا مَّفْعُولًا ﴿٥﴾"</p>
+                        <span class="verse-ref">سورة الإسراء - الآيات 4-5</span>
+                    </div>
+                    <div class="message-actions">
+                        <div class="audio-wave">
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                        </div>
+                        <button class="action-btn" onclick="playVerse('017004-017005', this)" title="استماع"><i
+                                class="fas fa-play"></i></button>
+                        <button class="action-btn" onclick="downloadVerse('017004-017005', this)" title="تحميل"><i
                                 class="fas fa-download"></i></button>
 
                         <button class="action-btn" onclick="shareMessage(this)" title="مشاركة"><i
@@ -2280,37 +2363,6 @@
                         <button class="action-btn" onclick="playVerse('027037', this)" title="استماع"><i
                                 class="fas fa-play"></i></button>
                         <button class="action-btn" onclick="downloadVerse('027037', this)" title="تحميل"><i
-                                class="fas fa-download"></i></button>
-                        <button class="action-btn" onclick="shareMessage(this)" title="مشاركة"><i
-                                class="fas fa-share-alt"></i></button>
-                        <button class="action-btn" onclick="copyMessage(this)" title="نسخ"><i
-                                class="fas fa-copy"></i></button>
-                    </div>
-                </div>
-
-                <div class="message-item">
-                    <div class="message-header">
-                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
-                    </div>
-                    <div class="message-body">
-                        <p class="quran-text">"وَمِنْ آيَاتِهِ أَن يُرْسِلَ الرِّيَاحَ مُبَشِّرَاتٍ وَلِيُذِيقَكُم مِّن
-                            رَّحْمَتِهِ وَلِتَجْرِيَ الْفُلْكُ بِأَمْرِهِ وَلِتَبْتَغُوا مِن فَضْلِهِ وَلَعَلَّكُمْ
-                            تَشْكُرُونَ ﴿٤٦﴾ وَلَقَدْ أَرْسَلْنَا مِن قَبْلِكَ رُسُلًا إِلَىٰ قَوْمِهِمْ فَجَاءُوهُم
-                            بِالْبَيِّنَاتِ فَانتَقَمْنَا مِنَ الَّذِينَ أَجْرَمُوا ۖ وَكَانَ حَقًّا عَلَيْنَا نَصْرُ
-                            الْمُؤْمِنِينَ ﴿٤٧﴾"</p>
-                        <span class="verse-ref">سورة الروم - الآيات 46-47</span>
-                    </div>
-                    <div class="message-actions">
-                        <div class="audio-wave">
-                            <div class="wave-bar"></div>
-                            <div class="wave-bar"></div>
-                            <div class="wave-bar"></div>
-                            <div class="wave-bar"></div>
-                            <div class="wave-bar"></div>
-                        </div>
-                        <button class="action-btn" onclick="playVerse('030046-030047', this)" title="استماع"><i
-                                class="fas fa-play"></i></button>
-                        <button class="action-btn" onclick="downloadVerse('030046-030047', this)" title="تحميل"><i
                                 class="fas fa-download"></i></button>
                         <button class="action-btn" onclick="shareMessage(this)" title="مشاركة"><i
                                 class="fas fa-share-alt"></i></button>
@@ -2508,7 +2560,7 @@
                         <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
-                        <p class="quran-text" style="font-size: 1.25rem; line-height: 2;">"أَلَمْ تَرَ إِلَى الَّذِينَ
+                        <p class="quran-text" >"أَلَمْ تَرَ إِلَى الَّذِينَ
                             تَوَلَّوْا قَوْمًا غَضِبَ اللَّهُ عَلَيْهِم مَّا هُم مِّنكُمْ وَلَا مِنْهُمْ وَيَحْلِفُونَ
                             عَلَى الْكَذِبِ وَهُمْ يَعْلَمُونَ ﴿١٤﴾ أَعَدَّ اللَّهُ لَهُمْ عَذَابًا شَدِيدًا ۖ إِنَّهُمْ
                             سَاءَ مَا كَانُوا يَعْمَلُونَ ﴿١٥﴾ اتَّخَذُوا أَيْمَانَهُمْ جُنَّةً فَصَدُّوا عَن سَبِيلِ
@@ -2581,6 +2633,34 @@
                         <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
                     </div>
                     <div class="message-body">
+                        <p class="quran-text">"إِنَّ اللَّهَ يُحِبُّ الَّذِينَ يُقَاتِلُونَ فِي سَبِيلِهِ صَفًّا كَأَنَّهُم بُنْيَانٌ مَّرْصُوصٌ ﴿٤﴾"</p>
+                        <span class="verse-ref">سورة الصف - الآية 4</span>
+                    </div>
+                    <div class="message-actions">
+                        <div class="audio-wave">
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                            <div class="wave-bar"></div>
+                        </div>
+                        <button class="action-btn" onclick="playVerse('061004', this)" title="استماع"><i
+                                class="fas fa-play"></i></button>
+                        <button class="action-btn" onclick="downloadVerse('061004', this)" title="تحميل"><i
+                                class="fas fa-download"></i></button>
+
+                        <button class="action-btn" onclick="shareMessage(this)" title="مشاركة"><i
+                                class="fas fa-share-alt"></i></button>
+                        <button class="action-btn" onclick="copyMessage(this)" title="نسخ"><i
+                                class="fas fa-copy"></i></button>
+                    </div>
+                </div>
+
+                <div class="message-item">
+                    <div class="message-header">
+                        <h3 data-i18n="pal.msg.header">يا أهل فلسطين</h3>
+                    </div>
+                    <div class="message-body">
                         <p class="quran-text">"يَا أَيُّهَا الَّذِينَ آمَنُوا هَلْ أَدُلُّكُمْ عَلَىٰ تِجَارَةٍ
                             تُنجِيكُم مِّنْ عَذَابٍ أَلِيمٍ ﴿١٠﴾ تُؤْمِنُونَ بِاللَّهِ وَرَسُولِهِ وَتُجَاهِدُونَ فِي
                             سَبِيلِ اللَّهِ بِأَمْوَالِكُمْ وَأَنفُسِكُمْ ۚ ذَٰلِكُمْ خَيْرٌ لَّكُمْ إِن كُنتُمْ
@@ -2630,7 +2710,7 @@
         <!-- Map Card Section -->
         <div class="gallery-item palestine-map-card" onclick="openPalestineMapModal()">
             <div class="image-container">
-                <img src="images/خريطة دولة فلسطين.png" alt="خريطة دولة فلسطين" class="gallery-image">
+                <img id="palestineGalleryImg" src="images/خريطة دولة فلسطين.png" alt="خريطة دولة فلسطين" class="gallery-image">
             </div>
             <div class="gallery-info">
                 <div class="gallery-title" data-i18n="pal.map.title">خريطة دولة فلسطين</div>
@@ -2711,9 +2791,25 @@
     <script src="js/theme-switcher.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            let map, geojsonLayer, geojsonData = null, userMarker = null, provinceLabelsGroup = null;
+            // --- المتغيرات العامة ---
+            let map, geojsonLayer, geojsonData = null, userMarker = null;
+            let provinceLabelsGroup = L.layerGroup(); 
             const provinceLabels = [];
-            const aqsaCoords = [31.7760692, 35.2357802];
+            const aqsaCoords = [31.7760692, 35.2357802]; // إحداثيات المسجد الأقصى الدقيقة
+            let isDeleting = false;
+            let typeTimeout = null;
+            let countdownInterval = null;
+
+            // ألوان المحافظات - مطابقة لـ palestine_1.html
+            const districtColors = {
+                'الجليل': 'rgb(0, 0, 0)',
+                'حيفا': 'rgb(50, 50, 50)',
+                'السامرية': 'rgb(255, 0, 0)',
+                'اللد': 'rgb(212, 0, 0)',
+                'القدس': 'rgb(255, 255, 255)',
+                'غزة': 'rgb(0, 161, 48)',
+                'الخليل': 'rgb(0, 0, 0)'
+            };
 
             function getColor(province) {
                 if (!province) return 'rgb(158, 158, 158)';
@@ -2830,12 +2926,17 @@
 
             function updateDetailsCard(props) {
                 const detailsContainer = document.getElementById('details-container');
+                const isEn = window.i18n && window.i18n.lang === 'en';
                 if (props) {
+                    const govName = isEn ? (props.Governorat || props.NAME_EN || 'Area Data') : (props.اسم_ا || props.NAME_AR || props.NAME || 'بيانات المنطقة');
+                    const distName = isEn ? (props.Districts || 'N/A') : (props.المقا || 'غير متوفر');
+                    const area = props.المسا ? props.المسا.toFixed(2) + (isEn ? ' km²' : ' كم²') : (isEn ? 'N/A' : 'غير متوفر');
+                    
                     detailsContainer.innerHTML = `
-                        <h4>${translatePalestine(props.NAME_EN || props.اسم_ا || 'بيانات المنطقة')}</h4>
+                        <h4>${govName}</h4>
                         <div class="details-grid">
-                            <p><strong>${translatePalestine('المقاطعة:')}</strong> <span>${translatePalestine(props.المقا || props.District || 'غير متوفر')}</span></p>
-                            <p><strong>${translatePalestine('المساحة:')}</strong> <span>${translatePalestine(props.المسا ? props.المسا.toFixed(2) + ' كم²' : 'غير متوفر')}</span></p>
+                            <p><strong>${translatePalestine('المقاطعة:')}</strong> <span>${distName}</span></p>
+                            <p><strong>${translatePalestine('المساحة:')}</strong> <span>${area}</span></p>
                         </div>`;
                 } else {
                     detailsContainer.innerHTML = `<div class="details-placeholder"><p>${translatePalestine('انقر على منطقة لعرض تفاصيلها')}</p></div>`;
@@ -2845,11 +2946,17 @@
             function createLegend(data) {
                 const legendContainer = document.getElementById('legend-container');
                 const categories = new Map();
+                const isEn = window.i18n && window.i18n.lang === 'en';
 
-                // Pre-populate with data to ensure we have the colors
+                // Pre-populate with data to ensure we have the colors and translated names
                 data.features.forEach(f => {
-                    if (f.properties.المقا && !categories.has(f.properties.المقا)) {
-                        categories.set(f.properties.المقا, getColor(f.properties.المقا.replace('مقاطعة', '').trim()));
+                    const arDist = f.properties.المقا;
+                    const enDist = f.properties.Districts || arDist;
+                    if (arDist && !categories.has(arDist)) {
+                        categories.set(arDist, {
+                            color: getColor(arDist.replace('مقاطعة', '').trim()),
+                            name: isEn ? enDist : arDist
+                        });
                     }
                 });
 
@@ -2860,7 +2967,7 @@
                     'مقاطعة السامرية',
                     'مقاطعة اللد',
                     'مقاطعة القدس',
-                    'مقاطعة الخليل', // Added just in case, fits the geography usually
+                    'مقاطعة الخليل',
                     'مقاطعة غزة'
                 ];
 
@@ -2868,15 +2975,15 @@
 
                 orderedKeys.forEach(key => {
                     if (categories.has(key)) {
-                        const color = categories.get(key);
-                        legendHTML += `<div class="legend-item"><i style="background:${color}"></i> <span>${translatePalestine(key)}</span></div>`;
+                        const info = categories.get(key);
+                        legendHTML += `<div class="legend-item"><i style="background:${info.color}"></i> <span>${info.name}</span></div>`;
                     }
                 });
 
                 // Add any remaining keys that weren't in the ordered list
-                for (const [label, color] of categories.entries()) {
+                for (const [label, info] of categories.entries()) {
                     if (!orderedKeys.includes(label)) {
-                        legendHTML += `<div class="legend-item"><i style="background:${color}"></i> <span>${translatePalestine(label)}</span></div>`;
+                        legendHTML += `<div class="legend-item"><i style="background:${info.color}"></i> <span>${info.name}</span></div>`;
                     }
                 }
 
@@ -2906,10 +3013,14 @@
             }
 
             function createProvinceLabel(feature, layer) {
-                if (!provinceLabelsGroup || !feature.properties || !feature.properties.اسم_ا) return;
+                if (!provinceLabelsGroup || !feature.properties) return;
+                const isEn = window.i18n && window.i18n.lang === 'en';
+                const name = isEn ? (feature.properties.Governorat || feature.properties.NAME_EN) : (feature.properties.اسم_ا || feature.properties.NAME_AR || feature.properties.NAME);
+                if (!name) return;
+                
                 const centroid = layer.getBounds().getCenter();
                 const marker = L.marker(centroid, {
-                    icon: buildProvinceLabelIcon(translatePalestine(feature.properties.اسم_ا)),
+                    icon: buildProvinceLabelIcon(name),
                     interactive: false
                 });
                 provinceLabelsGroup.addLayer(marker);
@@ -2919,15 +3030,287 @@
             function updateProvinceLabels() {
                 if (!provinceLabels.length) return;
                 const fontSize = getAdaptiveFontSize();
+                const isEn = window.i18n && window.i18n.lang === 'en';
+                
                 provinceLabels.forEach(item => {
                     const centroid = item.layer.getBounds().getCenter();
                     item.marker.setLatLng(centroid);
+                    
+                    const name = isEn ? (item.feature.properties.Governorat || item.feature.properties.NAME_EN) : (item.feature.properties.اسم_ا || item.feature.properties.NAME_AR || item.feature.properties.NAME);
+                    const safeText = name ? name.replace(/</g, '&lt;').replace(/>/g, '&gt;') : '';
+                    
                     item.marker.setIcon(L.divIcon({
                         className: 'province-label',
-                        html: `<span class="province-label-text" style="font-size:${fontSize}px;">${item.feature.properties.اسم_ا ? translatePalestine(item.feature.properties.اسم_ا).replace(/</g, '&lt;').replace(/>/g, '&gt;') : ''}</span>`,
+                        html: `<span class="province-label-text" style="font-size:${fontSize}px;">${safeText}</span>`,
                         iconSize: [0, 0]
                     }));
                 });
+            }
+            
+
+            function updateDetailsCard(props) {
+                const detailsContainer = document.getElementById('details-container');
+                const t = (k) => window.appTranslator ? window.appTranslator.t(k) : k;
+                const isEn = window.i18n && window.i18n.lang === 'en';
+
+                if (props) {
+                    const gov = isEn ? props.Governorat : props.اسم_ا;
+                    const dist = isEn ? props.Districts : props.المقا;
+                    
+                    // قراءة المساحة والنسبة مع دعم كافة الاحتمالات لأسماء الحقول في الـ GeoJSON
+                    const areaValue = props.المسا || props.Area || props.Shape_Area || props.area_km2;
+                    const percentValue = props.النسب || props.Ratio || props.Percent || props.percentage;
+
+                    detailsContainer.innerHTML = `
+                        <h4><i class="fas fa-info-circle"></i> ${translatePalestine(gov)}</h4>
+                        <div class="details-grid">
+                            <p><strong>${t('pal.info.governorate')}</strong> <span>${translatePalestine(gov) || (isEn ? 'N/A' : 'غير متوفر')}</span></p>
+                            <p><strong>${t('pal.info.district')}</strong> <span>${translatePalestine(dist) || (isEn ? 'N/A' : 'غير متوفر')}</span></p>
+                            <p><strong>${t('pal.info.area')}</strong> <span>${areaValue ? parseFloat(areaValue).toLocaleString() + ' ' + (isEn ? 'km²' : 'كم²') : (isEn ? 'N/A' : 'غير متوفر')}</span></p>
+                            <p><strong>${t('gw.card.ratio')}</strong> <span>${percentValue ? parseFloat(percentValue).toFixed(2) + '%' : (isEn ? 'N/A' : 'غير متوفر')}</span></p>
+                        </div>`;
+                } else {
+                    detailsContainer.innerHTML = `<div class="details-placeholder"><p>${translatePalestine('انقر على منطقة لعرض تفاصيلها')}</p></div>`;
+                }
+            }
+
+            function translatePalestine(text) {
+                if(!window.i18n || window.i18n.lang !== 'en' || !text) return text;
+                const dict = {
+                    'المقاطعة:': 'District:',
+                    'المساحة:': 'Area:',
+                    'غير متوفر': 'N/A',
+                    'كم²': 'km²',
+                    'انقر على منطقة لعرض تفاصيلها': 'Click on an area to view details',
+                    'مفتاح الخريطة': 'Map Legend',
+                    'تحديد موقعي': 'Locate Me',
+                    'ابحث عن مكان...': 'Search for a place...',
+                    'مقاطعات فلسطين': 'Palestine Districts',
+                    'موقعك الحالي': 'Your Current Location',
+                    'المحافظة:': 'Governorate:',
+                    'المساحة التقريبية:': 'Approximate Area:',
+                    'السكان:': 'Population:',
+                    'المسجد الأقصى': 'Al-Aqsa Mosque',
+                    'القدس': 'Jerusalem',
+                    'مقاطعة الجليل': 'Galilee District',
+                    'مقاطعة حيفا': 'Haifa District',
+                    'مقاطعة السامرية': 'Samaria District',
+                    'مقاطعة اللد': 'Lydda District',
+                    'مقاطعة القدس': 'Jerusalem District',
+                    'مقاطعة الخليل': 'Hebron District',
+                    'مقاطعة غزة': 'Gaza District',
+                    'قضاء القدس': 'Jerusalem Sub-district',
+                    'قضاء الخليل': 'Hebron Sub-district',
+                    'قضاء حيفا': 'Haifa Sub-district',
+                    'قضاء يافا': 'Jaffa Sub-district',
+                    'قضاء غزة': 'Gaza Sub-district',
+                    'قضاء اللد': 'Lydda Sub-district',
+                    'قضاء الرملة': 'Ramla Sub-district',
+                    'قضاء صفد': 'Safad Sub-district',
+                    'قضاء عكا': 'Acre Sub-district',
+                    'قضاء طبريا': 'Tiberias Sub-district',
+                    'قضاء الناصرة': 'Nazareth Sub-district',
+                    'قضاء بيسان': 'Beisan Sub-district',
+                    'قضاء جنين': 'Jenin Sub-district',
+                    'قضاء طولكرم': 'Tulkarm Sub-district',
+                    'قضاء نابلس': 'Nablus Sub-district',
+                    'قضاء رام الله': 'Ramallah Sub-district',
+                    'قضاء بئر السبع': 'Beersheba Sub-district',
+                    'قضاء بيت لحم': 'Bethlehem Sub-district',
+                    'قضاء اريحا': 'Jericho Sub-district'
+                };
+                let t = String(text);
+                for (const [ar, en] of Object.entries(dict)) {
+                    t = t.split(ar).join(en);
+                }
+                return t;
+            }
+
+            // Typewriter Effect Logic
+            const aqsaText = (window.appTranslator.t('pal.aqsa.info'));
+            const aqsaElement = document.getElementById('aqsa-typewriter');
+            let typeIndex = 0;
+
+            function clearProvinceLabels() {
+                provinceLabels.length = 0;
+                provinceLabelsGroup.clearLayers();
+            }
+
+            function typeAqsaInfo() {
+                const currentText = aqsaText.substring(0, typeIndex);
+                if (aqsaElement) aqsaElement.textContent = currentText;
+
+                if (!isDeleting && typeIndex < aqsaText.length) {
+                    typeIndex++;
+                    typeTimeout = setTimeout(typeAqsaInfo, 30);
+                } else if (isDeleting && typeIndex > 0) {
+                    typeIndex--;
+                    typeTimeout = setTimeout(typeAqsaInfo, 15);
+                } else {
+                    isDeleting = !isDeleting;
+                    typeTimeout = setTimeout(typeAqsaInfo, isDeleting ? 5000 : 500);
+                }
+            }
+
+            // Load Al-Aqsa info immediately since it is always visible
+            getPrayerTimes();
+            typeAqsaInfo();
+
+            // Aqsa Card Functions (Modified to ensure it's always visible and just scrolls into view)
+            window.showAqsaCard = function () { // This function is called when clicking the Al-Aqsa button on the map
+                const card = document.getElementById('aqsa-card');
+                if (card) {
+                    card.style.display = 'block';
+                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    getPrayerTimes(); // Fetch prayer times when card opens
+
+                    // Start typewriter if not running
+                    if (!typeTimeout) typeAqsaInfo();
+                }
+            };
+
+            window.closeAqsaCard = function () { // This function is not used anymore as the card is always visible
+                const card = document.getElementById('aqsa-card');
+                if (card) card.style.display = 'none';
+                // Stop audio if playing
+                const audio = document.getElementById('adhanAudio');
+                if (audio && !audio.paused) toggleAdhan();
+                // Clear countdown
+                if (countdownInterval) clearInterval(countdownInterval);
+            };
+
+            // Fetch Prayer Times
+            async function getPrayerTimes() { // This function is called when the card is shown
+                const container = document.getElementById('prayer-times-grid');
+                const hijriContainer = document.getElementById('hijri-date-display');
+                if (!container) return;
+
+                const isEn = window.i18n && window.i18n.lang === 'en';
+
+                try {
+                    const date = new Date(); // Current date for prayer times
+                    // Format date as DD-MM-YYYY
+                    const dateStr = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
+                    const response = await fetch(`https://api.aladhan.com/v1/timingsByCity/${dateStr}?city=Jerusalem&country=Palestine&method=1`);
+                    const data = await response.json();
+
+                    if (data.code === 200) {
+                        const timings = data.data.timings;
+                        const hijri = data.data.date.hijri;
+
+                        // Update Hijri Date
+                        if (hijriContainer) {
+                            hijriContainer.textContent = isEn ?
+                                `${hijri.day} ${hijri.month.en} ${hijri.year} AH` :
+                                `${hijri.day} ${hijri.month.ar} ${hijri.year} هـ`;
+                        }
+
+                        const prayers = isEn ? [
+                            { name: 'Fajr', time: timings.Fajr },
+                            { name: 'Sunrise', time: timings.Sunrise },
+                            { name: 'Dhuhr', time: timings.Dhuhr },
+                            { name: 'Asr', time: timings.Asr },
+                            { name: 'Maghrib', time: timings.Maghrib },
+                            { name: 'Isha', time: timings.Isha }
+                        ] : [
+                            { name: 'الفجر', time: timings.Fajr },
+                            { name: 'الشروق', time: timings.Sunrise },
+                            { name: 'الظهر', time: timings.Dhuhr },
+                            { name: 'العصر', time: timings.Asr },
+                            { name: 'المغرب', time: timings.Maghrib },
+                            { name: 'العشاء', time: timings.Isha }
+                        ];
+
+                        // Calculate next prayer
+                        const now = new Date();
+                        const currentMinutes = now.getHours() * 60 + now.getMinutes();
+                        let nextPrayerIndex = -1;
+                        let isTomorrow = false;
+
+                        for (let i = 0; i < prayers.length; i++) {
+                            const [hours, minutes] = prayers[i].time.split(':').map(Number);
+                            const prayerMinutes = hours * 60 + minutes;
+                            if (prayerMinutes > currentMinutes) {
+                                nextPrayerIndex = i;
+                                break;
+                            }
+                        }
+
+                        if (nextPrayerIndex === -1) {
+                            nextPrayerIndex = 0; // Fajr
+                            isTomorrow = true;
+                        }
+
+                        let html = '';
+                        prayers.forEach((p, index) => {
+                            const isNext = index === nextPrayerIndex ? 'next-prayer' : '';
+                            const time12 = formatTime12(p.time);
+                            html += `
+                                <div class="prayer-item ${isNext}">
+                                    <span class="prayer-name">${p.name}</span>
+                                    <span class="prayer-time">${time12}</span>
+                                </div>
+                            `;
+                        });
+                        container.innerHTML = html;
+
+                        // Start Countdown
+                        startCountdown(prayers[nextPrayerIndex].time, isTomorrow);
+
+                    } else {
+                        container.innerHTML = `<div style="grid-column: 1/-1; color: #ef4444; text-align: center;">${isEn ? 'Failed to load prayer times' : 'فشل تحميل أوقات الصلاة'}</div>`;
+                    }
+                } catch (e) {
+                    console.error(e);
+                    container.innerHTML = `<div style="grid-column: 1/-1; color: #ef4444; text-align: center;">${isEn ? 'Connection error' : 'خطأ في الاتصال'}</div>`;
+                }
+            }
+
+            function formatTime12(time24) {
+                let [hours, minutes] = time24.split(':');
+                hours = parseInt(hours);
+                const isEn = window.i18n && window.i18n.lang === 'en';
+                const suffix = hours >= 12 ? (isEn ? 'PM' : 'م') : (isEn ? 'AM' : 'ص');
+                hours = hours % 12 || 12;
+                return `${hours}:${minutes} ${suffix}`;
+            }
+
+            function startCountdown(targetTimeStr, isTomorrow) {
+                const countdownEl = document.getElementById('countdown-timer');
+                if (!countdownEl) return;
+                if (countdownInterval) clearInterval(countdownInterval);
+
+                const [h, m] = targetTimeStr.split(':').map(Number);
+                const isEn = window.i18n && window.i18n.lang === 'en';
+
+                function update() {
+                    const now = new Date();
+                    const target = new Date();
+                    target.setHours(h, m, 0, 0);
+                    if (isTomorrow) target.setDate(target.getDate() + 1);
+
+                    let diff = target - now;
+                    if (diff <= 0) {
+                        // Play Adhan automatically when prayer time is reached!
+                        const audio = document.getElementById('adhanAudio');
+                        if (audio && audio.paused) {
+                            toggleAdhan();
+                        }
+                        // Time passed, refresh to get next prayer
+                        getPrayerTimes();
+                        return;
+                    }
+
+                    const hours = Math.floor(diff / (1000 * 60 * 60));
+                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                    const label = isEn ? 'Time remaining for next prayer:' : 'المتبقى للصلاة القادمة:';
+                    countdownEl.innerHTML = `${label} <span style="font-family: 'Segoe UI', sans-serif; direction: ltr; display: inline-block;">${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}</span>`;
+                }
+
+                update();
+                countdownInterval = setInterval(update, 1000);
             }
 
             try {
@@ -2948,7 +3331,7 @@
             const esriImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
             const openTopo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png');
 
-            // Google Maps Basemaps - FIXED: use 'subdomains' not 'subdomain'
+            // Google Maps Basemaps
             const googleSatellite = L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'], attribution: '' });
             const googleHybrid = L.tileLayer('https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'], attribution: '' });
             const googleStreets = L.tileLayer('https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', { subdomains: ['mt0', 'mt1', 'mt2', 'mt3'], attribution: '' });
@@ -2975,7 +3358,7 @@
             const layerControl = L.control.layers(baseMaps, null, { position: 'topleft', collapsed: true }).addTo(map);
 
             const loadingDiv = document.createElement('div');
-            loadingDiv.innerHTML = `<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 2000; background: var(--bg-card); padding: 2rem; border-radius: 15px;"><i class="fas fa-spinner fa-spin" style="font-size: 3rem; color: var(--accent-blue); margin-bottom: 1rem;"></i><p>جاري تحميل الخريطة...</p></div>`;
+            loadingDiv.innerHTML = `<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 2000; background: var(--bg-card); padding: 2rem; border-radius: 15px;"><i class="fas fa-spinner fa-spin" style=" color: var(--accent-blue); margin-bottom: 1rem;"></i><p>جاري تحميل الخريطة...</p></div>`;
             document.querySelector('.map-container').appendChild(loadingDiv);
 
             fetch('data/Palestine.json?t=' + new Date().getTime())
@@ -2986,7 +3369,7 @@
                 .then(data => {
                     loadingDiv.remove();
                     geojsonData = data;
-                    clearProvinceLabels();
+                    clearProvinceLabels(); // Clear any old labels
                     geojsonLayer = L.geoJSON(data, { style, onEachFeature }).addTo(map);
                     if (geojsonLayer.getBounds().isValid()) map.fitBounds(geojsonLayer.getBounds());
                     layerControl.addOverlay(geojsonLayer, translatePalestine("مقاطعات فلسطين"));
@@ -2994,7 +3377,7 @@
                     updateProvinceLabels();
 
                     const aqsaIcon = L.divIcon({ className: 'aqsa-marker', html: '<i class="fas fa-mosque"></i>', iconSize: [30, 30], iconAnchor: [15, 30] });
-                    const aqsaMarker = L.marker(aqsaCoords, { icon: aqsaIcon }).addTo(map);
+                    const aqsaMarker = L.marker(aqsaCoords, { icon: aqsaIcon, zIndexOffset: 1000 }).addTo(map); // Added zIndexOffset to ensure it's on top
 
                     aqsaMarker.on('click', () => {
                         showAqsaCard();
@@ -3014,7 +3397,7 @@
                 }
             }))({ position: 'topleft' }).addTo(map);
 
-            map.on('zoomend', updateProvinceLabels);
+            map.on('zoomend', updateProvinceLabels); // Update labels visibility on zoom
             map.on('moveend', updateProvinceLabels);
 
             map.on('locationfound', e => {
@@ -3076,180 +3459,21 @@
             } catch (e) { console.warn("Could not add search/measure controls", e); }
 
             L.control.scale({ imperial: false, position: 'bottomright' }).addTo(map);
+            document.getElementById('details-container').innerHTML = `<div class="details-placeholder"><p>${translatePalestine('انقر على منطقة لعرض تفاصيلها')}</p></div>`;
 
-            document.getElementById('details-container').innerHTML = `<div class="details-placeholder"><p>انقر على منطقة لعرض تفاصيلها</p></div>`;
-
-            // Typewriter Effect Logic
-            const aqsaText = "المسجد الأقصى هو أحد أكبر مساجد العالم ومن أكثرها قدسيةً للمسلمين، وهو أولى القبلتين في الإسلام. يقع داخل البلدة القديمة بالقدس في فلسطين. وهو كامل المنطقة المحاطة بالسور واسم لكل ما هو داخل سور المسجد الأقصى الواقع في أقصى الزاوية الجنوبية الشرقية من البلدة القديمة المسورة.";
-            const aqsaElement = document.getElementById('aqsa-typewriter');
-            let typeIndex = 0;
-            let isDeleting = false;
-            let typeTimeout = null;
-            let countdownInterval = null;
-
-            function typeAqsaInfo() {
-                const currentText = aqsaText.substring(0, typeIndex);
-                if (aqsaElement) aqsaElement.textContent = currentText;
-
-                if (!isDeleting && typeIndex < aqsaText.length) {
-                    typeIndex++;
-                    typeTimeout = setTimeout(typeAqsaInfo, 30);
-                } else if (isDeleting && typeIndex > 0) {
-                    typeIndex--;
-                    typeTimeout = setTimeout(typeAqsaInfo, 15);
-                } else {
-                    isDeleting = !isDeleting;
-                    typeTimeout = setTimeout(typeAqsaInfo, isDeleting ? 5000 : 500);
-                }
-            }
-
-            // Aqsa Card Functions
-            window.showAqsaCard = function () {
-                const card = document.getElementById('aqsa-card');
-                if (card) {
-                    card.style.display = 'block';
-                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    getPrayerTimes(); // Fetch prayer times when card opens
-
-                    // Start typewriter if not running
-                    if (!typeTimeout) typeAqsaInfo();
-                }
-            };
-
-            window.closeAqsaCard = function () {
-                const card = document.getElementById('aqsa-card');
-                if (card) card.style.display = 'none';
-                // Stop audio if playing
-                const audio = document.getElementById('adhanAudio');
-                if (audio && !audio.paused) toggleAdhan();
-                // Clear countdown
-                if (countdownInterval) clearInterval(countdownInterval);
-            };
-
-            // Fetch Prayer Times
-            async function getPrayerTimes() {
-                const container = document.getElementById('prayer-times-grid');
-                const hijriContainer = document.getElementById('hijri-date-display');
-                if (!container) return;
-
-                try {
-                    const date = new Date();
-                    // Format date as DD-MM-YYYY
-                    const dateStr = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
-                    const response = await fetch(`https://api.aladhan.com/v1/timingsByCity/${dateStr}?city=Jerusalem&country=Palestine&method=1`);
-                    const data = await response.json();
-
-                    if (data.code === 200) {
-                        const timings = data.data.timings;
-                        const hijri = data.data.date.hijri;
-
-                        // Update Hijri Date
-                        if (hijriContainer) hijriContainer.textContent = `${hijri.day} ${hijri.month.ar} ${hijri.year} هـ`;
-
-                        const prayers = [
-                            { name: 'الفجر', time: timings.Fajr },
-                            { name: 'الشروق', time: timings.Sunrise },
-                            { name: 'الظهر', time: timings.Dhuhr },
-                            { name: 'العصر', time: timings.Asr },
-                            { name: 'المغرب', time: timings.Maghrib },
-                            { name: 'العشاء', time: timings.Isha }
-                        ];
-
-                        // Calculate next prayer
-                        const now = new Date();
-                        const currentMinutes = now.getHours() * 60 + now.getMinutes();
-                        let nextPrayerIndex = -1;
-                        let isTomorrow = false;
-
-                        for (let i = 0; i < prayers.length; i++) {
-                            const [hours, minutes] = prayers[i].time.split(':').map(Number);
-                            const prayerMinutes = hours * 60 + minutes;
-                            if (prayerMinutes > currentMinutes) {
-                                nextPrayerIndex = i;
-                                break;
-                            }
-                        }
-
-                        if (nextPrayerIndex === -1) {
-                            nextPrayerIndex = 0; // Fajr
-                            isTomorrow = true;
-                        }
-
-                        let html = '';
-                        prayers.forEach((p, index) => {
-                            const isNext = index === nextPrayerIndex ? 'next-prayer' : '';
-                            const time12 = formatTime12(p.time);
-                            html += `
-                                <div class="prayer-item ${isNext}">
-                                    <span class="prayer-name">${p.name}</span>
-                                    <span class="prayer-time">${time12}</span>
-                                </div>
-                            `;
-                        });
-                        container.innerHTML = html;
-
-                        // Start Countdown
-                        startCountdown(prayers[nextPrayerIndex].time, isTomorrow);
-
-                    } else {
-                        container.innerHTML = '<div style="grid-column: 1/-1; color: #ef4444; text-align: center;">فشل تحميل أوقات الصلاة</div>';
-                    }
-                } catch (e) {
-                    console.error(e);
-                    container.innerHTML = '<div style="grid-column: 1/-1; color: #ef4444; text-align: center;">خطأ في الاتصال</div>';
-                }
-            }
-
-            function formatTime12(time24) {
-                let [hours, minutes] = time24.split(':');
-                hours = parseInt(hours);
-                const suffix = hours >= 12 ? 'م' : 'ص';
-                hours = hours % 12 || 12;
-                return `${hours}:${minutes} ${suffix}`;
-            }
-
-            function startCountdown(targetTimeStr, isTomorrow) {
-                const countdownEl = document.getElementById('countdown-timer');
-                if (!countdownEl) return;
-                if (countdownInterval) clearInterval(countdownInterval);
-
-                const [h, m] = targetTimeStr.split(':').map(Number);
-
-                function update() {
-                    const now = new Date();
-                    const target = new Date();
-                    target.setHours(h, m, 0, 0);
-                    if (isTomorrow) target.setDate(target.getDate() + 1);
-
-                    let diff = target - now;
-                    if (diff < 0) {
-                        // Time passed, refresh to get next prayer
-                        getPrayerTimes();
-                        return;
-                    }
-
-                    const hours = Math.floor(diff / (1000 * 60 * 60));
-                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-                    countdownEl.innerHTML = `المتبقى للصلاة القادمة: <span style="font-family: 'Segoe UI', sans-serif; direction: ltr; display: inline-block;">${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}</span>`;
-                }
-
-                update();
-                countdownInterval = setInterval(update, 1000);
-            }
 
             window.toggleAdhan = function () {
                 const audio = document.getElementById('adhanAudio');
                 const btn = document.getElementById('audioBtn');
                 const status = document.getElementById('audioStatus');
+                const isEn = window.i18n && window.i18n.lang === 'en';
 
                 if (!audio) return;
 
                 if (audio.paused) {
                     audio.play().then(() => {
                         if (status) { 
-                            status.innerHTML = '<i class="fas fa-volume-up"></i> جاري رفع الأذان بصوت فراس ناجي القزاز - قارئ و مؤذن المسجد الاقصى المبارك'; 
+                            status.innerHTML = '<i class="fas fa-volume-up"></i> ' + (isEn ? "Adhan is being raised by Firas Naji Al-Qazzaz - Reciter and Muezzin of Al-Aqsa Mosque" : "جاري رفع الأذان بصوت فراس ناجي القزاز - قارئ و مؤذن المسجد الاقصى المبارك"); 
                             status.style.color = '#10b981';
                             status.style.fontSize = '0.9rem'; // Slightly smaller to fit long text
                         }
@@ -3262,7 +3486,7 @@
                     audio.pause();
                     audio.currentTime = 0;
                     if (status) { status.innerHTML = '<i class="fas fa-volume-mute"></i> الصوت متوقف'; status.style.color = 'var(--text-secondary)'; }
-                    if (btn) { btn.innerHTML = '<i class="fas fa-play"></i> تشغيل الأذان'; btn.style.background = 'linear-gradient(45deg, #059669, #10b981)'; }
+                    if (btn) { btn.innerHTML = '<i class="fas fa-play"></i> ' + window.appTranslator.t('pal.adhan.play'); btn.style.background = 'linear-gradient(45deg, #059669, #10b981)'; }
                 }
             };
 
@@ -3272,8 +3496,10 @@
                 adhanAudio.onended = function () {
                     const btn = document.getElementById('audioBtn');
                     const status = document.getElementById('audioStatus');
+                    const isEn = window.i18n && window.i18n.lang === 'en';
+                    
                     if (status) { status.innerHTML = '<i class="fas fa-volume-mute"></i> الصوت متوقف'; status.style.color = 'var(--text-secondary)'; }
-                    if (btn) { btn.innerHTML = '<i class="fas fa-play"></i> تشغيل الأذان'; btn.style.background = 'linear-gradient(45deg, #059669, #10b981)'; }
+                    if (btn) { btn.innerHTML = '<i class="fas fa-play"></i> ' + window.appTranslator.t('pal.adhan.play'); btn.style.background = 'linear-gradient(45deg, #059669, #10b981)'; }
                 };
             }
 
@@ -3444,70 +3670,6 @@
                 const reciter = document.getElementById('reciterSelect').value;
                 let ids = [];
 
-                // Determine if it's a range or single verse
-                if (verseId.includes('-')) {
-                    const parts = verseId.split('-');
-                    const surah = parts[0].substring(0, 3);
-                    const startVerse = parseInt(parts[0].substring(3));
-                    const endVerse = parseInt(parts[1].substring(3));
-                    for (let i = startVerse; i <= endVerse; i++) {
-                        ids.push(surah + i.toString().padStart(3, '0'));
-                    }
-                } else {
-                    ids.push(verseId);
-                }
-
-                // Get filename from the card
-                let filename = "verse.mp3";
-                if (btn) {
-                    const card = btn.closest('.message-item');
-                    if (card) {
-                        const ref = card.querySelector('.verse-ref').innerText;
-                        filename = ref.replace(/ /g, '_').replace(/-/g, '_') + ".mp3";
-                    }
-                }
-
-                // Show loading state
-                const originalIcon = btn.innerHTML;
-                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-                btn.disabled = true;
-
-                try {
-                    // Fetch all blobs
-                    const blobPromises = ids.map(id =>
-                        fetch(`https://everyayah.com/data/${reciter}/${id}.mp3`)
-                            .then(r => { if (!r.ok) throw new Error('Network response was not ok'); return r.blob(); })
-                    );
-
-                    const blobs = await Promise.all(blobPromises);
-
-                    // Merge blobs (simple concatenation works for MP3)
-                    const mergedBlob = new Blob(blobs, { type: 'audio/mpeg' });
-
-                    // Trigger download
-                    const downloadUrl = URL.createObjectURL(mergedBlob);
-                    const a = document.createElement('a');
-                    a.href = downloadUrl;
-                    a.download = filename;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(downloadUrl);
-
-                } catch (e) {
-                    console.error("Download failed", e);
-                    alert("حدث خطأ أثناء تحميل الملفات. يرجى المحاولة مرة أخرى.");
-                } finally {
-                    // Restore button state
-                    btn.innerHTML = originalIcon;
-                    btn.disabled = false;
-                }
-            };
-
-            window.downloadVerse = async function (verseId, btn) {
-                const reciter = document.getElementById('reciterSelect').value;
-                let ids = [];
-
                 if (verseId.includes('-')) {
                     const parts = verseId.split('-');
                     const surah = parts[0].substring(0, 3);
@@ -3557,7 +3719,7 @@
 
                 } catch (e) {
                     console.error("Download failed", e);
-                    alert("فشل التحميل");
+                    alert("حدث خطأ أثناء تحميل الملفات. يرجى المحاولة مرة أخرى.");
                 } finally {
                     btn.innerHTML = originalContent;
                     btn.disabled = false;
@@ -3699,11 +3861,21 @@
                 hamburger.classList.toggle('active');
                 navMenu.classList.toggle('active');
             });
+
+            // English Mode Bottom Map Swap Logic
+            if (window.i18n && window.i18n.lang === 'en') {
+                const palGalleryImg = document.getElementById('palestineGalleryImg');
+                const palModalImg = document.getElementById('palestineModalImg');
+                const palDownloadBtn = document.getElementById('palestineDownloadBtn');
+                
+                const enImgPath = 'images/خريطة دولة فلسطين_بالانجليزية.png';
+                if (palGalleryImg) palGalleryImg.src = enImgPath;
+                if (palModalImg) palModalImg.src = enImgPath;
+                if (palDownloadBtn) palDownloadBtn.href = enImgPath;
+            }
         });
     </script>
     <script src="global-fixes.js"></script>
 </body>
 
 </html>
-
-
