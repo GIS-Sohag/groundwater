@@ -146,6 +146,7 @@ const translations = {
 
         // --- Palestine Page ---
         "pal.page.title": "أولى القبلتين",
+        "pal.msg.header": "يا أهل فلسطين",
         "pal.video.title": "فيديو عن فلسطين",
         "pal.map.date": "7 أكتوبر 2025",
         "gw.card.area2": "المساحة",
@@ -162,7 +163,7 @@ const translations = {
         "index.msg.ui": "جاري تحضير واجهة المستخدم...",
         "index.msg.done": "اكتمل التحميل، جاري التوجيه...",
         "doc.title": "دليل الاستخدام",
-        "copy.right": "© 2026 جميع الحقوق محفوظة لمشروع النمذجة المكانية للمياه الجوفية.",
+        "copy.right": "جميع الحقوق محفوظة لمشروع النمذجة المكانية للمياه الجوفية.",
         "gw.typewriter": "النمذجة المكانية لإحتمالية وجود المياه الجوفية",
         "pal.subtitle": "المسجد الأقصى المبارك - قبلة المسلمين الأولى وثالث الحرمين الشريفين",
         "pal.verse.text": "سُبْحَانَ الَّذِي أَسْرَىٰ بِعَبْدِهِ لَيْلًا مِّنَ الْمَسْجِدِ الْحَرَامِ إِلَى الْمَسْجِدِ الْأَقْصَى الَّذِي بَارَكْنَا حَوْلَهُ لِنُرِيَهُ مِنْ آيَاتِنَا ۚ إِنَّهُ هُوَ السَّمِيعُ الْبَصِيرُ",
@@ -175,23 +176,80 @@ const translations = {
         "pal.info.area": "المساحة التقريبية:",
         "pal.info.pop": "السكان:",
         "pal.info.governorate": "المحافظة:",
+        "pal.info.district": "المقاطعة:",
         "pal.mosque.title": "المسجد الأقصى المبارك",
         "pal.mosque.loc": "القدس الشريف - فلسطين",
+        "pal.aqsa.info": "المسجد الأقصى هو أحد أكبر مساجد العالم ومن أكثرها قدسيةً للمسلمين، وهو أولى القبلتين في الإسلام. يقع داخل البلدة القديمة بالقدس في فلسطين. وهو كامل المنطقة المحاطة بالسور واسم لكل ما هو داخل سور المسجد الأقصى الواقع في أقصى الزاوية الجنوبية الشرقية من البلدة القديمة المسورة.",
         "pal.adhan.play": "تشغيل الأذان",
         "pal.adhan.pause": "إيقاف مؤقت",
         "pal.prayer.title": "أوقات الصلاة في القدس الشريف",
+        "pal.prayer.fajr": "الفجر",
+        "pal.prayer.dhuhr": "الظهر",
+        "pal.prayer.asr": "العصر",
+        "pal.prayer.maghrib": "المغرب",
+        "pal.prayer.isha": "العشاء",
+        "pal.duaa.title": "دعاء للمسجد الأقصى",
+        "pal.duaa.text": "\"اللَّهُمَّ ارْزُقْنَا صَلَاةً فِي الْمَسْجِدِ الْأَقْصَى عَاجِلًا غَيْرَ آجِلٍ، اللَّهُمَّ أَقِرَّ أَعْيُنَنَا بِتَحْرِيرِهِ وَاسْتِعَادَتِهِ، اللَّهُمَّ احْفَظْ الْمَسْجِدَ الْأَقْصَى مِنَ الْمُحْتَلِّينَ، وَقَيِّدْ لَهُ قَائِدًا كَصَلَاحِ الدِّينِ يُحَرِّرُهُ مِنْ أَيْدِي الْغَاصِبِينَ، وَيُعِيدُ لَنَا مَجْدَ حَطِّينَ، اللَّهُمَّ آمِينَ\"",
+        "pal.hadith.title": "فضل الصلاة فيه",
+        "pal.hadith.text": "قال رسول الله ﷺ:<br>\"الصلاةُ في بيتِ المقدسِ بخمسِ مائةِ صلاةٍ\"<br><span style='font-size: 0.9rem; font-weight: normal;'>(رواه الطبراني والبزار)</span>",
+        "pal.msg.imran": "سورة آل عمران - الآيات 139-151",
+        "pal.msg.nisa": "سورة النساء - الآيات 95-96",
+        "pal.msg.maida": "سورة المائدة - الآيات 54-56",
+        "pal.msg.ibrahim": "سورة إبراهيم - الآيات 42-47",
+        "pal.msg.isra_v2": "سورة الإسراء - الآيات 4-5",
+        "pal.msg.hashr": "سورة الحشر - الآية 14",
+        "pal.msg.saff": "سورة الصف - الآية 4",
 
         // --- Gallery Page ---
         "gallery.title": "معرض الخرائط",
-        "gallery.subtitle": "تصفح مجموعة الخرائط المستخدمة في المشروع",
-        "gallery.map1.title": "خريطة جيولوجية سوهاج",
-        "gallery.map1.desc": "توضح التراكيب والصخور التي تؤثر على الخزانات الجوفية.",
-        "gallery.map2.title": "خريطة الارتفاعات الرقمية (DEM)",
-        "gallery.map2.desc": "توضح تضاريس المحافظة ومسارات تصريف المياه.",
-        "gallery.map3.title": "خريطة الانحدار",
-        "gallery.map3.desc": "توضح درجة ميل الأرض وتأثيرها على تسرب المياه.",
-        "gallery.map4.title": "خريطة الجيومورفولوجيا",
-        "gallery.map4.desc": "توضح الأشكال الأرضية المؤثرة على تجمع المياه.",
+        "gallery.subtitle": "تصفح مجموعة الخرائط المستخدمة في مشروع النمذجة المكانية لإحتمالية وجود المياه الجوفية",
+        "gallery.admin.title": "خريطة التقسيم الإداري لمحافظة سوهاج",
+        "gallery.admin.desc": "توضح الحدود الإدارية والمراكز داخل المحافظة.",
+        "gallery.study_area.title": "خريطة منطقة الدراسة محافظة سوهاج",
+        "gallery.study_area.desc": "نطاق منطقة الدراسة التي خضعت للتحليل المكاني.",
+        "gallery.lineament_density.title": "خريطة كثافة التراكيب الخطية في محافظة سوهاج",
+        "gallery.lineament_density.desc": "تحليل كثافة الصدوع والكسور الأرضية المؤثرة على نفاذية المياه.",
+        "gallery.evapotranspiration.title": "خريطة معدلات التبخر النتح السنوي في محافظة سوهاج",
+        "gallery.evapotranspiration.desc": "توضح الفاقد السنوي من المياه نتيجة التبخر والنتح.",
+        "gallery.twi.title": "خريطة مؤشر الرطوبة الطبوغرافي لمحافظة سوهاج",
+        "gallery.twi.desc": "مؤشر يوضح المناطق الأكثر عرضة لتجمع الرطوبة بناءً على التضاريس.",
+        "gallery.curvature.title": "خريطة تقوس المنحدرات في محافظة سوهاج",
+        "gallery.curvature.desc": "توضح شكل انحناء الأرض وتأثيره على مسارات الجريان السطحي.",
+        "gallery.slope.title": "خريطة الانحدارات في محافظة سوهاج",
+        "gallery.slope.desc": "درجة ميل سطح الأرض وتأثيرها على سرعة الجريان وتسرب المياه.",
+        "gallery.lineaments.title": "خريطة التراكيب الخطية لمحافظة سوهاج",
+        "gallery.lineaments.desc": "التراكيب الجيولوجية الخطية المستخرجة من البيانات الفضائية.",
+        "gallery.drainage.title": "خريطة شبكة المجاري المائية في محافظة سوهاج",
+        "gallery.drainage.desc": "توضح الأودية ومسارات تصريف المياه الطبيعية.",
+        "gallery.dem.title": "خريطة الارتفاعات في محافظة سوهاج",
+        "gallery.dem.desc": "نموذج الارتفاع الرقمي (DEM) الذي يوضح تضاريس سطح المحافظة.",
+        "gallery.potential.title": "خريطة احتمالية المياه الجوفية",
+        "gallery.potential.desc": "المخرج النهائي للنموذج المكاني الموضح لمناطق الوفرة الجوفية.",
+        "gallery.geology.title": "الخريطة الجيولوجية لمحافظة سوهاج",
+        "gallery.geology.desc": "توضح التكاوين الصخرية والعصور الجيولوجية لسطح المحافظة.",
+        "gallery.geomorphology.title": "الخريطة الجيومورفولوجية لمحافظة سوهاج",
+        "gallery.geomorphology.desc": "توضح الوحدات الجيومورفولوجية والأشكال الأرضية المختلفة.",
+        "gallery.potential_depth.title": "خريطة العمق المحتمل لوجود المياه الجوفية في محافظة سوهاج",
+        "gallery.potential_depth.desc": "خريطة توضح تقديرات أعماق الخزانات الجوفية (حجم: 2.35 MB، تاريخ: 17-02-2026).",
+        "gallery.precipitation.title": "خريطة معدلات مجموع المطر السنوي لمحافظة سوهاج",
+        "gallery.precipitation.desc": "خريطة توزيع معدلات هطول الأمطار السنوية في محافظة سوهاج.",
+        "gallery.ndvi.title": "خريطة مؤشر الغطاء النباتي المطبع لمحافظة سوهاج",
+        "gallery.ndvi.desc": "خريطة مؤشر الغطاء النباتي المطبع (NDVI) وكثافة النباتات في محافظة سوهاج.",
+        "gallery.soil.title": "خريطة نسيج التربة في محافظة سوهاج",
+        "gallery.soil.desc": "خريطة توضح أنواع ونسيج التربة وخصائصها في محافظة سوهاج.",
+        "gallery.water_distance.title": "خريطة القرب والبعد عن المسطحات المائية في محافظة سوهاج",
+        "gallery.water_distance.desc": "خريطة تحليل المسافة من المسطحات المائية والأنهار في محافظة سوهاج.",
+        "gallery.drainage_density.title": "خريطة كثافة المجاري المائية في محافظة سوهاج",
+        "gallery.drainage_density.desc": "خريطة تحليل كثافة شبكة المجاري المائية والتصريف في محافظة سوهاج.",
+        "gallery.population.title": "خريطة الكثافة السكانية في محافظة سوهاج",
+        "gallery.population.desc": "خريطة توزيع الكثافة السكانية والتجمعات العمرانية في محافظة سوهاج 2024.",
+
+        // --- UI Elements & Tooltips ---
+        "btn.zoom_in": "تكبير الصورة",
+        "btn.zoom_out": "تصغير الصورة",
+        "btn.download": "تحميل الخريطة",
+        "btn.view": "عرض التفاصيل",
+        "btn.close": "إغلاق",
 
         // --- Groundwater Page ---
         "gw.title": "المياه الجوفية",
@@ -207,7 +265,30 @@ const translations = {
         "gw.card.lat": "خط العرض",
         "gw.card.lng": "خط الطول",
         "gw.card.area": "المنطقة / القرية",
+        "gw.card.county": "المركز / القسم",
         "gw.card.gov": "المحافظة",
+        "gw.card.percent": "النسبة",
+        "gw.card.code": "كود الفئة",
+        "gw.card.nodata": "غير متوفر",
+        "gw.card.area2": "المساحة",
+        "gw.click.area": "انقر على منطقة لعرض تفاصيلها",
+        "print.univ": "جامعة سوهاج",
+        "print.faculty": "كلية الآداب",
+        "print.dept": "قسم الجغرافيا ونظم المعلومات الجغرافية",
+        "print.report.title": "تقرير احتمالية وجود المياه الجوفية",
+        "print.sat.title": "صورة القمر الصناعي للموقع:",
+        "print.coords.title": "إحداثيات وبيانات الموقع:",
+        "print.col.gov": "المحافظة",
+        "print.col.area": "المنطقة / المركز",
+        "print.col.lat": "خط العرض (Lat)",
+        "print.col.lng": "خط الطول (Lng)",
+        "print.analysis.title": "التحليل الفني والتوصيات:",
+        "print.sig.author": "توقيع معد التقرير",
+        "print.sig.supervisor": "اعتماد المشرف الأكاديمى",
+        "print.supervisor.name": "أ.م.د حمدي نبيه عيد",
+        "print.footer": "تم استخراج هذا التقرير آليا عبر نظام النمذجة المكانية للمياه الجوفية - سوهاج © 2025",
+        "btn.search": "ابحث عن مكان...",
+        "btn.notfound": "لم يتم العثور على الموقع",
 
         // --- Student Names (Systems Dept) ---
         "student.1": "محمد عبد الراضي محمد خيامي",
@@ -239,7 +320,60 @@ const translations = {
         "student.27": "مادونا ناجح عازر جورجي",
         "student.28": "الاء حسني عبد العزيز محمد",
         "student.29": "نورهان السيد علي مسعود",
-        "student.30": "هايدي هاني عصمت درويش"
+        "student.30": "هايدي هاني عصمت درويش",
+
+        // --- General Section Students ---
+        "student.general.1": "ابراهيم خالد ابراهيم عثمان",
+        "student.general.2": "اشرف ياسر عبدالصبور حسين",
+        "student.general.3": "خلود جبريل احمد حسب الله",
+        "student.general.4": "ديانا كليب محمود محمد",
+        "student.general.5": "سلوى عبد المحسن عبد الصبور",
+        "student.general.6": "شريف صلاح الدين احمد عبدالعال",
+        "student.general.7": "طه ابراهيم عبدالسيد حسنين",
+        "student.general.8": "عبد الحميد محمود عبد الحميد احمد",
+        "student.general.9": "علا خلف محمد احمد",
+        "student.general.10": "كريم قمصان محمود عبدالرحيم",
+        "student.general.11": "محمد زينهم علي ثابت",
+        "student.general.12": "محمد علاء عبدالحارس احمد",
+        "student.general.13": "مصطفي جمال احمد عبدالخالق",
+        "student.general.14": "منار عارف بيومي الاعرج",
+        "student.general.15": "نعمات صلاح ابراهيم احمد",
+        "student.general.16": "يحي ايمن عبد العزيز عبد المنعم",
+        "student.general.17": "محمد حسن ابراهيم ياسين",
+        "student.general.18": "ابانوب رفعت القس بولس قرياقص",
+        "student.general.19": "بيشوى رتيب محروس عزيز",
+        "student.general.20": "شنودة سامى جاد بباوى",
+        "student.general.21": "كيرلس هانى تامر خيله",
+        "student.general.22": "محمد احمد محمد احمد",
+        "student.general.23": "محمود عادل محمود دياب",
+        "student.general.24": "محمد ابراهيم احمد عامر",
+
+        // --- Survey Section Students ---
+        "student.survey.1": "احمد حسن احمد بدران",
+        "student.survey.2": "اسراء فايز عز الدين محمد",
+        "student.survey.3": "اسراء محمود غازى محمود",
+        "student.survey.4": "اسلام حسين محمد محمد",
+        "student.survey.5": "اسماء اشرف احمد محمد",
+        "student.survey.6": "افنان خلف محمد خلف",
+        "student.survey.7": "ايه محسن احمد ابراهيم",
+        "student.survey.8": "بيشوي حليم عطيه الجندي",
+        "student.survey.9": "جيهاد الضبع صلاح محمود",
+        "student.survey.10": "حسام السيد سيف النصر عثمان",
+        "student.survey.11": "عبدالله طلعت حربي كيلاني",
+        "student.survey.12": "عبدالله عبدالقادر كامل عبداللاه",
+        "student.survey.13": "علي احمد علي سباق",
+        "student.survey.14": "فؤاد محمد فؤاد السيد",
+        "student.survey.15": "قاسم اشرف قاسم هويدى",
+        "student.survey.16": "محمد احمد زيد السيد",
+        "student.survey.17": "محمد حمدي محمود محمد",
+        "student.survey.18": "محمد عادل رزق سالم",
+        "student.survey.19": "محمد يوسف بكري العكري",
+        "student.survey.20": "محمود الطاهر محمد عبدالقادر",
+        "student.survey.21": "مصطفي شعيب عطيه الهادي شعيب",
+        "student.survey.22": "نورا ذكي صابر احمد",
+        "student.survey.23": "نورهان علي السيد عطا",
+        "student.survey.24": "هبه عصام اسماعيل راشد",
+        "student.survey.25": "هشام حسين على محمد"
     },
     "en": {
         // --- Core Navbar ---
@@ -384,6 +518,7 @@ const translations = {
 
         // --- Palestine Page ---
         "pal.page.title": "The First Qibla",
+        "pal.msg.header": "O People of Palestine",
         "pal.video.title": "Video About Palestine",
         "pal.map.date": "7 October 2025",
         "gw.card.area2": "Area",
@@ -400,10 +535,10 @@ const translations = {
         "index.msg.ui": "Preparing User Interface...",
         "index.msg.done": "Loading Complete, Redirecting...",
         "doc.title": "Usage Guide",
-        "copy.right": "© 2026 Groundwater Spatial Modeling Project. All Rights Reserved.",
+        "copy.right": "Groundwater Spatial Modeling Project. All Rights Reserved.",
         "gw.typewriter": "Spatial Modeling for Groundwater Potential",
         "pal.subtitle": "Al-Aqsa Mosque - The First Qibla of Muslims",
-        "pal.verse.text": "سُبْحَانَ الَّذِي أَسْرَىٰ بِعَبْدِهِ لَيْلًا مِّنَ الْمَسْجِدِ الْحَرَامِ إِلَى الْمَسْجِدِ الْأَقْصَى الَّذِي بَارَكْنَا حَوْلَهُ لِنُرِيَهُ مِنْ آيَاتِنَا ۚ إِنَّهُ هُوَ السَّمِيعُ الْبَصِيرُ",
+        "pal.verse.text": "Exalted is He who took His Servant by night from al-Masjid al-Haram to al-Masjid al-Aqsa, whose surroundings We have blessed, to show him of Our signs. Indeed, He is the Hearing, the Seeing.",
         "pal.verse.ref": "Surah Al-Isra - Verse 1",
         "pal.map.title": "State of Palestine Map",
         "pal.map.desc": "Detailed map showing historical borders, provinces, and key geographic landmarks.",
@@ -413,23 +548,80 @@ const translations = {
         "pal.info.area": "Approx Area:",
         "pal.info.pop": "Population:",
         "pal.info.governorate": "Governorate:",
+        "pal.info.district": "District:",
         "pal.mosque.title": "Al-Aqsa Mosque Mubarak",
         "pal.mosque.loc": "Al-Quds Al-Sharif - Palestine",
+        "pal.aqsa.info": "Al-Aqsa Mosque is one of the largest mosques in the world and one of the holiest for Muslims, it is the first Qibla in Islam. It is located inside the Old City of Jerusalem in Palestine. It includes the entire area surrounded by the wall and is a name for everything inside the wall of Al-Aqsa Mosque, located in the extreme southeastern corner of the walled Old City.",
         "pal.adhan.play": "Play Adhan",
         "pal.adhan.pause": "Pause",
         "pal.prayer.title": "Prayer Times in Jerusalem",
+        "pal.prayer.fajr": "Fajr",
+        "pal.prayer.dhuhr": "Dhuhr",
+        "pal.prayer.asr": "Asr",
+        "pal.prayer.maghrib": "Maghrib",
+        "pal.prayer.isha": "Isha",
+        "pal.duaa.title": "Supplication for Al-Aqsa Mosque",
+        "pal.duaa.text": "\"O Allah, grant us prayer in Al-Aqsa Mosque sooner rather than later. O Allah, delight our eyes with its liberation and recovery. O Allah, protect Al-Aqsa Mosque from the occupiers, and ordain for it a leader like Salah ad-Din to liberate it from the hands of the usurpers, and restore to us the glory of Hattin. O Allah, Ameen.\"",
+        "pal.hadith.title": "Virtue of Praying in it",
+        "pal.hadith.text": "The Messenger of Allah ﷺ said:<br>\"Prayer in Jerusalem is worth five hundred prayers.\"<br><span style='font-size: 0.9rem; font-weight: normal;'>(Narrated by Al-Tabarani and Al-Bazzar)</span>",
+        "pal.msg.imran": "Surah Al-Imran - Verses 139-151",
+        "pal.msg.nisa": "Surah An-Nisa - Verses 95-96",
+        "pal.msg.maida": "Surah Al-Ma'idah - Verses 54-56",
+        "pal.msg.ibrahim": "Surah Ibrahim - Verses 42-47",
+        "pal.msg.isra_v2": "Surah Al-Isra - Verses 4-5",
+        "pal.msg.hashr": "Surah Al-Hashr - Verse 14",
+        "pal.msg.saff": "Surah As-Saff - Verse 4",
 
         // --- Gallery Page ---
         "gallery.title": "Map Gallery",
-        "gallery.subtitle": "Browse high-resolution GIS maps used in the study",
-        "gallery.map1.title": "Geological Map of Sohag",
-        "gallery.map1.desc": "Rock formations influencing groundwater reservoirs.",
-        "gallery.map2.title": "Digital Elevation Model (DEM)",
-        "gallery.map2.desc": "Topography and natural drainage paths.",
-        "gallery.map3.title": "Slope Map",
-        "gallery.map3.desc": "Infiltration rates based on terrain inclination.",
-        "gallery.map4.title": "Geomorphology Map",
-        "gallery.map4.desc": "Landforms affecting water accumulation.",
+        "gallery.subtitle": "Browse the collection of maps used in the spatial modeling project for groundwater potential",
+        "gallery.admin.title": "Administrative Map of Sohag Governorate",
+        "gallery.admin.desc": "Shows administrative boundaries and districts within the governorate.",
+        "gallery.study_area.title": "Study Area Map of Sohag Governorate",
+        "gallery.study_area.desc": "Scope of the selected study area for spatial analysis.",
+        "gallery.lineament_density.title": "Lineament Density Map of Sohag Governorate",
+        "gallery.lineament_density.desc": "Analysis of fault and fracture density affecting water permeability.",
+        "gallery.evapotranspiration.title": "Annual Evapotranspiration Rates Map of Sohag Governorate",
+        "gallery.evapotranspiration.desc": "Illustrates annual water loss due to evaporation and transpiration.",
+        "gallery.twi.title": "Topographic Wetness Index (TWI) Map of Sohag Governorate",
+        "gallery.twi.desc": "Index showing areas prone to moisture accumulation based on terrain.",
+        "gallery.curvature.title": "Curvature Map of Sohag Governorate",
+        "gallery.curvature.desc": "Shows land surface curvature and its effect on runoff paths.",
+        "gallery.slope.title": "Slope Map of Sohag Governorate",
+        "gallery.slope.desc": "Terrain inclination and its impact on runoff and infiltration rates.",
+        "gallery.lineaments.title": "Lineaments Map of Sohag Governorate",
+        "gallery.lineaments.desc": "Geological linear features extracted from satellite imagery.",
+        "gallery.drainage.title": "Drainage Network Map of Sohag Governorate",
+        "gallery.drainage.desc": "Illustrates the distribution of valleys and natural watercourses.",
+        "gallery.dem.title": "Elevation Map (DEM) of Sohag Governorate",
+        "gallery.dem.desc": "Digital Elevation Model showing the terrain surface of the governorate.",
+        "gallery.potential.title": "Groundwater Potential Map",
+        "gallery.potential.desc": "The final spatial modeling output showing groundwater potential zones.",
+        "gallery.geology.title": "Geological Map of Sohag Governorate",
+        "gallery.geology.desc": "Displays geological formations and rock types across the governorate.",
+        "gallery.geomorphology.title": "Geomorphological Map of Sohag Governorate",
+        "gallery.geomorphology.desc": "Shows landforms and various geomorphological units.",
+        "gallery.potential_depth.title": "Potential Groundwater Depth Map of Sohag Governorate",
+        "gallery.potential_depth.desc": "Map showing estimated groundwater reservoir depths (Size: 2.35 MB, Date: 17-02-2026).",
+        "gallery.precipitation.title": "Annual Precipitation Map of Sohag Governorate",
+        "gallery.precipitation.desc": "Distribution of annual rainfall rates across Sohag Governorate.",
+        "gallery.ndvi.title": "NDVI Map of Sohag Governorate",
+        "gallery.ndvi.desc": "Normalized Difference Vegetation Index showing vegetation density.",
+        "gallery.soil.title": "Soil Texture Map of Sohag Governorate",
+        "gallery.soil.desc": "Map illustrating soil types and textures across the governorate.",
+        "gallery.water_distance.title": "Distance to Water Bodies Map of Sohag Governorate",
+        "gallery.water_distance.desc": "Spatial analysis of proximity to rivers and surface water.",
+        "gallery.drainage_density.title": "Drainage Density Map of Sohag Governorate",
+        "gallery.drainage_density.desc": "Analysis of the drainage network density and patterns.",
+        "gallery.population.title": "Population Density Map of Sohag Governorate",
+        "gallery.population.desc": "Distribution of population density and urban clusters in 2024.",
+
+        // --- UI Elements & Tooltips ---
+        "btn.zoom_in": "Zoom In",
+        "btn.zoom_out": "Zoom Out",
+        "btn.download": "Download Map",
+        "btn.view": "View Details",
+        "btn.close": "Close",
 
         // --- Groundwater Page ---
         "gw.title": "Groundwater",
@@ -445,7 +637,30 @@ const translations = {
         "gw.card.lat": "Latitude",
         "gw.card.lng": "Longitude",
         "gw.card.area": "Area / Village",
+        "gw.card.county": "Markaz / Division",
         "gw.card.gov": "Governorate",
+        "gw.card.percent": "Percentage",
+        "gw.card.code": "Category Code",
+        "gw.card.nodata": "N/A",
+        "gw.card.area2": "Area",
+        "gw.click.area": "Click on an area to view details",
+        "print.univ": "Sohag University",
+        "print.faculty": "Faculty of Arts",
+        "print.dept": "Dept. of Geography & GIS",
+        "print.report.title": "Groundwater Potential Probability Report",
+        "print.sat.title": "Satellite Imagery of the Site:",
+        "print.coords.title": "Site Coordinates & Data:",
+        "print.col.gov": "Governorate",
+        "print.col.area": "Area / Markaz",
+        "print.col.lat": "Latitude",
+        "print.col.lng": "Longitude",
+        "print.analysis.title": "Technical Analysis & Recommendations:",
+        "print.sig.author": "Report Author Signature",
+        "print.sig.supervisor": "Academic Supervisor Approval",
+        "print.supervisor.name": "Assoc. Prof. Hamdy Nabih Eid",
+        "print.footer": "This report was automatically generated via the Groundwater Spatial Modeling System - Sohag © 2025",
+        "btn.search": "Search for a location...",
+        "btn.notfound": "Location not found",
 
         // --- Student Names (Systems Dept) ---
         "student.1": "Mohamed Abd El-Rady Mohamed Khayami",
@@ -475,9 +690,62 @@ const translations = {
         "student.25": "Safaa Abdel Latif Abdel Halim Bakheet",
         "student.26": "Marwa Mehran Othman Abdel Zaher",
         "student.27": "Madonna Nageh Azer Georgy",
-        "student.28": "Alaa Hosny Abdel Aziz Mohamed",
+        "student.28": "Alaa Hosny Abd El-Aziz Mohamed",
         "student.29": "Nourhan El-Sayed Ali Masoud",
-        "student.30": "Heidi Hany Esmat Darwish"
+        "student.30": "Heidi Hany Esmat Darwish",
+
+        // --- General Section Students ---
+        "student.general.1": "Ibrahim Khaled Ibrahim Othman",
+        "student.general.2": "Ashraf Yasser Abdel Sabour Hussein",
+        "student.general.3": "Kholoud Gibreel Ahmed Hasbullah",
+        "student.general.4": "Diana Koleib Mahmoud Mohamed",
+        "student.general.5": "Salwa Abdel Mohsen Abdel Sabour",
+        "student.general.6": "Sherif Salah El-Din Ahmed Abdel Aal",
+        "student.general.7": "Taha Ibrahim Abdel Sayed Hassanein",
+        "student.general.8": "Abdel Hamid Mahmoud Abdel Hamid Ahmed",
+        "student.general.9": "Ola Khalaf Mohamed Ahmed",
+        "student.general.10": "Karim Qomsan Mahmoud Abdel Rahim",
+        "student.general.11": "Mohamed Zinham Ali Thabet",
+        "student.general.12": "Mohamed Alaa Abdel Hares Ahmed",
+        "student.general.13": "Mostafa Gamal Ahmed Abdel Khaleq",
+        "student.general.14": "Manar Aref Bayoumy El-Aarag",
+        "student.general.15": "Neamat Salah Ibrahim Ahmed",
+        "student.general.16": "Yahia Ayman Abdel Aziz Abdel Moneim",
+        "student.general.17": "Mohamed Hassan Ibrahim Yassin",
+        "student.general.18": "Abanoub Refaat El-Qos Boulos Qoriaqos",
+        "student.general.19": "Bishoy Rateeb Mahrous Aziz",
+        "student.general.20": "Shenouda Samy Gad Babawi",
+        "student.general.21": "Kirollos Hany Tamer Kheila",
+        "student.general.22": "Mohamed Ahmed Mohamed Ahmed",
+        "student.general.23": "Mahmoud Adel Mahmoud Diab",
+        "student.general.24": "Mohamed Ibrahim Ahmed Amer",
+
+        // --- Survey Section Students ---
+        "student.survey.1": "Ahmed Hassan Ahmed Badran",
+        "student.survey.2": "Esraa Fayez Ezz El-Din Mohamed",
+        "student.survey.3": "Esraa Mahmoud Ghazy Mahmoud",
+        "student.survey.4": "Islam Hussein Mohamed Mohamed",
+        "student.survey.5": "Asmaa Ashraf Ahmed Mohamed",
+        "student.survey.6": "Afnan Khalaf Mohamed Khalaf",
+        "student.survey.7": "Aya Mohsen Ahmed Ibrahim",
+        "student.survey.8": "Bishoy Haleem Atteya El-Gendy",
+        "student.survey.9": "Gehad El-Daba Salah Mahmoud",
+        "student.survey.10": "Hossam El-Sayed Seif El-Nasr Othman",
+        "student.survey.11": "Abdullah Talaat Harby Kilany",
+        "student.survey.12": "Abdullah Abdel Qader Kamel Abdallah",
+        "student.survey.13": "Ali Ahmed Ali Sebaq",
+        "student.survey.14": "Fouad Mohamed Fouad El-Sayed",
+        "student.survey.15": "Qasem Ashraf Qasem Howeidy",
+        "student.survey.16": "Mohamed Ahmed Zeid El-Sayed",
+        "student.survey.17": "Mohamed Hamdy Mahmoud Mohamed",
+        "student.survey.18": "Mohamed Adel Rizk Salem",
+        "student.survey.19": "Mohamed Youssef Bakry El-Okry",
+        "student.survey.20": "Mahmoud El-Taher Mohamed Abdel Qader",
+        "student.survey.21": "Mostafa Shoaib Atteya El-Hady Shoaib",
+        "student.survey.22": "Noura Zaki Saber Ahmed",
+        "student.survey.23": "Nourhan Ali El-Sayed Ata",
+        "student.survey.24": "Heba Essam Ismail Rashed",
+        "student.survey.25": "Hesham Hussein Ali Mohamed"
     }
 };
 
@@ -508,6 +776,13 @@ class I18nEngine {
         html.setAttribute('dir', this.lang === 'en' ? 'ltr' : 'rtl');
         document.body.classList.remove('lang-en', 'lang-ar');
         document.body.classList.add(this.lang === 'en' ? 'lang-en' : 'lang-ar');
+        
+        // تغيير صورة خريطة فلسطين حسب اللغة
+        const palMapImg = document.getElementById('palestineGalleryImg');
+        if (palMapImg) {
+            palMapImg.src = this.lang === 'en' ? 'images/خريطة دولة فلسطين_بالانجليزية.png' : 'images/خريطة دولة فلسطين.png';
+        }
+
         if (this.lang === 'en') {
             this._injectEnStyles();
             this._fixInlineStyles();
@@ -520,33 +795,72 @@ class I18nEngine {
         s.id = 'i18n-en-styles';
         s.textContent = `
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-            body.lang-en { font-family: 'Times New Roman', serif !important; }
-            .lang-en .quran-text, .lang-en .verse-text, .lang-en .quran-verse { 
-                font-family: 'Amiri', serif !important; direction: rtl !important; text-align: right !important; 
+            /* فرض خط Times New Roman مع استعادة الأيقونات */
+            body.lang-en, body.lang-en * { 
+                font-family: 'Times New Roman', Times, serif !important; 
             }
-            .lang-en .quran-verse .verse-text { font-size: 1.8rem !important; }
+            body.lang-en i, body.lang-en .fas, body.lang-en .fab, body.lang-en .fa, body.lang-en svg, body.lang-en [class*="fa-"] {
+                font-family: 'Font Awesome 6 Free', 'Font Awesome 6 Brands' !important;
+            }
+
+            .lang-en .quran-verse { background: rgba(var(--bg-card-rgb, 255, 255, 255), 0.4) !important; border-radius: 20px; padding: 1.5rem; border: 1px solid var(--border-color) !important; backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); }
+            .lang-ar .quran-text { font-size: 1.2rem !important; }
+            .lang-en .quran-text { font-family: 'Amiri', serif !important; direction: rtl !important; text-align: center !important; font-size: 1.2rem !important; margin-bottom: 8px; color: var(--text-primary) !important; font-style: normal !important; line-height: 1.8 !important; }
+            .lang-en .verse-text { 
+                display: block !important;
+            }
             .lang-en .verse-translation { 
-                display: block !important; direction: ltr !important; text-align: left !important; font-family: 'Inter', sans-serif !important;
+                display: none !important;
             }
-            .lang-en .nav-container { direction: ltr; }
-            .lang-en .nav-links { flex-direction: row; margin-left: auto; margin-right: 0; }
-            .lang-en .sidebar { left: 0 !important; right: auto !important; transform: translateX(-100%) !important; }
-            .lang-en .sidebar.active { transform: translateX(0) !important; }
+            .lang-en .nav-container { direction: ltr !important; }
+            .lang-en .nav-brand { gap: 18px !important; }
+            .lang-en .nav-links { direction: ltr !important; }
+            
+            /* ضبط القائمة الجانبية في وضع الموبايل للغة الإنجليزية */
+            @media (max-width: 992px) {
+                .lang-en .nav-links {
+                    right: auto !important;
+                    left: -100% !important;
+                    flex-direction: column !important;
+                    align-items: center !important;
+                    text-align: center !important;
+                    transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+                }
+                .lang-en .nav-links.active {
+                    left: 0 !important;
+                    right: auto !important;
+                }
+                .lang-en .nav-link { width: 100%; text-align: center; }
+            }
+            /* NEW: Center language and theme buttons for English mobile sidebar */
+            @media (max-width: 992px) {
+                .lang-en #i18n-lang-btn, .lang-en #theme-switcher { margin: 0 auto !important; }
+            }
+
             .lang-en .page-title, .lang-en .section-title, .lang-en .page-header { text-align: center !important; }
             .lang-en .step-card, .lang-en .feature-card, .lang-en .gallery-info { text-align: left; direction: ltr; }
             .lang-en .report-header, .lang-en #report-container, .lang-en #coords-card, .lang-en #legend-container { 
                 direction: ltr; text-align: left; 
             }
             .lang-en .prayer-item { flex-direction: row-reverse; }
-            .lang-en .legend-item i { margin-right: 12px; margin-left: 0; }
+            .lang-en .legend-item i { margin-right: 12px !important; margin-left: 0 !important; }
             .lang-en .legend-item { justify-content: flex-start; gap: 8px; }
             .lang-en footer, .lang-en .footer-container { direction: ltr; text-align: left; }
             .lang-en .member-info { text-align: left; }
-            .lang-en .aqsa-header, .lang-en .aqsa-info { text-align: left; direction: ltr; }
+            .lang-en .aqsa-header { 
+                display: flex; flex-direction: column; align-items: center; justify-content: center;
+                text-align: center !important; direction: ltr; width: 100%;
+            }
+            .lang-en .aqsa-header i { margin: 0 0 10px 0 !important; font-size: 2rem; }
+            .lang-en .aqsa-info { text-align: left; direction: ltr; }
             .lang-en .prayer-times-section h3 { text-align: left; }
+            .lang-en .prayer-name { font-size: 0.85rem !important; }
+            .lang-en .prayer-time { font-size: 0.95rem !important; }
             .lang-en .member-photo { order: 0 !important; }
+            .lang-en .action-btn i { font-size: 0.9rem; }
+            .lang-en .verse-ref { font-size: 0.8rem !important; }
             .lang-en .member-content-wrapper { flex-direction: row !important; }
-            .lang-en .student-chip { font-family: 'JetBrains Mono', sans-serif !important; font-size: 0.8rem !important; letter-spacing: -0.5px; }
+            .lang-en .student-chip { font-family: 'Times New Roman', serif !important; font-size: 0.85rem !important; letter-spacing: -0.5px; }
             .lang-en [style*="text-align: right"] { text-align: left !important; }
             .lang-en [style*="text-align:right"] { text-align: left !important; }
         `;
@@ -592,6 +906,12 @@ class I18nEngine {
             const key = el.getAttribute('data-i18n');
             const val = this.dict[key];
             if (!val) return;
+
+            // إجبار ظهور الآية القرآنية ومرجعها بالعربية دائماً مهما كانت اللغة
+            if (key === 'pal.verse.text' || key === 'gw.verse' || key === 'gw.verse.ref' || key === 'pal.verse.ref') {
+               el.innerText = translations['ar'][key];
+               return;
+            }
 
             if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
                 el.setAttribute('placeholder', val);

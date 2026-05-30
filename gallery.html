@@ -1,18 +1,21 @@
-<!DOCTYPE html>
+﻿﻿﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>معرض الخرائط - نظام رصد المياه الجوفية</title>
-  <meta name="description" content="معرض خرائط مشروع النمذجة المكانية لاحتمالية وجود المياه الجوفية في سوهاج - الخرائط الجيولوجية والجيومورفولوجية وخرائط GIS">
-  <meta name="keywords" content="خرائط, GIS, سوهاج, مياه جوفية, جيولوجية, جيومورفولوجيا, نمذجة مكانية, خريطة محافظة سوهاج">
+  <meta name="description"
+    content="معرض خرائط مشروع النمذجة المكانية لاحتمالية وجود المياه الجوفية في سوهاج - الخرائط الجيولوجية والجيومورفولوجية وخرائط GIS">
+  <meta name="keywords"
+    content="خرائط, GIS, سوهاج, مياه جوفية, جيولوجية, جيومورفولوجيا, نمذجة مكانية, خريطة محافظة سوهاج">
   <meta name="author" content="قسم الجغرافيا - كلية الآداب - جامعة سوهاج">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://gis-sohag.github.io/groundwater/gallery.html">
   <meta property="og:type" content="website">
   <meta property="og:title" content="معرض الخرائط - نظام رصد المياه الجوفية">
-  <meta property="og:description" content="معرض الخرائط المستخدمة في مشروع النمذجة المكانية لاحتمالية وجود المياه الجوفية في سوهاج">
+  <meta property="og:description"
+    content="معرض الخرائط المستخدمة في مشروع النمذجة المكانية لاحتمالية وجود المياه الجوفية في سوهاج">
   <meta property="og:image" content="https://gis-sohag.github.io/groundwater/images/univ_logo.png">
   <meta property="og:url" content="https://gis-sohag.github.io/groundwater/gallery.html">
   <meta property="og:locale" content="ar_EG">
@@ -28,6 +31,7 @@
   <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="icon/css/all.min.css">
 
   <!-- Network Animation CSS -->
   <link rel="stylesheet" href="css/network-animation.css">
@@ -563,45 +567,56 @@
 
     /* Navigation Arrows */
     .modal-nav-btn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: var(--bg-card);
-        color: var(--accent-blue);
-        border: 1px solid var(--border-color);
-        width: 65px;
-        height: 65px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        font-size: 1.6rem;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 2000;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--bg-card);
+      color: var(--accent-blue);
+      border: 1px solid var(--border-color);
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.6rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 2000;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
 
     .modal-nav-btn:hover {
-        background: var(--accent-blue);
-        color: white;
-        transform: translateY(-50%) scale(1.1);
-        box-shadow: 0 0 25px rgba(52, 152, 219, 0.5);
-        border-color: var(--accent-blue);
+      background: var(--accent-blue);
+      color: white;
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 0 25px rgba(52, 152, 219, 0.5);
+      border-color: var(--accent-blue);
     }
 
-    .nav-prev { left: 20px; }
-    .nav-next { right: 20px; }
+    .nav-prev {
+      left: 20px;
+    }
+
+    .nav-next {
+      right: 20px;
+    }
 
     @media (max-width: 768px) {
-        .modal-nav-btn {
-            width: 45px;
-            height: 45px;
-            font-size: 1.1rem;
-        }
-        .nav-prev { left: 10px; }
-        .nav-next { right: 10px; }
+      .modal-nav-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+      }
+
+      .nav-prev {
+        left: 10px;
+      }
+
+      .nav-next {
+        right: 10px;
+      }
     }
 
     /* Zoom & Pan Styles */
@@ -699,9 +714,9 @@
     }
 
     /* Modal Structure Enhancements */
-    #imageModal .modal-content, 
+    #imageModal .modal-content,
     #sourceModal .source-modal-content {
-        position: relative;
+      position: relative;
     }
 
     /* Source Info Modal */
@@ -728,7 +743,7 @@
       max-height: 90vh;
       overflow-y: auto;
       border: 1px solid var(--border-color);
-      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
       position: relative;
     }
 
@@ -742,7 +757,7 @@
       top: 0;
       background: var(--bg-card);
       z-index: 100;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     }
 
     .source-header h2 {
@@ -756,24 +771,24 @@
     }
 
     .source-header .close-btn {
-        background: var(--bg-primary);
-        color: var(--text-primary);
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        font-size: 1.2rem;
-        border: 1px solid var(--border-color);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+      border: 1px solid var(--border-color);
     }
 
     .source-header .close-btn:hover {
-        background: #e74c3c;
-        color: white;
-        transform: rotate(90deg);
+      background: #e74c3c;
+      color: white;
+      transform: rotate(90deg);
     }
 
     .source-body {
@@ -789,26 +804,26 @@
     }
 
     .source-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.8rem;
-        background: linear-gradient(135deg, var(--accent-blue), #8b5cf6);
-        color: white;
-        text-decoration: none;
-        padding: 0.9rem 2rem;
-        border-radius: 12px;
-        font-weight: 700;
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        margin-top: 1rem;
-        box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
-        border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: linear-gradient(135deg, var(--accent-blue), #8b5cf6);
+      color: white;
+      text-decoration: none;
+      padding: 0.9rem 2rem;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      margin-top: 1rem;
+      box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+      border: none;
     }
 
     .source-link:hover {
-        background: #3498db;
-        color: white;
-        transform: translateY(-4px);
-        box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+      background: #3498db;
+      color: white;
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
     }
 
     .code-container {
@@ -817,7 +832,7 @@
       border-radius: 16px;
       overflow: hidden;
       position: relative;
-      direction: ltr; 
+      direction: ltr;
       text-align: left;
       border: 1px solid #333;
     }
@@ -835,8 +850,8 @@
     }
 
     .copy-btn {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       color: #d4d4d4;
       padding: 6px 14px;
       border-radius: 8px;
@@ -847,7 +862,7 @@
     }
 
     .copy-btn:hover {
-      background: rgba(255,255,255,0.15);
+      background: rgba(255, 255, 255, 0.15);
       color: #fff;
     }
 
@@ -863,18 +878,48 @@
     }
 
     /* Syntax Highlighting Tokens */
-    .sh-keyword { color: #569cd6; font-weight: bold; }
-    .sh-function { color: #dcdcaa; }
-    .sh-comment { color: #6a9955; font-style: italic; }
-    .sh-string { color: #ce9178; }
-    .sh-number { color: #b5cea8; }
-    .sh-variable { color: #9cdcfe; }
-    .sh-operator { color: #d4d4d4; }
-    .sh-property { color: #9cdcfe; }
+    .sh-keyword {
+      color: #569cd6;
+      font-weight: bold;
+    }
+
+    .sh-function {
+      color: #dcdcaa;
+    }
+
+    .sh-comment {
+      color: #6a9955;
+      font-style: italic;
+    }
+
+    .sh-string {
+      color: #ce9178;
+    }
+
+    .sh-number {
+      color: #b5cea8;
+    }
+
+    .sh-variable {
+      color: #9cdcfe;
+    }
+
+    .sh-operator {
+      color: #d4d4d4;
+    }
+
+    .sh-property {
+      color: #9cdcfe;
+    }
 
     @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
     /* Empty State */
@@ -960,10 +1005,11 @@
         <span data-i18n="nav.brand">المياه الجوفية بسوهاج</span>
       </div>
       <div class="nav-links">
-
-        <a href="groundwater.html" class="nav-link">الخريطة التفاعلية</a>
-        <a href="palestine.html" class="nav-link">أولى القبلتين</a>
-        <a href="about.html" class="nav-link">عن المشروع</a>
+        <a href="home.html" class="nav-link" data-i18n="nav.home">الرئيسية</a>
+        <a href="groundwater.html" class="nav-link" data-i18n="nav.map">الخريطة التفاعلية</a>
+        <a href="gallery.html" class="nav-link active" data-i18n="nav.gallery">المعرض</a>
+        <a href="palestine.html" class="nav-link" data-i18n="nav.palestine">أولى القبلتين</a>
+        <a href="about.html" class="nav-link" data-i18n="nav.about">عن المشروع</a>
         <button class="theme-switcher-btn" id="theme-switcher" title="تبديل الوضع">
           <i class="fas fa-sun"></i>
         </button>
@@ -981,8 +1027,8 @@
   <main class="main-content">
     <!-- Page Title -->
     <div class="page-title">
-      <h1><i class="fas fa-images"></i> معرض الخرائط</h1>
-      <p>تصفح مجموعة الخرائط المستخدمة في مشروع النمذجة المكانية لإحتمالية وجود المياه الجوفية</p>
+      <h1 data-i18n="gallery.title"><i class="fas fa-images"></i> معرض الخرائط</h1>
+      <p data-i18n="gallery.subtitle">تصفح مجموعة الخرائط المستخدمة في مشروع النمذجة المكانية لإحتمالية وجود المياه الجوفية</p>
     </div>
 
     <!-- Gallery Grid -->
@@ -1002,22 +1048,21 @@
   <div id="imageModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
-      
+
       <!-- Navigation Arrows -->
       <div class="modal-nav-btn nav-prev" onclick="navigateGallery(-1)" title="السابق">
-          <i class="fas fa-chevron-left"></i>
+        <i class="fas fa-chevron-left"></i>
       </div>
       <div class="modal-nav-btn nav-next" onclick="navigateGallery(1)" title="التالي">
-          <i class="fas fa-chevron-right"></i>
+        <i class="fas fa-chevron-right"></i>
       </div>
 
       <div class="zoom-controls">
-        <button class="zoom-btn" onclick="zoomImage(0.2)" title="تكبير"><i class="fas fa-search-plus"></i></button>
-        <button class="zoom-btn" onclick="resetZoom()" title="إعادة تعيين"><i class="fas fa-compress"></i></button>
-        <button class="zoom-btn" onclick="zoomImage(-0.2)" title="تصغير"><i class="fas fa-search-minus"></i></button>
-        <button class="zoom-btn" id="sourceBtn" title="مصدر الخريطة"><i class="fas fa-info-circle"></i></button>
-        <a id="downloadBtn" class="zoom-btn" href="#" download title="تحميل الصورة الأصلية"><i
-            class="fas fa-download"></i></a>
+        <button class="zoom-btn" onclick="zoomImage(0.2)" data-i18n-title="btn.zoom_in"><i class="fas fa-search-plus"></i></button>
+        <button class="zoom-btn" onclick="resetZoom()" data-i18n-title="btn.close"><i class="fas fa-compress"></i></button>
+        <button class="zoom-btn" onclick="zoomImage(-0.2)" data-i18n-title="btn.zoom_out"><i class="fas fa-search-minus"></i></button>
+        <button class="zoom-btn" id="sourceBtn" data-i18n-title="btn.view"><i class="fas fa-info-circle"></i></button>
+        <a id="downloadBtn" class="zoom-btn" href="#" download data-i18n-title="btn.download"><i class="fas fa-download"></i></a>
       </div>
 
       <div class="image-wrapper" id="imageWrapper">
@@ -1028,15 +1073,15 @@
 
   <!-- Source Info Modal -->
   <div id="sourceModal" class="source-modal">
-      <div class="source-modal-content">
-          <div class="source-header">
-              <h2><i class="fas fa-database"></i> مصدر الخريطة والبيانات</h2>
-              <div class="close-btn" onclick="closeSourceModal()"><i class="fas fa-times"></i></div>
-          </div>
-          <div class="source-body" id="sourceBody">
-              <!-- Source content will be injected here -->
-          </div>
+    <div class="source-modal-content">
+      <div class="source-header">
+        <h2><i class="fas fa-database"></i> مصدر الخريطة والبيانات</h2>
+        <div class="close-btn" onclick="closeSourceModal()"><i class="fas fa-times"></i></div>
       </div>
+      <div class="source-body" id="sourceBody">
+        <!-- Source content will be injected here -->
+      </div>
+    </div>
   </div>
 
   <script>
@@ -1048,9 +1093,20 @@
     // Default sample maps
     const defaultMaps = [
       {
+        id: 20,
+        key: "potential_depth",
+        src: "images/العمق المحتمل لوجود المياه الجوفية في محافظة سوهاج.png",
+        thumbnail: "images/thumbnails/العمق المحتمل لوجود المياه الجوفية في محافظة سوهاج.png",
+        date: "17-02-2026",
+        size: "2.35 MB",
+        source: {
+          text: "ملف تحميل الأعماق التقريبية للمياه الجوفية في محافظة سوهاج بصيغة راستر (GeoTIFF)",
+          link: "https://drive.google.com/drive/folders/13iXThjyFbIZzBwuuaci7lSrpf6Ntjdpv?usp=sharing"
+        }
+      },
+      {
         id: 19,
-        title: "خريطة احتمالية المياه الجوفية",
-        description: "الخريطة النهائية لنموذج احتمالية تواجد المياه الجوفية في محافظة سوهاج",
+        key: "potential",
         src: "images/النمذجة المكانية لاحتمالية وجود المياة الجوفية.png",
         thumbnail: "images/thumbnails/النمذجة المكانية لاحتمالية وجود المياة الجوفية.png",
         date: "2025-09-03",
@@ -1062,8 +1118,7 @@
       },
       {
         id: 1,
-        title: "الخريطة الجيولوجية لمحافظة سوهاج",
-        description: "خريطة جيولوجية تفصيلية توضح التكوينات الجيولوجية والصخرية في محافظة سوهاج",
+        key: "geology",
         src: "images/جيولوجية محافظة سوهاج_1.png",
         thumbnail: "images/thumbnails/جيولوجية محافظة سوهاج_1.png",
         date: "2025-10-14",
@@ -1075,8 +1130,7 @@
       },
       {
         id: 3,
-        title: "الخريطة الجيومورفولوجية لمحافظة سوهاج",
-        description: "خريطة جيومورفولوجية تفصيلية توضح الأشكال الأرضية والتضاريس في محافظة سوهاج",
+        key: "geomorphology",
         src: "images/جيومورفولوجية محافظة سوهاج.png",
         thumbnail: "images/thumbnails/جيومورفولوجية محافظة سوهاج.png",
         date: "2025-09-10",
@@ -1088,8 +1142,7 @@
       },
       {
         id: 4,
-        title: "خريطة التراكيب الخطية لمحافظة سوهاج",
-        description: "خريطة توضح التراكيب الخطية والصدوع الجيولوجية في محافظة سوهاج",
+        key: "lineaments",
         src: "images/التراكيب الخطية.png",
         thumbnail: "images/thumbnails/التراكيب الخطية.png",
         date: "2025-09-10",
@@ -1101,8 +1154,7 @@
       },
       {
         id: 5,
-        title: "خريطة شبكة المجاري المائية في محافظة سوهاج",
-        description: "خريطة تفصيلية لرتب المجاري المائية وشبكة التصريف في محافظة سوهاج",
+        key: "drainage",
         src: "images/رتب المجاري المائية.png",
         thumbnail: "images/thumbnails/رتب المجاري المائية.png",
         date: "2025-09-03",
@@ -1114,8 +1166,7 @@
       },
       {
         id: 6,
-        title: "خريطة الارتفاعات في محافظة سوهاج",
-        description: "خريطة توضح فئات الارتفاعات والتضاريس الطبوغرافية في محافظة سوهاج",
+        key: "dem",
         src: "images/فئات الإرتفاعات لمحافظة سوهاج.png",
         thumbnail: "images/thumbnails/فئات الإرتفاعات لمحافظة سوهاج.png",
         date: "2025-09-03",
@@ -1127,8 +1178,7 @@
       },
       {
         id: 7,
-        title: "خريطة الإنحدارات في محافظة سوهاج",
-        description: "خريطة تحليل فئات الانحدارات والميول الطبوغرافية في محافظة سوهاج",
+        key: "slope",
         src: "images/فئات الإنحدارات في محافظة سوهاج.png",
         thumbnail: "images/thumbnails/فئات الإنحدارات في محافظة سوهاج.png",
         date: "2025-09-10",
@@ -1140,8 +1190,7 @@
       },
       {
         id: 8,
-        title: "خريطة تقوس المنحدارات في محافظة سوهاج",
-        description: "خريطة تحليل تقوس وشكل المنحدرات الطبوغرافية في محافظة سوهاج",
+        key: "curvature",
         src: "images/تقوس المنحدارات لمحافظة سوهاج1.png",
         thumbnail: "images/thumbnails/تقوس المنحدارات لمحافظة سوهاج1.png",
         date: "2025-09-03",
@@ -1153,12 +1202,11 @@
       },
       {
         id: 2,
-        title: "خريطة مؤشر الرطوبة الطبوغرافي لمحافظة سوهاج",
-        description: "خريطة مؤشر الرطوبة الطبوغرافي (TWI) وتوزيع الرطوبة في محافظة سوهاج",
+        key: "twi",
         src: "images/مؤشر الرطوبة الطبوغرافي TWI.png",
         thumbnail: "images/thumbnails/مؤشر الرطوبة الطبوغرافي TWI.png",
         date: "2025-09-03",
-        size: "11.9 MB",
+        size: "14.5 MB",
         source: {
           text: "تم الاعتماد على نموذج الارتفاع الرقمي DEM ذو الدقة المكانية 10 متر من خلال موقع Copernicus Data Space Ecosystem",
           link: "https://drive.google.com/drive/folders/1ygc9zempy28ZW7s30qHbf4ImCo4n4LT2?usp=drive_link"
@@ -1166,8 +1214,7 @@
       },
       {
         id: 9,
-        title: "خريطة معدلات مجموع المطر السنوي لمحافظة سوهاج",
-        description: "خريطة توزيع معدلات هطول الأمطار السنوية في محافظة سوهاج",
+        key: "precipitation",
         src: "images/معدلات مجموع المطر السنوي لمحافظة سوهاج.png",
         thumbnail: "images/thumbnails/معدلات مجموع المطر السنوي لمحافظة سوهاج.png",
         date: "2025-09-03",
@@ -1230,8 +1277,7 @@ print('Mean precipitation image:', precipitation);  // Image metadata`
       },
       {
         id: 10,
-        title: "خريطة معدلات التبخر النتح السنوي في محافظة سوهاج",
-        description: "خريطة معدلات التبخر والنتح السنوي وتأثيرها على المياه في محافظة سوهاج",
+        key: "evapotranspiration",
         src: "images/معدلات مجموع التبخر السنوي لمحافظة سوهاج.png",
         thumbnail: "images/thumbnails/معدلات مجموع التبخر السنوي لمحافظة سوهاج.png",
         date: "2025-09-03",
@@ -1273,8 +1319,7 @@ Map.centerObject(region, 6); // تكبير الخريطة على منطقة ال
       },
       {
         id: 11,
-        title: "خريطة مؤشر الغطاء النباتي المطبع لمحافظة سوهاج",
-        description: "خريطة مؤشر الغطاء النباتي المطبع (NDVI) وكثافة النباتات في محافظة سوهاج",
+        key: "ndvi",
         src: "images/معدل مؤشر الغطاء النباتي المطبع لمحافظة سوهاج.png",
         thumbnail: "images/thumbnails/معدل مؤشر الغطاء النباتي المطبع لمحافظة سوهاج.png",
         date: "2025-09-03",
@@ -1282,7 +1327,8 @@ Map.centerObject(region, 6); // تكبير الخريطة على منطقة ال
         source: {
           text: `تم الاعتماد على موقع Google Earth Engine وتطبيق المؤشر على عدة اقمار صناعية وهي Landsat5 و Landsat7 و sentinel 2 وذلك للسنوات التالية ( 1990 – 1996 – 2002 – 2013 – 2017 – 2022 – 2025 ) حيث تم استخدام اكثر من كود جافا سكريبت حسب السنوات المختارة نظراً لبداية قمر صناعي معين في تلك السنوات انظر الاكواد التاليه:`,
           codes: [
-            { label: "الكود الأول خاص بالقمر الصناعي Landsat 5", content: `// 1. Define Region of Interest (ROI)
+            {
+              label: "الكود الأول خاص بالقمر الصناعي Landsat 5", content: `// 1. Define Region of Interest (ROI)
 Map.centerObject(table)
 Map.addLayer(table,{color: 'red'})
 
@@ -1338,7 +1384,8 @@ Export.image.toDrive({
   scale: 30,
   region: studyArea
 });` },
-            { label: "الكود الثاني خاص بالقمر الصناعي Landsat 7", content: `// 1. Define Region of Interest (ROI)
+            {
+              label: "الكود الثاني خاص بالقمر الصناعي Landsat 7", content: `// 1. Define Region of Interest (ROI)
 Map.centerObject(table)
 Map.addLayer(table,{color: 'red'})
 
@@ -1394,7 +1441,8 @@ Export.image.toDrive({
   scale: 30,
   region: studyArea
 });` },
-            { label: "الكود الثالث خاص بالقمر الصناعي Sentinel-2", content: `// 1. Define Region of Interest (ROI)
+            {
+              label: "الكود الثالث خاص بالقمر الصناعي Sentinel-2", content: `// 1. Define Region of Interest (ROI)
 Map.centerObject(table)
 Map.addLayer(table,{color: 'red'})
 
@@ -1468,8 +1516,7 @@ print('Mean NDVI:', meanNDVI.get('NDVI'));` }
       },
       {
         id: 12,
-        title: "خريطة نسيج التربة في محافظة سوهاج",
-        description: "خريطة توضح أنواع ونسيج التربة وخصائصها في محافظة سوهاج",
+        key: "soil",
         src: "images/نوع التربة في محافظة سوهاج.png",
         thumbnail: "images/thumbnails/نوع التربة في محافظة سوهاج.png",
         date: "2025-09-03",
@@ -1481,8 +1528,7 @@ print('Mean NDVI:', meanNDVI.get('NDVI'));` }
       },
       {
         id: 13,
-        title: "خريطة القرب والبعد عن المسطحات المائية في محافظة سوهاج",
-        description: "خريطة تحليل المسافة من المسطحات المائية والأنهار في محافظة سوهاج",
+        key: "water_distance",
         src: "images/القرب والبعد عن المسطحات المائية في سوهاج.png",
         thumbnail: "images/thumbnails/القرب والبعد عن المسطحات المائية في سوهاج.png",
         date: "2025-09-03",
@@ -1552,8 +1598,7 @@ print('Number of images used:', s2Filtered.size());`
       },
       {
         id: 14,
-        title: "خريطة كثافة التراكيب الخطية في محافظة سوهاج",
-        description: "خريطة تحليل كثافة التراكيب الخطية والصدوع في محافظة سوهاج",
+        key: "lineament_density",
         src: "images/كثافة التراكيب الخطية.png",
         thumbnail: "images/thumbnails/كثافة التراكيب الخطية.png",
         date: "2025-07-15",
@@ -1564,8 +1609,7 @@ print('Number of images used:', s2Filtered.size());`
       },
       {
         id: 15,
-        title: "خريطة كثافة المجاري المائية في محافظة سوهاج",
-        description: "خريطة تحليل كثافة شبكة المجاري المائية والتصريف في محافظة سوهاج",
+        key: "drainage_density",
         src: "images/كثافة المجاري المائية.png",
         thumbnail: "images/thumbnails/كثافة المجاري المائية.png",
         date: "2025-09-03",
@@ -1576,8 +1620,7 @@ print('Number of images used:', s2Filtered.size());`
       },
       {
         id: 16,
-        title: "خريطة منطقة الدراسة محافظة سوهاج",
-        description: "خريطة عامة توضح حدود وموقع منطقة الدراسة في محافظة سوهاج",
+        key: "study_area",
         src: "images/خريطة منطقة الدراسة.png",
         thumbnail: "images/thumbnails/خريطة منطقة الدراسة.png",
         date: "2025-09-03",
@@ -1589,8 +1632,7 @@ print('Number of images used:', s2Filtered.size());`
       },
       {
         id: 17,
-        title: "خريطة التقسيم الإداري لمحافظة سوهاج",
-        description: "خريطة التقسيم الإداري والمراكز والمدن في محافظة سوهاج",
+        key: "admin",
         src: "images/خريطة التقسيم الإداري لمحافظة سوهاج.png",
         thumbnail: "images/thumbnails/خريطة التقسيم الإداري لمحافظة سوهاج.png",
         date: "2025-09-03",
@@ -1602,8 +1644,7 @@ print('Number of images used:', s2Filtered.size());`
       },
       {
         id: 18,
-        title: "خريطة الكثافة السكانية في محافظة سوهاج",
-        description: "خريطة توزيع الكثافة السكانية والتجمعات العمرانية في محافظة سوهاج 2024",
+        key: "population",
         src: "images/خريطة الكثافة السكانية لمحافظة سوهاج 2024.png",
         thumbnail: "images/thumbnails/خريطة الكثافة السكانية لمحافظة سوهاج 2024.png",
         date: "2025-09-03",
@@ -1637,54 +1678,18 @@ print('Number of images used:', s2Filtered.size());`
       localStorage.setItem('galleryImages', JSON.stringify(userImages));
     }
 
-    // Render gallery with performance optimization
-        function translateText(text) {
-        if(!window.i18n || window.i18n.lang !== 'en' || !text) return text;
-        const replacements = {
-            'خريطة جيولوجية سوهاج': 'Geological Map of Sohag',
-            'توضح التراكيب والصخور التي تؤثر على الخزانات الجوفية.': 'Shows structures and rocks affecting aquifers.',
-            'خريطة الارتفاعات الرقمية': 'DEM Map',
-            'خريطة الانحدار': 'Slope Map',
-            'خريطة الجيومورفولوجيا': 'Geomorphology Map',
-            'توضح تضاريس المحافظة ومسارات تصريف المياه.': 'Shows topography and drainage paths.',
-            'توضح درجة ميل الأرض وتأثيرها على تسرب المياه.': 'Shows land slopes affecting infiltration.',
-            'توضح الأشكال الأرضية المؤثرة على تجمع المياه.': 'Shows landforms affecting water accumulation.',
-            'خريطة مؤشر الرطوبة الطبوغرافي': 'Topographic Wetness Index Map',
-            'خريطة معدلات مجموع المطر السنوي': 'Annual Precipitation Map',
-            'خريطة معدلات التبخر النتح السنوي': 'Annual Evapotranspiration Map',
-            'خريطة مؤشر الغطاء النباتي المطبع': 'NDVI Map',
-            'خريطة نسيج التربة': 'Soil Texture Map',
-            'خريطة القرب والبعد عن المسطحات المائية': 'Distance from Water Bodies Map',
-            'خريطة كثافة التراكيب الخطية': 'Lineament Density Map',
-            'خريطة كثافة المجاري المائية': 'Drainage Density Map',
-            'خريطة منطقة الدراسة': 'Study Area Map',
-            'خريطة التقسيم الإداري': 'Administrative Division Map',
-            'خريطة الكثافة السكانية': 'Population Density Map',
-            'لمحافظة سوهاج': 'of Sohag',
-            'في محافظة سوهاج': 'in Sohag Governorate',
-            'تم الاعتماد على': 'Based on',
-            'شيب فايل الحدود الإدارية لمصر لآخر تعداد عام 2017': 'Egypt Administrative Boundaries Shapefile (2017 census)',
-            'تم استخراج خريطة الكثافة بالاعتماد على خريطة التراكيب الخطية بواسطة': 'Density map extracted using Line Density tool in',
-            'تم اشتقاق كثافة المجاري بالاعتماد على خريطة شبكة المجاري المائية بواسطة': 'Drainage density derived using Line Density tool in',
-            'خريطة توضح أنواع ونسيج التربة وخصائصها': 'Map showing soil texture and characteristics',
-            'خريطة تحليل كثافة شبكة المجاري المائية والتصريف': 'Analysis map of drainage network density',
-            'خريطة تحليل المسافة من المسطحات المائية والأنهار': 'Analysis map of distance to rivers',
-            'خريطة توزيع معدلات هطول الأمطار السنوية': 'Annual rainfall rates distribution map',
-            'خريطة عامة توضح حدود وموقع منطقة الدراسة': 'General map showing the study area location',
-            'خريطة التقسيم الإداري والمراكز والمدن': 'Map of administrative divisions and cities',
-            'خريطة توزيع الكثافة السكانية والتجمعات العمرانية': 'Map of population density and urban clusters 2024',
-            'دقة مكانية': 'Spatial Resolution',
-            'موقع': 'website',
-            'الكود الأول': 'First Code',
-            'المصدر': 'Source',
-            'والوصف': 'Description'
-        };
-        let t = text;
-        for (const [ar, en] of Object.entries(replacements)) {
-            t = t.split(ar).join(en);
-        }
-        return t;
+    /**
+     * وظيفة موحدة لجلب النصوص المترجمة
+     */
+    function getI18nText(image, type) {
+      // إذا كانت الخريطة من الخرائط الافتراضية ولها مفتاح ترجمة
+      if (image.key) {
+        return window.i18n.t(`gallery.${image.key}.${type}`);
+      }
+      // للملفات المرفوعة يدوياً (Fallback)
+      return type === 'title' ? (image.title || 'بدون عنوان') : (image.description || '');
     }
+
     function renderGallery() {
       const grid = document.getElementById('galleryGrid');
       const emptyState = document.getElementById('emptyState');
@@ -1717,12 +1722,12 @@ print('Number of images used:', s2Filtered.size());`
                   <i class="fas fa-image"></i>
                   <span>${window.i18n && window.i18n.lang === 'en' ? 'Loading...' : 'جاري التحميل...'}</span>
                 </div>
-                <img data-src="${image.thumbnail || image.src}" alt="${translateText(image.title)}" class="gallery-image lazy-image" 
+                <img data-src="${image.thumbnail || image.src}" alt="${getI18nText(image, 'title')}" class="gallery-image lazy-image" 
                      loading="lazy">
               </div>
               <div class="gallery-info">
-                <div class="gallery-title">${translateText(image.title)}</div>
-                <div class="gallery-description">${translateText(image.description)}</div>
+                <div class="gallery-title">${getI18nText(image, 'title')}</div>
+                <div class="gallery-description">${getI18nText(image, 'desc')}</div>
                 <div class="gallery-meta">
                   <div class="gallery-date">
                     <i class="fas fa-calendar"></i>
@@ -1834,8 +1839,9 @@ print('Number of images used:', s2Filtered.size());`
 
       // Update download button
       if (downloadBtn) {
+        const title = getI18nText(image, 'title');
         downloadBtn.href = image.src;
-        downloadBtn.download = image.title.replace(/ /g, '_') + '.png';
+        downloadBtn.download = title.replace(/ /g, '_') + '.png';
       }
 
       // Update Source Button
@@ -1854,13 +1860,13 @@ print('Number of images used:', s2Filtered.size());`
       resetZoom();
     }
 
-    window.navigateGallery = function(direction) {
+    window.navigateGallery = function (direction) {
       currentImageIndex += direction;
-      
+
       // Infinite loop navigation
       if (currentImageIndex >= galleryImages.length) currentImageIndex = 0;
       if (currentImageIndex < 0) currentImageIndex = galleryImages.length - 1;
-      
+
       updateModalContent();
     };
 
@@ -1869,34 +1875,34 @@ print('Number of images used:', s2Filtered.size());`
     const sourceBody = document.getElementById('sourceBody');
 
     function openSourceModal(image) {
-        if (!image.source) return;
-        
-        let content = `<div class="source-text">${image.source.text}</div>`;
-        
-        if (image.source.link) {
-            content += `<a href="${image.source.link}" target="_blank" class="source-link">
+      if (!image.source) return;
+
+      let content = `<div class="source-text">${image.source.text}</div>`;
+
+      if (image.source.link) {
+        content += `<a href="${image.source.link}" target="_blank" class="source-link">
                 <i class="fas fa-external-link-alt"></i> رابط المصدر / التحميل
             </a>`;
-        }
+      }
 
-        if (image.source.code) {
-           content += createCodeBlock(image.source.code);
-        }
+      if (image.source.code) {
+        content += createCodeBlock(image.source.code);
+      }
 
-        if (image.source.codes) {
-            image.source.codes.forEach(c => {
-                content += `<h4 style="margin: 2rem 0 0.5rem; color: var(--text-primary); font-size: 1rem;">${c.label}:</h4>`;
-                content += createCodeBlock(c.content);
-            });
-        }
+      if (image.source.codes) {
+        image.source.codes.forEach(c => {
+          content += `<h4 style="margin: 2rem 0 0.5rem; color: var(--text-primary); font-size: 1rem;">${c.label}:</h4>`;
+          content += createCodeBlock(c.content);
+        });
+      }
 
-        sourceBody.innerHTML = content;
-        sourceModal.style.display = 'block';
+      sourceBody.innerHTML = content;
+      sourceModal.style.display = 'block';
     }
 
     function createCodeBlock(code) {
-        const highlighted = highlightJS(code);
-        return `
+      const highlighted = highlightJS(code);
+      return `
             <div class="code-container">
                 <div class="code-header">
                     <span>JavaScript (GEE)</span>
@@ -1908,58 +1914,58 @@ print('Number of images used:', s2Filtered.size());`
     }
 
     function highlightJS(code) {
-        // Escape HTML special characters first
-        let esc = code.replace(/&/g, '&amp;')
-                      .replace(/</g, '&lt;')
-                      .replace(/>/g, '&gt;');
-        
-        const placeholders = [];
-        
-        // 1. Comments: Extract and hide to avoid matching keywords/strings inside them
-        esc = esc.replace(/\/\/.*$/gm, m => {
-            const placeholder = `___C${placeholders.length}___`;
-            placeholders.push(`<span class="sh-comment">${m}</span>`);
-            return placeholder;
-        });
+      // Escape HTML special characters first
+      let esc = code.replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
 
-        // 2. Strings: Extract and hide to avoid matching keywords inside them (and avoid URLs being treated as comments)
-        esc = esc.replace(/('.*?'|".*?")/g, m => {
-            const placeholder = `___S${placeholders.length}___`;
-            placeholders.push(`<span class="sh-string">${m}</span>`);
-            return placeholder;
-        });
+      const placeholders = [];
 
-        // 3. Keywords: Highlight remaining text
-        const keywords = /\b(var|let|const|function|return|if|else|for|while|export|import|ee|Map|Export|true|false)\b/g;
-        esc = esc.replace(keywords, m => `<span class="sh-keyword">${m}</span>`);
+      // 1. Comments: Extract and hide to avoid matching keywords/strings inside them
+      esc = esc.replace(/\/\/.*$/gm, m => {
+        const placeholder = `___C${placeholders.length}___`;
+        placeholders.push(`<span class="sh-comment">${m}</span>`);
+        return placeholder;
+      });
 
-        // 4. Numbers: Highlight remaining text
-        esc = esc.replace(/\b\d+(\.\d+)?\b/g, m => `<span class="sh-number">${m}</span>`);
+      // 2. Strings: Extract and hide to avoid matching keywords inside them (and avoid URLs being treated as comments)
+      esc = esc.replace(/('.*?'|".*?")/g, m => {
+        const placeholder = `___S${placeholders.length}___`;
+        placeholders.push(`<span class="sh-string">${m}</span>`);
+        return placeholder;
+      });
 
-        // 5. Restore Comments and Strings in reverse order to ensure nested placeholders (though unlikely here) work
-        for (let i = placeholders.length - 1; i >= 0; i--) {
-            esc = esc.replace(`___C${i}___`, placeholders[i]);
-            esc = esc.replace(`___S${i}___`, placeholders[i]);
-        }
+      // 3. Keywords: Highlight remaining text
+      const keywords = /\b(var|let|const|function|return|if|else|for|while|export|import|ee|Map|Export|true|false)\b/g;
+      esc = esc.replace(keywords, m => `<span class="sh-keyword">${m}</span>`);
 
-        return esc;
+      // 4. Numbers: Highlight remaining text
+      esc = esc.replace(/\b\d+(\.\d+)?\b/g, m => `<span class="sh-number">${m}</span>`);
+
+      // 5. Restore Comments and Strings in reverse order to ensure nested placeholders (though unlikely here) work
+      for (let i = placeholders.length - 1; i >= 0; i--) {
+        esc = esc.replace(`___C${i}___`, placeholders[i]);
+        esc = esc.replace(`___S${i}___`, placeholders[i]);
+      }
+
+      return esc;
     }
 
-    window.copyCode = function(btn) {
-        const code = btn.closest('.code-container').querySelector('code').innerText;
-        navigator.clipboard.writeText(code).then(() => {
-            const originalText = btn.innerText;
-            btn.innerText = 'تم النسخ!';
-            btn.style.background = '#27ae60';
-            setTimeout(() => {
-                btn.innerText = originalText;
-                btn.style.background = 'rgba(255,255,255,0.1)';
-            }, 2000);
-        });
+    window.copyCode = function (btn) {
+      const code = btn.closest('.code-container').querySelector('code').innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        const originalText = btn.innerText;
+        btn.innerText = 'تم النسخ!';
+        btn.style.background = '#27ae60';
+        setTimeout(() => {
+          btn.innerText = originalText;
+          btn.style.background = 'rgba(255,255,255,0.1)';
+        }, 2000);
+      });
     };
 
-    window.closeSourceModal = function() {
-        sourceModal.style.display = 'none';
+    window.closeSourceModal = function () {
+      sourceModal.style.display = 'none';
     };
 
     function closeModal() {
@@ -2110,6 +2116,3 @@ print('Number of images used:', s2Filtered.size());`
 </body>
 
 </html>
-
-
-

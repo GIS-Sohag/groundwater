@@ -2062,10 +2062,12 @@ html:not([data-theme="dark"]) .main-footer {
 
 .stat-item {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 1.2rem;
+    justify-content: center;
+    gap: 0.8rem;
     background: rgba(255, 255, 255, 0.03);
-    padding: 1rem 1.5rem;
+    padding: 1.2rem 1.5rem;
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     min-width: 180px;
@@ -2085,7 +2087,8 @@ html:not([data-theme="dark"]) .main-footer {
 .stat-info {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
 }
 
 .stat-value {

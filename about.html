@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 ﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
@@ -28,6 +29,7 @@
     <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="icon/css/all.min.css">
 
     <!-- Network Animation CSS -->
     <link rel="stylesheet" href="css/network-animation.css">
@@ -2832,7 +2834,6 @@
                 <a class="nav-link" href="groundwater.html" data-i18n="nav.map">الخريطة التفاعلية</a>
                 <a class="nav-link" href="gallery.html" data-i18n="nav.gallery">المعرض</a>
                 <a class="nav-link" href="palestine.html" data-i18n="nav.palestine">أولى القبلتين</a>
-                <a class="nav-link active" href="about.html" data-i18n="nav.about">عن المشروع</a>
                 <button class="theme-switcher-btn" id="theme-switcher" title="تبديل الوضع">
                     <i class="fas fa-sun"></i>
                 </button>
@@ -2868,11 +2869,9 @@
                         </div>
                         <div class="graduated-line"></div>
                     </div>
-                    <p class="member-description" data-i18n="about.overview.text"
+                    <p class="member-description"
                         style="font-size: 1.1rem; font-weight: 600; min-height: 60px; white-space: pre-line;">
-                        نظام رصد المياه الجوفية هو مشروع تخرج متقدم يهدف إلى توفير أداة تفاعلية لاستكشاف احتمالية وجود المياه الجوفية في محافظة سوهاج باستخدام أحدث تقنيات نظم المعلومات الجغرافية والخرائط التفاعلية.
-
-يجمع المشروع بين التقنيات الحديثة والبيانات الجغرافية لتقديم تجربة مستخدم متميزة تساعد الباحثين والمهتمين في مجال المياه الجوفية على اتخاذ قرارات مدروسة.
+                        <span id="overview-typewriter"></span><span class="cursor"></span>
                     </p>
                 </div>
             </section>
@@ -3001,7 +3000,7 @@
                     <div class="card-header-custom">
                         <div class="icon-title-wrapper">
                             <i class="fas fa-users"></i>
-                            <h2>لجنة المناقشة</h2>
+                            <h2 data-i18n="about.committee.section">لجنة المناقشة</h2>
                         </div>
                         <div class="graduated-line"></div>
                     </div>
@@ -3120,30 +3119,30 @@
                         <h3 class="subsection-title" data-i18n="about.students.general">طلاب الشعبة العامة</h3>
                         <div class="glass-wrapper" style="padding: 1.5rem;">
                             <div class="students-grid compact">
-                                <div class="student-chip">ابراهيم خالد ابراهيم عثمان</div>
-                                <div class="student-chip">اشرف ياسر عبدالصبور حسين</div>
-                                <div class="student-chip">خلود جبريل احمد حسب الله</div>
-                                <div class="student-chip">ديانا كليب محمود محمد</div>
-                                <div class="student-chip">سلوى عبد المحسن عبد الصبور</div>
-                                <div class="student-chip">شريف صلاح الدين احمد عبدالعال</div>
-                                <div class="student-chip">طه ابراهيم عبدالسيد حسنين</div>
-                                <div class="student-chip">عبد الحميد محمود عبد الحميد احمد</div>
-                                <div class="student-chip">علا خلف محمد احمد</div>
-                                <div class="student-chip">كريم قمصان محمود عبدالرحيم</div>
-                                <div class="student-chip">محمد زينهم علي ثابت</div>
-                                <div class="student-chip">محمد علاء عبدالحارس احمد</div>
-                                <div class="student-chip">مصطفي جمال احمد عبدالخالق</div>
-                                <div class="student-chip">منار عارف بيومي الاعرج</div>
-                                <div class="student-chip">نعمات صلاح ابراهيم احمد</div>
-                                <div class="student-chip">يحي ايمن عبد العزيز عبد المنعم</div>
-                                <div class="student-chip">محمد حسن ابراهيم ياسين</div>
-                                <div class="student-chip">ابانوب رفعت القس بولس قرياقص</div>
-                                <div class="student-chip">بيشوى رتيب محروس عزيز</div>
-                                <div class="student-chip">شنودة سامى جاد بباوى</div>
-                                <div class="student-chip">كيرلس هانى تامر خيله</div>
-                                <div class="student-chip">محمد احمد محمد احمد</div>
-                                <div class="student-chip">محمود عادل محمود دياب</div>
-                                <div class="student-chip">محمد ابراهيم احمد عامر</div>
+                                <div class="student-chip" data-i18n="student.general.1">ابراهيم خالد ابراهيم عثمان</div>
+                                <div class="student-chip" data-i18n="student.general.2">اشرف ياسر عبدالصبور حسين</div>
+                                <div class="student-chip" data-i18n="student.general.3">خلود جبريل احمد حسب الله</div>
+                                <div class="student-chip" data-i18n="student.general.4">ديانا كليب محمود محمد</div>
+                                <div class="student-chip" data-i18n="student.general.5">سلوى عبد المحسن عبد الصبور</div>
+                                <div class="student-chip" data-i18n="student.general.6">شريف صلاح الدين احمد عبدالعال</div>
+                                <div class="student-chip" data-i18n="student.general.7">طه ابراهيم عبدالسيد حسنين</div>
+                                <div class="student-chip" data-i18n="student.general.8">عبد الحميد محمود عبد الحميد احمد</div>
+                                <div class="student-chip" data-i18n="student.general.9">علا خلف محمد احمد</div>
+                                <div class="student-chip" data-i18n="student.general.10">كريم قمصان محمود عبدالرحيم</div>
+                                <div class="student-chip" data-i18n="student.general.11">محمد زينهم علي ثابت</div>
+                                <div class="student-chip" data-i18n="student.general.12">محمد علاء عبدالحارس احمد</div>
+                                <div class="student-chip" data-i18n="student.general.13">مصطفي جمال احمد عبدالخالق</div>
+                                <div class="student-chip" data-i18n="student.general.14">منار عارف بيومي الاعرج</div>
+                                <div class="student-chip" data-i18n="student.general.15">نعمات صلاح ابراهيم احمد</div>
+                                <div class="student-chip" data-i18n="student.general.16">يحي ايمن عبد العزيز عبد المنعم</div>
+                                <div class="student-chip" data-i18n="student.general.17">محمد حسن ابراهيم ياسين</div>
+                                <div class="student-chip" data-i18n="student.general.18">ابانوب رفعت القس بولس قرياقص</div>
+                                <div class="student-chip" data-i18n="student.general.19">بيشوى رتيب محروس عزيز</div>
+                                <div class="student-chip" data-i18n="student.general.20">شنودة سامى جاد بباوى</div>
+                                <div class="student-chip" data-i18n="student.general.21">كيرلس هانى تامر خيله</div>
+                                <div class="student-chip" data-i18n="student.general.22">محمد احمد محمد احمد</div>
+                                <div class="student-chip" data-i18n="student.general.23">محمود عادل محمود دياب</div>
+                                <div class="student-chip" data-i18n="student.general.24">محمد ابراهيم احمد عامر</div>
                             </div>
                         </div>
                     </div>
@@ -3154,31 +3153,31 @@
                         <h3 class="subsection-title" data-i18n="about.students.survey">طلاب شعبة المساحة</h3>
                         <div class="glass-wrapper" style="padding: 1.5rem;">
                             <div class="students-grid compact">
-                                <div class="student-chip">احمد حسن احمد بدران</div>
-                                <div class="student-chip">اسراء فايز عز الدين محمد</div>
-                                <div class="student-chip">اسراء محمود غازى محمود</div>
-                                <div class="student-chip">اسلام حسين محمد محمد</div>
-                                <div class="student-chip">اسماء اشرف احمد محمد</div>
-                                <div class="student-chip">افنان خلف محمد خلف</div>
-                                <div class="student-chip">ايه محسن احمد ابراهيم</div>
-                                <div class="student-chip">بيشوي حليم عطيه الجندي</div>
-                                <div class="student-chip">جيهاد الضبع صلاح محمود</div>
-                                <div class="student-chip">حسام السيد سيف النصر عثمان</div>
-                                <div class="student-chip">عبدالله طلعت حربي كيلاني</div>
-                                <div class="student-chip">عبدالله عبدالقادر كامل عبداللاه</div>
-                                <div class="student-chip">علي احمد علي سباق</div>
-                                <div class="student-chip">فؤاد محمد فؤاد السيد</div>
-                                <div class="student-chip">قاسم اشرف قاسم هويدى</div>
-                                <div class="student-chip">محمد احمد زيد السيد</div>
-                                <div class="student-chip">محمد حمدي محمود محمد</div>
-                                <div class="student-chip">محمد عادل رزق سالم</div>
-                                <div class="student-chip">محمد يوسف بكري العكري</div>
-                                <div class="student-chip">محمود الطاهر محمد عبدالقادر</div>
-                                <div class="student-chip">مصطفي شعيب عطيه الهادي شعيب</div>
-                                <div class="student-chip">نورا ذكي صابر احمد</div>
-                                <div class="student-chip">نورهان علي السيد عطا</div>
-                                <div class="student-chip">هبه عصام اسماعيل راشد</div>
-                                <div class="student-chip">هشام حسين على محمد</div>
+                                <div class="student-chip" data-i18n="student.survey.1">احمد حسن احمد بدران</div>
+                                <div class="student-chip" data-i18n="student.survey.2">اسراء فايز عز الدين محمد</div>
+                                <div class="student-chip" data-i18n="student.survey.3">اسراء محمود غازى محمود</div>
+                                <div class="student-chip" data-i18n="student.survey.4">اسلام حسين محمد محمد</div>
+                                <div class="student-chip" data-i18n="student.survey.5">اسماء اشرف احمد محمد</div>
+                                <div class="student-chip" data-i18n="student.survey.6">افنان خلف محمد خلف</div>
+                                <div class="student-chip" data-i18n="student.survey.7">ايه محسن احمد ابراهيم</div>
+                                <div class="student-chip" data-i18n="student.survey.8">بيشوي حليم عطيه الجندي</div>
+                                <div class="student-chip" data-i18n="student.survey.9">جيهاد الضبع صلاح محمود</div>
+                                <div class="student-chip" data-i18n="student.survey.10">حسام السيد سيف النصر عثمان</div>
+                                <div class="student-chip" data-i18n="student.survey.11">عبدالله طلعت حربي كيلاني</div>
+                                <div class="student-chip" data-i18n="student.survey.12">عبدالله عبدالقادر كامل عبداللاه</div>
+                                <div class="student-chip" data-i18n="student.survey.13">علي احمد علي سباق</div>
+                                <div class="student-chip" data-i18n="student.survey.14">فؤاد محمد فؤاد السيد</div>
+                                <div class="student-chip" data-i18n="student.survey.15">قاسم اشرف قاسم هويدى</div>
+                                <div class="student-chip" data-i18n="student.survey.16">محمد احمد زيد السيد</div>
+                                <div class="student-chip" data-i18n="student.survey.17">محمد حمدي محمود محمد</div>
+                                <div class="student-chip" data-i18n="student.survey.18">محمد عادل رزق سالم</div>
+                                <div class="student-chip" data-i18n="student.survey.19">محمد يوسف بكري العكري</div>
+                                <div class="student-chip" data-i18n="student.survey.20">محمود الطاهر محمد عبدالقادر</div>
+                                <div class="student-chip" data-i18n="student.survey.21">مصطفي شعيب عطيه الهادي شعيب</div>
+                                <div class="student-chip" data-i18n="student.survey.22">نورا ذكي صابر احمد</div>
+                                <div class="student-chip" data-i18n="student.survey.23">نورهان علي السيد عطا</div>
+                                <div class="student-chip" data-i18n="student.survey.24">هبه عصام اسماعيل راشد</div>
+                                <div class="student-chip" data-i18n="student.survey.25">هشام حسين على محمد</div>
                             </div>
                         </div>
                     </div>
@@ -3189,7 +3188,7 @@
 
             <!-- Project Info -->
             <section class="project-info">
-                <h2 class="section-title">معلومات المشروع</h2>
+                <h2 class="section-title" data-i18n="about.project.info">معلومات المشروع</h2>
                 <div class="info-grid">
                     <div class="info-item">
                         <div class="info-icon">
@@ -3364,13 +3363,19 @@
         // Initialize animations when page loads
         document.addEventListener('DOMContentLoaded', () => {
             // Typewriter Logic
-            const overviewText = window.i18n && window.i18n.lang === 'en' ? window.i18n.t('about.hero.typewriter') : "نظام رصد المياه الجوفية هو مشروع تخرج متقدم يهدف إلى توفير أداة تفاعلية لاستكشاف احتمالية وجود المياه الجوفية في محافظة سوهاج باستخدام أحدث تقنيات نظم المعلومات الجغرافية والخرائط التفاعلية.\n\nيجمع المشروع بين التقنيات الحديثة والبيانات الجغرافية لتقديم تجربة مستخدم متميزة تساعد الباحثين والمهتمين في مجال المياه الجوفية على اتخاذ قرارات مدروسة.";
+            let overviewText = "";
             const overviewElement = document.getElementById('overview-typewriter');
             let overviewIndex = 0;
             let overviewIsDeleting = false;
 
             function typeOverview() {
                 if (!overviewElement) return;
+
+                if (!overviewText) {
+                    overviewText = (window.i18n && typeof window.i18n.t === 'function') 
+                        ? window.i18n.t('about.hero.typewriter') 
+                        : "نظام رصد المياه الجوفية هو مشروع تخرج متقدم يهدف إلى توفير أداة تفاعلية لاستكشاف احتمالية وجود المياه الجوفية في محافظة سوهاج باستخدام أحدث تقنيات نظم المعلومات الجغرافية والخرائط التفاعلية.\n\nيجمع المشروع بين التقنيات الحديثة والبيانات الجغرافية لتقديم تجربة مستخدم متميزة تساعد الباحثين والمهتمين في مجال المياه الجوفية على اتخاذ قرارات مدروسة.";
+                }
 
                 const currentText = overviewText.substring(0, overviewIndex);
                 overviewElement.textContent = currentText;

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
@@ -58,9 +58,6 @@
     <!-- Main Styles -->
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Real Visitor Counter Script for GitHub Pages -->
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
     <!-- Splash Screen Redirect on Refresh -->
     <script>
         if (performance.navigation && performance.navigation.type === performance.navigation.TYPE_RELOAD) {
@@ -87,6 +84,7 @@
                     <span data-i18n="nav.brand">المياه الجوفية بسوهاج</span>
                 </a>
                 <div class="nav-links">
+                    <a class="nav-link active" href="home.html" data-i18n="nav.home">الرئيسية</a>
                     <a class="nav-link" href="groundwater.html" data-i18n="nav.map">الخريطة التفاعلية</a>
                     <a class="nav-link" href="gallery.html" data-i18n="nav.gallery">المعرض</a>
                     <a class="nav-link" href="palestine.html" data-i18n="nav.palestine">أولى القبلتين</a>
@@ -308,7 +306,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© <span id="year"></span> جميع الحقوق محفوظة لمشروع النمذجة المكانية للمياه الجوفية.</p>
+                <p>© <span id="year"></span> <span data-i18n="copy.right">جميع الحقوق محفوظة لمشروع النمذجة المكانية للمياه الجوفية.</span></p>
             </div>
         </footer>
     </div>
@@ -362,20 +360,75 @@
         // Year
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Local Statistics Fallback (For testing before upload)
+        // Smart Visitor Counter logic to prevent incrementing on back navigation
         window.addEventListener('load', () => {
-            setTimeout(() => {
-                const pvContainer = document.getElementById('busuanzi_container_site_pv');
-                const uvContainer = document.getElementById('busuanzi_container_site_uv');
+            const pvContainer = document.getElementById('busuanzi_container_site_pv');
+            const uvContainer = document.getElementById('busuanzi_container_site_uv');
+            const pvValue = document.getElementById('busuanzi_value_site_pv');
+            const uvValue = document.getElementById('busuanzi_value_site_uv');
 
-                // If Busuanzi didn't load (local environment), show placeholder numbers
-                if (pvContainer && pvContainer.style.display === 'none') {
+            const hasVisitedThisSession = sessionStorage.getItem('home_visited');
+
+            if (hasVisitedThisSession && localStorage.getItem('cached_site_pv') && localStorage.getItem('cached_site_uv')) {
+                // Use cached values for the session to prevent incrementing the counter on nav back
+                pvValue.textContent = localStorage.getItem('cached_site_pv');
+                uvValue.textContent = localStorage.getItem('cached_site_uv');
+                if (pvContainer) pvContainer.style.display = 'flex';
+                if (uvContainer) uvContainer.style.display = 'flex';
+            } else {
+                // First visit this session, load Busuanzi script dynamically
+                const script = document.createElement('script');
+                script.src = "//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js";
+                script.async = true;
+                
+                script.onload = () => {
+                    // Set up listener to capture values when they are loaded by Busuanzi
+                    const checkInterval = setInterval(() => {
+                        if (pvValue.textContent && uvValue.textContent) {
+                            clearInterval(checkInterval);
+                            localStorage.setItem('cached_site_pv', pvValue.textContent);
+                            localStorage.setItem('cached_site_uv', uvValue.textContent);
+                            sessionStorage.setItem('home_visited', 'true');
+                        }
+                    }, 500);
+                    // Timeout after 10 seconds just in case
+                    setTimeout(() => clearInterval(checkInterval), 10000);
+                };
+
+                script.onerror = () => {
+                    // Fallback to placeholders if script fails to load
+                    loadFallbackStats();
+                };
+
+                document.head.appendChild(script);
+
+                // Check after 3 seconds if Busuanzi filled the values (handling success/fallback)
+                setTimeout(() => {
+                    if (!pvValue.textContent || pvValue.textContent === "") {
+                        loadFallbackStats();
+                    } else {
+                        localStorage.setItem('cached_site_pv', pvValue.textContent);
+                        localStorage.setItem('cached_site_uv', uvValue.textContent);
+                        sessionStorage.setItem('home_visited', 'true');
+                    }
+                }, 3000);
+            }
+
+            function loadFallbackStats() {
+                // Local environment fallback
+                if (pvContainer && (pvContainer.style.display === 'none' || pvContainer.style.display === '')) {
+                    const localPV = localStorage.getItem('cached_site_pv') || '1,240';
+                    const localUV = localStorage.getItem('cached_site_uv') || '850';
+                    pvValue.textContent = localPV;
+                    uvValue.textContent = localUV;
                     pvContainer.style.display = 'flex';
                     uvContainer.style.display = 'flex';
-                    document.getElementById('busuanzi_value_site_pv').textContent = '1,240';
-                    document.getElementById('busuanzi_value_site_uv').textContent = '850';
+                    // Cache them
+                    localStorage.setItem('cached_site_pv', localPV);
+                    localStorage.setItem('cached_site_uv', localUV);
+                    sessionStorage.setItem('home_visited', 'true');
                 }
-            }, 2000); // Wait 2 seconds for Busuanzi to try loading
+            }
         });
 
         // Professional Typewriter Effect
@@ -418,5 +471,3 @@
 </body>
 
 </html>
-
-

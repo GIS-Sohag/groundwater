@@ -321,22 +321,23 @@
             margin-right: 5px;
         }
 
-       @keyframes blink {
-    0%,
-    100% {
-        opacity: 1;
-    }
+        @keyframes blink {
 
-    50% {
-        opacity: 0;
-    }
-}
+            0%,
+            100% {
+                opacity: 1;
+            }
 
-/* منع تشتت التذييل في صفحة جديدة */
-.print-footer {
-    margin-top: 30px !important;
-    page-break-inside: avoid;
-}
+            50% {
+                opacity: 0;
+            }
+            
+            /* منع تشتت التذييل في صفحة جديدة */
+            .print-footer {
+                margin-top: 30px !important;
+                page-break-inside: avoid;
+            }
+        }
 
         .page-title-card p {
             font-size: 1rem;
@@ -673,41 +674,33 @@
                 visibility: visible;
             }
 
-            /* تصميم شريط البحث الاحترافي (Floating Search) */
-            .leaflet-control-geosearch.leaflet-geosearch-bar {
-                position: absolute !important;
-                top: 20px !important;
-                left: 50% !important;
-                transform: translateX(-50%) !important;
-                z-index: 1000 !important;
-                margin: 0 !important;
-                width: auto !important;
+            /* تحسين شكل شريط البحث بشكل احترافي */
+            .leaflet-control-geosearch {
+                margin-top: 15px !important;
+                margin-left: 15px !important;
             }
             .leaflet-control-geosearch form {
                 background: var(--bg-card) !important;
-                border-radius: 50px !important;
                 border: 1px solid var(--border-color) !important;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
-                padding: 5px 20px !important;
-                width: 350px !important;
-                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                border-radius: 50px !important;
+                padding: 5px 15px !important;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
+                width: 300px !important;
+                transition: all 0.3s ease !important;
             }
             .leaflet-control-geosearch form:focus-within {
-                width: 450px !important;
+                width: 350px !important;
                 border-color: var(--accent-blue) !important;
+                box-shadow: 0 10px 30px rgba(var(--accent-blue-rgb), 0.2) !important;
             }
             .leaflet-control-geosearch form input {
-                font-family: 'Cairo', 'Times New Roman', sans-serif !important;
-                color: var(--text-primary) !important;
-                font-weight: 600 !important;
                 background: transparent !important;
+                color: var(--text-primary) !important;
+                font-family: 'Cairo', sans-serif !important;
+                padding: 8px !important;
             }
-            .leaflet-control-geosearch .results.active { background: var(--bg-card); border-radius: 15px; margin-top: 10px; }
-
-            /* إصلاح الماركر والأيقونات في الطباعة */
-            .map-center-pin, .map-north-arrow i, .leaflet-marker-icon {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
+            .lang-en .leaflet-control-geosearch form input {
+                font-family: 'Times New Roman', serif !important;
             }
 
             /* إصلاح ظهور الأيقونات في الطباعة */
@@ -1051,7 +1044,7 @@
         while getBoundingClientRect() still returns it within viewport bounds,
         forcing Google Maps to load satellite tiles immediately!
     -->
-    <div id="google-capture-div" style="position: fixed; top: 0; left: 0; width: 800px; height: 500px; visibility: visible; opacity: 0.01; z-index: -1000; pointer-events: none; overflow: hidden;"></div>
+    <div id="google-capture-div" style="position: absolute; top: -5000px; left: 0; width: 800px; height: 500px; visibility: visible; z-index: -1;"></div>
 
     <!-- Hidden Print Layout -->
     <div id="print-report-container" style="display: none;">
@@ -1534,11 +1527,12 @@
                     legendHTML += `<div style="margin-bottom: 0.8rem; font-weight: 700; font-size: 0.9rem; color: var(--text-secondary);">${t('gw.potential')}</div>`;
                     const sortedCategories = Array.from(categories.entries()).sort((a, b) => Number(b[1]) - Number(a[1]));
                     for (const [label, gridcode] of sortedCategories) {
-                        const categoryMap = { 
-                            '5': { ar: 'مرتفع جداً', en: 'Very High' }, '4': { ar: 'مرتفع', en: 'High' }, 
-                            '3': { ar: 'متوسط', en: 'Medium' }, '2': { ar: 'منخفض', en: 'Low' }, '1': { ar: 'منخفض جداً', en: 'Very Low' } 
-                        };
-                        let dispLabel = isEn ? (categoryMap[String(gridcode)]?.en || label) : (categoryMap[String(gridcode)]?.ar || label);
+                        let dispLabel = label;
+                        if (isEn) {
+                            // جلب الاحتمالية الإنجليزية المقابلة للكود
+                            const feat = activeData.features.find(f => String(f.properties.gridcode) === String(gridcode));
+                            dispLabel = feat ? (feat.properties.probability || feat.properties.PROBABILIT || label) : label;
+                        }
                         legendHTML += `<div class="legend-item"><i style="background:${getColor({ gridcode: gridcode })}"></i> <span>${dispLabel}</span></div>`;
                     }
                 }
@@ -2016,27 +2010,25 @@
                                 scale: 1.5 // Good balance of quality and speed
                             }).then(function(canvas) {
                                 mapImg.src = canvas.toDataURL('image/png');
-                                finishPrint();
+                                setTimeout(finishPrint, 1000);
                             }).catch(function(err) {
                                 console.warn('Capture failed:', err);
+                                // Absolute fallback to Esri if capture breaks
                                 mapImg.src = `https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=${lng-0.005},${lat-0.005},${lng+0.005},${lat+0.005}&bboxSR=4326&size=800,500&imageSR=4326&format=jpg&f=image`;
-                                finishPrint();
+                                setTimeout(finishPrint, 1000);
                             });
                         };
 
+                        const gmap = window.printGmap;
                         // إجبار المحرك على إعادة الرسم
                         google.maps.event.trigger(gmap, 'resize');
-                        gmap.setCenter({ lat: lat, lng: lng });
-                        gmap.setZoom(15);
-
-                        // الانتظار حتى تحميل المربعات بالكامل
-                        google.maps.event.addListenerOnce(gmap, 'tilesloaded', () => {
+                        gmap.setCenter({ lat: lat + 0.00001, lng: lng + 0.00001 });
+                        
+                        setTimeout(() => {
+                            google.maps.event.addListenerOnce(gmap, 'idle', () => setTimeout(finalize, 2000));
+                            setTimeout(() => { if (!captureDone) finalize(); }, 6000); 
                             gmap.setCenter({ lat: lat, lng: lng });
-                            setTimeout(finalize, 1500);
-                        });
-                        gmap.setZoom(15);
-                        // Failsafe في حالة عدم استجابة الحدث
-                        setTimeout(() => { if (!captureDone) finalize(); }, 5000);
+                        }, 200);
                     } else {
                         finishPrint();
                     }
@@ -2139,20 +2131,19 @@
                 }
 
                 try {
+                    // Visual feedback: Show loading in report area while geocoding
                     const reportContainer = document.getElementById('report-container');
                     const isEn = window.i18n && window.i18n.lang === 'en';
                     if (reportContainer) reportContainer.innerHTML = `<div class="details-placeholder"><p><i class="fas fa-spinner fa-spin"></i> ${isEn ? 'Analyzing location and fetching Google maps...' : 'جاري تحليل بيانات الموقع وجلب خرائط Google...'}</p></div>`;
 
-                    // إصلاح: منع تعطل الدالة في حال فشل الـ Geocoding
-                    let address = null;
-                    try {
-                        address = await updateCoordinatesCard(latlng, containingFeature ? containingFeature.properties : null, true, depthValue);
-                    } catch(err) { console.warn("Geocoding failed but continuing report...", err); }
-
+                    // Update coords card AND wait for address data
+                    const address = await updateCoordinatesCard(latlng, containingFeature ? containingFeature.properties : null, true, depthValue);
+                    
                     updateDetailsCard(containingFeature ? containingFeature.properties : null);
+                    // Pass address DIRECTLY to generateReport to avoid race conditions or DOM delays
                     generateReport(containingFeature ? containingFeature.properties : null, !containingFeature, depthValue, address);
                 } catch (e) {
-                    console.error("Critical CheckLocation Error:", e);
+                    console.error("Sequence Error:", e);
                 }
 
                 if (legendDepthSpan) {

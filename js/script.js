@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeMaps();
     initializeUpload();
     initializeAnimations();
+    initializeAdhan();
     registerServiceWorker();
     initializeTypewriter();
 });
@@ -168,11 +169,44 @@ function initializePalestineMap() {
     // Add Al-Aqsa Mosque marker using config
     L.marker(CONFIG.palestine.alAqsa)
         .addTo(palestineMap)
-        .bindPopup('<b>المسجد الأقصى المبارك</b><br>أولى القبلتين وثالث الحرمين الشريفين')
+        .bindPopup(`<b>${window.appTranslator ? window.appTranslator.t('pal.mosque.title') : 'المسجد الأقصى'}</b><br>${window.appTranslator ? window.appTranslator.t('pal.subtitle') : ''}`)
         .openPopup();
+
+    // جعل بطاقة معلومات الأقصى ظاهرة دائماً
+    const aqsaCard = document.getElementById('aqsa-info-card');
+    if (aqsaCard) {
+        aqsaCard.style.display = 'block';
+        aqsaCard.classList.add('visible');
+    }
+}
+
+// وظيفة للحصول على اسم المحافظة/المقاطعة بناءً على اللغة والحقول المطلوبة
+function getPalestineFeatureName(properties, type) {
+    const lang = localStorage.getItem('app_lang') || 'ar';
+    if (lang === 'en') {
+        return type === 'gov' ? properties.Governorat : properties.Districts;
+    }
+    return type === 'gov' ? properties.Governorate : properties.District;
 }
 
 function addSampleGroundwaterData() {
+
+// تشغيل الأذان
+function initializeAdhan() {
+    const playBtn = document.getElementById('play-adhan');
+    const audio = document.getElementById('adhan-audio');
+    if (!playBtn || !audio) return;
+
+    playBtn.addEventListener('click', function() {
+        if (audio.paused) {
+            audio.play();
+            this.innerHTML = `<i class="fas fa-pause"></i> ${window.appTranslator.t('pal.adhan.pause')}`;
+        } else {
+            audio.pause();
+            this.innerHTML = `<i class="fas fa-play"></i> ${window.appTranslator.t('pal.adhan.play')}`;
+        }
+    });
+}
     // Sample data for demonstration - replace with your actual shapefile data
     const sampleData = [
         {
