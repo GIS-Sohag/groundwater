@@ -404,6 +404,7 @@ const translations = {
         // --- About Page ---
         "about.page.title": "About Project",
         "about.page.subtitle": "Groundwater Monitoring System - Sohag Governorate",
+        "home.hero.title": "Spatial Modeling for Groundwater Potentiality in Sohag Governorate Using Geomatics, Programming Environment, and Artificial Intelligence",
         "about.overview.title": "Project Overview",
         "about.overview.text": "The Groundwater Monitoring System is an advanced graduation project aiming to provide an interactive tool for exploring potential groundwater resources in Sohag using GIS and spatial modeling.\n\nThe project integrates modern technology with geographic data to help researchers make informed decisions.",
         "about.president.section": "University President",
@@ -474,7 +475,7 @@ const translations = {
         "index.msg.done": "Loading Complete, Redirecting...",
         "doc.title": "Usage Guide",
         "copy.right": "Groundwater Spatial Modeling Project. All Rights Reserved.",
-        "gw.typewriter": "Spatial Modeling for Groundwater Potential",
+        "gw.typewriter": "Spatial Modeling for Groundwater Potentiality in Sohag Governorate Using Geomatics, Programming Environment, and Artificial Intelligence",
         "pal.subtitle": "Al-Aqsa Mosque - The First Qibla of Muslims",
         "pal.verse.text": "Exalted is He who took His Servant by night from al-Masjid al-Haram to al-Masjid al-Aqsa, whose surroundings We have blessed, to show him of Our signs. Indeed, He is the Hearing, the Seeing.",
         "pal.verse.ref": "Surah Al-Isra - Verse 1",
@@ -759,7 +760,7 @@ class I18nEngine {
         const h1 = document.querySelector('.page-title h1, .page-title-card h1, .page-header h1');
         const p = document.querySelector('.page-subtitle, .page-title p, .page-title-card p');
         
-        if (h1 && !h1.hasAttribute('data-i18n')) {
+        if (h1 && !h1.hasAttribute('data-i18n') && !h1.querySelector('[data-i18n]')) {
             if (page === 'gallery') h1.setAttribute('data-i18n', 'gallery.title');
             if (page === 'palestine') h1.setAttribute('data-i18n', 'pal.page.title');
             if (page === 'about') h1.setAttribute('data-i18n', 'about.page.title');

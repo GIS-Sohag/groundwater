@@ -662,6 +662,67 @@
             }
         }
 
+        /* --- Professional Search Bar Styling (Floating Search) --- */
+        .leaflet-control-geosearch.leaflet-geosearch-bar {
+            position: absolute !important;
+            top: 20px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            z-index: 1000 !important;
+            margin: 0 !important;
+            width: auto !important;
+        }
+        .leaflet-control-geosearch form {
+            background: var(--bg-card) !important;
+            border-radius: 50px !important;
+            border: 1px solid var(--border-color) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+            padding: 5px 20px !important;
+            width: 350px !important;
+            display: flex !important;
+            align-items: center !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .leaflet-control-geosearch form:focus-within {
+            width: 450px !important;
+            border-color: var(--accent-blue) !important;
+            box-shadow: 0 10px 30px rgba(33, 150, 243, 0.2) !important;
+        }
+        .leaflet-control-geosearch form input {
+            font-family: 'Cairo', 'Times New Roman', sans-serif !important;
+            color: var(--text-primary) !important;
+            font-weight: 600 !important;
+            background: transparent !important;
+            border: none !important;
+            outline: none !important;
+            width: 100% !important;
+            padding: 5px 10px !important;
+        }
+        .leaflet-control-geosearch .results {
+            background: var(--bg-card) !important;
+            border-radius: 15px !important;
+            border: 1px solid var(--border-color) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+            margin-top: 10px !important;
+            overflow: hidden !important;
+            color: var(--text-primary) !important;
+        }
+        .leaflet-control-geosearch .results > * {
+            padding: 10px 15px !important;
+            border-bottom: 1px solid var(--border-color) !important;
+            cursor: pointer !important;
+            transition: background 0.2s ease !important;
+            color: var(--text-primary) !important;
+        }
+        .leaflet-control-geosearch .results > *:last-child {
+            border-bottom: none !important;
+        }
+        .leaflet-control-geosearch .results > *:hover,
+        .leaflet-control-geosearch .results > *.active {
+            background: var(--bg-primary) !important;
+            color: var(--accent-blue) !important;
+        }
+
         /* --- PRINT STYLES --- */
         @media print {
             body * {
@@ -672,37 +733,6 @@
             #print-report-container * {
                 visibility: visible;
             }
-
-            /* تصميم شريط البحث الاحترافي (Floating Search) */
-            .leaflet-control-geosearch.leaflet-geosearch-bar {
-                position: absolute !important;
-                top: 20px !important;
-                left: 50% !important;
-                transform: translateX(-50%) !important;
-                z-index: 1000 !important;
-                margin: 0 !important;
-                width: auto !important;
-            }
-            .leaflet-control-geosearch form {
-                background: var(--bg-card) !important;
-                border-radius: 50px !important;
-                border: 1px solid var(--border-color) !important;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
-                padding: 5px 20px !important;
-                width: 350px !important;
-                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            }
-            .leaflet-control-geosearch form:focus-within {
-                width: 450px !important;
-                border-color: var(--accent-blue) !important;
-            }
-            .leaflet-control-geosearch form input {
-                font-family: 'Cairo', 'Times New Roman', sans-serif !important;
-                color: var(--text-primary) !important;
-                font-weight: 600 !important;
-                background: transparent !important;
-            }
-            .leaflet-control-geosearch .results.active { background: var(--bg-card); border-radius: 15px; margin-top: 10px; }
 
             /* إصلاح الماركر والأيقونات في الطباعة */
             .map-center-pin, .map-north-arrow i, .leaflet-marker-icon {
@@ -719,16 +749,15 @@
             .map-north-arrow i { color: #222 !important; }
             
             /* تحسين الخطوط في الطباعة للنصوص الإنجليزية */
-            #print-report-container :not(.quran-text) {
+            #print-report-container :not(.quran-text):not(.fas):not(.far):not(.fab):not(.fa) {
                 font-family: "Times New Roman", Times, serif !important;
             }
-            .lang-ar #print-report-container :not(.quran-text) {
+            .lang-ar #print-report-container :not(.quran-text):not(.fas):not(.far):not(.fab):not(.fa) {
                 font-family: "Simplified Arabic", "Times New Roman", serif !important;
             }
 
             #print-report-container {
                 padding: 1cm 1.5cm !important;
-                max-height: 29.7cm;
                 position: absolute;
                 left: 0;
                 top: 0;
@@ -915,10 +944,22 @@
                 font-size: 15pt;
                 line-height: 1.8;
                 text-align: justify;
+                page-break-inside: avoid;
             }
 
             .print-text p {
                 margin-bottom: 12px;
+            }
+
+            /* FIX: Make sure the map image stays on one page and text flows to the next */
+            .print-map-wrapper {
+                page-break-after: always;
+                page-break-inside: avoid;
+            }
+
+            .print-report-table-container {
+                page-break-inside: avoid;
+                margin-top: 20px;
             }
 
             .print-section-title {
@@ -1284,7 +1325,7 @@
 
         // Typewriter Effect for Title
         const originalTitleText = "النمذجة المكانية لإحتمالية وجود المياه الجوفية في محافظة سوهاج بإستخدام\nالجيوماتكس والبيئة البرمجية والذكاء الإصطناعي";
-        const titleText = window.i18n && window.i18n.lang === 'en' ? window.appTranslator.t('gw.typewriter') : originalTitleText;
+        const titleText = window.i18n && window.i18n.lang === 'en' ? window.i18n.t('gw.typewriter') : originalTitleText;
         const titleElement = document.getElementById('typewriter-text');
         let titleIsDeleting = false;
         let titleCharIndex = 0;
@@ -1314,20 +1355,29 @@
             let geojsonLayer;
 
             let geojsonData = null; // Will be loaded via fetch
-            let depthRaster = null; // Will hold the GeoTIFF reference
-
             let tiffObject = null; // Holds the streaming GeoTIFF reference
 
-            // Initialize GeoTIFF depth raster (Optimized: Only loads header/partial data)
+            // Initialize GeoTIFF depth raster (Optimized Hybrid: Fetch to memory to avoid Range Requests, decode on demand to prevent freeze)
             async function initDepthRaster() {
                 const url = "data/groundwater_depth.tif";
                 try {
-                    // جلب رأس الملف فقط (Headers) لقراءة تفاصيل الموقع المحدد لتوفير باقة الإنترنت
-                    tiffObject = await GeoTIFF.fromUrl(url); 
-                    console.log("تم تهيئة ملف أعماق المياه الجوفية (نظام التحميل الجزئي لتوفير البيانات) بنجاح");
+                    console.log(`[DepthRaster] Fetching TIFF to memory: ${url}`);
+                    const response = await fetch(url);
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                    
+                    const arrayBuffer = await response.arrayBuffer();
+                    
+                    // Parse from ArrayBuffer (no range requests)
+                    tiffObject = await GeoTIFF.fromArrayBuffer(arrayBuffer);
+                    
+                    // Verify we can get image metadata (does not decode the 22 million pixels yet)
+                    const testImage = await tiffObject.getImage();
+                    const bbox = testImage.getBoundingBox();
+                    console.log(`[DepthRaster] ✅ Loaded to memory! BBox: [${bbox.join(', ')}], Size: ${testImage.getWidth()}x${testImage.getHeight()}`);
                     createLegend();
                 } catch (e) {
-                    console.warn("تنبيه: ملف أعماق المياه الجوفية غير متوفر أو مسار خاطئ:", e);
+                    console.warn(`[DepthRaster] ❌ Failed to load from ${url}:`, e.message || e);
+                    tiffObject = null; // Reset on failure
                 }
             }
             initDepthRaster();
@@ -1460,8 +1510,7 @@
                 fetch('data/Groundwater.json?t=' + new Date().getTime())
                     .then(response => {
                         if (!response.ok) {
-                            // This error is the most common one, when opening file directly.
-                            throw new Error(`فشل تحميل ملف البيانات (Status: ${response.status}). تأكد من تشغيل المشروع عبر ملف .bat.`);
+                            throw new Error(`فشل تحميل ملف البيانات (Status: ${response.status}).`);
                         }
                         return response.json();
                     })
@@ -1485,23 +1534,35 @@
                         createLegend(data);
                     })
                     .catch(error => {
-                        console.error('Fatal Error loading GeoJSON:', error);
-                        // Hide loading indicator on failure
+                        console.error('Error loading GeoJSON data:', error);
                         if (loadingDiv) loadingDiv.style.display = 'none';
 
-                        // Display a user-friendly and helpful error message
                         const mapContainer = document.getElementById('map');
-                        mapContainer.innerHTML = `
-                            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-card); backdrop-filter: blur(5px); display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--text-primary); padding: 20px; text-align: center; z-index: 1000; border-radius: 15px;">
-                                <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #ef4444; margin-bottom: 1rem;"></i>
-                                <h3 style="margin-bottom: 0.5rem; color: var(--text-primary);">خطأ: فشل تحميل الخريطة</h3>
-                                <p style="font-size: 0.9rem; max-width: 450px; line-height: 1.6; color: var(--text-secondary);">
-                                    لا يمكن تحميل بيانات الخريطة. هذا يحدث غالبًا عند فتح الملف مباشرةً في المتصفح.
-                                    <br><br>
-                                    <strong style="color: var(--accent-blue);">الحل:</strong> قم بتشغيل المشروع عن طريق النقر المزدوج على ملف <code style="background: var(--bg-secondary); padding: 0.2rem 0.5rem; border-radius: 4px; color: var(--accent-blue);">تشغيل_المشروع_2025.bat</code>
-                                </p>
-                            </div>
-                        `;
+                        if (window.location.protocol === 'file:') {
+                            // If opened directly as a file, show the .bat run instructions
+                            mapContainer.innerHTML = `
+                                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-card); display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--text-primary); padding: 20px; text-align: center; z-index: 1000;">
+                                    <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #ef4444; margin-bottom: 1rem;"></i>
+                                    <h3 style="margin-bottom: 0.5rem; color: var(--text-primary);">خطأ: فشل تحميل الخريطة</h3>
+                                    <p style="font-size: 0.9rem; max-width: 450px; line-height: 1.6; color: var(--text-secondary);">
+                                        لا يمكن تحميل بيانات الخريطة. هذا يحدث غالبًا عند فتح الملف مباشرةً في المتصفح.
+                                        <br><br>
+                                        <strong style="color: var(--accent-blue);">الحل:</strong> قم بتشغيل المشروع عن طريق النقر المزدوج على ملف <code style="background: var(--bg-secondary); padding: 0.2rem 0.5rem; border-radius: 4px; color: var(--accent-blue);">تشغيل_المشروع_2025.bat</code>
+                                    </p>
+                                </div>
+                            `;
+                        } else {
+                            // Standard connection error for web
+                            mapContainer.innerHTML = `
+                                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-card); display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--text-primary); padding: 20px; text-align: center; z-index: 1000;">
+                                    <i class="fas fa-wifi" style="font-size: 3rem; color: var(--text-secondary); margin-bottom: 1rem; opacity: 0.5;"></i>
+                                    <h3 style="margin-bottom: 0.5rem; color: var(--text-primary);">${isEn ? 'Connection Error' : 'خطأ في الاتصال'}</h3>
+                                    <p style="font-size: 0.9rem; max-width: 450px; line-height: 1.6; color: var(--text-secondary);">
+                                        ${isEn ? 'Failed to load map data. Please check your internet connection and refresh the page.' : 'تعذر تحميل بيانات الخريطة. يرجى التحقق من اتصالك بالإنترنت وتحديث الصفحة.'}
+                                    </p>
+                                </div>
+                            `;
+                        }
                     });
             } // FIX: Added missing closing brace for initializeDataLayers function
 
@@ -1975,8 +2036,104 @@
                 }
             }
 
+            // Helper function to stitch Google satellite tiles into a single static image
+            async function getGoogleSatelliteStaticMap(lat, lng, zoom, width, height) {
+                const canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+
+                const r = Math.PI / 180;
+                const n = Math.pow(2, zoom);
+                const centerX = (lng + 180) / 360 * n;
+                const centerY = (1 - Math.log(Math.tan(lat * r) + 1 / Math.cos(lat * r)) / Math.PI) / 2 * n;
+
+                const minTx = Math.floor(centerX - (width / 2) / 256);
+                const maxTx = Math.ceil(centerX + (width / 2) / 256);
+                const minTy = Math.floor(centerY - (height / 2) / 256);
+                const maxTy = Math.ceil(centerY + (height / 2) / 256);
+
+                const promises = [];
+                for (let tx = minTx; tx <= maxTx; tx++) {
+                    for (let ty = minTy; ty <= maxTy; ty++) {
+                        const s = Math.abs(tx + ty) % 4;
+                        const url = `https://mt${s}.google.com/vt/lyrs=s&x=${tx}&y=${ty}&z=${zoom}`;
+                        promises.push(new Promise((resolve) => {
+                            const img = new Image();
+                            img.crossOrigin = 'anonymous';
+                            img.onload = () => resolve({ img, tx, ty });
+                            img.onerror = () => resolve(null);
+                            img.src = url;
+                        }));
+                    }
+                }
+
+                const results = await Promise.all(promises);
+                
+                ctx.fillStyle = '#000000';
+                ctx.fillRect(0, 0, width, height);
+
+                for (const res of results) {
+                    if (res) {
+                        const px = Math.round((res.tx - centerX) * 256 + width / 2);
+                        const py = Math.round((res.ty - centerY) * 256 + height / 2);
+                        ctx.drawImage(res.img, px, py, 256, 256);
+                    }
+                }
+
+                return canvas.toDataURL('image/jpeg', 0.95);
+            }
+
             // Map image retrieval for printing (static map using satellite tiles)
-            window.printReport = function () {
+            // Helper function to stitch Esri satellite tiles into a single static image
+            async function getEsriSatelliteStaticMap(lat, lng, zoom, width, height) {
+                const canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+
+                const r = Math.PI / 180;
+                const n = Math.pow(2, zoom);
+                const centerX = (lng + 180) / 360 * n;
+                const centerY = (1 - Math.log(Math.tan(lat * r) + 1 / Math.cos(lat * r)) / Math.PI) / 2 * n;
+
+                const minTx = Math.floor(centerX - (width / 2) / 256);
+                const maxTx = Math.ceil(centerX + (width / 2) / 256);
+                const minTy = Math.floor(centerY - (height / 2) / 256);
+                const maxTy = Math.ceil(centerY + (height / 2) / 256);
+
+                const promises = [];
+                for (let tx = minTx; tx <= maxTx; tx++) {
+                    for (let ty = minTy; ty <= maxTy; ty++) {
+                        const url = `https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/${zoom}/${ty}/${tx}`;
+                        promises.push(new Promise((resolve) => {
+                            const img = new Image();
+                            img.crossOrigin = 'anonymous';
+                            img.onload = () => resolve({ img, tx, ty });
+                            img.onerror = () => resolve(null);
+                            img.src = url;
+                        }));
+                    }
+                }
+
+                const results = await Promise.all(promises);
+                
+                ctx.fillStyle = '#000000';
+                ctx.fillRect(0, 0, width, height);
+
+                for (const res of results) {
+                    if (res) {
+                        const px = Math.round((res.tx - centerX) * 256 + width / 2);
+                        const py = Math.round((res.ty - centerY) * 256 + height / 2);
+                        ctx.drawImage(res.img, px, py, 256, 256);
+                    }
+                }
+
+                return canvas.toDataURL('image/jpeg', 0.95);
+            }
+
+            // Map image retrieval for printing (static map using satellite tiles)
+            window.printReport = async function () {
 
                 const lat = parseFloat(document.getElementById('print-lat').innerText);
                 const lng = parseFloat(document.getElementById('print-lng').innerText);
@@ -1990,55 +2147,54 @@
                 printBtn.disabled = true;
 
                 const finishPrint = () => {
-                    // التأكد من أن الأيقونات والماركر تم رسمهم فوق الصورة
                     printBtn.innerHTML = originalBtnContent;
                     printBtn.disabled = false;
                     setTimeout(() => window.print(), 800);
                 };
 
                 if (!isNaN(lat) && !isNaN(lng)) {
-                    if (window.printGmap) {
-                        let captureDone = false;
-                        const finalize = () => {
-                            if (captureDone) return;
-                            captureDone = true;
-                            
-                            document.getElementById('google-capture-div').querySelectorAll('.gm-style-cc, .gm-bundled-control, .gmnoprint, a').forEach(el => {
-                                el.style.setProperty('display', 'none', 'important');
-                            });
-
-                            html2canvas(document.getElementById('google-capture-div'), {
-                                useCORS: true,
-                                allowTaint: false, // Ensure no security errors
-                                logging: false,
-                                width: 800,
-                                height: 500,
-                                scale: 1.5 // Good balance of quality and speed
-                            }).then(function(canvas) {
-                                mapImg.src = canvas.toDataURL('image/png');
-                                finishPrint();
-                            }).catch(function(err) {
-                                console.warn('Capture failed:', err);
-                                mapImg.src = `https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=${lng-0.005},${lat-0.005},${lng+0.005},${lat+0.005}&bboxSR=4326&size=800,500&imageSR=4326&format=jpg&f=image`;
-                                finishPrint();
-                            });
-                        };
-
-                        // إجبار المحرك على إعادة الرسم
-                        google.maps.event.trigger(gmap, 'resize');
-                        gmap.setCenter({ lat: lat, lng: lng });
-                        gmap.setZoom(15);
-
-                        // الانتظار حتى تحميل المربعات بالكامل
-                        google.maps.event.addListenerOnce(gmap, 'tilesloaded', () => {
-                            gmap.setCenter({ lat: lat, lng: lng });
-                            setTimeout(finalize, 1500);
+                    const googleStaticUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=18&size=640x640&scale=2&maptype=satellite&key=AIzaSyBrz3rKpKaE3zFl0mFVtxCaR0hYnif2wRo`;
+                    
+                    const loadImage = (url) => {
+                        return new Promise((resolve, reject) => {
+                            mapImg.onload = () => resolve(url);
+                            mapImg.onerror = () => reject(new Error('Failed to load image'));
+                            mapImg.src = url;
                         });
-                        gmap.setZoom(15);
-                        // Failsafe في حالة عدم استجابة الحدث
-                        setTimeout(() => { if (!captureDone) finalize(); }, 5000);
-                    } else {
+                    };
+
+                    try {
+                        // Try loading Google Static map first
+                        await loadImage(googleStaticUrl);
                         finishPrint();
+                    } catch (e) {
+                        console.warn('Google Static Map failed, falling back to Google stitched satellite map.');
+                        try {
+                            const staticMapDataUrl = await getGoogleSatelliteStaticMap(lat, lng, 18, 1200, 750);
+                            await loadImage(staticMapDataUrl);
+                            finishPrint();
+                        } catch (err) {
+                            console.error('Google stitched map fallback failed, trying Esri stitched map:', err);
+                            try {
+                                const staticMapDataUrl = await getEsriSatelliteStaticMap(lat, lng, 18, 1200, 750);
+                                await loadImage(staticMapDataUrl);
+                                finishPrint();
+                            } catch (esriErr) {
+                                console.error('Esri stitched map fallback failed:', esriErr);
+                                // Fallback to basic Google tile URL if stitching fails
+                                const r = Math.PI / 180;
+                                const n = Math.pow(2, 18);
+                                const tx = Math.floor((lng + 180) / 360 * n);
+                                const ty = Math.floor((1 - Math.log(Math.tan(lat * r) + 1 / Math.cos(lat * r)) / Math.PI) / 2 * n);
+                                const fallbackUrl = `https://mt1.google.com/vt/lyrs=s&x=${tx}&y=${ty}&z=18`;
+                                try {
+                                    await loadImage(fallbackUrl);
+                                } catch (lastErr) {
+                                    console.error('All image loading fallbacks failed:', lastErr);
+                                }
+                                finishPrint();
+                            }
+                        }
                     }
                 } else {
                     finishPrint();
@@ -2073,6 +2229,7 @@
 
             async function checkLocation(latlng) {
                 if (!latlng) return;
+                const isEn = window.i18n && window.i18n.lang === 'en';
 
                 let containingFeature = null;
 
@@ -2111,36 +2268,49 @@
                     }
                 }
 
-                // Query Depth value using Optimized Partial Fetch
+                // Query Depth value using Optimized Partial Fetch (COG-style tiled GeoTIFF)
                 let depthValue = null;
                 if (tiffObject) {
                     try {
                         const image = await tiffObject.getImage();
-                        const bbox = image.getBoundingBox();
-                        const [resx, resy] = image.getResolution();
+                        const bbox = image.getBoundingBox(); // [minX, minY, maxX, maxY] in CRS units
+                        const [resx, resy] = image.getResolution(); // pixel size in CRS units
                         
-                        // Convert LatLng to appropriate pixel coordinates
-                        const px = Math.floor((latlng.lng - bbox[0]) / resx);
-                        const py = Math.floor((bbox[3] - latlng.lat) / Math.abs(resy));
-
-                        // Fetch ONLY the 1x1 pixel data for this specific location
-                        const data = await image.readRasters({
-                            window: [px, py, px + 1, py + 1],
-                            samples: [0]
-                        });
-
-                        if (data && data[0] && data[0][0] !== undefined) {
-                            const val = data[0][0];
-                            if (val > -1000 && val < 5000) { // Practical bounds check
-                                depthValue = val;
+                        // The GeoTIFF is in UTM Zone 36N (EPSG:32636) - convert lat/lng to UTM
+                        const utmCoords = proj4("WGS84", "EPSG:32636", [latlng.lng, latlng.lat]);
+                        const utmX = utmCoords[0]; // Easting (meters)
+                        const utmY = utmCoords[1]; // Northing (meters)
+                        
+                        // Check if the UTM coordinates are within the raster bounds
+                        if (utmX >= bbox[0] && utmX <= bbox[2] && utmY >= bbox[1] && utmY <= bbox[3]) {
+                            // Calculate pixel coordinates from UTM
+                            const px = Math.floor((utmX - bbox[0]) / Math.abs(resx));
+                            const py = Math.floor((bbox[3] - utmY) / Math.abs(resy));
+                            
+                            // Bounds safety check
+                            if (px >= 0 && px < image.getWidth() && py >= 0 && py < image.getHeight()) {
+                                // Fetch ONLY the single tile containing this pixel (efficient with COG tiling)
+                                const data = await image.readRasters({
+                                    window: [px, py, px + 1, py + 1],
+                                    samples: [0]
+                                });
+                                
+                                if (data && data[0] && data[0][0] !== undefined) {
+                                    const rawVal = data[0][0];
+                                    // Filter out nodata (65535 = uint16 max, typically nodata)
+                                    if (rawVal > 0 && rawVal < 65535) {
+                                        depthValue = rawVal;
+                                    }
+                                }
                             }
                         }
-                    } catch (err) { console.warn("Raster partial read error:", err); }
+                    } catch (err) { 
+                        console.warn("[Depth] ❌ Raster read error:", err.message || err); 
+                    }
                 }
 
                 try {
                     const reportContainer = document.getElementById('report-container');
-                    const isEn = window.i18n && window.i18n.lang === 'en';
                     if (reportContainer) reportContainer.innerHTML = `<div class="details-placeholder"><p><i class="fas fa-spinner fa-spin"></i> ${isEn ? 'Analyzing location and fetching Google maps...' : 'جاري تحليل بيانات الموقع وجلب خرائط Google...'}</p></div>`;
 
                     // إصلاح: منع تعطل الدالة في حال فشل الـ Geocoding
@@ -2155,13 +2325,14 @@
                     console.error("Critical CheckLocation Error:", e);
                 }
 
-                if (legendDepthSpan) {
+                const depthSpan = document.getElementById('legend-depth-value');
+                if (depthSpan) {
                     if (depthValue !== null) {
                         const label = isEn ? 'Depth:' : 'العمق:';
                         const unit = isEn ? 'meters' : 'متر';
-                        legendDepthSpan.innerHTML = `${label} <strong style="color: var(--accent-blue);">${Math.round(depthValue)} ${unit}</strong>`;
+                        depthSpan.innerHTML = `${label} <strong style="color: var(--accent-blue);">${Math.round(depthValue)} ${unit}</strong>`;
                     } else {
-                        legendDepthSpan.textContent = 'العمق التقريبي (متر)';
+                        depthSpan.textContent = isEn ? 'Approximate Depth (meters)' : 'العمق التقريبي (متر)';
                     }
                 }
 
