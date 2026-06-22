@@ -1359,7 +1359,7 @@
 
             // Initialize GeoTIFF depth raster (Optimized Hybrid: Fetch to memory to avoid Range Requests, decode on demand to prevent freeze)
             async function initDepthRaster() {
-                const url = "data/groundwater_depth.tif";
+                const url = "data/groundwater_depth_1.tif";
                 try {
                     console.log(`[DepthRaster] Fetching TIFF to memory: ${url}`);
                     const response = await fetch(url);
